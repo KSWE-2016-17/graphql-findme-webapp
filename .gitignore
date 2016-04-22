@@ -1,5 +1,6 @@
-# Node modules
+# Node
 /node_modules/
+npm-debug.log
 
 # Generated stuff
 /dist/
