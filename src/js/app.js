@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Router, hashHistory } from "react-router";
 
-import HelloWorldComponent from "./components/HelloWorldComponent";
+import routes from "./routes";
 
 ReactDOM.render(
-    <HelloWorldComponent />,
-    document.getElementById('app')
+    <Router history={hashHistory} routes={routes} />,
+    document.getElementById("app")
 );
