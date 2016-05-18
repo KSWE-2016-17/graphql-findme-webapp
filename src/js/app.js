@@ -1,10 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Router, hashHistory } from "react-router";
 
-import routes from "./routes";
+//import HelloWorldComponent from "./components/HelloWorldComponent";
 
-ReactDOM.render(
-    <Router history={hashHistory} routes={routes} />,
-    document.getElementById("app")
-);
+import ProfilViewComponents from "./pages/ProfilViewComponent";
+
+var Main = function () {
+    return <div>
+        <ProfilViewComponents />
+    </div>
+
+}
+
+ReactDOM.render(<Main />, document.getElementById('app'));

@@ -2,12 +2,12 @@ import React from "react";
 
 export default class HelloWorldComponent extends React.Component {
     sayHelloWorld() {
-        return "Hello, world!";
+        return "Hello, World!!!";
     }
 
     render() {
         return (
-            <p>{this.sayHelloWorld()}</p>
+            <h1>{this.sayHelloWorld()}</h1>
         );
     }
 }

@@ -11,10 +11,10 @@ describe("HelloWorldComponent", () => {
         });
     });
     describe(".render method", () => {
-        it("should return '<p>Hello, world!</p>'", () => {
+        it("should return '<h1>Hello, world!</h1>'", () => {
             let tester = new HelloWorldComponent();
 
-            expect(tester.render()).toEqual(<p>Hello, world!</p>);
+            expect(tester.render()).toEqual(<h1>Hello, world!</h1>);
         });
     });
 });
