@@ -1,0 +1,16 @@
+hr{
+    border: 1px solid gray;
+}
+
+div.box_interessen{
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 15px;
+    margin-left: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #eb9316;
+    border-radius: 4px;
+    float: left;
+}

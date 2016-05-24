@@ -2,7 +2,7 @@ import React from "react";
 
 export default class HelloWorldComponent extends React.Component {
     sayHelloWorld() {
-        return "Hello, world!";
+        return "Hello, World!";
     }
 
     render() {
