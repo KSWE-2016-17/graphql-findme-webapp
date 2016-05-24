@@ -1,8 +1,11 @@
-hr{
+hr {
     border: 1px solid gray;
 }
 
-div.box_interessen{
+div {
+    background-color: lightblue;
+}
+div.box_interessen {
     color: #ffffff;
     font-weight: bold;
     padding: 5px 15px;
