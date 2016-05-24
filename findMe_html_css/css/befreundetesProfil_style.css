@@ -1,0 +1,10 @@
+span#befreundet{
+    color: white;
+    background-color: green;
+    border: 1px solid;
+    border-radius: 2px;
+    border-color: black;
+    font-size: small;
+    padding: 5px;
+    margin-left: 15px;
+}

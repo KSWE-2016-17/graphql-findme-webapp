@@ -1,0 +1,11 @@
+button#beschwerden{
+    float: right;
+    margin-bottom: 10px;
+    color: white;
+    background-color: blueviolet;
+}
+
+button#beschwerden:hover{
+    color: blueviolet;
+    background-color: white;
+}
