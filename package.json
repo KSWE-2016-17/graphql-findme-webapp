@@ -7,9 +7,17 @@
     "startDev": "webpack-dev-server --watch --inline --hot",
     "test": "karma start"
   },
+  "repository": {
+    "type": "git",
+    "url": "git-https://github.com/findme-react/js-webapp.git"
+  },
   "author": "",
   "license": "UNLICENSED",
   "private": true,
+  "bug": {
+    "url": "https://github.com/findme-react/js-webapp/issues"
+  },
+  "homepage": "https://github.com/findme-react/js-webapp#readme",
   "dependencies": {
     "bootstrap": "3.3.6",
     "jquery": "2.2.3",
