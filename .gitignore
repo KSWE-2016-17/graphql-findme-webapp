@@ -4,3 +4,6 @@ npm-debug.log
 
 # Generated stuff
 /dist/
+
+# WebStorm
+/.idea/
