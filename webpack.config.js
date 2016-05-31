@@ -1,7 +1,8 @@
 module.exports = {
     entry: {
         javascript: "./src/js/app.js",
-        html: "./src/index.html"
+        html: "./src/index.html",
+        css: "./src/css/style.css"
     },
     output: {
         path: "./dist",
@@ -22,6 +23,10 @@ module.exports = {
             {
                 test: /\.html$/,
                 loader: "file?name=[name].[ext]"
+            },
+            {
+                test: /\.css$/,
+                loader: "file?name=css/[name].[ext]"
             }
         ]
     }
