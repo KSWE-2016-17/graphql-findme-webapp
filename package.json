@@ -11,6 +11,14 @@
     "type": "git",
     "url": "git-https://github.com/findme-react/js-webapp.git"
   },
+  "keywords": [
+    "find.me",
+    "findme",
+    "react",
+    "js",
+    "reactjs",
+    "webapp"
+  ],
   "author": "",
   "license": "UNLICENSED",
   "private": true,
