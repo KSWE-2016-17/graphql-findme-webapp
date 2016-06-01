@@ -5,7 +5,7 @@ import ProfilViewComponent from "./pages/ProfilViewComponent";
 import LoginViewComponent from "./pages/LoginViewComponent";
 import LogoutPage from "./pages/LogoutPage";
 import RegistrierenViewPage from "./pages/RegistrierenViewPage";
-//import OtherProfileView from "./pages/OtherProfileView";
+import OtherProfileView from "./pages/OtherProfileView";
 import EditProfilePage from "./pages/EditProfilePage";
 import ProfileinstellungenViewPage from "./pages/ProfileinstellungenViewPage";
 import ArchiveViewPage from "./pages/ArchiveViewPage";
@@ -25,7 +25,7 @@ export default {
         { path: "login", component: LoginViewComponent },
         { path: "logout", component: LogoutPage },
         { path: "register", component: RegistrierenViewPage },
-//        { path: "profile/:id", component: OtherProfileView },
+        { path: "profile/:id", component: OtherProfileView },
         { path: "profile/edit", component: EditProfilePage },
         { path: "profile/settings", component: ProfileinstellungenViewPage },
         { path: "mails/archive", component: ArchiveViewPage },
