@@ -1,6 +1,6 @@
 import React from "react";
 
-import NavigationBar from "../components/PostLoginNavigationBar";
+import NavigationBar from "../components/ProfilAnsichtNavigationElement";
 import Head from "../components/OtherProfileView_HeadRow";
 import Message from "../components/OtherProfileView_RestrictedRow";
 
