@@ -18,7 +18,7 @@ import FriendProfileView from "./pages/FriendProfileView";
 export default {
     path: "/",
     component: IndexPage,
-    indexRoute: { component: HelloWorldPage },
+    indexRoute: { component: LoginViewComponent },
     childRoutes: [
         { path: "anotherhelloworld", component: AnotherHelloWorldPage },
         { path: "profile", component: ProfilViewComponent },
