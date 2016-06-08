@@ -2,6 +2,12 @@ import React from "react";
 
 export default class RegistrierenViewFormComponent extends React.Component {
 
+    registerNewUser(){
+        //CHECK CHECK CHECK TODO
+        alert("Registrierung erfolgreich! Log dich gleich ein!");
+        window.open("#/login","_self");
+    }
+
     createRegistrierenViewForm() {
         return(<div className="container">
             <div className="row">
@@ -60,7 +66,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
             </div>
             <div className="row">
                 <div className="col-md-5 col-md-offset-3">
-                        <button className="btn btn-primary btn-md btn-block" type="button">
+                        <button className="btn btn-primary btn-md btn-block" type="button" onClick={this.registerNewUser}>
                             <span className="glyphicon"></span> Registrieren</button>
                 </div>
                 <br/>

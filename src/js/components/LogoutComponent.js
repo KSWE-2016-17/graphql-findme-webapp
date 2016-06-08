@@ -23,9 +23,9 @@ export default class LogoutComponent extends React.Component {
                                 </div>
                         <div>
                             <br/>
-                            <button type="button" className="btn btn-link btn-lg">
+                            <a href="#/login">
                                 <span className="glyphicon glyphicon-menu-left"></span> Zurück zu find.me 
-                            </button>
+                            </a>
                         </div>
                         </div>
 
@@ -37,6 +37,8 @@ export default class LogoutComponent extends React.Component {
 
 
     render() {
+        //<button type="button" className="btn btn-link btn-lg">
+        //</button>
         return (
             <div>{this.createContent()}</div>
         );

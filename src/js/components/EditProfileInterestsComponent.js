@@ -57,9 +57,9 @@ export default class EditProfileInterestsComponent extends React.Component {
                 <br/><hr/>
                 <div className="row">
                     <div className="col-md-10 col-md-offset-1">
-                        <button type="button" className="btn btn-primary btn-lg btn-block">
+                        <a href="#/profile" type="button" className="btn btn-primary btn-lg btn-block">
                             <span className="glyphicon glyphicon-chevron-left"></span> Zurück zum Profil
-                        </button>
+                        </a>
                     </div>
                 </div>
 

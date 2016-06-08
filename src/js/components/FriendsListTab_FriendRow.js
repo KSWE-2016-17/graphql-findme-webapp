@@ -13,12 +13,12 @@ export default class FriendsListTab_FriendRow extends React.Component {
 					</div>
 					<div className="col-md-11">
 					    <font size="5"> Stefan Schmidt</font><br />
-						<button type="button" className="btn btn-link" style={{marginLeft:"25px", paddingLeft:"0px", paddingRight:"0px"}}>
+						<a href="#/friends/32" type="button" className="btn btn-link" style={{marginLeft:"25px", paddingLeft:"0px", paddingRight:"0px"}}>
 				            <span className="glyphicon glyphicon-eye-open"></span> Profil ansehen
-				        </button>
-						<button type="button" className="btn btn-link" style={{marginLeft:"25px", paddingLeft:"0px", paddingRight:"0px"}}>
+				        </a>
+						<a href="#/mails/new" type="button" className="btn btn-link" style={{marginLeft:"25px", paddingLeft:"0px", paddingRight:"0px"}}>
 				            <span className="glyphicon glyphicon-envelope"></span> Nachricht senden
-				        </button>
+				        </a>
 						<button type="button" className="btn btn-link" style={{marginLeft:"25px", paddingLeft:"0px", paddingRight:"0px"}}>
 				            <span className="glyphicon glyphicon-screenshot"></span> Benutzer melden
 				        </button>
@@ -32,6 +32,8 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     render() {
+		//Buttons zu links geänderts
+		//jieqjei
         return (
             <div>{this.create()}</div>
         );

@@ -12,19 +12,20 @@ export default class NavigationComponent extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">findMe</a>
+                        <a className="navbar-brand" >findMe</a>
                     </div>
                     <div className="collapse navbar-collapse" id="myNavbar">
                         <ul className="nav navbar-nav">
-                            <li><a href="#"><span className="glyphicon glyphicon-user"></span> Profil</a></li>
-                            <li><a href="#"><span className="glyphicon glyphicon-send"></span> Dating</a></li>
-                            <li><a href="#"><span className="glyphicon glyphicon-asterisk"></span> Freunde</a></li>
+                            <li><a href="#/profile"><span className="glyphicon glyphicon-user"></span> Profil</a></li>
+                            <li><a href="#/dating"><span className="glyphicon glyphicon-send"></span> Dating</a></li>
+                            <li><a href="#/friendstab"><span className="glyphicon glyphicon-asterisk"></span> Freunde</a></li>
                             <li className="dropdown">
                                 <a className="dropdown-toggle" data-toggle="dropdown" href="#"><span className="glyphicon glyphicon-envelope"></span> Nachrichten <span class="caret"></span></a>
                                 <ul className="dropdown-menu">
-                                    <li><a href="#">Posteingang</a></li>
-                                    <li><a href="#">Nachricht erstellen</a></li>
-                                    <li><a href="#">gesendete Nachrichten</a></li>
+                                    <li><a href="#/mails/inbox">Posteingang</a></li>
+                                    <li><a href="#/mails/new">Nachricht erstellen</a></li>
+                                    <li><a href="#/mails/outbox">gesendete Nachrichten</a></li>
+                                    <li><a href="#/mails/archive">Archiv</a></li>
                                 </ul>
                             </li>
                             <li>
@@ -41,8 +42,8 @@ export default class NavigationComponent extends React.Component {
                             </li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="#"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a></li>
-                            <li><a href="#"><span className="glyphicon glyphicon-log-out"></span> ausloggen</a></li>
+                            <li><a href="#/profile/settings"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a></li>
+                            <li><a href="#/logout"><span className="glyphicon glyphicon-log-out"></span> ausloggen</a></li>
                         </ul>
                     </div>
                 </div>

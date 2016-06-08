@@ -1,6 +1,14 @@
 import React from "react";
 
+
 export default class LoginInfoBox extends React.Component {
+
+    onClickRegister(){
+       // alert("rqrqr");
+        //href="#/register" <!-- <button type="button" className="btn btn-primary" onClick={this.onClickRegister}>Registrieren</button> -->
+    }
+
+
     createContent() {
         return <div className="container"> <div className="row" style={{backgroundColor: "#F7F7F7"}}>
 
@@ -15,12 +23,11 @@ export default class LoginInfoBox extends React.Component {
                     <br/>
                     Finden Sie den Richtigen.</h5>
 
-                <button type="button" className="btn btn-primary">Registrieren</button>
+                <a className="btn btn-primary" href="#/register">Registrieren</a>
                 <br/>
                 <br/>
                 <br/>
             </div>
-
         </div>
             </div>;
     }
