@@ -14,6 +14,8 @@ import OutboxViewPage from "./pages/OutboxViewPage";
 import NewMailPage from "./pages/NewMailPage";
 import ReadMailPage from "./pages/ReadMailPage";
 import FriendProfileView from "./pages/FriendProfileView";
+import DatingViewPage from "./pages/DatingViewPage";
+import FriendListTab from "./pages/FriendsListTab";
 
 export default {
     path: "/",
@@ -26,13 +28,16 @@ export default {
         { path: "logout", component: LogoutPage },
         { path: "register", component: RegistrierenViewPage },
         { path: "profile/:id", component: OtherProfileView },
-        { path: "profile/edit", component: EditProfilePage },
+        { path: "edit", component: EditProfilePage },
         { path: "profile/settings", component: ProfileinstellungenViewPage },
         { path: "mails/archive", component: ArchiveViewPage },
         { path: "mails/inbox", component: InboxViewPage },
         { path: "mails/outbox", component: OutboxViewPage },
         { path: "mails/new", component: NewMailPage },
         { path: "mails/:id", component: ReadMailPage },
-        { path: "friends/:id", component: FriendProfileView }
+        { path: "friends/:id", component: FriendProfileView },
+        { path: "dating", component: DatingViewPage},
+        { path: "friendstab", component: FriendListTab}
+
     ]
 };

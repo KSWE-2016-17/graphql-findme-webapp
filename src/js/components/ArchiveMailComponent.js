@@ -25,7 +25,7 @@ export default class ArchiveMailComponent extends React.Component {
                     <div className="col-md-1">
                         <div>
                             <div>
-                                <button className="btn btn-default btn-sm" type="button"><span className="glyphicon glyphicon-eye-open"></span></button>
+                                <a href="#/mails/read" className="btn btn-default btn-sm" type="button"><span className="glyphicon glyphicon-eye-open"></span></a>
                             </div><div>
                             <button className="btn btn-danger btn-sm" type="button"><span className="glyphicon glyphicon-trash"></span></button>
                         </div></div>

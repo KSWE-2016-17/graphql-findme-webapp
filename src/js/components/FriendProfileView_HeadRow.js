@@ -4,6 +4,11 @@ import DefaultProfilImage from "./DefaultProfilImage";
 
 export default class FriendProfileView_HeadRow extends React.Component {
 
+    reportUser(){
+        //logiklogiklogik
+        alert("Report");
+    }
+
     create() {
         return (
             <div className="container">
@@ -11,7 +16,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
                     <div className="col-md-2">
                         <DefaultProfilImage />
                         <br /><br />
-                        <button type="button" className="btn btn-primary"><span className="glyphicon glyphicon-envelope"></span> Nachricht senden</button>
+                        <a href="#/mails/new" type="button" className="btn btn-primary"><span className="glyphicon glyphicon-envelope"></span> Nachricht senden</a>
                     </div>
 			    <div className="col-md-8">			    
                     <h1 style={{float:"left"}}>Stefan Schmidt</h1>
@@ -26,7 +31,9 @@ export default class FriendProfileView_HeadRow extends React.Component {
                     </p>
                 </div>
                     <div className="col-md-2">
-                        <button type="button" className="btn btn-primary">
+
+                        <button type="button" id="REPORT" className="btn btn-primary" onClick={this.reportUser}>
+
                             <span className="glyphicon glyphicon-screenshot"></span> Benutzer melden
                         </button> 
                     </div>
@@ -40,4 +47,6 @@ export default class FriendProfileView_HeadRow extends React.Component {
             <div>{this.create()}</div>
         );
     }
+
+
 }

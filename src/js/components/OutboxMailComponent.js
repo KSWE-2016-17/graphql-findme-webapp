@@ -26,7 +26,7 @@ export default class OutboxMailComponent extends React.Component {
                         <div>
 
                             <div>
-                                <button className="btn btn-default btn-sm" type="button"><span className="glyphicon glyphicon-eye-open"></span></button>
+                                <a href="#/mails/32" className="btn btn-default btn-sm" type="button"><span className="glyphicon glyphicon-eye-open"></span></a>
                             </div>
                             <div>
                                 <button className="btn btn-warning btn-sm" type="button"><span className="glyphicon glyphicon-floppy-disk"></span></button>

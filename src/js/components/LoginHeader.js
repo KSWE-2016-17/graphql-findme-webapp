@@ -2,7 +2,8 @@ import React from "react";
 
 export default class LoginHeader extends React.Component {
     login(){
-        alert("e");
+        //alert("QEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEqEq");
+        window.open("#/profile","_self");
     }
 
     createContent() {
@@ -26,7 +27,7 @@ export default class LoginHeader extends React.Component {
                         </div>
                                        </div>
                                        <div className="col-md-1">
-                        <button type="submit" className="btn btn-primary" onclick="login();">anmelden</button>
+                        <button type="submit" className="btn btn-primary" onClick={this.login}>anmelden</button>
                     </div>
                 </form>
 
