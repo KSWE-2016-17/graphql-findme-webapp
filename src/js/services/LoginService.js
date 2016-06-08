@@ -3,10 +3,10 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class LoginService {
-    login(username, password, callbacks) {
+    login(login, password, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
-        userDao.findByLogin(username, {
+        userDao.findByLogin(login, {
             success: function(data) {
                 if (data && data.password === password) {
                     if (callbacks && typeof callbacks.success === "function") {
