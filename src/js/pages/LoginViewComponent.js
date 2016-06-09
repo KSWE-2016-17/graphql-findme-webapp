@@ -21,8 +21,8 @@ export default class LoginViewComponent extends React.Component {
             <LoginFooter/>
             </div>;
     }
-    
-    
+
+
 
     render() {
         return (
