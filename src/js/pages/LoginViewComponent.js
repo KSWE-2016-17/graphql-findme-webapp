@@ -6,6 +6,13 @@ import LoginDreiPunkte from "../components/LoginDreiPunkte";
 import LoginFooter from "../components/LoginFooter";
 
 export default class LoginViewComponent extends React.Component {
+    constructor(props) {
+        super(props);
+        if (localStorage.getItem("sessionUser")) {
+            location.href = "#/profile";
+        }
+    }
+
     createContent() {
         return <div className="container">
             <LoginHeader/>
@@ -14,8 +21,8 @@ export default class LoginViewComponent extends React.Component {
             <LoginFooter/>
             </div>;
     }
-    
-    
+
+
 
     render() {
         return (
