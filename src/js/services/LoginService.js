@@ -8,9 +8,9 @@ export default class LoginService {
         let userDao = dm.getDao(CouchDbApi.UserDAO);
         userDao.findByLogin(login, {
             success: function(data) {
-                if (data && data.rows[0].value.password === password) {
+                if (data && data[0].password === password) {
                     if (callbacks && typeof callbacks.success === "function") {
-                        localStorage.setItem("sessionUser", data.rows[0].value);
+                        localStorage.setItem("sessionUser", data[0]);
                         callbacks.success(data);
                     }
                 } else {
