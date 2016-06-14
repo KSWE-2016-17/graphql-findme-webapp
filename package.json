@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestartDev": "npm install",
     "startDev": "webpack-dev-server --watch --inline --hot",
     "test": "karma start",
     "lint": "eslint src || true"
