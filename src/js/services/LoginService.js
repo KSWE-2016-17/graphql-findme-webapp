@@ -10,7 +10,7 @@ export default class LoginService {
             success: function(data) {
                 if (data && data[0].password === password) {
                     if (callbacks && typeof callbacks.success === "function") {
-                        localStorage.setItem("sessionUser", data[0]);
+                        localStorage.setItem("sessionUserId", data[0]._id);
                         callbacks.success(data);
                     }
                 } else {
