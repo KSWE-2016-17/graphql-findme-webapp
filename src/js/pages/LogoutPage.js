@@ -5,6 +5,13 @@ import LoginFooter from "../components/LoginFooter";
 
 
 export default class LogoutPage extends React.Component {
+    constructor(props) {
+        super(props);
+        if(localStorage.getItem("sessionUserId")) {
+            localStorage.removeItem("sessionUserId");
+        }
+    }
+
     createContent() {
         return <div className="container">
             <br/>

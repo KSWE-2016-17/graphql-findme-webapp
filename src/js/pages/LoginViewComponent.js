@@ -8,7 +8,7 @@ import LoginFooter from "../components/LoginFooter";
 export default class LoginViewComponent extends React.Component {
     constructor(props) {
         super(props);
-        if (localStorage.getItem("sessionUser")) {
+        if (localStorage.getItem("sessionUserId")) {
             location.href = "#/profile";
         }
     }
