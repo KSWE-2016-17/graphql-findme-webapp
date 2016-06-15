@@ -2,11 +2,15 @@ import React from "react";
 import Image from "./DefaultImage";
 import NewMailService from "../services/NewMailService"
 
-var sendtoid = "";
+var sendtoid = "NOTFOUND";
 let mailservice = new NewMailService();
 
 export default class NewMailComponent extends React.Component {
 
+    removeMail(){
+        document.getElementById("sendto").value = "";
+        document.getElementById("message").value = "";
+    }
 
     getSendTo(){
 
@@ -18,33 +22,18 @@ export default class NewMailComponent extends React.Component {
             },
             error: function (err) {
                 console.log(err);
-                sendtoid = "NOTFOUND";
             }
         });
     }
 
-    removeMail(){
-        alert("REMOVED");
-    }
 
     sendMail(){
 
-        //var sendto = $("#sendto").val();
+
         var message = $("#message").val();
         var from = localStorage.getItem("sessionUserId");
-        //var sendtoid = "";
-        if(message!=="") {
-           // let mailservice = new NewMailService();
 
-            // mailservice.resolveUserName(sendto, {
-            //     success: function (data) {
-            //         sendtoid = data[0]._id;
-            //     },
-            //     error: function (err) {
-            //         console.log(err);
-            //         sendtoid = "";
-            //     }
-            // });
+        if(message!=="") {
 
 
 
@@ -58,6 +47,7 @@ export default class NewMailComponent extends React.Component {
             if (sendtoid !== "NOTFOUND") {
                 mailservice.sendMail(obj, {
                     success: function (data) {
+                        sendtoid = "NOTFOUND";
                         location.href = "#/mails/outbox";
                     },
                     error: function (err) {
