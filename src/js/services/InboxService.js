@@ -1,4 +1,3 @@
-
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";
@@ -15,11 +14,6 @@ export default class InboxService {
                         callbacks.success(data);
                     }
                 }
-                /*else {
-                 if (callbacks && typeof callbacks.error === "function") {
-                 callbacks.error("");
-                 }*/
-                //}
             },
             error: function (err) {
                 console.error(err);
@@ -31,8 +25,9 @@ export default class InboxService {
     }
 
     resolveUserName(id, callbacks) {
-        let dd = new CouchDbApi.DaoManager(connSettings);
-        let usrDao = dd.getDao(CouchDbApi.UserDAO);
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let usrDao = dm.getDao(CouchDbApi.UserDAO);
+
         usrDao.findById(id, {
             success: function (data) {
                 if (data) {
@@ -48,6 +43,5 @@ export default class InboxService {
                 }
             }
         });
-
     }
 }
