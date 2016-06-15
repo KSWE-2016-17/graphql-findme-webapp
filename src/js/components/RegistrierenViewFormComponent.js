@@ -1,11 +1,80 @@
 import React from "react";
 
+import RegisterService from "../services/RegisterService";
+
 export default class RegistrierenViewFormComponent extends React.Component {
 
     registerNewUser(){
-        //CHECK CHECK CHECK TODO
-        alert("Registrierung erfolgreich! Log dich gleich ein!");
-        window.open("#/login","_self");
+        var name;
+        var mail;
+        var pw;
+        var pw2;
+        var gender;
+        var yearOfBirth;
+        var accept;
+
+        name = $("#username").val();
+        mail = $("#mailadress").val();
+        pw = $("#password").val();
+        pw2 = $("#password2").val();
+        gender = $("#gender").val();
+        yearOfBirth = $("#yearOfBirth").val();
+        accept = document.getElementById("acceptAGB").checked;
+
+        var objUser = {
+            "doctype" : "user",
+            "login" : name,
+            "password" : pw,
+            "role" : 0
+        }
+
+        var objPrivacy = {
+            "friends" : 1,
+            "pictures" : 0
+        }
+
+        var objProfil = {
+            "doctype" : "profile",
+            "user_id" : name,
+            "firstname" : name,
+            "lastname" : name,
+            "email" : mail,
+            "birthday" : yearOfBirth,
+            "gender" : gender,
+            "familystatus" : 1,
+            "children" : 0,
+            "aboutme" : "UeberMich ABC",
+            "privacy" : objPrivacy,
+            "profilepic" : "ououo",
+            "haircolor" : 3,
+            "eyecolor" : 0,
+            "figure" : 1
+        }
+
+        if(name !== "" && mail !== "" && pw===pw2 && gender !== "" && yearOfBirth !== "" && accept === true){
+            let registerService = new RegisterService();
+            registerService.register(objUser, {
+                success: function(data) {
+                    //location.href = "#/login";
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+
+            // let profileService = new ProfileService();
+            // profileService.createProfile(objProfil, {
+            //     success: function(data) {
+            //         location.href = "#/login";
+            //     },
+            //     error: function(err) {
+            //         console.log(err);
+            //     }
+            // });
+        } else {
+            alert("Bitte alle Felder ausfuellen!");
+        }
+
     }
 
     createRegistrierenViewForm() {
@@ -17,19 +86,19 @@ export default class RegistrierenViewFormComponent extends React.Component {
                     <table>
                         <tr>
                             <td>Benutzername:</td>
-                            <td><input type="text" value="" size="50"/></td>
+                            <td><input type="text" name="username" id="username" size="50"/></td>
                         </tr>
                         <tr>
                             <td>Emailadresse:</td>
-                            <td><input type="text" value="" size="50"/></td>
+                            <td><input type="text" id="mailadress" size="50"/></td>
                         </tr>
                         <tr>
                             <td>Passwort:</td>
-                            <td><input type="password" value="" size="50"/></td>
+                            <td><input type="password" id="password" size="50"/></td>
                         </tr>
                         <tr>
                             <td>Passwort (wdh.):</td>
-                            <td><input type="password" value="" size="50"/></td>
+                            <td><input type="password" id="password2" size="50"/></td>
                         </tr>
                     </table>
                 </div>
@@ -39,19 +108,19 @@ export default class RegistrierenViewFormComponent extends React.Component {
                     <table>
                         <tr>
                             <td>Geschlecht:</td>
-                            <td><label><input type="radio" name="optradio"/> m&auml;nnlich</label></td>
+                            <td><label><input type="radio" name="gender" value="male"/> m&auml;nnlich</label></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><label><input type="radio" name="optradio"/> weiblich</label></td>
+                            <td><label><input type="radio" name="gender" value="female"/> weiblich</label></td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td><label><input type="radio" name="optradio"/> sonstiges</label></td>
+                            <td><label><input type="radio" name="gender" value="other"/> sonstiges</label></td>
                         </tr>
                         <tr>
                             <td>Geburtsjahr:</td>
-                            <td><label><input type="text" name="sonstiges"/></label></td>
+                            <td><label><input type="text" name="yearOfBirth"/></label></td>
                         </tr>
                     </table>
                 </div>
@@ -60,7 +129,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
                 <div className="col-md-6 col-md-offset-5">
                     <div className="checkbox">
                         <br/>
-                        <label><input type="checkbox" value=""/>AGB gelesen</label>
+                        <label><input type="checkbox" value="" name="acceptAGB" id="acceptAGB"/>AGB gelesen</label>
                     </div>
                 </div>
             </div>

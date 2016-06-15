@@ -1,21 +1,19 @@
 import CouchDbApi from "findme-react-couchdb-api";
-
 import connSettings from "../../conn-settings";
 
-export default class LoginService {
-    login(login, password, callbacks) { 
+export default class ProfileService {
+    createProfile(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
-        userDao.findByLogin(login, {
+        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        profileDao.create(obj,  {
             success: function(data) {
-                if (data && data[0].password === password) {
+                if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
-                        localStorage.setItem("sessionUserId", data[0]._id);
                         callbacks.success(data);
                     }
                 } else {
                     if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("wrong username or password");
+                        callbacks.error("create user fail");
                     }
                 }
             },
