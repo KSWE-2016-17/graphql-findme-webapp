@@ -41,7 +41,11 @@ export default class NewMailComponent extends React.Component {
                     "doctype": "msg",
                     "from": from,
                     "to": sendtoid,
-                    "title": message
+                    "title": message,
+                    "archivedFrom" : false,
+                    "archivedTo" : false,
+                    "deletedFrom" : false,
+                    "deletedTo" : false
                 }
 
             if (sendtoid !== "NOTFOUND") {
