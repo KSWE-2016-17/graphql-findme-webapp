@@ -10,30 +10,27 @@ function findMsgToMe() {
     let inboxService = new InboxService();
     inboxService.findMsgToMe(localStorage.getItem("sessionUserId"),{
         success: function(data) {
-           // for(var i=0;i<data.length;i++){
-                //messages[i] = data[i];
-                messages = data;
-            //}
-            length = data.length;
+            messages = data;
+            for (var i = 0; i < messages.length; i++) {
+                inboxService.resolveUserName(messages[i].from, {
+                    success: function (data) {
+                       // resolvedNames[i] = data[0].password;
+                        resolvedNames.push(data[0]);
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    },
+
+                });
+            }
         },
         error: function(err) {
             console.log(err);
         }
     });
 
-    for(var i=0;i<messages.length;i++){
-    inboxService.resolveUserName(messages[i].from,{
-        success: function(data) {
-            resolvedNames[i] = data[0];
-        },
-        error: function(err) {
-            console.log(err);
-        }
-
-    });
-
-    }
 }
+
 
 findMsgToMe();
 
@@ -41,42 +38,6 @@ export default class InboxMailComponent extends React.Component {
     
     constructor(props) {
         super(props);
-    }
-
-
-    createMail(){
-       return <div name="MAIL">
-            <br/>
-            <div className="row">
-                <div className="col-md-1">
-                    <Image/>
-                </div>
-                <div className="col-md-10">
-                    <div>
-                        <div style={{backgroundColor: "#ccffcc", border: "2px solid #000000"}}>
-                            <p>fromeqjoqwej</p>
-                        </div>
-                        <div style={{border: "1px solid #000000"}}>
-                            <p>TEXT</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-md-1">
-                    <div>
-
-                        <div>
-                            <button className="btn btn-default btn-sm" type="button"><span className="glyphicon glyphicon-eye-open"></span></button>
-                        </div>
-                        <div>
-                            <button className="btn btn-warning btn-sm" type="button"><span className="glyphicon glyphicon-floppy-disk"></span></button>
-                        </div>
-                        <div>
-                            <button className="btn btn-danger btn-sm" type="button"><span className="glyphicon glyphicon-trash"></span></button>
-                        </div></div>
-                </div>
-            </div>
-            <hr/>
-        </div>
     }
 
     createContent() {
@@ -94,7 +55,7 @@ export default class InboxMailComponent extends React.Component {
                         <div className="col-md-10">
                             <div>
                                 <div style={{backgroundColor: "#ccffcc", border: "2px solid #000000"}}>
-                                    <p id="fromid">{resolvedNames[x]}</p>
+                                    <p id="fromid">{resolvedNames[x].login}</p>
                                 </div>
                                 <div style={{border: "1px solid #000000"}}>
                                     <p id="textid">{messages[x].title}</p>
