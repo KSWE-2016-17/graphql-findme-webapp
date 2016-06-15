@@ -21,23 +21,56 @@ export default class RegistrierenViewFormComponent extends React.Component {
         yearOfBirth = $("#yearOfBirth").val();
         accept = document.getElementById("acceptAGB").checked;
 
-        var obj = {
+        var objUser = {
             "doctype" : "user",
             "login" : name,
             "password" : pw,
             "role" : 0
         }
 
+        var objPrivacy = {
+            "friends" : 1,
+            "pictures" : 0
+        }
+
+        var objProfil = {
+            "doctype" : "profile",
+            "user_id" : name,
+            "firstname" : name,
+            "lastname" : name,
+            "email" : mail,
+            "birthday" : yearOfBirth,
+            "gender" : gender,
+            "familystatus" : 1,
+            "children" : 0,
+            "aboutme" : "UeberMich ABC",
+            "privacy" : objPrivacy,
+            "profilepic" : "ououo",
+            "haircolor" : 3,
+            "eyecolor" : 0,
+            "figure" : 1
+        }
+
         if(name !== "" && mail !== "" && pw===pw2 && gender !== "" && yearOfBirth !== "" && accept === true){
             let registerService = new RegisterService();
-            registerService.register(obj, {
+            registerService.register(objUser, {
                 success: function(data) {
-                    location.href = "#/login";
+                    //location.href = "#/login";
                 },
                 error: function(err) {
                     console.log(err);
                 }
             });
+
+            // let profileService = new ProfileService();
+            // profileService.createProfile(objProfil, {
+            //     success: function(data) {
+            //         location.href = "#/login";
+            //     },
+            //     error: function(err) {
+            //         console.log(err);
+            //     }
+            // });
         } else {
             alert("Bitte alle Felder ausfuellen!");
         }
