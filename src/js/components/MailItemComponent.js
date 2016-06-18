@@ -36,10 +36,10 @@ export default class MailComponent extends React.Component {
                     <div className="col-md-10">
                         <div>
                             <div style={{backgroundColor: "#ccffcc", border: "2px solid #000000"}}>
-                                <p>{this.props.data.user.login ? this.props.data.user.login : this.props.data.message.from}</p>
+                                <p>{self.props.data.user.login ? self.props.data.user.login : self.props.data.message.from}</p>
                             </div>
                             <div style={{border: "1px solid #000000"}}>
-                                <p>{this.props.data.message.title}</p>
+                                <p>{self.props.data.message.title}</p>
                             </div>
                         </div>
                     </div>
