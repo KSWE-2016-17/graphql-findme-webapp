@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/findme-react/js-webapp#readme",
   "dependencies": {
-    "findme-react-couchdb-api": "github:findme-react/couchdb-api#v0.3.4",
+    "findme-react-couchdb-api": "github:findme-react/couchdb-api#v0.4.0",
     "react": "15.1.0",
     "react-dom": "15.1.0",
     "react-router": "2.4.1"
