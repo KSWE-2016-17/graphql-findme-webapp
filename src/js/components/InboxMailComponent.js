@@ -2,7 +2,7 @@ import React from "react";
 import q from "q";
 import _ from "lodash";
 
-import MailComponent from "./MailComponent";
+import MailComponent from "./MailItemComponent";
 
 import InboxService from "../services/InboxService"
 
