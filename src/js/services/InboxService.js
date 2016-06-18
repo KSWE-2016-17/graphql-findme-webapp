@@ -1,47 +1,33 @@
+import q from "q";
+
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";
 
 export default class InboxService {
-    findMsgToMe(to, callbacks) {
+    findMsgToMe(to) {
+        let defer = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msgDao.findByTo(to, {
-            success: function (data) {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                }
-            },
-            error: function (err) {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            }
-        });
+        msgDao.findByTo(to)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
     }
 
-    resolveUserName(id, callbacks) {
+    resolveUserName(id) {
+        let defer = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let usrDao = dm.getDao(CouchDbApi.UserDAO);
 
-        usrDao.findById(id, {
-            success: function (data) {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                }
-            },
-            error: function (err) {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            }
-        });
+        usrDao.findById(id)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
     }
 }
