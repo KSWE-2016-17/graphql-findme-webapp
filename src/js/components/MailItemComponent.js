@@ -5,9 +5,27 @@ import Image from "./DefaultImage";
 export default class MailComponent extends React.Component {
     constructor(props) {
         super(props);
+
+        this.onOpenMail = this.onOpenMail.bind(this);
+        this.onArchiveMail = this.onArchiveMail.bind(this);
+        this.onDeleteMail = this.onDeleteMail.bind(this);
+    }
+
+    onOpenMail(event) {
+        console.log("pressed open");
+    }
+
+    onArchiveMail(event) {
+        console.log("pressed archive");
+    }
+
+    onDeleteMail(event) {
+        console.log("pressed delete");
     }
 
     render() {
+        let self = this;
+
         return (
             <div>
                 <br/>
@@ -28,17 +46,17 @@ export default class MailComponent extends React.Component {
                     <div className="col-md-1">
                         <div>
                             <div>
-                                <button className="btn btn-default btn-sm" type="button">
+                                <button className="btn btn-default btn-sm" type="button" onClick={self.onOpenMail}>
                                     <span className="glyphicon glyphicon-eye-open"></span>
                                 </button>
                             </div>
                             <div>
-                                <button className="btn btn-warning btn-sm" type="button">
+                                <button className="btn btn-warning btn-sm" type="button" onClick={self.onArchiveMail}>
                                     <span className="glyphicon glyphicon-floppy-disk"></span>
                                 </button>
                             </div>
                             <div>
-                                <button className="btn btn-danger btn-sm" type="button">
+                                <button className="btn btn-danger btn-sm" type="button" onClick={self.onDeleteMail}>
                                     <span className="glyphicon glyphicon-trash"></span>
                                 </button>
                             </div>
