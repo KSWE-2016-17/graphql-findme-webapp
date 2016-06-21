@@ -1,6 +1,7 @@
 import React from "react";
 
 import RegisterService from "../services/RegisterService";
+import ProfileService from "../services/ProfileService";
 
 export default class RegistrierenViewFormComponent extends React.Component {
 
@@ -35,7 +36,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
 
         var objProfil = {
             "doctype" : "profile",
-            "user_id" : name,
+            "user_id" : "",
             "firstname" : name,
             "lastname" : name,
             "email" : mail,
@@ -62,15 +63,15 @@ export default class RegistrierenViewFormComponent extends React.Component {
                 }
             });
 
-            // let profileService = new ProfileService();
-            // profileService.createProfile(objProfil, {
-            //     success: function(data) {
-            //         location.href = "#/login";
-            //     },
-            //     error: function(err) {
-            //         console.log(err);
-            //     }
-            // });
+            let profileService = new ProfileService();
+            profileService.createProfile(objProfil, {
+                success: function(data) {
+                    location.href = "#/login";
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
         } else {
             alert("Bitte alle Felder ausfuellen!");
         }
