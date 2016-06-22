@@ -2,7 +2,7 @@ import React from "react";
 
 import Image from "./DefaultImage";
 
-import IS from "../services/InboxService";
+import OS from "../services/OutboxService";
 
 export default class MailComponent extends React.Component {
     constructor(props) {
@@ -20,17 +20,18 @@ export default class MailComponent extends React.Component {
     onArchiveMail(event) {
         console.log("pressed archive");
         let self = this;
-        self.props.data.message.archivedTo=true;
-        let is = new IS();
-        is.updateMsg(self.props.data.message);
+        self.props.data.message.archivedFrom=true;
+        let os = new OS();
+        os.updateMsg(self.props.data.message);
     }
 
     onDeleteMail(event) {
-        console.log("pressed delete");
         let self = this;
-        let is = new IS();
-        self.props.data.message.deletedTo = true;
-        is.updateMsg(self.props.data.message);
+        console.log("pressed delete");
+        let os = new OS();
+        self.props.data.message.deletedFrom=true;
+        os.updateMsg(self.props.data.message);
+
     }
 
     render() {
@@ -45,7 +46,7 @@ export default class MailComponent extends React.Component {
                     </div>
                     <div className="col-md-10">
                         <div>
-                            <div style={{backgroundColor: "#ccffcc", border: "2px solid #000000"}}>
+                            <div style={{backgroundColor: "#ccccff", border: "2px solid #000000"}}>
                                 <p>{self.props.data.user.login ? self.props.data.user.login : self.props.data.message.from}</p>
                             </div>
                             <div style={{border: "1px solid #000000"}}>
