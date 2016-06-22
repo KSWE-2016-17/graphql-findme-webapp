@@ -4,10 +4,10 @@ import DefaultProfilImage from "./DefaultProfilImage";
 
 export default class FriendProfileView_HeadRow extends React.Component {
 
-    create() {
+    render() {
         return (
-		    <div className="container">
-                <div className="row">
+            <div className="container">
+				<div className="row">
 				    <div className="col-md-11">
 					    <span style={{}} className="glyphicon glyphicon-asterisk"></span>
 					    <font size="5"> Deine Freunde </font>
@@ -19,13 +19,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 					    <div style={{border:"1px solid"}}></div>
 					</div>
 				</div>
-            </div>
-		);
-    }
-
-    render() {
-        return (
-            <div>{this.create()}</div>
+			</div>
         );
     }
 }
