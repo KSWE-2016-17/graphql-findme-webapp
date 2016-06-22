@@ -53,25 +53,67 @@ export default class RegistrierenViewFormComponent extends React.Component {
         }
 
         if(name !== "" && mail !== "" && pw===pw2 && gender !== "" && yearOfBirth !== "" && accept === true){
+            //user registrieren
             let registerService = new RegisterService();
             registerService.register(objUser, {
                 success: function(data) {
                     //location.href = "#/login";
+
+                        //user_id ermitteln
+                        registerService.findIdByName(name, {
+                            success: function (data) {
+                                var user = "";
+                                user = data[0]._id;
+                                objProfil.user_id = user;
+
+                                //profil anlegen
+                                let profileService = new ProfileService();
+                                profileService.createProfile(objProfil, {
+                                    success: function(data) {
+                                        //alert("Test: " + objProfil.user_id);
+                                        location.href = "#/login";
+                                    },
+                                    error: function(err) {
+                                        console.log(err);
+                                    }
+                                });
+
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            }
+                        });
+
+
+
                 },
                 error: function(err) {
                     console.log(err);
                 }
             });
 
-            let profileService = new ProfileService();
-            profileService.createProfile(objProfil, {
-                success: function(data) {
-                    location.href = "#/login";
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
+            // while(objProfil.user_id="") {
+            //     registerService.findIdByName(name, {
+            //         success: function (data) {
+            //             user = data[0];
+            //             objProfil.user_id = user[0].id;
+            //         },
+            //         error: function (err) {
+            //             console.log(err);
+            //         }
+            //     });
+            // }
+
+            // let profileService = new ProfileService();
+            // profileService.createProfile(objProfil, {
+            //     success: function(data) {
+            //         location.href = "#/profile";
+            //     },
+            //     error: function(err) {
+            //         console.log(err);
+            //     }
+            // });
+
         } else {
             alert("Bitte alle Felder ausfuellen!");
         }

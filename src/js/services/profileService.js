@@ -24,5 +24,27 @@ export default class ProfileService {
                 }
             }
         });
+
+        profileDao.findByLogin(obj,  {
+            success: function(data) {
+                if (data) {
+                    if (callbacks && typeof callbacks.success === "function") {
+                        callbacks.success(data);
+                    }
+                } else {
+                    if (callbacks && typeof callbacks.error === "function") {
+                        callbacks.error("findUserByLogin fail");
+                    }
+                }
+            },
+            error: function(err) {
+                console.error(err);
+                if (callbacks && typeof callbacks.error === "function") {
+                    callbacks.error(err);
+                }
+            }
+        });
+        
+        
     }
 }
