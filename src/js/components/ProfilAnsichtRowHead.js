@@ -14,7 +14,7 @@ export default class RowHeadComponent extends React.Component {
             </div>
             <div className="col-md-10">
                 <a href="#/edit" type="button" className="btn btn-primary pull-right"><span className="glyphicon glyphicon-pencil"></span> "&Uuml;ber Dich" bearbeiten</a>
-                <h1>Max Mustermann</h1>
+                <h1></h1>
                 <p>
                     "Sei Du selbst die Ver&auml;nderung, die Du Dir w&uuml;nschst f&uuml;r diese Welt."<br />
                     Mahatma Gandi

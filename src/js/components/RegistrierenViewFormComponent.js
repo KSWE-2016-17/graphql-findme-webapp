@@ -1,7 +1,7 @@
 import React from "react";
 
 import RegisterService from "../services/RegisterService";
-import ProfileService from "../services/ProfileService";
+import ProfilService from "../services/ProfilService";
 
 export default class RegistrierenViewFormComponent extends React.Component {
 
@@ -67,8 +67,8 @@ export default class RegistrierenViewFormComponent extends React.Component {
                                 objProfil.user_id = user;
 
                                 //profil anlegen
-                                let profileService = new ProfileService();
-                                profileService.createProfile(objProfil, {
+                                let profilService = new ProfilService();
+                                profilService.createProfile(objProfil, {
                                     success: function(data) {
                                         //alert("Test: " + objProfil.user_id);
                                         location.href = "#/login";
@@ -91,28 +91,6 @@ export default class RegistrierenViewFormComponent extends React.Component {
                     console.log(err);
                 }
             });
-
-            // while(objProfil.user_id="") {
-            //     registerService.findIdByName(name, {
-            //         success: function (data) {
-            //             user = data[0];
-            //             objProfil.user_id = user[0].id;
-            //         },
-            //         error: function (err) {
-            //             console.log(err);
-            //         }
-            //     });
-            // }
-
-            // let profileService = new ProfileService();
-            // profileService.createProfile(objProfil, {
-            //     success: function(data) {
-            //         location.href = "#/profile";
-            //     },
-            //     error: function(err) {
-            //         console.log(err);
-            //     }
-            // });
 
         } else {
             alert("Bitte alle Felder ausfuellen!");
