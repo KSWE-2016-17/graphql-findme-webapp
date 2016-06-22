@@ -1,85 +1,91 @@
 import React from "react";
-import Image from "./DefaultImage";
+import q from "q";
+import _ from "lodash";
+
+import MailComponent from "./OutboxMailItemComponent";
+
 import OutboxService from "../services/OutboxService"
 
 export default class OutboxMailComponent extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            mails: []
+        };
     }
 
-    createContent() {
-        var messages = [];
+    componentDidMount() {
+        let self = this;
 
         let outboxService = new OutboxService();
 
-        outboxService.findMsgFromMe(localStorage.getItem("sessionUserId"), {
-            success: function (data) {
-                messages = data;
-                for (var i = 0; i < messages.length; i++) {
-                    let avatar = <Image />;
-                    let msg =
-                        `<div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-md-1">
-                                    ${avatar}
-                                </div>
-                                <div class="col-md-10">
-                                    <div>
-                                        <div style="background-color: #ccccff; border: 2px solid #000000">
-                                            <p data-from="${messages[i].to}">${messages[i].to}</p>
-                                        </div>
-                                        <div style="border: 1px solid #000000">
-                                            <p>${messages[i].title}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-1">
-                                    <div>
-                                        <div>
-                                            <button class="btn btn-default btn-sm" type="button">
-                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <button class="btn btn-warning btn-sm" type="button">
-                                                <span class="glyphicon glyphicon-floppy-disk"></span>
-                                            </button>
-                                        </div>
-                                        <div>
-                                            <button class="btn btn-danger btn-sm" type="button">
-                                                <span class="glyphicon glyphicon-trash"></span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr/>
-                        </div>`;
+        outboxService.findMsgFromMe(localStorage.getItem("sessionUserId"))
+            .then(function(data) {
+                console.debug("sent messages: " + data.length);
+                let messages = data;
 
-                    $("#outboxMessages").append(msg);
+                let mappedData = _.map(messages, function(msg) {
+                    return {
+                        user: {},
+                        message: msg
+                    };
+                });
 
-                    outboxService.resolveUserName(messages[i].to, {
-                        success: function (data) {
-                            $("p[data-from=" + data[0]._id + "]").text(data[0].login);
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    });
+                let uniqueUsers = _.uniqBy(messages, "to");
+                console.debug("unique senders to identify: " + uniqueUsers.length);
+
+                let promises = [];
+
+                for (let i = 0; i < uniqueUsers.length; i++) {
+                    let uniqueUser = uniqueUsers[i];
+
+                    promises.push(outboxService.resolveUserName(uniqueUser.to));
                 }
-            },
-            error: function (err) {
+
+                q.all(promises)
+                    .then(function(data) {
+                        for (let i = 0; i < data.length; i++) {
+                            let promiseResult = data[i];
+
+                            _.forEach(mappedData, function(value, index, arr) {
+                                if (promiseResult.length > 0) {
+                                    if (value.message.to === promiseResult[0]._id) {
+                                        value.user = promiseResult[0];
+                                    }
+                                }
+                            });
+
+                            for (let j = 0; j < mappedData.length; j++) {
+                                let md = mappedData[j];
+
+                                let mails = self.state.mails;
+                                mails.push(
+                                    <MailComponent
+                                        key={Math.random()}
+                                        data={md} />
+                                );
+                                self.setState({mails: mails});
+                            }
+                        }
+                    })
+                    .catch(function(err) {
+                        console.log(err);
+                    });
+            })
+            .catch(function(err) {
                 console.log(err);
-            }
-        });
+            });
     }
 
     render() {
-        this.createContent();
+        let self = this;
 
         return (
-            <div id="outboxMessages" className="container"></div>
+            <div id="outboxMessages" className="container">
+                {self.state.mails}
+            </div>
         );
     }
 }
+

@@ -1,47 +1,59 @@
+import q from "q";
+
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";
 
 export default class OutboxService {
-    findMsgFromMe(from, callbacks) {
+    findMsgFromMe(from) {
+        let defer = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msgDao.findByFrom(from, {
-            success: function (data) {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                }
-            },
-            error: function (err) {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            }
-        });
+        msgDao.findByFrom(from)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
     }
 
-    resolveUserName(id, callbacks) {
+    deleteMsg(obj,uid){
+        let defer = q.defer();
+
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
+
+        msg2Dao.delete(obj,uid)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
+    }
+
+    updateMsg(obj){
+        let defer = q.defer();
+
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
+
+        msg2Dao.createOrUpdate(obj)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
+    }
+
+    resolveUserName(id) {
+        let defer = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let usrDao = dm.getDao(CouchDbApi.UserDAO);
 
-        usrDao.findById(id, {
-            success: function (data) {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                }
-            },
-            error: function (err) {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            }
-        });
+        usrDao.findById(id)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
     }
 }
