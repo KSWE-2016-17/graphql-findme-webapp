@@ -18,6 +18,32 @@ export default class ArchiveService {
         return defer.promise;
     }
 
+    findArchFromMe(from){
+        let defer = q.defer();
+
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
+
+        msgDao.findArchivedFrom(from)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
+    }
+
+    findArchToMe(to){
+        let defer = q.defer();
+
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
+
+        msgDao.findArchivedTo(to)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
+    }
+
     resolveUserName(id) {
         let defer = q.defer();
 

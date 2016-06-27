@@ -2,9 +2,9 @@ import React from "react";
 
 import Image from "./DefaultImage";
 
-import IS from "../services/InboxService";
+import IS from "../services/OutboxService";
 
-export default class MailComponent extends React.Component {
+export default class ArchiveMailFromComponent extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +20,7 @@ export default class MailComponent extends React.Component {
     onArchiveMail(event) {
         console.log("pressed archive");
         let self = this;
-        self.props.data.message.archivedTo=true;
+        self.props.data.message.archivedFrom=false;
         let is = new IS();
         is.updateMsg(self.props.data.message);
     }
@@ -45,7 +45,7 @@ export default class MailComponent extends React.Component {
                     </div>
                     <div className="col-md-10">
                         <div>
-                            <div style={{backgroundColor: "#ccffcc", border: "2px solid #000000"}}>
+                            <div style={{background: "linear-gradient(to left, rgba(255, 204, 102,1), rgba(0, 153, 153,1))", border: "2px solid #000000"}}>
                                 <p>{self.props.data.user.login ? self.props.data.user.login : self.props.data.message.from}</p>
                             </div>
                             <div style={{border: "1px solid #000000"}}>

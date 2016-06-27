@@ -36,8 +36,21 @@ export default class OutboxService {
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
-
+    
         msg2Dao.createOrUpdate(obj)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
+    }
+
+    findMsgFromMeUndeleted(from){
+        let defer = q.defer();
+
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
+
+        msg2Dao.findUndeleteFrom(from)
             .then(defer.resolve)
             .catch(defer.reject);
 
