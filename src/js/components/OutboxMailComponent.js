@@ -20,7 +20,7 @@ export default class OutboxMailComponent extends React.Component {
 
         let outboxService = new OutboxService();
 
-        outboxService.findMsgFromMe(localStorage.getItem("sessionUserId"))
+        outboxService.findMsgFromMeUndeleted(localStorage.getItem("sessionUserId"))
             .then(function(data) {
                 console.debug("sent messages: " + data.length);
                 let messages = data;

@@ -20,7 +20,7 @@ export default class InboxMailComponent extends React.Component {
 
         let inboxService = new InboxService();
 
-        inboxService.findMsgToMe(localStorage.getItem("sessionUserId"))
+        inboxService.findMsgToMeUndeleted(localStorage.getItem("sessionUserId"))
             .then(function(data) {
                 console.debug("received messages: " + data.length);
                 let messages = data;

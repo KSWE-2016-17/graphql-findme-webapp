@@ -18,19 +18,6 @@ export default class InboxService {
         return defer.promise;
     }
 
-    findMsgFromMe(from) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
-
-        msgDao.findByFrom(from)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
-    }
-
     deleteMsg(obj,uid){
         let defer = q.defer();
 
@@ -44,12 +31,25 @@ export default class InboxService {
         return defer.promise;
     }
 
-    updateMsg(obj){
+    findMsgToMeUndeleted(to){
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
 
+        msg2Dao.findUndeleteTo(to)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
+    }
+
+    updateMsg(obj){
+        let defer = q.defer();
+
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
+        console.debug("ARCHIVDDAO");
         msg2Dao.createOrUpdate(obj)
             .then(defer.resolve)
             .catch(defer.reject);
