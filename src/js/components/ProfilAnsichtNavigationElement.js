@@ -1,7 +1,7 @@
 import React from "react";
 
 export default class NavigationComponent extends React.Component {
-
+    
     createNavigation() {
         return                 <div className="container">
             <nav className="navbar navbar-default">
@@ -42,7 +42,7 @@ export default class NavigationComponent extends React.Component {
                             </li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="#/profile/settings"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a></li>
+                            <li><a href="#/settings"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a></li>
                             <li><a href="#/logout"><span className="glyphicon glyphicon-log-out"></span> ausloggen</a></li>
                         </ul>
                     </div>

@@ -29,7 +29,7 @@ export default {
         { path: "register", component: RegistrierenViewPage },
         { path: "profile/:id", component: OtherProfileView },
         { path: "edit", component: EditProfilePage },
-        { path: "profile/settings", component: ProfileinstellungenViewPage },
+        { path: "settings", component: ProfileinstellungenViewPage },
         { path: "mails/archive", component: ArchiveViewPage },
         { path: "mails/inbox", component: InboxViewPage },
         { path: "mails/outbox", component: OutboxViewPage },
