@@ -18,7 +18,7 @@ export default class DatingViewContentComponent extends React.Component {
         search_alterVon = $("#alterVon").val();
         search_alterBis = $("#alterBis").val();
         search_statur = $("#statur").val();
-        search_nichtraucher = document.getElementById("smoker").checked;
+        //search_nichtraucher = document.getElementById("smoker").checked;
         search_haarfarbe = $("#haarfarbe").val();
         search_groesseVon = $("#groesseVon").val();
         search_groesseBis = $("#groesseBis").val();
@@ -178,7 +178,7 @@ export default class DatingViewContentComponent extends React.Component {
                         <td>
                             <br/>
                             <button className="btn btn-primary btn-md" type="submit">
-                                <span className="glyphicon glyphicon-search" onclick={this.showSearchResult()}></span>Suche</button>
+                                <span className="glyphicon glyphicon-search" onclick={this.showSearchResult}></span>Suche</button>
                         </td>
                         <td></td>
                         <td></td>

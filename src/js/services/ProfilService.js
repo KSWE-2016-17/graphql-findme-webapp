@@ -74,6 +74,9 @@ export default class ProfilService {
     }
 
     findById(obj, callbacks) {
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+
         profileDao.findById(obj, {
             success: function(data) {
                 if (data) {

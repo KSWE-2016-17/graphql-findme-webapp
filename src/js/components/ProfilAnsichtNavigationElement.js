@@ -1,6 +1,43 @@
 import React from "react";
 
+import DatingService from "../services/DatingService";
+import ProfilService from "../services/ProfilService";
+
 export default class NavigationComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.searchUser = this.searchUser.bind(this);
+    }
+
+
+    searchUser(){
+        var name = "";
+        name = $("#searchField").val();
+
+        if(name === ""){
+            alert("Suchfeld ist leer!");
+        } else {
+            let datingService = new DatingService();
+            datingService.findIdByName(name, {
+                success: function(data) {
+                    let profilService = new ProfilService();
+
+                    profilService.findProfileByUserId(data[0]._id)
+                        .then(function (data) {
+                            location.href = "#/profile/" + data[0]._id;
+                        })
+                        .catch(function(err) {
+                            console.log(err);
+                        });
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            });
+        }
+
+    }
 
     createNavigation() {
         return                 <div className="container">
@@ -32,10 +69,10 @@ export default class NavigationComponent extends React.Component {
                                 <form role="form" className="navbar-form navbar-input-group">
                                     <div className="input-group">
                             <span className="input-group-btn">
-                                <button className="btn btn-default btn-sm" type="button"><span className="glyphicon glyphicon-search"></span></button>
+                                <button className="btn btn-default btn-sm" type="button" onClick={this.searchUser}><span className="glyphicon glyphicon-search"></span></button>
                             </span>
                                         <div className="form-group">
-                                            <input type="text" className="form-control input-sm" placeholder="Suche" />
+                                            <input id="searchField" type="text" className="form-control input-sm" placeholder="Suche" />
                                         </div>
                                     </div>
                                 </form>

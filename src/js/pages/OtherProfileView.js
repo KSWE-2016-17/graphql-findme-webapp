@@ -13,7 +13,6 @@ export default class OtherProfileView extends React.Component {
 
     render() {
 		let self = this;
-		
         return (
             <div>
 				<NavigationBar />
