@@ -7,6 +7,7 @@ import EditProfileHeaderComponent from "../components/EditProfileHeaderComponent
 import EditProfileInterestsComponent from "../components/EditProfileInterestsComponent"
 import EditProfilePictureComponent from "../components/EditProfilePictureComponent"
 import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigationElement";
+import EditProfileGeneralComponent from "../components/EditProfileGeneralComponent";
 
 export default class EditProfilePage extends React.Component {
     createContent() {
@@ -15,9 +16,10 @@ export default class EditProfilePage extends React.Component {
             <EditProfileHeaderComponent/>
             <EditProfileDescriptionComponent/>
             <hr/>
-            <EditProfilePictureComponent/>
+            <EditProfileGeneralComponent/>
             <hr/>
             <EditProfileInterestsComponent/>
+
         </div>;
     }
 

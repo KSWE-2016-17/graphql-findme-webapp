@@ -13,6 +13,7 @@ export default class LoginHeader extends React.Component {
                 console.log(err);
             }
         });
+        
     }
 
     createContent() {
