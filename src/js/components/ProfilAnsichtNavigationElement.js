@@ -42,7 +42,7 @@ export default class NavigationComponent extends React.Component {
                             </li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="#/profile/settings"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a></li>
+                            <li><a href="#/profile/76524f21ad466069d58df96b1c02fd12"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a></li>
                             <li><a href="#/logout"><span className="glyphicon glyphicon-log-out"></span> ausloggen</a></li>
                         </ul>
                     </div>
