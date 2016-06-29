@@ -11,39 +11,18 @@ export default class FriendProfileView_HeadRow extends React.Component {
         super(props);
 
         this.state = {
-			friendName: "klaus"
+			friendName: "",
+			aboutMe: "",
         };
-    }
-
-    reportUser(){
-        let friendsListService = new FriendsListService();
-        friendsListService.reportUser(profileID)
+		
+		this.reportUser = this.reportUser.bind(this);
     }
 	
-	componentDidMount() {
-        let self = this;
-        let friendsListService = new FriendsListService();
-
-		friendsListService.getProfile("ca5c2c9fb2d201991f8b6f06e62186d1")
-            .then(function(data) {
-                friendsListService.getUser(data[0].user_id)
-					.then(function(data) {
-						self.setState({friendName: data[0].login});
-					})
-					.catch(function(err) {
-						console.log(err);
-					});
-            })
-            .catch(function(err) {
-                console.log(err);
-            });
-    }
-
-    render() {
+	render() {
 		let self = this;
 		
         return (
-            <div className="container">
+            <div>
                 <div className="row">
                     <div className="col-md-2">
                         <DefaultProfilImage />
@@ -57,14 +36,10 @@ export default class FriendProfileView_HeadRow extends React.Component {
                         paddingLeft:"5px", paddingRight:"5px", marginTop:"15px", marginLeft:"10px"}}>befreundet
                     </div>
                     <div style={{clear:"both"}}/>
-                    <p>
-                    "Reden ist Schweigen - Silber ist Gold."<br />
-                    Unbekanntes Genie
-                    </p>
+                    <p>{self.state.aboutMe}</p>
                 </div>
                     <div className="col-md-2">
-
-                        <button type="button" id="REPORT" className="btn btn-primary" onClick={this.reportUser}>
+                        <button type="button" id="REPORT" className="btn btn-primary" onClick={self.reportUser}>
 
                             <span className="glyphicon glyphicon-screenshot"></span> Benutzer melden
                         </button> 
@@ -73,6 +48,32 @@ export default class FriendProfileView_HeadRow extends React.Component {
             </div>
         );
     }
+	
+	componentDidMount() {
+        let self = this;
+        let friendsListService = new FriendsListService();
 
+		console.log("profile view id: " + self.props.profileID);
+		friendsListService.getProfile(self.props.profileID)
+            .then(function(profileData) {
+                friendsListService.getUser(profileData[0].user_id)
+					.then(function(userData) {
+						self.setState({friendName: userData[0].login});
+						self.setState({aboutMe: profileData[0].aboutme});
+					})
+					.catch(function(err) {
+						console.log(err);
+					});
+            })
+            .catch(function(err) {
+                console.log(err);
+            });
+    }
 
+    reportUser(){
+		let self = this;
+        let friendsListService = new FriendsListService();
+		
+        friendsListService.reportUser(self.props.profileID);
+    }
 }
