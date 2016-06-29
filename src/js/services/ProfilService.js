@@ -2,6 +2,7 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class ProfilService {
+
     createProfile(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
@@ -24,7 +25,9 @@ export default class ProfilService {
                 }
             }
         });
+    }
 
+    findByLogin(obj){
         profileDao.findByLogin(obj,  {
             success: function(data) {
                 if (data) {
@@ -44,8 +47,9 @@ export default class ProfilService {
                 }
             }
         });
+    }
 
-
+    findById(obj){
         profileDao.findById(obj,  {
             success: function(data) {
                 if (data) {
@@ -65,8 +69,9 @@ export default class ProfilService {
                 }
             }
         });
+    }
 
-
+    delete(obj){
         profileDao.delete(obj,  {
             success: function(data) {
                 if (data) {
@@ -86,6 +91,6 @@ export default class ProfilService {
                 }
             }
         });
-        
     }
+
 }
