@@ -17,7 +17,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 	
 	render() {
         let self = this;
-
+		
         return (
             <div id="friendsList" className="container">
 				<br />
@@ -32,30 +32,30 @@ export default class FriendProfileView_HeadRow extends React.Component {
 		
 		friendsListService.getCurrentProfile()
 			.then(function(data) {
-				console.debug("current profile ID: " + data[0]._id);
-				
 				friendsListService.allFriends(data[0]._id)
 					.then(function(data) {
 						console.debug("received friends: " + data[0].friends.length);
 						
 						let friendsList = data[0].friends;
-						let friends = self.state.friends;
+						let newFriendState= self.state.friends;
 				
 						for (let i = 0; i < friendsList.length; i++) {
 							console.debug("friend " + i + "'s profile ID: " + friendsList[i].id);
-							friends.push(
-								<div>
-									<FriendRow
-										profileID={friendsList[i].id}
-										status={friendsList[i].status}
-										friendsListID={data[0]._id}
-									/>
-									<hr />
-								</div>
-							);
+							if (friendsList[i].status != 2) {
+								newFriendState.push(
+									<div>
+										<FriendRow
+											profileID={friendsList[i].id}
+											status={friendsList[i].status}
+											friendsListID={data[0]._id}
+										/>
+										<hr />
+									</div>
+								);
+							}
 						}
 				
-						self.setState({friends: friends});
+						self.setState({friends: newFriendState});
 					})
 					.catch(function(err) {
 						console.log(err);
