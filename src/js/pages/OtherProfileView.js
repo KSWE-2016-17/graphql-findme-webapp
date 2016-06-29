@@ -6,21 +6,21 @@ import Message from "../components/OtherProfileView_RestrictedRow";
 
 
 export default class OtherProfileView extends React.Component {
-	
-    createView() {
-        return (
-            <div>
-				<NavigationBar />
-				<Head />
-                <hr />
-				<Message />
-            </div>
-        );
+
+	constructor(props) {
+        super(props);
     }
 
     render() {
+		let self = this;
+		
         return (
-            <div>{this.createView()}</div>
+            <div>
+				<NavigationBar />
+				<Head profileID={self.props.params.id} />
+                <hr />
+				<Message />
+            </div>
         );
     }
 }
