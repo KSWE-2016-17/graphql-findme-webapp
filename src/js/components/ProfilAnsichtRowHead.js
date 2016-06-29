@@ -3,7 +3,10 @@ import q from "q";
 import _ from "lodash";
 
 import PS from "../services/ProfilService";
+
+
 import DefaultProfilImage from "./DefaultProfilImage";
+import ProfilPic from "./ProfileImage";
 
 
 export default class RowHeadComponent extends React.Component {
@@ -78,6 +81,7 @@ export default class RowHeadComponent extends React.Component {
 
         var abutme;
 
+
         // ps.linkProfile(localStorage.getItem("sessionUserId"));
 
         console.log(localStorage.getItem("sessionProfileId"));
@@ -93,6 +97,7 @@ export default class RowHeadComponent extends React.Component {
                 console.log(data[0]);
 
                 profile2 = data[0];
+
 
 
                 var parts = data[0].aboutme.split("{");
@@ -130,6 +135,10 @@ export default class RowHeadComponent extends React.Component {
 
                 abutme = data[0].aboutme;
 
+
+
+
+                
         })
             .catch(function(err){
                console.log(err);
@@ -139,6 +148,23 @@ export default class RowHeadComponent extends React.Component {
         //     if(x>990)
         //     console.log(x);
         // }
+
+        ps.getAdminRight(localStorage.getItem("sessionUserId"))
+            .then(function(data){
+
+
+                $("#reports").hide();
+                if(data[0].role===2 || data[0].role==="2"){
+                    $("#reports").show();
+                }
+
+
+            })
+            .catch(function(err){
+                console.log(err);
+            });
+
+
 
         console.log(localStorage.getItem("sessionProfileId"));
 
@@ -181,11 +207,12 @@ export default class RowHeadComponent extends React.Component {
         return <div className="container">
             <div className="row">
             <div className="col-md-2">
-                <DefaultProfilImage />
+                <ProfilPic />
                 <br /><br />
                 <button type="button" className="btn btn-primary"><span className="glyphicon glyphicon-picture"></span> Profilfoto ausw&auml;hlen</button>
             </div>
             <div className="col-md-10">
+                <a href="#/reports" id="reports" type="button" className="btn btn-danger  pull-right"><span className="glyphicon glyphicon-screenshot"></span>Beschwerden</a>
                 <a href="#/edit" type="button" className="btn btn-primary pull-right"><span className="glyphicon glyphicon-pencil"></span> "&Uuml;ber Dich" bearbeiten</a>
                 <h1 id="proname"></h1>
                 <p id="aboutme">

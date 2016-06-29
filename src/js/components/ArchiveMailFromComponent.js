@@ -29,7 +29,7 @@ export default class ArchiveMailFromComponent extends React.Component {
         console.log("pressed delete");
         let self = this;
         let is = new IS();
-        self.props.data.message.deletedTo=true;
+        self.props.data.message.deletedFrom=true;
         is.updateMsg(self.props.data.message);
     }
 

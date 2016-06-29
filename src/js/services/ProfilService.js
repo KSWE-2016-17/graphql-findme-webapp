@@ -154,6 +154,7 @@ export default class ProfilService {
         return defer.promise;
     }
 
+
     delete(obj, callbacks) {
         profileDao.delete(obj, {
             success: function(data) {
@@ -175,4 +176,18 @@ export default class ProfilService {
             }
         });
     }
+
+    getAdminRight(uid) {
+        let defer = q.defer();
+
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let msgDao = dm.getDao(CouchDbApi.UserDAO);
+
+        msgDao.findById(uid)
+            .then(defer.resolve)
+            .catch(defer.reject);
+
+        return defer.promise;
+    }
+
 }
