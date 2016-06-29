@@ -10,6 +10,12 @@ export default class LogoutPage extends React.Component {
         if(localStorage.getItem("sessionUserId")) {
             localStorage.removeItem("sessionUserId");
         }
+        if(localStorage.getItem("sessionProfileId")) {
+            localStorage.removeItem("sessionProfileId");
+        }
+        if(localStorage.getItem("sessionProfile")) {
+            localStorage.removeItem("sessionProfile");
+        }
     }
 
     createContent() {
