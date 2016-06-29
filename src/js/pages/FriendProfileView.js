@@ -7,23 +7,23 @@ import Interests from "../components/ProfilAnsichtRowInteressen";
 
 
 export default class FriendProfileView extends React.Component {
+	
+	constructor(props) {
+        super(props);
+    }
 
-    createView() {
+    render() {
+		let self = this;
+		
         return (
             <div>
                 <NavigationBar />
-                <Head />
+                <Head profileID={self.props.params.id} />
                 <hr />
                 <Pictures />
                 <hr />
                 <Interests />
             </div>
-        );
-    }
-
-    render() {
-        return (
-            <div>{this.createView()}</div>
         );
     }
 }
