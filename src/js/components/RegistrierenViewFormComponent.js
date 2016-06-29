@@ -44,7 +44,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
             "gender" : gender,
             "familystatus" : 1,
             "children" : 0,
-            "aboutme" : "UeberMich ABC",
+            "aboutme" : "txt{#+txt",
             "privacy" : objPrivacy,
             "profilepic" : "ououo",
             "haircolor" : 3,
