@@ -24,8 +24,6 @@ export default class RegisterService {
                 }
             }
         });
-
-
     }
 
     findIdByName(login,callbacks){
@@ -51,4 +49,29 @@ export default class RegisterService {
             }
         });
     }
+
+    deleteProfil(obj,callbacks){
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        profileDao.delete(obj,  {
+            success: function(data) {
+                if (data) {
+                    if (callbacks && typeof callbacks.success === "function") {
+                        callbacks.success(data);
+                    }
+                } else {
+                    if (callbacks && typeof callbacks.error === "function") {
+                        callbacks.error("delete profil fail");
+                    }
+                }
+            },
+            error: function(err) {
+                console.error(err);
+                if (callbacks && typeof callbacks.error === "function") {
+                    callbacks.error(err);
+                }
+            }
+        });
+    }
+
 }

@@ -7,7 +7,7 @@ export default class ProfilService {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
         profileDao.create(obj, {
-            success: function (data) {
+            success: function(data) {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         callbacks.success(data);
@@ -18,7 +18,7 @@ export default class ProfilService {
                     }
                 }
             },
-            error: function (err) {
+            error: function(err) {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
@@ -27,32 +27,32 @@ export default class ProfilService {
         });
     }
 
-        getProfile(id, callbacks)
-        {
-            let dm = new CouchDbApi.DaoManager(connSettings);
-            let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
-            profileDao.findById(id, {
-                success: function (data) {
-                    if (data) {
-                        if (callbacks && typeof callbacks.success === "function") {
-                            callbacks.success(data);
-                        }
-                    } else {
-                        if (callbacks && typeof callbacks.error === "function") {
-                            callbacks.error("finding failed");
-                        }
+    getProfile(id, callbacks) {
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        profileDao.findById(id, {
+            success: function(data) {
+                if (data) {
+                    if (callbacks && typeof callbacks.success === "function") {
+                        callbacks.success(data);
                     }
-                },
-                error: function (err) {
-                    console.error(err);
+                } else {
                     if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error(err);
+                        callbacks.error("finding failed");
                     }
                 }
-            });
-        }
-/*
-        profileDao.findByLogin(obj,  {
+            },
+            error: function(err) {
+                console.error(err);
+                if (callbacks && typeof callbacks.error === "function") {
+                    callbacks.error(err);
+                }
+            }
+        });
+    }
+
+    findByLogin(obj, callbacks) {
+        profileDao.findByLogin(obj, {
             success: function(data) {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
@@ -71,13 +71,13 @@ export default class ProfilService {
                 }
             }
         });
+    }
 
-
-        profileDao.findById(obj,  {
+    findById(obj, callbacks) {
+        profileDao.findById(obj, {
             success: function(data) {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
-
                         callbacks.success(data);
                     }
                 } else {
@@ -92,21 +92,18 @@ export default class ProfilService {
                     callbacks.error(err);
                 }
             }
-        });*/
-
-
-
+        });
+    }
 
     linkProfile(uid, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
         console.log("linkprofile");
         profileDao.findByUserId(uid, {
-            success: function (data) {
+            success: function(data) {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
-                        localStorage.setItem("sessionProfileId",data[0]._id);
-                        localStorage.setItem("sessionProfile",data[0]);
+                        localStorage.setItem("sessionProfileId", data[0]._id);
                         console.log("daoinc");
                         console.log(data[0]._id);
                         console.log("daodone");
@@ -122,7 +119,7 @@ export default class ProfilService {
                     }
                 }
             },
-            error: function (err) {
+            error: function(err) {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
@@ -157,5 +154,25 @@ export default class ProfilService {
         return defer.promise;
     }
 
-
+    delete(obj, callbacks) {
+        profileDao.delete(obj, {
+            success: function(data) {
+                if (data) {
+                    if (callbacks && typeof callbacks.success === "function") {
+                        callbacks.success(data);
+                    }
+                } else {
+                    if (callbacks && typeof callbacks.error === "function") {
+                        callbacks.error("delete user fail");
+                    }
+                }
+            },
+            error: function(err) {
+                console.error(err);
+                if (callbacks && typeof callbacks.error === "function") {
+                    callbacks.error(err);
+                }
+            }
+        });
+    }
 }
