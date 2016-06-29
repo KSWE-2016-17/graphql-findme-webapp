@@ -6,7 +6,7 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class FriendsListService {
-    allFriends(profileID) {	
+    allFriends(profileID) {
 		let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -65,15 +65,16 @@ export default class FriendsListService {
         profileDao.findByUserId(profileID,  {
             success: function(data) {
                 if (data) {
-                    data[0].reported = "true";
-					profileDao.update(data[0], {
-					});
+					if (data[0]) {
+						data[0].reported = "true";
+						profileDao.update(data[0], {});
+					}
                 }
             }
         });
 	}
 	
-	endFrienship(friendsListID, profileID) {
+	endFrienship(friendsListID, profileID, callback) {
 		let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
@@ -91,12 +92,17 @@ export default class FriendsListService {
 				data[0].friends = newFriendsList;
 				
 				friendDao.update(data[0], {
+					success: function() {
+						if (callback && typeof callback.success === "function") {
+							callback.success();
+						}
+					}
 				});
             }
         });
     }
 	
-	handleFriendRequest(friendsListID, profileID, accept) {
+	handleFriendRequest(friendsListID, profileID, accept, callback) {
 		let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 		
@@ -113,8 +119,64 @@ export default class FriendsListService {
 				data[0].friends = friendsList;
 				
 				friendDao.update(data[0], {
+					success: function() {
+						if (callback && typeof callback.success === "function") {
+							callback.success();
+						}
+					}
 				});
             }
         });
     }
+	
+	createFriendRequest(sessionProfileID, requestDestinationProfileID, callback) {
+		let dm = new CouchDbApi.DaoManager(connSettings);
+        let friendDao = dm.getDao(CouchDbApi.FriendDAO);
+		
+		friendDao.findByProfileId(requestDestinationProfileID,  {
+            success: function(data) {
+                if (data) {
+					if (data[0]) {
+						let friendsList = data[0].friends;
+						let isAlreadyAFriend = false;
+						
+						for (let i = 0; i < friendsList.length; i++) {
+							if (friendsList[i].id == sessionProfileID) {
+								isAlreadyAFriend = true;
+							}
+						}
+						
+						if (isAlreadyAFriend == false) {
+							
+							friendsList.push({id:sessionProfileID, status:0});
+							data[0].friends = friendsList;
+							
+							friendDao.update(data[0], {
+								success: function() {
+									if (callback && typeof callback.success === "function") {
+										callback.success();
+									}
+								}
+							});
+						}
+					}
+					else {
+						var newFriendslist = {
+							"doctype" : "friends",
+							"profile_id" : requestDestinationProfileID,
+							"friends" : [{id:sessionProfileID, status:0}]
+						}
+						
+						friendDao.create(newFriendslist, {
+							success: function() {
+								if (callback && typeof callback.success === "function") {
+									callback.success();
+								}
+							}
+						});
+					}
+                }
+            }
+        });
+	}
 }
