@@ -20,7 +20,7 @@ export default class LoginHeader extends React.Component {
                         <div className="col-md-2 col-md-offset-5">
                             <div className="input-group">
                                 <div className="form-group">
-                                    <input type="email" className="form-control" id="email" placeholder="Email"/>
+                                    <input type="text" className="form-control" id="username" placeholder="Username"/>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@ export default class LoginHeader extends React.Component {
     login() {
         let loginService = new LoginService();
 
-        loginService.login($("#email").val(), $("#password").val(), {
+        loginService.login($("#username").val(), $("#password").val(), {
             success: function (data) {
                 location.href = "#/profile";
             },
