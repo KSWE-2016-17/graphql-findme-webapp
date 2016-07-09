@@ -1,6 +1,4 @@
 import IndexPage from "./pages/IndexPage";
-import HelloWorldPage from "./pages/HelloWorldPage";
-import AnotherHelloWorldPage from "./pages/AnotherHelloWorldPage";
 import ProfilViewComponent from "./pages/ProfilViewComponent";
 import LoginViewComponent from "./pages/LoginViewComponent";
 import LogoutPage from "./pages/LogoutPage";
@@ -23,7 +21,6 @@ export default {
     component: IndexPage,
     indexRoute: {component: LoginViewComponent},
     childRoutes: [
-        {path: "anotherhelloworld", component: AnotherHelloWorldPage},
         {path: "profile", component: ProfilViewComponent},
         {path: "login", component: LoginViewComponent},
         {path: "logout", component: LogoutPage},
