@@ -20,14 +20,13 @@ export default class LoginHeader extends React.Component {
                         <div className="col-md-2 col-md-offset-5">
                             <div className="input-group">
                                 <div className="form-group">
-                                    <input type="email" className="form-control" id="email" placeholder="Email"></input>
+                                    <input type="email" className="form-control" id="email" placeholder="Email"/>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-2">
                             <div className="form-group">
-                                <input type="password" className="form-control" id="password"
-                                       placeholder="Password"></input>
+                                <input type="password" className="form-control" id="password" placeholder="Password"/>
                             </div>
                         </div>
                         <div className="col-md-1">
