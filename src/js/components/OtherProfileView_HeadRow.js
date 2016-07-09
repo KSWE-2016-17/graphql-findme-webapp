@@ -23,7 +23,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 		let self = this;
 		
         return (
-		    <div>
+		    <div className="container">
                 <div className="row">
                     <div className="col-md-2">
                         <DefaultProfilImage />
@@ -76,7 +76,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 		
 		friendsListService.getCurrentProfile()
 			.then(function(data) {
-				friendsListService.createFriendRequest(data[0]._id, self.props.profileID, {
+				friendsListService.createFriendRequest(self.props.profileID, data[0]._id, 0, {
 					success: function() {
 						window.location.reload();
 					}
