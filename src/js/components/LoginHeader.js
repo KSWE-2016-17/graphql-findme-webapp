@@ -37,7 +37,7 @@ export default class LoginHeader extends React.Component {
                         </div>
                                        </div>
                                        <div className="col-md-1">
-                        <button type="button" className="btn btn-primary" onClick={this.login}>anmelden</button>
+                        <button type="button" className="btn btn-primary" onClick={this.login}>Anmelden</button>
                     </div>
                 </form>
 
