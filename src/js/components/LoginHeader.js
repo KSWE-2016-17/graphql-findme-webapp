@@ -18,10 +18,8 @@ export default class LoginHeader extends React.Component {
                     </div>
                     <form className="form-inline">
                         <div className="col-md-2 col-md-offset-5">
-                            <div className="input-group">
-                                <div className="form-group">
-                                    <input type="text" className="form-control" id="username" placeholder="Username"/>
-                                </div>
+                            <div className="form-group">
+                                <input type="text" className="form-control" id="username" placeholder="Username"/>
                             </div>
                         </div>
                         <div className="col-md-2">
