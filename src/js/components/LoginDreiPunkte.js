@@ -15,19 +15,19 @@ export default class LoginDreiPunkte extends React.Component {
                     <h3 className="title">Interessen</h3>
                     <p className="para">{this.getDescription()}</p>
 
-                    <button type="button" className="btn btn-primary">mehr Erfahren</button>
+                    <button type="button" className="btn btn-link">mehr ...</button>
                 </div>
                 <div className="col-md-4">
                     <h3 className="title">Vorlieben</h3>
                     <p className="para">{this.getDescription()}</p>
 
-                    <button type="button" className="btn btn-primary">mehr Erfahren</button>
+                    <button type="button" className="btn btn-link">mehr ...</button>
                 </div>
                 <div className="col-md-4">
                     <h3 className="title">Vorstellungen</h3>
                     <p className="para">{this.getDescription()}</p>
 
-                    <button type="button" className="btn btn-primary">mehr Erfahren</button>
+                    <button type="button" className="btn btn-link">mehr ...</button>
                 </div>
             </div>
         </div>;
