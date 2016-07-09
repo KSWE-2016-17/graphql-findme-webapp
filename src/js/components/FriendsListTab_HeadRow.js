@@ -6,7 +6,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
 				<div className="row">
 				    <div className="col-md-11">
 					    <span style={{}} className="glyphicon glyphicon-asterisk"></span>

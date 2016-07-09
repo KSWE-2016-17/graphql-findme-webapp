@@ -9,7 +9,7 @@ export default class LoginDreiPunkte extends React.Component {
     }
 
     createContent() {
-        return <div className="container">
+        return <div>
             <div className="row">
                 <div className="col-md-4">
                     <h3 className="title">Interessen</h3>

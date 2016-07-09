@@ -5,7 +5,7 @@ import DefaultProfilImage from "./DefaultProfilImage";
 export default class ProfileinstellungenViewSonstigesComponent extends React.Component {
 
     createProfileinstellungenViewSonstigesComponent() {
-        return( <div className="container">
+        return( <div>
             <div className="row">
                 <br/>
                 <h3>Sonstiges</h3>

@@ -5,7 +5,7 @@ import DefaultImage from "./DefaultImage";
 export default class RowBilderComponent extends React.Component {
 
     createRowBilder() {
-        return   <div className="container">
+        return   <div>
             <div className="row">
                 <div className="col-md-12">
                     <h1>Bilder</h1>

@@ -5,7 +5,7 @@ export default class ReadMailComponent extends React.Component {
 
 
     createContent() {
-        return <div className="container">
+        return <div>
             <div name="NEWMAIL">
                 <br/>
                 <div className="row">

@@ -11,7 +11,7 @@ import EditProfileGeneralComponent from "../components/EditProfileGeneralCompone
 
 export default class EditProfilePage extends React.Component {
     createContent() {
-        return <div className="container">
+        return <div>
             <ProfilAnsichtNavigationElement/>
             <EditProfileHeaderComponent/>
             <EditProfileDescriptionComponent/>

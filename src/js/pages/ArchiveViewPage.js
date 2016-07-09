@@ -8,7 +8,7 @@ import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigatio
 
 export default class ArchiveViewPage extends React.Component {
     createContent() {
-        return <div className="container">
+        return <div>
             <ProfilAnsichtNavigationElement/>
             <ArchiveHeaderComponent/>
             <ArchiveMailComponent/>

@@ -5,7 +5,7 @@ export default class LogoutComponent extends React.Component {
 
 
     createContent() {
-        return <div className="container">
+        return <div>
             <div>
                 <div className="row">
                     <div className="col-md-8 col-md-offset-4">

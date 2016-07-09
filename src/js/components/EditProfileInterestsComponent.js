@@ -81,7 +81,7 @@ export default class EditProfileInterestsComponent extends React.Component {
             });
 
 
-        return <div className="container">
+        return <div>
             <br/>
             <div>
 

@@ -5,7 +5,7 @@ import DefaultProfilImage from "./DefaultProfilImage";
 export default class ProfileinstellungenViewPrivatsphaereComponent extends React.Component {
 
     createProfileinstellungenViewPrivatsphaereComponent() {
-        return( <div className="container">
+        return( <div>
             <div className="row">
                 <h3>Privatsph&auml;re</h3>
                 <div className="col-md-3">

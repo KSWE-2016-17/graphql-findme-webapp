@@ -5,7 +5,7 @@ export default class EditProfilePictureComponent extends React.Component {
 
 
     createContent() {
-        return <div className="container">
+        return <div>
             <br/>
             <div>
                 <div className="row">

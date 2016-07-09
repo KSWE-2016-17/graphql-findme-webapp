@@ -45,7 +45,7 @@ export default class DatingViewContentComponent extends React.Component {
 
 
     createDatingViewContentComponent() {
-        return <div className="container">
+        return <div>
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
                     <br/>

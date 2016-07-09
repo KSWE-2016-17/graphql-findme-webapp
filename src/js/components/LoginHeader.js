@@ -17,7 +17,7 @@ export default class LoginHeader extends React.Component {
     }
 
     createContent() {
-        return <div className="container">
+        return <div>
             <div className="row"  style={{backgroundColor: "LightGray"}}>
                 <div className="col-md-1">
                     <h3 className="title">find.me</h3>

@@ -19,7 +19,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
         let self = this;
 		
         return (
-            <div id="reportsList" className="container">
+            <div id="reportsList">
 				<br />
                 {self.state.reports}
             </div>

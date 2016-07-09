@@ -82,7 +82,7 @@ export default class InboxMailComponent extends React.Component {
         let self = this;
 
         return (
-            <div id="inboxMessages" className="container">
+            <div id="inboxMessages">
                 {self.state.mails}
             </div>
         );

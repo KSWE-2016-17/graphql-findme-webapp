@@ -82,7 +82,7 @@ export default class OutboxMailComponent extends React.Component {
         let self = this;
 
         return (
-            <div id="outboxMessages" className="container">
+            <div id="outboxMessages">
                 {self.state.mails}
             </div>
         );

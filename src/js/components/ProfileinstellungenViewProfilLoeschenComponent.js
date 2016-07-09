@@ -61,7 +61,7 @@ export default class ProfileinstellungenViewProfilLoeschenComponent extends Reac
     }
 
     createProfileinstellungenViewProfilLoeschenComponent() {
-        return (<div className="container">
+        return (<div>
             <div className="row">
                 <br/>
                 <h3>Profil l&ouml;schen</h3>

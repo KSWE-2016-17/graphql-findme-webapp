@@ -10,7 +10,7 @@ export default class LoginInfoBox extends React.Component {
 
 
     createContent() {
-        return <div className="container"> <div className="row" style={{backgroundColor: "#F7F7F7"}}>
+        return <div> <div className="row" style={{backgroundColor: "#F7F7F7"}}>
 
             <div className="col-md-12">
 

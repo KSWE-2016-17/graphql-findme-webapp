@@ -34,7 +34,7 @@ export default class RowInteressenComponent extends React.Component {
 
 
 
-        return  <div className="container"> <div className="row">
+        return  <div> <div className="row">
                 <div className="col-md-12">
                     <h1>Interessen</h1>
                     <br />
@@ -99,7 +99,7 @@ export default class RowInteressenComponent extends React.Component {
 
     render() {
         return (
-            <div className="container">{this.createRowInteressen()}
+            <div>{this.createRowInteressen()}
                 <br />
                 <br />
                 <hr />

@@ -40,9 +40,9 @@ export default class NavigationComponent extends React.Component {
     }
 
     createNavigation() {
-        return                 <div className="container">
+        return                 <div>
             <nav className="navbar navbar-default">
-                <div className="container-fluid">
+                <div>
                     <div className="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                             <span className="icon-bar"></span>

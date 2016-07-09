@@ -19,7 +19,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
         let self = this;
 		
         return (
-            <div id="friendsList" className="container">
+            <div id="friendsList">
 				<br />
                 {self.state.friends}
             </div>

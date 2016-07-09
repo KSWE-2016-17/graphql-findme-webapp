@@ -148,7 +148,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
         let self = this;
 
         return (
-            <div id="archiveMessages" className="container">
+            <div id="archiveMessages">
                 {self.state.mails}
             </div>
         );

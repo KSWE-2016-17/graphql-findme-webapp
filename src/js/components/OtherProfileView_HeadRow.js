@@ -23,7 +23,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 		let self = this;
 		
         return (
-		    <div className="container">
+		    <div>
                 <div className="row">
                     <div className="col-md-2">
                         <DefaultProfilImage />

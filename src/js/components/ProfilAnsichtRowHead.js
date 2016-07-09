@@ -204,7 +204,7 @@ export default class RowHeadComponent extends React.Component {
         console.log("abutme");
         console.log(abutme);
 
-        return <div className="container">
+        return <div>
             <div className="row">
             <div className="col-md-2">
                 <ProfilPic />

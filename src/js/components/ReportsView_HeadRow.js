@@ -6,7 +6,7 @@ export default class ReportsView_HeadRow extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
 				<div className="row">
 				    <div className="col-md-11">
 					    <font size="5"> Offene Fälle </font>

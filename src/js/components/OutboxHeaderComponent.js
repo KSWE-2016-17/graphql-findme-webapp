@@ -4,7 +4,7 @@ export default class OutboxHeaderComponent extends React.Component {
 
 
     createContent() {
-        return <div className="container">
+        return <div>
             <div className="row">
                 <div className="col-md-11">
                     <font size="5">Postausgang</font>

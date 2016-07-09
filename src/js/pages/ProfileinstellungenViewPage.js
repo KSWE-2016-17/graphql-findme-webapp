@@ -10,7 +10,7 @@ export default class ProfileinstellungenViewPage extends React.Component {
     createProfileinstellungenViewPage() {
         return(  <div>
             <ProfilAnsichtNavigationElement/>
-            <div className="container">
+            <div>
                 <ProfileinstellungenViewPrivatsphaereComponent/>
                 <ProfileinstellungenViewSonstigesComponent/>
                 <ProfileinstellungenViewProfilLoeschenComponent/>

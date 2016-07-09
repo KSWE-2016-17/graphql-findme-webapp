@@ -6,7 +6,7 @@ export default class RowBilderComponent extends React.Component {
 	
     create() {
         return (
-            <div className="container">
+            <div>
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Bilder</h1>

@@ -3,7 +3,7 @@ import React from "react";
 export default class LoginFooter extends React.Component {
 
     createContent() {
-        return <div className="container">
+        return <div>
             <div className="row">
                 <div className="col-md-12">
                     <hr  style={{border: "100px red"}}></hr>

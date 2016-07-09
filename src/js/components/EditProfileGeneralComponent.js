@@ -40,7 +40,7 @@ export default class EditProfileGeneralComponent extends React.Component {
     }
 
     createContent() {
-        return <div className="container">
+        return <div>
             <br/>
             <div>
                 <div className="row">

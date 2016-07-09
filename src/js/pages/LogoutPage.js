@@ -19,7 +19,7 @@ export default class LogoutPage extends React.Component {
     }
 
     createContent() {
-        return <div className="container">
+        return <div>
             <br/>
             <br/>
             <br/>

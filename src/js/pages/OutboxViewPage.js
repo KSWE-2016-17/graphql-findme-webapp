@@ -8,7 +8,7 @@ import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigatio
 
 export default class OutboxViewPage extends React.Component {
     createContent() {
-        return <div className="container">
+        return <div>
             <ProfilAnsichtNavigationElement/>
             <OutboxHeaderComponent/>
             <OutboxMailComponent/>

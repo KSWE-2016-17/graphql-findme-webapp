@@ -99,7 +99,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
     }
 
     createRegistrierenViewForm() {
-        return(<div className="container">
+        return(<div>
             <div className="row">
                 <div className="col-md-6">
                     <br/>

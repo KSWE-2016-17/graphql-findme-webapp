@@ -51,7 +51,7 @@ export default class EditProfileComponent extends React.Component {
 
 
     createContent() {
-        return <div className="container">
+        return <div>
             <br/>
         <div>
             <div className="row">

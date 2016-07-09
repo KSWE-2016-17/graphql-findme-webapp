@@ -3,7 +3,7 @@ import React from "react";
 export default class RegistrierenViewInfoboxComponent extends React.Component {
 
     createRegistrierenInfobox() {
-        return(<div className="container">
+        return(<div>
             <div className="row"  style={{backgroundColor: "LightGray", padding:"15px",
                 border:"1px solid #000000"}}>
 
