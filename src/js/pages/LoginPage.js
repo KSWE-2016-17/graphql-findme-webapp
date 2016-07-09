@@ -16,7 +16,7 @@ export default class LoginViewComponent extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <LoginHeader/>
                 <LoginInfoBox/>
                 <LoginDreiPunkte/>
