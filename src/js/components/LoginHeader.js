@@ -31,7 +31,7 @@ export default class LoginHeader extends React.Component {
                         </div>
                     </div>
                     <div className="col-md-2">
-                        <div class="form-group">
+                        <div className="form-group">
                             <input type="password" className="form-control" id="password"
                                    placeholder="Password"></input>
                         </div>
