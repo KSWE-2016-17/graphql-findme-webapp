@@ -80,7 +80,7 @@ export default class NavigationComponent extends React.Component {
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
                             <li><a href="#/settings"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a></li>
-                            <li><a href="#/logout"><span className="glyphicon glyphicon-log-out"></span> ausloggen</a></li>
+                            <li><a href="#/logout"><span className="glyphicon glyphicon-log-out"></span> Ausloggen</a></li>
                         </ul>
                     </div>
                 </div>
