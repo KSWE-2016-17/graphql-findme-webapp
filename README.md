@@ -48,7 +48,7 @@ Es stehen folgende npm-Skripte zur Verfügung:
 | Skript / Aufruf | Beschreibung |
 |---|---|
 | `npm run startDev` | Startet `webpack-dev-server` im `watch`-Modus mit hot-swapping. Außerdem wird immer `npm install` aufgerufen, um sicherzustellen, dass die Umgebung auch wirklich aktuell ist. |
-| `npm run lint` | Führt `eslint` zur statische Code-Analyse aus. |
+| `npm run lint` | Führt `eslint` zur statischen Code-Analyse aus. |
 | `npm test` | Führt mittels `karma` alle Unit-Tests aus. |
 
 Die Webseite ist unter
