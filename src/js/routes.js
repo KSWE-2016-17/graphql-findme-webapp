@@ -1,6 +1,6 @@
 import IndexPage from "./pages/IndexPage";
 import ProfilViewComponent from "./pages/ProfilViewComponent";
-import LoginViewComponent from "./pages/LoginViewComponent";
+import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
 import RegistrierenViewPage from "./pages/RegistrierenViewPage";
 import OtherProfileView from "./pages/OtherProfileView";
@@ -19,10 +19,10 @@ import ReportsView from "./pages/ReportsView";
 export default {
     path: "/",
     component: IndexPage,
-    indexRoute: {component: LoginViewComponent},
+    indexRoute: {component: LoginPage},
     childRoutes: [
         {path: "profile", component: ProfilViewComponent},
-        {path: "login", component: LoginViewComponent},
+        {path: "login", component: LoginPage},
         {path: "logout", component: LogoutPage},
         {path: "register", component: RegistrierenViewPage},
         {path: "profile/:id", component: OtherProfileView},
