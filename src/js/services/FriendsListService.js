@@ -6,6 +6,18 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class FriendsListService {
+	
+	constructor() {
+		this.allFriends = this.allFriends.bind(this);
+		this.getCurrentProfile = this.getCurrentProfile.bind(this);
+		this.getProfile = this.getProfile.bind(this);
+		this.getUser = this.getUser.bind(this);
+		this.reportUser = this.reportUser.bind(this);
+		this.endFrienship = this.endFrienship.bind(this);
+		this.handleFriendRequest = this.handleFriendRequest.bind(this);
+		this.newFriendsListEntry = this.newFriendsListEntry.bind(this);
+    }
+	
     allFriends(profileID) {
 		let defer = q.defer();
 
@@ -103,6 +115,7 @@ export default class FriendsListService {
     }
 	
 	handleFriendRequest(friendsListID, profileID, accept, callback) {
+		let self = this;
 		let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 		
@@ -117,6 +130,8 @@ export default class FriendsListService {
 				}
 				
 				data[0].friends = friendsList;
+
+				self.newFriendsListEntry(profileID, data[0].profile_id, 1, {});
 				
 				friendDao.update(data[0], {
 					success: function() {
@@ -129,11 +144,11 @@ export default class FriendsListService {
         });
     }
 	
-	createFriendRequest(sessionProfileID, requestDestinationProfileID, callback) {
+	newFriendsListEntry(ownerProfileID, friendProfileID, friendshipStatus, callback) {
 		let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 		
-		friendDao.findByProfileId(requestDestinationProfileID,  {
+		friendDao.findByProfileId(ownerProfileID,  {
             success: function(data) {
                 if (data) {
 					if (data[0]) {
@@ -141,14 +156,15 @@ export default class FriendsListService {
 						let isAlreadyAFriend = false;
 						
 						for (let i = 0; i < friendsList.length; i++) {
-							if (friendsList[i].id == sessionProfileID) {
+							if (friendsList[i].id == friendProfileID) {
 								isAlreadyAFriend = true;
+								console.log("profile " + friendProfileID + " already exists in profile-" + ownerProfileID + "'s friends list");
 							}
 						}
 						
 						if (isAlreadyAFriend == false) {
 							
-							friendsList.push({id:sessionProfileID, status:0});
+							friendsList.push({id:friendProfileID, status:friendshipStatus});
 							data[0].friends = friendsList;
 							
 							friendDao.update(data[0], {
@@ -163,10 +179,10 @@ export default class FriendsListService {
 					else {
 						var newFriendslist = {
 							"doctype" : "friends",
-							"profile_id" : requestDestinationProfileID,
-							"friends" : [{id:sessionProfileID, status:0}]
+							"profile_id" : ownerProfileID,
+							"friends" : [{id:friendProfileID, status:friendshipStatus}]
 						}
-						
+
 						friendDao.create(newFriendslist, {
 							success: function() {
 								if (callback && typeof callback.success === "function") {
