@@ -2,7 +2,7 @@ import React from "react";
 import q from "q";
 import _ from "lodash";
 
-import FriendsListService from "../services/FriendsListService";
+import AdminService from "../services/AdminService";
 
 export default class FriendsListTab_FriendRow extends React.Component {
 	
@@ -35,21 +35,26 @@ export default class FriendsListTab_FriendRow extends React.Component {
 	
 	componentDidMount() {
         let self = this;
-        let friendsListService = new FriendsListService();
+        let adminService = new AdminService();
 
-		friendsListService.getProfile(self.props.profileID)
+		adminService.getProfile(self.props.profileID)
             .then(function(data) {
 				if (data[0]) {
-					friendsListService.getUser(data[0].user_id)
+					adminService.getUser(data[0].user_id)
 						.then(function(data) {
-							self.setState({profileName: data[0].login});
+							if (data[0]) {
+								self.setState({profileName: data[0].login});
+							}
+							else {
+								console.log("Warning: Profile '" + self.props.profileID + "'" + " has an unknown user-id");
+							}
 						})
 						.catch(function(err) {
 							console.log(err);
 						});
 				}
 				else {
-					console.log("Warning: User with profile id '" + self.props.profileID + "'" + " not found!");
+					console.log("Warning: Profile with profile id '" + self.props.profileID + "'" + " not found!");
 				}
             })
             .catch(function(err) {
@@ -59,63 +64,23 @@ export default class FriendsListTab_FriendRow extends React.Component {
 	
 	ignoreCase() {
 		let self = this;
+		let adminService = new AdminService();
 		
-		
-		
-		
-		/*let self = this;
-		let friendsListService = new FriendsListService();
-		
-		friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, true, {
-			success: function() {
-				window.location.reload();
-			}
-        });*/
-	}
-	
-	deleteProfile() {
-		let self = this;
-		
-		
-		
-		
-		/*let self = this;
-		let friendsListService = new FriendsListService();
-		
-		friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, false, {
-			success: function() {
-				window.location.reload();
-			}
-        });*/
-	}
-	
-	/*endFriendship() {
-		let self = this;
-		let friendsListService = new FriendsListService();
-		
-		friendsListService.endFrienship(self.props.friendsListID, self.props.profileID, {
+		adminService.removeReportedMark(self.props.profileID, {
 			success: function() {
 				window.location.reload();
 			}
         });
 	}
 	
-	reportUser() {
+	deleteProfile() {
 		let self = this;
-		let friendsListService = new FriendsListService();
+		let adminService = new AdminService();
 		
-        friendsListService.reportUser(self.props.profileID);
+		adminService.deleteProfile(self.props.profileID, {
+			success: function() {
+				window.location.reload();
+			}
+        });
 	}
-	
-	sendMessage() {
-		let self = this;
-		
-		window.location.href = "#/mails/new";
-	}
-	
-	showProfile() {
-		let self = this;
-		
-		window.location.href = "#/friends/" + self.props.profileID;
-	}*/
 }
