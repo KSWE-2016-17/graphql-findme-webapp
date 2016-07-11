@@ -114,12 +114,12 @@ export default class EditProfileInterestsComponent extends React.Component {
 
         ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then(function (data) {
-                var dummy = data[0].aboutme;
-                var i = dummy.split("#");
-                var interests = i[1].split("+");
+                let dummy = data[0].aboutme;
+                let i = dummy.split("#");
+                let interests = i[1].split("+");
 
                 for (let x = 0; x < 10; x++) {
-                    var help = "#" + x;
+                    let help = "#" + x;
 
                     if (x < interests.length) {
                         $(help).val(interests[x]);
@@ -135,10 +135,11 @@ export default class EditProfileInterestsComponent extends React.Component {
     updateInterests() {
         let ps = new PS();
 
-        var complete = "#";
+        let complete = "#";
 
         for (let x = 0; x < 10; x++) {
-            var help = "#" + x;
+            let help = "#" + x;
+
             if ($(help).val() === "") {
 
             } else {
@@ -149,9 +150,9 @@ export default class EditProfileInterestsComponent extends React.Component {
 
         ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then(function (data) {
-                var dummy = data[0].aboutme;
-                var parts = dummy.split("{");
-                var about = parts[0] + "{" + complete;
+                let dummy = data[0].aboutme;
+                let parts = dummy.split("{");
+                let about = parts[0] + "{" + complete;
 
                 data[0].aboutme = about;
 

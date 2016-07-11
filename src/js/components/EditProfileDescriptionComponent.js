@@ -41,7 +41,8 @@ export default class EditProfileComponent extends React.Component {
     changeAboutMe() {
         let ps = new PS();
 
-        var about = $("#aboutme").val();
+        let about = $("#aboutme").val();
+
         if (about === "") {
             about = "find.me ist toll";
         }
@@ -51,9 +52,9 @@ export default class EditProfileComponent extends React.Component {
                 //data[0].aboutme = about;
 
                 //var dummy = about;
-                var dummy = data[0].aboutme;
+                let dummy = data[0].aboutme;
 
-                var parts = dummy.split("{");
+                let parts = dummy.split("{");
 
                 parts[0] = about;
 
