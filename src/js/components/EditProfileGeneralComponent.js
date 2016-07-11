@@ -1,12 +1,12 @@
 import React from "react";
 
-import PS from "../services/ProfilService";
+import ProfileService from "../services/ProfilService";
 
 export default class EditProfileGeneralComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        this.changeLooks = this.changeLooks.bind(this);
+        this.updateGeneralInfo = this.updateGeneralInfo.bind(this);
     }
 
     render() {
@@ -74,7 +74,7 @@ export default class EditProfileGeneralComponent extends React.Component {
                             </div>
 
                             <div className="form-group">
-                                <button type="submit" className="btn btn-primary" onClick={this.changeLooks}>
+                                <button type="button" className="btn btn-primary" onClick={this.updateGeneralInfo}>
                                     Speichern
                                 </button>
                             </div>
@@ -85,10 +85,10 @@ export default class EditProfileGeneralComponent extends React.Component {
         );
     }
 
-    changeLooks() {
-        let ps = new PS();
+    updateGeneralInfo() {
+        let profileService = new ProfileService();
 
-        ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then(function (data) {
                 data[0].familystatus = $("#status").val();
                 data[0].privacy.friends = $("#privacy").val();
@@ -102,7 +102,7 @@ export default class EditProfileGeneralComponent extends React.Component {
                 data[0].eyecolor = $("#eye").val();
                 data[0].figure = $("#figure").val();
 
-                ps.updateProfile(data[0])
+                profileService.updateProfile(data[0])
                     .then(function (data) {
                         console.log("SUCCESS");
                     })
