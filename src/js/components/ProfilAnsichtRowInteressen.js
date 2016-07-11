@@ -59,7 +59,7 @@ export default class RowInteressenComponent extends React.Component {
                     let selector = "#interest" + i;
 
                     if (i < interests.length && interests[i] && interests[i].trim()) {
-                        $(selector).text(interests[i]);
+                        $(selector).text(interests[i + 1]);
                     } else {
                         $(selector).hide();
                     }

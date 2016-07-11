@@ -122,7 +122,7 @@ export default class EditProfileInterestsComponent extends React.Component {
                     let selector = "#interest" + i;
 
                     if (i < interests.length) {
-                        $(selector).val(interests[i]);
+                        $(selector).val(interests[i + 1]);
                     }
                 }
             })
