@@ -44,7 +44,7 @@ export default class NavigationComponent extends React.Component {
             <nav className="navbar navbar-default">
                 <div>
                     <div className="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
@@ -57,7 +57,7 @@ export default class NavigationComponent extends React.Component {
                             <li><a href="#/dating"><span className="glyphicon glyphicon-send"></span> Dating</a></li>
                             <li><a href="#/friendstab"><span className="glyphicon glyphicon-asterisk"></span> Freunde</a></li>
                             <li className="dropdown">
-                                <a className="dropdown-toggle" data-toggle="dropdown" href="#"><span className="glyphicon glyphicon-envelope"></span> Nachrichten <span class="caret"></span></a>
+                                <a className="dropdown-toggle" data-toggle="dropdown" href="#"><span className="glyphicon glyphicon-envelope"></span> Nachrichten <span className="caret"></span></a>
                                 <ul className="dropdown-menu">
                                     <li><a href="#/mails/inbox">Posteingang</a></li>
                                     <li><a href="#/mails/new">Nachricht erstellen</a></li>
