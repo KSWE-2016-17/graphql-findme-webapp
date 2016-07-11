@@ -13,56 +13,31 @@ export default class RowInteressenComponent extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div class="col-md-12">
-                        <div id="interest0" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
+                    <div className="col-md-12">
+                        {(() => {
+                            let result = [];
 
-                        <div id="interest1" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
+                            _.times(10, (i) => {
+                                result.push(<div id={"interest" + i} key={Math.random()} className="box_interessen"
+                                                 style={{
+                                                    color: "#ffffff",
+                                                    backgroundColor: "#eb9316",
+                                                    fontWeight: "bold",
+                                                    borderRadius: "4px",
+                                                    float: "left",
+                                                    paddingTop: "5px",
+                                                    paddingBottom: "5px",
+                                                    paddingLeft: "15px",
+                                                    paddingRight: "15px",
+                                                    marginTop: "10px",
+                                                    marginBottom: "10px",
+                                                    marginRight: "10px",
+                                                    marginLeft: "0px"
+                                                }}></div>);
+                            });
 
-                        <div id="interest2" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
-
-                        <div id="interest3" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
-
-                        <div id="interest4" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
-
-                        <div id="interest5" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
-
-                        <div id="interest6" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
-
-                        <div id="interest7" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
-
-                        <div id="interest8" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
-
-                        <div id="interest9" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}></div>
+                            return result;
+                        })()}
                     </div>
                 </div>
             </div>
