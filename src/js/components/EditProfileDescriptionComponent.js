@@ -1,12 +1,12 @@
 import React from "react";
 
-import PS from "../services/ProfilService";
+import ProfileService from "../services/ProfilService";
 
 export default class EditProfileComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        this.changeAboutMe = this.changeAboutMe.bind(this);
+        this.updateAboutmeDescription = this.updateAboutmeDescription.bind(this);
     }
 
     render() {
@@ -27,7 +27,8 @@ export default class EditProfileComponent extends React.Component {
                             </div>
 
                             <div className="form-group">
-                                <button type="button" className="btn btn-primary" onClick={this.changeAboutMe}>
+                                <button type="button" className="btn btn-primary"
+                                        onClick={this.updateAboutmeDescription}>
                                     Speichern
                                 </button>
                             </div>
@@ -38,19 +39,19 @@ export default class EditProfileComponent extends React.Component {
         );
     }
 
-    changeAboutMe() {
-        let ps = new PS();
+    updateAboutmeDescription() {
+        let profileService = new ProfileService();
 
-        let about = $("#aboutme").val();
+        let aboutmeDescription = $("#aboutme").val();
 
-        ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then(function (data) {
-                let dummy = data[0].aboutme;
-                let parts = dummy.split("{");
+                let aboutme = data[0].aboutme;
+                let aboutmeParts = aboutme.split("{");
 
-                data[0].aboutme = about + "{" + parts[1];
+                data[0].aboutme = aboutmeDescription + "{" + aboutmeParts[1];
 
-                ps.updateProfile(data[0])
+                profileService.updateProfile(data[0])
                     .then(function (data) {
                         console.log("SUCCESS");
                     })
