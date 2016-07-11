@@ -4,23 +4,23 @@ import ProfileService from "../services/ProfilService";
 
 export default class RowInteressenComponent extends React.Component {
     createRowInteressen() {
-        let ps = new ProfileService();
+        let profileService = new ProfileService();
 
-        ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then(function (data) {
                 let aboutme = data[0].aboutme;
 
-                let dummy = aboutme.split("#");
-                let interests = dummy[1].split("+");
-                let finished = dummy[0] + "#";
+                let aboutmeParts = aboutme.split("#");
+                let interests = aboutmeParts[1].split("+");
+                let finished = aboutmeParts[0] + "#";
 
-                for (let x = 1; x < 10; x++) {
-                    let help = "#" + x;
+                for (let i = 1; i < 10; i++) {
+                    let selector = "#" + i;
 
-                    if (x < interests.length) {
-                        $(help).text(interests[x]);
+                    if (i < interests.length) {
+                        $(selector).text(interests[i]);
                     } else {
-                        $(help).hide();
+                        $(selector).hide();
                     }
                 }
 
