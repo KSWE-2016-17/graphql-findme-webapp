@@ -39,6 +39,18 @@ export default class EditProfileComponent extends React.Component {
         );
     }
 
+    componentDidMount() {
+        let profileService = new ProfileService();
+
+        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+            .then(function (data) {
+                $("#aboutme").val(data[0].aboutme.split("{")[0]);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
+
     updateAboutmeDescription() {
         let profileService = new ProfileService();
 
