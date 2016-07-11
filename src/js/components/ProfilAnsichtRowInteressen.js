@@ -1,109 +1,73 @@
 import React from "react";
-import PS from "../services/ProfilService";
+
+import ProfileService from "../services/ProfilService";
 
 export default class RowInteressenComponent extends React.Component {
+    render() {
+        return (
+            <div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <h1>Interessen</h1>
+                        <br />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        {(() => {
+                            let result = [];
 
-    createRowInteressen() {
+                            _.times(10, (i) => {
+                                result.push(<div id={"interest" + i} key={Math.random()} className="box_interessen"
+                                                 style={{
+                                                    color: "#ffffff",
+                                                    backgroundColor: "#eb9316",
+                                                    fontWeight: "bold",
+                                                    borderRadius: "4px",
+                                                    float: "left",
+                                                    paddingTop: "5px",
+                                                    paddingBottom: "5px",
+                                                    paddingLeft: "15px",
+                                                    paddingRight: "15px",
+                                                    marginTop: "10px",
+                                                    marginBottom: "10px",
+                                                    marginRight: "10px",
+                                                    marginLeft: "0px"
+                                                }}></div>);
+                            });
 
-        let ps = new PS();
+                            return result;
+                        })()}
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
-        ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function(data){
-                var stuff = data[0].aboutme;
+    componentDidMount() {
+        let profileService = new ProfileService();
 
-                var dummy = stuff.split("#");
+        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+            .then(function (data) {
+                let aboutme = data[0].aboutme;
 
-                var interests = dummy[1].split("+");
+                let aboutmeParts = aboutme.split("#");
+                let interests = aboutmeParts[1].split("+");
+                let finished = aboutmeParts[0] + "#";
 
-                var finished = dummy[0] + "#";
+                for (let i = 0; i < 10; i++) {
+                    let selector = "#interest" + i;
 
-                for(let x=0;x<10;x++){
-                    var help = "#" + x;
-                    if(x<interests.length) {
-                        $(help).text(interests[x]);
-                    }
-                    else{
-                        $(help).hide();
+                    if (i < interests.length && interests[i] && interests[i].trim()) {
+                        $(selector).text(interests[i]);
+                    } else {
+                        $(selector).hide();
                     }
                 }
 
             })
-            .catch(function(err){
+            .catch(function (err) {
                 console.log(err);
             });
-
-
-
-        return  <div> <div className="row">
-                <div className="col-md-12">
-                    <h1>Interessen</h1>
-                    <br />
-                </div>
-            </div>
-            <div className="row">
-            <div class="col-md-12">
-            <div id="1" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="2" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="3" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="4" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="5" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="6" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="7" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="8" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="0" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-                <div id="9" className="box_interessen" style={{color:"#ffffff", backgroundColor:"#eb9316",
-             fontWeight:"bold", borderRadius:"4px", float:"left", paddingTop:"5px",
-             paddingBottom:"5px", paddingLeft:"15px", paddingRight:"15px",
-             marginTop:"10px", marginBottom:"10px", marginRight:"10px", marginLeft:"0px"}}>Festivals</div>
-
-        </div>
-        </div>
-        </div>;
-    }
-
-    render() {
-        return (
-            <div>{this.createRowInteressen()}
-                <br />
-                <br />
-                <hr />
-            </div>
-        );
     }
 }
