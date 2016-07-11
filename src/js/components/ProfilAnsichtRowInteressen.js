@@ -9,7 +9,6 @@ export default class RowInteressenComponent extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Interessen</h1>
-                        <br />
                     </div>
                 </div>
                 <div className="row">
