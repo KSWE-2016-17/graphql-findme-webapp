@@ -3,6 +3,12 @@ import React from "react";
 import PS from "../services/ProfilService";
 
 export default class EditProfileInterestsComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.updateInterests = this.updateInterests.bind(this);
+    }
+
     render() {
         let ps = new PS();
 

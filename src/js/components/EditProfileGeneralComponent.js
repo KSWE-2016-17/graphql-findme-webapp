@@ -3,6 +3,12 @@ import React from "react";
 import PS from "../services/ProfilService";
 
 export default class EditProfileGeneralComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.changeLooks = this.changeLooks.bind(this);
+    }
+
     render() {
         return (
             <div>
