@@ -5,20 +5,15 @@ import RegistrierenViewInfoboxComponent from "../components/RegistrierenViewInfo
 import RegistrierenViewFormComponent from "../components/RegistrierenViewFormComponent";
 
 export default class RegistrierenViewPage extends React.Component {
-    
-    createRegistrierenViewPage() {
-        return ( <div>
-            <RegistrierenViewHeadComponent/>
-            <br/>
-            <RegistrierenViewInfoboxComponent/>
-            <br/>
-            <RegistrierenViewFormComponent/>
-        </div>);
-    }
-
     render() {
         return (
-            <div>{this.createRegistrierenViewPage()}</div>
+            <div>
+                <RegistrierenViewHeadComponent/>
+                <br/>
+                <RegistrierenViewInfoboxComponent/>
+                <br/>
+                <RegistrierenViewFormComponent/>
+            </div>
         );
     }
 }

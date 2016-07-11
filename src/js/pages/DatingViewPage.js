@@ -4,17 +4,12 @@ import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigatio
 import DatingViewLayoutComponent from "../components/DatingViewLayoutComponent";
 
 export default class DatingViewPage extends React.Component {
-
-    createDatingView() {
-        return  <div>
-            <ProfilAnsichtNavigationElement/>
-            <DatingViewLayoutComponent/>
-        </div>;
-    }
-
     render() {
         return (
-            <div>{this.createDatingView()}</div>
+            <div>
+                <ProfilAnsichtNavigationElement/>
+                <DatingViewLayoutComponent/>
+            </div>
         );
     }
 }

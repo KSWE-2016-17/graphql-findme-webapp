@@ -1,25 +1,17 @@
 import React from "react";
 
-//import LoginHeader from "../components/LoginHeader";
-
 import ReadMailHeaderComponent from "../components/ReadMailHeaderComponent";
 import ReadMailComponent from "../components/ReadMailComponent";
 import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigationElement";
 
 export default class ReadMailPage extends React.Component {
-    createContent() {
-        return <div>
-            <ProfilAnsichtNavigationElement/>
-            <ReadMailHeaderComponent/>
-            <ReadMailComponent/>
-        </div>;
-    }
-
-
-
     render() {
         return (
-            <div>{this.createContent()}</div>
+            <div>
+                <ProfilAnsichtNavigationElement/>
+                <ReadMailHeaderComponent/>
+                <ReadMailComponent/>
+            </div>
         );
     }
 }

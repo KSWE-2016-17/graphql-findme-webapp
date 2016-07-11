@@ -6,21 +6,16 @@ import ProfileinstellungenViewSonstigesComponent from "../components/Profileinst
 import ProfileinstellungenViewProfilLoeschenComponent from "../components/ProfileinstellungenViewProfilLoeschenComponent";
 
 export default class ProfileinstellungenViewPage extends React.Component {
-
-    createProfileinstellungenViewPage() {
-        return(  <div>
-            <ProfilAnsichtNavigationElement/>
-            <div>
-                <ProfileinstellungenViewPrivatsphaereComponent/>
-                <ProfileinstellungenViewSonstigesComponent/>
-                <ProfileinstellungenViewProfilLoeschenComponent/>
-            </div>
-        </div>);
-    }
-
     render() {
         return (
-            <div>{this.createProfileinstellungenViewPage()}</div>
+            <div>
+                <ProfilAnsichtNavigationElement/>
+                <div>
+                    <ProfileinstellungenViewPrivatsphaereComponent/>
+                    <ProfileinstellungenViewSonstigesComponent/>
+                    <ProfileinstellungenViewProfilLoeschenComponent/>
+                </div>
+            </div>
         );
     }
 }
