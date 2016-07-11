@@ -27,7 +27,7 @@ export default class EditProfileComponent extends React.Component {
                             </div>
 
                             <div className="form-group">
-                                <button type="submit" className="btn btn-primary" onClick={this.changeAboutMe}>
+                                <button type="button" className="btn btn-primary" onClick={this.changeAboutMe}>
                                     Speichern
                                 </button>
                             </div>
@@ -43,27 +43,12 @@ export default class EditProfileComponent extends React.Component {
 
         let about = $("#aboutme").val();
 
-        if (about === "") {
-            about = "find.me ist toll";
-        }
-
         ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then(function (data) {
-                //data[0].aboutme = about;
-
-                //var dummy = about;
                 let dummy = data[0].aboutme;
-
                 let parts = dummy.split("{");
 
-                parts[0] = about;
-
-                about = parts[0] + "{" + parts[1];
-
-                console.log(parts[0]);
-                console.log(parts[1]);
-
-                data[0].aboutme = about;
+                data[0].aboutme = about + "{" + parts[1];
 
                 ps.updateProfile(data[0])
                     .then(function (data) {
