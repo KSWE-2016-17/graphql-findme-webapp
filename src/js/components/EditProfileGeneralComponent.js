@@ -85,6 +85,23 @@ export default class EditProfileGeneralComponent extends React.Component {
         );
     }
 
+    componentDidMount() {
+        let profileService = new ProfileService();
+
+        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+            .then(function (data) {
+                $("#status").val(data[0].familystatus);
+                $("#privacy").val(data[0].privacy.friends);
+                $("#children").val(data[0].children);
+                $("#hair").val(data[0].haircolor);
+                $("#eye").val(data[0].eyecolor);
+                $("#figure").val(data[0].figure);
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
+
     updateGeneralInfo() {
         let profileService = new ProfileService();
 
