@@ -14,7 +14,7 @@ export default class RowInteressenComponent extends React.Component {
                 let interests = dummy[1].split("+");
                 let finished = dummy[0] + "#";
 
-                for (let x = 0; x < 10; x++) {
+                for (let x = 1; x < 10; x++) {
                     let help = "#" + x;
 
                     if (x < interests.length) {
