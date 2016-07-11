@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "lodash";
 
 import ProfileService from "../services/ProfilService";
 
@@ -22,66 +23,22 @@ export default class EditProfileInterestsComponent extends React.Component {
                             </div>
 
                             <div className="row">
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest0" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest1" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest2" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest3" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest4" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest5" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest6" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest7" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest8" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-2">
-                                    <div className="form-group">
-                                        <input id="interest9" type="text" className="form-control"
-                                               placeholder="Interesse eingeben"/>
-                                    </div>
-                                </div>
+                                {(() => {
+                                    let result = [];
+
+                                    _.times(10, (i) => {
+                                        result.push(
+                                            <div className="col-md-2" key={Math.random()}>
+                                                <div className="form-group">
+                                                    <input id={"interest" + i} type="text" className="form-control"
+                                                           placeholder="Interesse eingeben"/>
+                                                </div>
+                                            </div>
+                                        );
+                                    });
+
+                                    return result;
+                                })()}
                             </div>
 
                             <div className="row">
