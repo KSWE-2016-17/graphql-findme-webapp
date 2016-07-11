@@ -10,7 +10,7 @@ export default class ProfileinstellungenViewProfilLoeschenComponent extends Reac
         var id;
         var accept;
 
-        id = localStorage().getItem("sessionUserId");
+        id = localStorage.getItem("sessionUserId");
         accept = document.getElementById("delete").checked;
 
         if(accept === true) {
