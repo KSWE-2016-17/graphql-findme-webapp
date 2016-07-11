@@ -10,7 +10,7 @@ export default class ReadMailComponent extends React.Component {
                 <br/>
                 <div className="row">
                     <div className="col-md-10 col-md-offset-1">
-                            <table class="table" style={{width: "100%", border: "1px solid lightgrey"}}>
+                            <table className="table" style={{width: "100%", border: "1px solid lightgrey"}}>
                                 <tr>
                                     <td colspan="2"  style={{backgroundColor:"lightgrey", border:"1px solid"}}>
                                         <font>Sarah Wittenstein</font>

@@ -35,13 +35,13 @@ export default class ProfileinstellungenViewSonstigesComponent extends React.Com
                 </div>
                 <div className="col-md-3">
                     <span>Option:</span>
-                    <div class="checkbox">
+                    <div className="checkbox">
                         <label><input type="radio" name="optradio"/> Alle</label>
                     </div>
-                    <div class="checkbox">
+                    <div className="checkbox">
                         <label><input type="radio" name="optradio"/> Nur Freunde</label>
                     </div>
-                    <div class="checkbox">
+                    <div className="checkbox">
                         <label><input type="radio" name="optradio"/> niemanden</label>
                     </div>
                 </div>

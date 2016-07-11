@@ -78,10 +78,10 @@ export default class NewMailComponent extends React.Component {
                 <div className="row">
                     <div className="col-md-10 col-md-offset-1">
                         <form role="form">
-                            <table class="table" style={{width: "100%", border: "1px solid lightgrey"}}>
+                            <table className="table" style={{width: "100%", border: "1px solid lightgrey"}}>
                                 <tr>
                                     <td colspan="2">
-                                    <input type="email" class="form-control" id="sendto" placeholder="Empfänger"
+                                    <input type="email" className="form-control" id="sendto" placeholder="Empfänger"
                                     style={{width:"100%", border: "2px solid lightblue"}} onChange={this.getSendTo}>
                                         </input>
                                         </td>

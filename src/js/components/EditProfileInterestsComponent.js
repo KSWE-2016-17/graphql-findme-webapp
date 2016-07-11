@@ -88,7 +88,7 @@ export default class EditProfileInterestsComponent extends React.Component {
                 <div className="row">
                     <div className="col-md-10 col-md-offset-1">
                         <form>
-                            <table class="table" style={{width: "100%"}}>
+                            <table className="table" style={{width: "100%"}}>
                                 <tr>
                                     <font size="4">Interessen ändern</font>
                                     <br/>
