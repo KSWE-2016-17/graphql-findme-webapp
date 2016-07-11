@@ -4,6 +4,12 @@ import RegisterService from "../services/RegisterService";
 import ProfilService from "../services/ProfilService";
 
 export default class ProfileinstellungenViewProfilLoeschenComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.deleteProfil = this.deleteProfil.bind(this);
+    }
+
     render() {
         return (
             <div>
