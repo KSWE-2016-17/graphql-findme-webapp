@@ -58,7 +58,6 @@ export default class EditProfileComponent extends React.Component {
                     .catch(function (err) {
                         console.log(err);
                     });
-
             })
             .catch(function (err) {
                 console.log(err);
