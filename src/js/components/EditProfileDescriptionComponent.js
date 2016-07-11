@@ -1,20 +1,47 @@
 import React from "react";
-import Image from "./DefaultImage";
 
 import PS from "../services/ProfilService";
 
 export default class EditProfileComponent extends React.Component {
+    render() {
+        return (
+            <div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <h2>Profilbeschreibung</h2>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        <form>
+                            <div className="form-group">
+                                <label htmlFor="aboutme">Über mich</label>
+                                <input id="aboutme" type="text" name="aboutme" className="form-control"
+                                       placeholder="Breit gebaut, braun gebrannt, 100 Kilo Hantelbank"/>
+                            </div>
 
-    changeAboutMe(){
+                            <div className="form-group">
+                                <button type="submit" className="btn btn-primary" onClick={this.changeAboutMe}>
+                                    Speichern
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    changeAboutMe() {
         let ps = new PS();
 
         var about = $("#aboutme").val();
-        if(about===""){
-            about="find.me ist toll";
+        if (about === "") {
+            about = "find.me ist toll";
         }
-        
+
         ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function(data){
+            .then(function (data) {
                 //data[0].aboutme = about;
 
                 //var dummy = about;
@@ -31,70 +58,17 @@ export default class EditProfileComponent extends React.Component {
 
                 data[0].aboutme = about;
 
-
-
                 ps.updateProfile(data[0])
-                    .then(function(data){
+                    .then(function (data) {
                         console.log("SUCCESS");
                     })
-                    .catch(function(err){
+                    .catch(function (err) {
                         console.log(err);
                     });
-                
+
             })
-            .catch(function(err){
+            .catch(function (err) {
                 console.log(err);
             });
-        
-        
-    }
-
-
-    createContent() {
-        return <div>
-            <br/>
-        <div>
-            <div className="row">
-                <div className="col-md-10 col-md-offset-1">
-                    <form>
-                        <table className="table" style={{width: "100%"}}>
-                            <tr>
-
-                                <font size="4">Profilbeschreibung ändern</font>
-
-                            </tr>
-                            <tr>
-                                <td>
-
-                                    <input type="text" className="form-control" id="aboutme" style={{width:"100%"}}
-                                    placeholder="Breit gebaut, braun gebrannt, 100 Kilo Hantelbank">
-                                    </input>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <br/>
-                                    <button onClick={this.changeAboutMe} type="submit" className="btn btn-primary">Speichern</button>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </form>
-                    </div>
-                </div>
-            
-
-
-
-        </div>
-        </div>;
-    }
-
-
-
-    render() {
-        return (
-            <div>{this.createContent()}</div>
-        );
     }
 }
