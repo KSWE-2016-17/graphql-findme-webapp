@@ -3,7 +3,7 @@ import q from "q";
 import _ from "lodash";
 
 import ReportRow from "./ReportsView_ReportRow";
-//import FriendsListService from "../services/FriendsListService";
+import AdminService from "../services/AdminService";
 
 export default class ReportsView_ReportsListRow extends React.Component {
 
@@ -28,76 +28,33 @@ export default class ReportsView_ReportsListRow extends React.Component {
 	
 	componentDidMount() {
 		let self = this;
-		//let friendsListService = new FriendsListService();
+		let adminService = new AdminService();
 		let newReportsList = self.state.reports;
 		
-		newReportsList.push(
-			<div>
-				<ReportRow
-					profileID={"76524f21ad466069d58df96b1c02c0ec"}
-				/>
-				<hr />
-			</div>
-		);
-		
-		newReportsList.push(
-			<div>
-				<ReportRow
-					profileID={"76524f21ad466069d58df96b1c02ceca"}
-				/>
-				<hr />
-			</div>
-		);
-		
-		self.setState({reports: newReportsList});
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		/*let self = this;
-        let friendsListService = new FriendsListService();
-		
-		friendsListService.getCurrentProfile()
+		adminService.allProfiles()
 			.then(function(data) {
-				friendsListService.allFriends(data[0]._id)
-					.then(function(data) {
-						console.debug("received friends: " + data[0].friends.length);
-						
-						let friendsList = data[0].friends;
-						let newFriendState= self.state.friends;
+				console.debug("received profiles: " + data.length);
 				
-						for (let i = 0; i < friendsList.length; i++) {
-							console.debug("friend " + i + "'s profile ID: " + friendsList[i].id);
-							if (friendsList[i].status != 2) {
-								newFriendState.push(
-									<div>
-										<FriendRow
-											profileID={friendsList[i].id}
-											status={friendsList[i].status}
-											friendsListID={data[0]._id}
-										/>
-										<hr />
-									</div>
-								);
-							}
-						}
-				
-						self.setState({friends: newFriendState});
-					})
-					.catch(function(err) {
-						console.log(err);
-					});
+				let newReportList = self.state.reports;
+		
+				for (let i = 0; i < data.length; i++) {
+					if (data[i].reported == true) {
+						console.debug("report " + i + "'s profile ID: " + data[i]._id);
+						newReportList.push(
+							<div>
+								<ReportRow
+									profileID={data[i]._id}
+								/>
+								<hr />
+							</div>
+						);
+					}
+				}
+		
+				self.setState({reports: newReportList});
 			})
 			.catch(function(err) {
 				console.log(err);
-			});*/
+			});
     }
 }
