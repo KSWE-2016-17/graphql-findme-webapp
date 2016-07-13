@@ -3,7 +3,17 @@ import React from "react";
 import ProfileService from "../services/ProfilService";
 
 export default class RowInteressenComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            interestsElements: []
+        };
+    }
+
     render() {
+        let self = this;
+
         return (
             <div>
                 <div className="row">
@@ -13,30 +23,7 @@ export default class RowInteressenComponent extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        {(() => {
-                            let result = [];
-
-                            _.times(10, (i) => {
-                                result.push(<div id={"interest" + i} key={Math.random()} className="box_interessen"
-                                                 style={{
-                                                    color: "#ffffff",
-                                                    backgroundColor: "#eb9316",
-                                                    fontWeight: "bold",
-                                                    borderRadius: "4px",
-                                                    float: "left",
-                                                    paddingTop: "5px",
-                                                    paddingBottom: "5px",
-                                                    paddingLeft: "15px",
-                                                    paddingRight: "15px",
-                                                    marginTop: "10px",
-                                                    marginBottom: "10px",
-                                                    marginRight: "10px",
-                                                    marginLeft: "0px"
-                                                }}></div>);
-                            });
-
-                            return result;
-                        })()}
+                        {self.state.interestsElements}
                     </div>
                 </div>
             </div>
@@ -44,6 +31,8 @@ export default class RowInteressenComponent extends React.Component {
     }
 
     componentDidMount() {
+        let self = this;
+
         let profileService = new ProfileService();
 
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
@@ -52,17 +41,41 @@ export default class RowInteressenComponent extends React.Component {
 
                 let aboutmeParts = aboutme.split("#");
                 let interests = aboutmeParts[1].split("+");
-                let finished = aboutmeParts[0] + "#";
 
-                for (let i = 0; i < 10; i++) {
-                    let selector = "#interest" + i;
+                let interestsElements = self.state.interestsElements;
 
-                    if (i < interests.length && interests[i] && interests[i].trim()) {
-                        $(selector).text(interests[i]);
-                    } else {
-                        $(selector).hide();
+                for (let i = 0; i < interests.length; i++) {
+                    let interest = interests[i];
+
+                    if (interest && interest.trim()) {
+                        interest = interest.trim();
+
+                        interestsElements.push(
+                            <div key={Math.random()} className="box_interessen"
+                                 style={{
+                                    color: "#ffffff",
+                                    backgroundColor: "#eb9316",
+                                    fontWeight: "bold",
+                                    borderRadius: "4px",
+                                    float: "left",
+                                    paddingTop: "5px",
+                                    paddingBottom: "5px",
+                                    paddingLeft: "15px",
+                                    paddingRight: "15px",
+                                    marginTop: "10px",
+                                    marginBottom: "10px",
+                                    marginRight: "10px",
+                                    marginLeft: "0px"
+                                }}>
+                                {interest}
+                            </div>
+                        );
                     }
                 }
+
+                self.setState({
+                    interestsElements: interestsElements
+                });
 
             })
             .catch(function (err) {
