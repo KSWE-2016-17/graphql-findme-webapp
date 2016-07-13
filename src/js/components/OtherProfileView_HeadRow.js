@@ -76,7 +76,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 		
 		friendsListService.getCurrentProfile()
 			.then(function(data) {
-				friendsListService.createFriendRequest(self.props.profileID, data[0]._id, 0, {
+				friendsListService.newFriendsListEntry(self.props.profileID, data[0]._id, 0, {
 					success: function() {
 						window.location.reload();
 					}
