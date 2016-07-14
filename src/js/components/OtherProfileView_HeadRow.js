@@ -53,8 +53,8 @@ export default class FriendProfileView_HeadRow extends React.Component {
         profilService.findById(self.props.profileID, {
             success: function (profileData) {
                 self.setState({
-                    friendName: profileData[0].firstname + " " + profileData[0].lastname,
-                    aboutMe: profileData[0].aboutme
+                    friendName: profileData[0].firstname,
+                    aboutMe: profileData[0].aboutme.split("{#")[0]
                 });
             },
             error: function(err) {
