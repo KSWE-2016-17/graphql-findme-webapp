@@ -77,17 +77,16 @@ export default class FriendsListService {
         profileDao.findById(profileID,  {
             success: function(data) {
                 if (data) {
-					console.log(data.toSource());
 					if (data[0]) {
 						data[0].reported = "true";
 						profileDao.update(data[0], {});
 					}
 					else {
-						console.log("tach");
+						console.log("no profile data recieved. id: " + profileID);
 					}
                 }
 				else {
-					console.log("klaus");
+					console.log("no profile data recieved. id: " + profileID);
 				}
             },
 			error: function(err) {
