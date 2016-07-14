@@ -40,6 +40,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 		adminService.getProfile(self.props.profileID)
             .then(function(data) {
 				if (data[0]) {
+					self.setState({userID: data[0].user_id});
 					adminService.getUser(data[0].user_id)
 						.then(function(data) {
 							if (data[0]) {
@@ -76,6 +77,11 @@ export default class FriendsListTab_FriendRow extends React.Component {
 	deleteProfile() {
 		let self = this;
 		let adminService = new AdminService();
+		
+		adminService.deleteUser(self.state.userID, {
+			success: function() {
+			}
+        });
 		
 		adminService.deleteProfile(self.props.profileID, {
 			success: function() {
