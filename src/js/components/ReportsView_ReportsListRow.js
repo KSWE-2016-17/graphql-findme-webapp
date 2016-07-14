@@ -38,8 +38,9 @@ export default class ReportsView_ReportsListRow extends React.Component {
 				let newReportList = self.state.reports;
 		
 				for (let i = 0; i < data.length; i++) {
-					if (data[i].reported == true) {
-						console.debug("report " + i + "'s profile ID: " + data[i]._id);
+					console.debug(i + ". profile: " + data[i]._id + " - reported: " + data[i].reported);
+					if ((data[i].reported == true) || (data[i].reported == "true")) {
+						console.debug("report profile: " + data[i]._id);
 						newReportList.push(
 							<div>
 								<ReportRow
