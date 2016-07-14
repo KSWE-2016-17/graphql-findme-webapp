@@ -218,7 +218,6 @@ export default class FriendsListService {
 					self.allFriends(currentProfileID)
 						.then(function(friendsdata) {
 							if (friendsdata && friendsdata[0]) {
-								console.debug(friendsdata.toSource());
 								let friendsList = friendsdata[0].friends;
 								let isHeAFriend = false;
 								for (let i = 0; i < friendsList.length; i++) {
