@@ -74,23 +74,57 @@ export default class AdminService {
         });
 	}
 	
+	deleteUser(userID, callback) {
+		let self = this;
+		let dm = new CouchDbApi.DaoManager(connSettings);
+		let userDao = dm.getDao(CouchDbApi.UserDAO);
+		
+		userDao.findById(userID, {
+            success: function(data) {
+				if (data && data[0]) {
+					userDao.delete(data[0], {
+						success: function() {
+							if (callback && typeof callback.success === "function") {
+								callback.success();
+							}
+						},
+						error: function(err) {
+							console.error(err);
+						}
+					});
+				}
+				else {
+					console.log("no user data for id: " + userID);
+				}
+            },
+			error: function(err) {
+                console.error(err);
+			}
+        });
+	}
+	
 	deleteProfile(profileID, callback) {
 		let self = this;
 		let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 		
-        profileDao.findById(profileID, {
+		profileDao.findById(profileID, {
             success: function(data) {
-				profileDao.delete(data[0], {
-					success: function() {
-						if (callback && typeof callback.success === "function") {
-							callback.success();
+				if (data && data[0]) {
+					profileDao.delete(data[0], {
+						success: function() {
+							if (callback && typeof callback.success === "function") {
+								callback.success();
+							}
+						},
+						error: function(err) {
+							console.error(err);
 						}
-					},
-					error: function(err) {
-						console.error(err);
-					}
-				});
+					});
+				}
+				else {
+					console.log("no profile data for id: " + profileID);
+				}
             },
 			error: function(err) {
                 console.error(err);
