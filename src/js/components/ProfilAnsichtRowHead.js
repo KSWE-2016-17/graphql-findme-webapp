@@ -110,7 +110,7 @@ export default class RowHeadComponent extends React.Component {
                     $("#aboutme").text(data[0].aboutme);
                 }
 
-                var builder = data[0].firstname + " " + data[0].lastname;
+                var builder = data[0].firstname;
                 $("#proname").text(builder);
 
                 // profile._id = data[0]._id;
