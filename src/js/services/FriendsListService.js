@@ -74,15 +74,25 @@ export default class FriendsListService {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findByUserId(profileID,  {
+        profileDao.findById(profileID,  {
             success: function(data) {
                 if (data) {
+					console.log(data.toSource());
 					if (data[0]) {
 						data[0].reported = "true";
 						profileDao.update(data[0], {});
 					}
+					else {
+						console.log("tach");
+					}
                 }
-            }
+				else {
+					console.log("klaus");
+				}
+            },
+			error: function(err) {
+                console.error(err);
+			}
         });
 	}
 	
