@@ -16,6 +16,7 @@ export default class FriendsListService {
 		this.endFrienship = this.endFrienship.bind(this);
 		this.handleFriendRequest = this.handleFriendRequest.bind(this);
 		this.newFriendsListEntry = this.newFriendsListEntry.bind(this);
+		this.isFriend = this.isFriend.bind(this);
     }
 	
     allFriends(profileID) {
@@ -204,4 +205,52 @@ export default class FriendsListService {
             }
         });
 	}
+	
+	isFriend(friendID, callback) {
+		let self = this;
+		let dm = new CouchDbApi.DaoManager(connSettings);
+        let friendDao = dm.getDao(CouchDbApi.FriendDAO);
+		
+		self.getCurrentProfile()
+			.then(function(data) {
+				if (data && data[0]) {
+					let currentProfileID = data[0]._id;
+					self.allFriends(currentProfileID)
+						.then(function(friendsdata) {
+							if (friendsdata && friendsdata[0]) {
+								console.debug(friendsdata.toSource());
+								let friendsList = friendsdata[0].friends;
+								let isHeAFriend = false;
+								for (let i = 0; i < friendsList.length; i++) {
+									if (friendsList[i].id == friendID) {
+										if ((friendsList[i].status == 1) || (friendsList[i].status == "1")) {
+											isHeAFriend = true;
+											console.log("profile " + friendID + " is a friend of the current session user!");
+											break;
+										}
+									}
+								}
+								if (isHeAFriend == true) {
+									callback.success("yes");
+								}
+								else {
+									callback.success("no");
+								}
+							}
+							else {
+								console.log("no friends data for current user");
+							}
+						})
+						.catch(function(err) {
+							console.log(err);
+						});
+				}
+				else {
+					console.log("no profile data for current user");
+				}
+			})
+			.catch(function(err) {
+				console.log(err);
+			});
+    }
 }
