@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prestartDev": "npm install",
-    "startDev": "webpack-dev-server --watch --inline --hot",
+    "startDev": "webpack-dev-server --watch --inline --hot --port 8081",
     "test": "karma start",
     "lint": "eslint src || true"
   },
