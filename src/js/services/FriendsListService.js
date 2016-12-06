@@ -78,8 +78,6 @@ export default class FriendsListService {
     }
 
     handleFriendRequest(friendListId, profileId, accept) {
-        let self = this;
-
         let deferred = q.defer();
 
         this.friendDAO.findById(friendListId)
@@ -95,7 +93,7 @@ export default class FriendsListService {
 
                     data[0].friends = friendsList;
 
-                    self.newFriendsListEntry(profileId, data[0].profile_id, 1);
+                    this.newFriendsListEntry(profileId, data[0].profile_id, 1);
 
                     this.friendDAO.update(data[0])
                         .then(deferred.resolve)
@@ -150,15 +148,13 @@ export default class FriendsListService {
     }
 
     isFriend(friendId) {
-        let self = this;
-
         let deferred = q.defer();
 
-        self.getCurrentProfile()
+        this.getCurrentProfile()
             .then(function (data) {
                 if (data && data[0]) {
                     let currentProfileID = data[0]._id;
-                    self.allFriends(currentProfileID)
+                    this.allFriends(currentProfileID)
                         .then(function (data) {
                             if (data && data[0]) {
                                 let friendsList = data[0].friends;
