@@ -13,7 +13,7 @@ export default class OtherProfileView extends React.Component {
         return (
             <div>
                 <NavigationBar />
-                <Head profileID={self.props.params.id} />
+                <Head profileID={self.props.params.id}/>
                 <hr />
                 <Message />
             </div>
@@ -24,8 +24,8 @@ export default class OtherProfileView extends React.Component {
         let self = this;
         let friendsListService = new FriendsListService();
 
-        friendsListService.isFriend(self.props.params.id, {
-            success: function (data) {
+        friendsListService.isFriend(self.props.params.id)
+            .then((data) => {
                 if (data) {
                     if (data == "yes") {
                         window.location.href = "#/friends/" + self.props.params.id;
@@ -36,10 +36,9 @@ export default class OtherProfileView extends React.Component {
                 else {
                     console.log("no data reveived from FriendsListService.isFriend")
                 }
-            },
-            error: function (err) {
+            })
+            .catch((err) => {
                 console.log(err);
-            }
-        });
+            });
     }
 }
