@@ -8,96 +8,28 @@ export default class ProfilService {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.create(obj)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("create user fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        return profileDao.create(obj);
     }
 
     getProfile(id, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(id)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("finding failed");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        return profileDao.findById(id);
     }
 
     findByLogin(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findByLogin(obj)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("findUserByLogin fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        return profileDao.findByLogin(obj);
     }
 
     findById(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(obj)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("findUserByLogin fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        return profileDao.findById(obj);
     }
 
     linkProfile(uid, callbacks) {
@@ -134,65 +66,30 @@ export default class ProfilService {
     }
 
     findProfileByUserId(uid) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        msgDao.findByUserId(uid)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msgDao.findByUserId(uid);
     }
 
     updateProfile(obj) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        msgDao.update(obj)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msgDao.update(obj);
     }
 
     remove(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.remove(obj)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("delete user fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        return profileDao.remove(obj);
     }
 
     getAdminRight(uid) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.UserDAO);
 
-        msgDao.findById(uid)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msgDao.findById(uid);
     }
 }

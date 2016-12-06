@@ -7,71 +7,20 @@ export default class RegisterService {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
-        userDao.create(obj)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("create user fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        return userDao.create(obj);
     }
 
     findIdByName(login, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
-        userDao.findByLogin(login)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("user resolving fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        return userDao.findByLogin(login);
     }
 
     removeProfil(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.remove(obj)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("delete profil fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        return profileDao.remove(obj);
     }
 }

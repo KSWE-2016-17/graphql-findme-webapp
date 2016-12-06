@@ -5,54 +5,30 @@ import connSettings from "../../conn-settings";
 
 export default class ArchiveService {
     findMsgToMe(to) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msgDao.findByTo(to)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msgDao.findByTo(to);
     }
 
     findArchFromMe(from) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msgDao.findArchivedFrom(from)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msgDao.findArchivedFrom(from);
     }
 
     findArchToMe(to) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msgDao.findArchivedTo(to)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msgDao.findArchivedTo(to);
     }
 
     resolveUserName(id) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let usrDao = dm.getDao(CouchDbApi.UserDAO);
 
-        usrDao.findById(id)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return usrDao.findById(id);
     }
 }

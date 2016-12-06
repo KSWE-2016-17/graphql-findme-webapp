@@ -5,67 +5,37 @@ import connSettings from "../../conn-settings";
 
 export default class OutboxService {
     findMsgFromMe(from) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msgDao.findByFrom(from)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msgDao.findByFrom(from);
     }
 
     removeMsg(obj, uid) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msg2Dao.remove(obj, uid)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msg2Dao.remove(obj, uid);
     }
 
     updateMsg(obj) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msg2Dao.createOrUpdate(obj)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msg2Dao.createOrUpdate(obj);
     }
 
     findMsgFromMeUndeleted(from) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msg2Dao.findUndeleteFrom(from)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msg2Dao.findUndeleteFrom(from);
     }
 
     resolveUserName(id) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let usrDao = dm.getDao(CouchDbApi.UserDAO);
 
-        usrDao.findById(id)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return usrDao.findById(id);
     }
 }

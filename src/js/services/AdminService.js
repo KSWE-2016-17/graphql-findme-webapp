@@ -13,42 +13,24 @@ export default class AdminService {
     }
 
     getProfile(profileID) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(profileID)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return profileDao.findById(profileID);
     }
 
     getUser(userID) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
-        userDao.findById(userID)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return userDao.findById(userID);
     }
 
     allProfiles() {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findAll()
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return profileDao.findAll();
     }
 
     removeReportedMark(profileID, callback) {

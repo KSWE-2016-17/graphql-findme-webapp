@@ -17,55 +17,31 @@ export default class FriendsListService {
     }
 
     allFriends(profileID) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
-        friendDao.findByProfileId(profileID)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return friendDao.findByProfileId(profileID);
     }
 
     getCurrentProfile() {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findByUserId(localStorage.getItem("sessionUserId"))
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return profileDao.findByUserId(localStorage.getItem("sessionUserId"));
     }
 
     getProfile(profileID) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(profileID)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return profileDao.findById(profileID);
     }
 
     getUser(userID) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
-        userDao.findById(userID)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return userDao.findById(userID);
     }
 
     reportUser(profileID) {

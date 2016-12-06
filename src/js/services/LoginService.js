@@ -54,15 +54,9 @@ export default class LoginService {
     }
 
     findProfileByUserId(uid) {
-        let defer = q.defer();
-
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        msgDao.findByUserId(uid)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return msgDao.findByUserId(uid);
     }
 }
