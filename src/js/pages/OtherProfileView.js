@@ -7,10 +7,6 @@ import Message from "../components/OtherProfileView_RestrictedRow";
 import FriendsListService from "../services/FriendsListService";
 
 export default class OtherProfileView extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let self = this;
 

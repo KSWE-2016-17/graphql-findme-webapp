@@ -7,10 +7,6 @@ import Pictures from "../components/FriendProfileView_PictureRow";
 import Interests from "../components/FriendProfileInterests";
 
 export default class FriendProfileView extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let self = this;
 
