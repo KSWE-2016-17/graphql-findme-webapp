@@ -1,7 +1,5 @@
 import React from "react";
 
-import PS from "../services/PictureService";
-
 export default class DefaultImageComponent extends React.Component {
 
     createDefaultImage() {
