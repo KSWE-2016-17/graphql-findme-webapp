@@ -170,8 +170,6 @@ export default class FriendsListService {
 
         let deferred = q.defer();
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-
         self.getCurrentProfile()
             .then(function (data) {
                 if (data && data[0]) {
