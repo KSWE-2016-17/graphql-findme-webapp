@@ -6,6 +6,7 @@ export default class DatingService {
     findAll(callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+
         profileDao.findAll()
             .then((data) => {
                 if (data) {
@@ -24,12 +25,12 @@ export default class DatingService {
                     callbacks.error(err);
                 }
             });
-
     }
 
     findIdByName(login, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
+
         userDao.findByLogin(login)
             .then((data) => {
                 if (data) {

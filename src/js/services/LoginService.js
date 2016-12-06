@@ -7,6 +7,7 @@ export default class LoginService {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
         let proDao = dm.getDao(CouchDbApi.ProfileDAO);
+
         userDao.findByLogin(login)
             .then((data) => {
                 if (data && data[0].password === password) {
@@ -31,6 +32,7 @@ export default class LoginService {
     linkprofile(uid, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let proDao = dm.getDao(CouchDbApi.ProfileDAO);
+
         proDao.findByUserId(uid)
             .then((data) => {
                 if (data) {
