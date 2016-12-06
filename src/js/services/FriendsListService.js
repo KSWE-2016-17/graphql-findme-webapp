@@ -194,7 +194,6 @@ export default class FriendsListService {
     isFriend(friendID, callback) {
         let self = this;
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
         self.getCurrentProfile()
             .then(function (data) {
