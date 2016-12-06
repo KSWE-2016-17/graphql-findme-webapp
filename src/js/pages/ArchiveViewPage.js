@@ -8,9 +8,9 @@ export default class ArchiveViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
-                <ArchiveHeaderComponent/>
-                <ArchiveMailComponent/>
+                <ProfilAnsichtNavigationElement />
+                <ArchiveHeaderComponent />
+                <ArchiveMailComponent />
             </div>
         );
     }

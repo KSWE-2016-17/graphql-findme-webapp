@@ -19,14 +19,14 @@ export default class LogoutPage extends React.Component {
     render() {
         return (
             <div>
-                <br/>
-                <br/>
-                <br/>
-                <LogoutComponent/>
-                <br/>
-                <br/>
-                <br/>
-                <LoginFooter/>
+                <br />
+                <br />
+                <br />
+                <LogoutComponent />
+                <br />
+                <br />
+                <br />
+                <LoginFooter />
             </div>
         );
     }

@@ -13,7 +13,7 @@ export default class OtherProfileView extends React.Component {
         return (
             <div>
                 <NavigationBar />
-                <Head profileID={self.props.params.id}/>
+                <Head profileID={self.props.params.id} />
                 <hr />
                 <Message />
             </div>

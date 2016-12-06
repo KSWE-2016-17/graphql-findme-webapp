@@ -10,14 +10,14 @@ export default class EditProfilePage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
-                <EditProfileHeaderComponent/>
+                <ProfilAnsichtNavigationElement />
+                <EditProfileHeaderComponent />
                 <hr />
-                <EditProfileDescriptionComponent/>
+                <EditProfileDescriptionComponent />
                 <hr />
-                <EditProfileGeneralComponent/>
+                <EditProfileGeneralComponent />
                 <hr />
-                <EditProfileInterestsComponent/>
+                <EditProfileInterestsComponent />
             </div>
         );
     }

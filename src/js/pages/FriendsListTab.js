@@ -12,7 +12,6 @@ export default class FriendsListTab extends React.Component {
                 <Head />
                 <Friendslist />
             </div>
-
         );
     }
 }

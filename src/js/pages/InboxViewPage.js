@@ -8,9 +8,9 @@ export default class InboxViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
-                <InboxHeaderComponent/>
-                <InboxMailComponent/>
+                <ProfilAnsichtNavigationElement />
+                <InboxHeaderComponent />
+                <InboxMailComponent />
             </div>
         );
     }
