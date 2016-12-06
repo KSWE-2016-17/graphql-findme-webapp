@@ -33,7 +33,7 @@ export default class AdminService {
         return profileDao.findAll();
     }
 
-    removeReportedMark(profileID, callback) {
+    removeReportedMark(profileID) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -56,7 +56,7 @@ export default class AdminService {
         return deferred.promise;
     }
 
-    deleteUser(userID, callback) {
+    deleteUser(userID) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -77,7 +77,7 @@ export default class AdminService {
         return deferred.promise;
     }
 
-    removeProfile(profileID, callback) {
+    removeProfile(profileID) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);

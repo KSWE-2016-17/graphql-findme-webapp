@@ -4,7 +4,7 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class LoginService {
-    login(login, password, callbacks) {
+    login(login, password) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -25,7 +25,7 @@ export default class LoginService {
         return deferred.promise;
     }
 
-    linkprofile(uid, callbacks) {
+    linkprofile(uid) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);

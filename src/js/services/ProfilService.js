@@ -4,35 +4,35 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class ProfilService {
-    createProfile(obj, callbacks) {
+    createProfile(obj) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
         return profileDao.create(obj);
     }
 
-    getProfile(id, callbacks) {
+    getProfile(id) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
         return profileDao.findById(id);
     }
 
-    findByLogin(obj, callbacks) {
+    findByLogin(obj) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
         return profileDao.findByLogin(obj);
     }
 
-    findById(obj, callbacks) {
+    findById(obj) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
         return profileDao.findById(obj);
     }
 
-    linkProfile(uid, callbacks) {
+    linkProfile(uid) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -67,7 +67,7 @@ export default class ProfilService {
         return msgDao.update(obj);
     }
 
-    remove(obj, callbacks) {
+    remove(obj) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 

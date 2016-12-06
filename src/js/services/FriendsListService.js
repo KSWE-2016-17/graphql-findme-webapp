@@ -67,7 +67,7 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    endFrienship(friendsListID, profileID, callback) {
+    endFrienship(friendsListID, profileID) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -99,7 +99,7 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    handleFriendRequest(friendsListID, profileID, accept, callback) {
+    handleFriendRequest(friendsListID, profileID, accept) {
         let self = this;
 
         let deferred = q.defer();
@@ -134,7 +134,7 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    newFriendsListEntry(ownerProfileID, friendProfileID, friendshipStatus, callback) {
+    newFriendsListEntry(ownerProfileID, friendProfileID, friendshipStatus) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -177,7 +177,7 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    isFriend(friendID, callback) {
+    isFriend(friendID) {
         let self = this;
 
         let deferred = q.defer();
