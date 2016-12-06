@@ -52,7 +52,6 @@ export default class AdminService {
     }
 
     removeReportedMark(profileID, callback) {
-        let self = this;
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
@@ -70,7 +69,6 @@ export default class AdminService {
     }
 
     deleteUser(userID, callback) {
-        let self = this;
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
@@ -96,7 +94,6 @@ export default class AdminService {
     }
 
     removeProfile(profileID, callback) {
-        let self = this;
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
