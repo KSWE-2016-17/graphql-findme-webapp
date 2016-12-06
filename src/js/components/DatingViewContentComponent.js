@@ -3,6 +3,11 @@ import React from "react";
 import DatingService from "../services/DatingService";
 
 export default class DatingViewContentComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.createDatingViewContentComponent()}</div>
+        );
+    }
 
     showSearchResult() {
         let search_gender;
@@ -193,11 +198,5 @@ export default class DatingViewContentComponent extends React.Component {
             </form>
 
         </div>;
-    }
-
-    render() {
-        return (
-            <div>{this.createDatingViewContentComponent()}</div>
-        );
     }
 }

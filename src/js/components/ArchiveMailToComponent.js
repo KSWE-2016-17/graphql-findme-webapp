@@ -13,26 +13,6 @@ export default class ArchiveMailToComponent extends React.Component {
         this.onDeleteMail = this.onDeleteMail.bind(this);
     }
 
-    onOpenMail(event) {
-        console.log("pressed open");
-    }
-
-    onArchiveMail(event) {
-        console.log("pressed archive");
-        let self = this;
-        self.props.data.message.archivedTo = false;
-        let is = new IS();
-        is.updateMsg(self.props.data.message);
-    }
-
-    onDeleteMail(event) {
-        console.log("pressed delete");
-        let self = this;
-        let is = new IS();
-        self.props.data.message.deletedTo = true;
-        is.updateMsg(self.props.data.message);
-    }
-
     render() {
         let self = this;
 
@@ -79,5 +59,25 @@ export default class ArchiveMailToComponent extends React.Component {
                 <hr/>
             </div>
         );
+    }
+
+    onOpenMail(event) {
+        console.log("pressed open");
+    }
+
+    onArchiveMail(event) {
+        console.log("pressed archive");
+        let self = this;
+        self.props.data.message.archivedTo = false;
+        let is = new IS();
+        is.updateMsg(self.props.data.message);
+    }
+
+    onDeleteMail(event) {
+        console.log("pressed delete");
+        let self = this;
+        let is = new IS();
+        self.props.data.message.deletedTo = true;
+        is.updateMsg(self.props.data.message);
     }
 }

@@ -8,6 +8,13 @@ import DefaultProfilImage from "./DefaultProfilImage";
 import ProfilPic from "./ProfileImage";
 
 export default class RowHeadComponent extends React.Component {
+    render() {
+
+        return (
+            <div>{this.createRowHead()}
+            </div>
+        );
+    }
 
     createRowHead() {
         let ps = new PS();
@@ -210,13 +217,5 @@ export default class RowHeadComponent extends React.Component {
                 </div>
             </div>
         </div>;
-    }
-
-    render() {
-
-        return (
-            <div>{this.createRowHead()}
-            </div>
-        );
     }
 }

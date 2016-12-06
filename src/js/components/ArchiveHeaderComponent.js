@@ -1,6 +1,11 @@
 import React from "react";
 
 export default class OubotxHeaderComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.createContent()}</div>
+        );
+    }
 
     createContent() {
         return <div>
@@ -16,11 +21,5 @@ export default class OubotxHeaderComponent extends React.Component {
                 </div>
             </div>
         </div>;
-    }
-
-    render() {
-        return (
-            <div>{this.createContent()}</div>
-        );
     }
 }

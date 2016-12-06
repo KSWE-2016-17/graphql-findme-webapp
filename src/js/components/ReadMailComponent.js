@@ -2,6 +2,11 @@ import React from "react";
 import Image from "./DefaultImage";
 
 export default class ReadMailComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.createContent()}</div>
+        );
+    }
 
     createContent() {
         return <div>
@@ -55,11 +60,5 @@ export default class ReadMailComponent extends React.Component {
                 </div>
             </div>
         </div>;
-    }
-
-    render() {
-        return (
-            <div>{this.createContent()}</div>
-        );
     }
 }

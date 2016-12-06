@@ -15,6 +15,16 @@ export default class OutboxMailComponent extends React.Component {
         };
     }
 
+    render() {
+        let self = this;
+
+        return (
+            <div id="outboxMessages">
+                {self.state.mails}
+            </div>
+        );
+    }
+
     componentDidMount() {
         let self = this;
 
@@ -76,16 +86,6 @@ export default class OutboxMailComponent extends React.Component {
             .catch(function (err) {
                 console.log(err);
             });
-    }
-
-    render() {
-        let self = this;
-
-        return (
-            <div id="outboxMessages">
-                {self.state.mails}
-            </div>
-        );
     }
 }
 

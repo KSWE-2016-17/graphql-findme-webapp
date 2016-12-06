@@ -10,6 +10,12 @@ export default class NavigationComponent extends React.Component {
         this.searchUser = this.searchUser.bind(this);
     }
 
+    render() {
+        return (
+            <div>{this.createNavigation()}</div>
+        );
+    }
+
     searchUser() {
         let name = "";
         name = $("#searchField").val();
@@ -92,11 +98,5 @@ export default class NavigationComponent extends React.Component {
                 </div>
             </nav>
         </div>;
-    }
-
-    render() {
-        return (
-            <div>{this.createNavigation()}</div>
-        );
     }
 }

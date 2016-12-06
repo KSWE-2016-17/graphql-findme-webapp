@@ -2,6 +2,13 @@ import React from "react";
 import Image from "./DefaultImage";
 
 export default class LogoutComponent extends React.Component {
+    render() {
+        //<button type="button" className="btn btn-link btn-lg">
+        //</button>
+        return (
+            <div>{this.createContent()}</div>
+        );
+    }
 
     createContent() {
         return <div>
@@ -32,13 +39,5 @@ export default class LogoutComponent extends React.Component {
                 </div>
             </div>
         </div>;
-    }
-
-    render() {
-        //<button type="button" className="btn btn-link btn-lg">
-        //</button>
-        return (
-            <div>{this.createContent()}</div>
-        );
     }
 }

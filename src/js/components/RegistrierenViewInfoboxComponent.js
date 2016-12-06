@@ -1,6 +1,12 @@
 import React from "react";
 
 export default class RegistrierenViewInfoboxComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.createRegistrierenInfobox()}
+            </div>
+        );
+    }
 
     createRegistrierenInfobox() {
         return (<div>
@@ -17,12 +23,5 @@ export default class RegistrierenViewInfoboxComponent extends React.Component {
                 </div>
             </div>
         </div>);
-    }
-
-    render() {
-        return (
-            <div>{this.createRegistrierenInfobox()}
-            </div>
-        );
     }
 }

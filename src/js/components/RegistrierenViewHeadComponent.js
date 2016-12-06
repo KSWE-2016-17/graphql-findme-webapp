@@ -1,6 +1,12 @@
 import React from "react";
 
 export default class RegistrierenViewHeadComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.createRegistrierenViewHead()}
+            </div>
+        );
+    }
 
     createRegistrierenViewHead() {
         return (<div>
@@ -10,12 +16,5 @@ export default class RegistrierenViewHeadComponent extends React.Component {
                 </div>
             </div>
         </div>);
-    }
-
-    render() {
-        return (
-            <div>{this.createRegistrierenViewHead()}
-            </div>
-        );
     }
 }

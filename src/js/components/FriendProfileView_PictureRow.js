@@ -3,6 +3,11 @@ import React from "react";
 import DefaultImage from "./DefaultImage";
 
 export default class RowBilderComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.create()}</div>
+        );
+    }
 
     create() {
         return (
@@ -39,12 +44,6 @@ export default class RowBilderComponent extends React.Component {
                     <span>Sonstiges</span>
                 </div>
             </div>
-        );
-    }
-
-    render() {
-        return (
-            <div>{this.create()}</div>
         );
     }
 }

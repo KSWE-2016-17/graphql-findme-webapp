@@ -1,6 +1,11 @@
 import React from "react";
 
 export default class LoginInfoBox extends React.Component {
+    render() {
+        return (
+            <div>{this.createContent()}</div>
+        );
+    }
 
     onClickRegister() {
         // alert("rqrqr");
@@ -29,11 +34,5 @@ export default class LoginInfoBox extends React.Component {
                 </div>
             </div>
         </div>;
-    }
-
-    render() {
-        return (
-            <div>{this.createContent()}</div>
-        );
     }
 }

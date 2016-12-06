@@ -6,6 +6,11 @@ let sendtoid = "NOTFOUND";
 let mailservice = new NewMailService();
 
 export default class NewMailComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.createContent()}</div>
+        );
+    }
 
     removeMail() {
         document.getElementById("sendto").value = "";
@@ -114,11 +119,5 @@ export default class NewMailComponent extends React.Component {
                 </div>
             </div>
         </div>;
-    }
-
-    render() {
-        return (
-            <div>{this.createContent()}</div>
-        );
     }
 }

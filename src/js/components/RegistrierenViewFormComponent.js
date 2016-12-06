@@ -4,6 +4,12 @@ import RegisterService from "../services/RegisterService";
 import ProfilService from "../services/ProfilService";
 
 export default class RegistrierenViewFormComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.createRegistrierenViewForm()}
+            </div>
+        );
+    }
 
     registerNewUser() {
         let name;
@@ -167,12 +173,5 @@ export default class RegistrierenViewFormComponent extends React.Component {
                 </div>
             </div>
         </div>);
-    }
-
-    render() {
-        return (
-            <div>{this.createRegistrierenViewForm()}
-            </div>
-        );
     }
 }
