@@ -4,18 +4,6 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class FriendsListService {
-    constructor() {
-        this.allFriends = this.allFriends.bind(this);
-        this.getCurrentProfile = this.getCurrentProfile.bind(this);
-        this.getProfile = this.getProfile.bind(this);
-        this.getUser = this.getUser.bind(this);
-        this.reportUser = this.reportUser.bind(this);
-        this.endFrienship = this.endFrienship.bind(this);
-        this.handleFriendRequest = this.handleFriendRequest.bind(this);
-        this.newFriendsListEntry = this.newFriendsListEntry.bind(this);
-        this.isFriend = this.isFriend.bind(this);
-    }
-
     allFriends(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
