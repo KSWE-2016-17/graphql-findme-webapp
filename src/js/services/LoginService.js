@@ -8,9 +8,9 @@ export default class LoginService {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
+        let userDAO = dm.getDao(CouchDbApi.UserDAO);
 
-        userDao.findByLogin(login)
+        userDAO.findByLogin(login)
             .then((data) => {
                 if (data && data[0].password === password) {
                     localStorage.setItem("sessionUserId", data[0]._id);
@@ -29,9 +29,9 @@ export default class LoginService {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let proDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        proDao.findByUserId(userId)
+        profileDAO.findByUserId(userId)
             .then((data) => {
                 if (data && data[0]) {
                     localStorage.setItem("sessionProfileId", data[0]._id);
@@ -48,8 +48,8 @@ export default class LoginService {
 
     findProfileByUserId(userId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return msgDao.findByUserId(userId);
+        return profileDAO.findByUserId(userId);
     }
 }

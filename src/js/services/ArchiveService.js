@@ -5,29 +5,29 @@ import connSettings from "../../conn-settings";
 export default class ArchiveService {
     findMsgToMe(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
+        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return msgDao.findByTo(profileId);
+        return messageDAO.findByTo(profileId);
     }
 
     findArchFromMe(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
+        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return msgDao.findArchivedFrom(profileId);
+        return messageDAO.findArchivedFrom(profileId);
     }
 
     findArchToMe(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
+        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return msgDao.findArchivedTo(profileId);
+        return messageDAO.findArchivedTo(profileId);
     }
 
     resolveUserName(userId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let usrDao = dm.getDao(CouchDbApi.UserDAO);
+        let userDAO = dm.getDao(CouchDbApi.UserDAO);
 
-        return usrDao.findById(userId);
+        return userDAO.findById(userId);
     }
 }

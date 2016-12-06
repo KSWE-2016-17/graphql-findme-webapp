@@ -5,36 +5,36 @@ import connSettings from "../../conn-settings";
 export default class InboxService {
     findMsgToMe(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
+        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return msgDao.findByTo(profileId);
+        return messageDAO.findByTo(profileId);
     }
 
     removeMsg(message) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
+        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return msg2Dao.remove(message);
+        return messageDAO.remove(message);
     }
 
     findMsgToMeUndeleted(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
+        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return msg2Dao.findUndeleteTo(profileId);
+        return messageDAO.findUndeleteTo(profileId);
     }
 
     updateMsg(message) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
+        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return msg2Dao.createOrUpdate(message);
+        return messageDAO.createOrUpdate(message);
     }
 
     resolveUserName(userId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let usrDao = dm.getDao(CouchDbApi.UserDAO);
+        let userDAO = dm.getDao(CouchDbApi.UserDAO);
 
-        return usrDao.findById(userId);
+        return userDAO.findById(userId);
     }
 }

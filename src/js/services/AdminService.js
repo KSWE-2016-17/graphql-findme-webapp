@@ -6,37 +6,37 @@ import connSettings from "../../conn-settings";
 export default class AdminService {
     getProfile(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDao.findById(profileId);
+        return profileDAO.findById(profileId);
     }
 
     getUser(userId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
+        let userDAO = dm.getDao(CouchDbApi.UserDAO);
 
-        return userDao.findById(userId);
+        return userDAO.findById(userId);
     }
 
     allProfiles() {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDao.findAll();
+        return profileDAO.findAll();
     }
 
     removeReportedMark(profileId) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(profileId)
+        profileDAO.findById(profileId)
             .then((data) => {
                 if (data && data[0]) {
                     data[0].reported = false;
 
-                    profileDao.update(data[0])
+                    profileDAO.update(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -52,12 +52,12 @@ export default class AdminService {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
+        let userDAO = dm.getDao(CouchDbApi.UserDAO);
 
-        userDao.findById(userId)
+        userDAO.findById(userId)
             .then((data) => {
                 if (data && data[0]) {
-                    userDao.remove(data[0])
+                    userDAO.remove(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -73,12 +73,12 @@ export default class AdminService {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(profileId)
+        profileDAO.findById(profileId)
             .then((data) => {
                 if (data && data[0]) {
-                    profileDao.remove(data[0])
+                    profileDAO.remove(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {

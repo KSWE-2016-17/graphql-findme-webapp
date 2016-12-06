@@ -5,22 +5,22 @@ import connSettings from "../../conn-settings";
 export default class RegisterService {
     register(user) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
+        let userDAO = dm.getDao(CouchDbApi.UserDAO);
 
-        return userDao.create(user);
+        return userDAO.create(user);
     }
 
     findIdByName(login) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
+        let userDAO = dm.getDao(CouchDbApi.UserDAO);
 
-        return userDao.findByLogin(login);
+        return userDAO.findByLogin(login);
     }
 
     removeProfil(profile) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDao.remove(profile);
+        return profileDAO.remove(profile);
     }
 }

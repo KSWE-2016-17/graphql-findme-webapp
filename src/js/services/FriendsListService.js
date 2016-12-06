@@ -6,44 +6,44 @@ import connSettings from "../../conn-settings";
 export default class FriendsListService {
     allFriends(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let friendDao = dm.getDao(CouchDbApi.FriendDAO);
+        let friendDAO = dm.getDao(CouchDbApi.FriendDAO);
 
-        return friendDao.findByProfileId(profileId);
+        return friendDAO.findByProfileId(profileId);
     }
 
     getCurrentProfile() {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDao.findByUserId(localStorage.getItem("sessionUserId"));
+        return profileDAO.findByUserId(localStorage.getItem("sessionUserId"));
     }
 
     getProfile(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDao.findById(profileId);
+        return profileDAO.findById(profileId);
     }
 
     getUser(userId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
+        let userDAO = dm.getDao(CouchDbApi.UserDAO);
 
-        return userDao.findById(userId);
+        return userDAO.findById(userId);
     }
 
     reportUser(profileId) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(profileId)
+        profileDAO.findById(profileId)
             .then((data) => {
                 if (data && data[0]) {
                     data[0].reported = "true";
 
-                    profileDao.update(data[0])
+                    profileDAO.update(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -59,9 +59,9 @@ export default class FriendsListService {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let friendDao = dm.getDao(CouchDbApi.FriendDAO);
+        let friendDAO = dm.getDao(CouchDbApi.FriendDAO);
 
-        friendDao.findById(friendListId)
+        friendDAO.findById(friendListId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
@@ -75,7 +75,7 @@ export default class FriendsListService {
 
                     data[0].friends = newFriendsList;
 
-                    friendDao.update(data[0])
+                    friendDAO.update(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -93,9 +93,9 @@ export default class FriendsListService {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let friendDao = dm.getDao(CouchDbApi.FriendDAO);
+        let friendDAO = dm.getDao(CouchDbApi.FriendDAO);
 
-        friendDao.findById(friendListId)
+        friendDAO.findById(friendListId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
@@ -110,7 +110,7 @@ export default class FriendsListService {
 
                     self.newFriendsListEntry(profileId, data[0].profile_id, 1);
 
-                    friendDao.update(data[0])
+                    friendDAO.update(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -126,9 +126,9 @@ export default class FriendsListService {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let friendDao = dm.getDao(CouchDbApi.FriendDAO);
+        let friendDAO = dm.getDao(CouchDbApi.FriendDAO);
 
-        friendDao.findByProfileId(ownerProfileId)
+        friendDAO.findByProfileId(ownerProfileId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
@@ -144,7 +144,7 @@ export default class FriendsListService {
                         friendsList.push({id: friendProfileId, status: friendshipStatus});
                         data[0].friends = friendsList;
 
-                        friendDao.update(data[0])
+                        friendDAO.update(data[0])
                             .then(deferred.resolve)
                             .catch(deferred.reject);
                     }
@@ -155,7 +155,7 @@ export default class FriendsListService {
                         "friends": [{id: friendProfileId, status: friendshipStatus}]
                     };
 
-                    friendDao.create(newFriendslist)
+                    friendDAO.create(newFriendslist)
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 }
