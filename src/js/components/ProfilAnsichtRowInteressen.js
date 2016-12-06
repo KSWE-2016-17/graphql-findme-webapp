@@ -40,7 +40,7 @@ export default class RowInteressenComponent extends React.Component {
                 let aboutme = data[0].aboutme;
 
                 let aboutmeParts = aboutme.split("#");
-                let interests = aboutmeParts[1].split("+");
+                let interests = aboutmeParts.length >= 2 ? aboutmeParts[1].split("+") : [];
 
                 let interestsElements = self.state.interestsElements;
 
