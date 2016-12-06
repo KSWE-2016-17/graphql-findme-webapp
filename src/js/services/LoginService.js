@@ -6,7 +6,6 @@ export default class LoginService {
     login(login, password, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
-        let proDao = dm.getDao(CouchDbApi.ProfileDAO);
 
         userDao.findByLogin(login)
             .then((data) => {
