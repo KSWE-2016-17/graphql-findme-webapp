@@ -7,8 +7,8 @@ export default class LoginService {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
         let proDao = dm.getDao(CouchDbApi.ProfileDAO);
-        userDao.findByLogin(login, {
-            success: function(data) {
+        userDao.findByLogin(login)
+            .then((data) => {
                 if (data && data[0].password === password) {
                     if (callbacks && typeof callbacks.success === "function") {
                         localStorage.setItem("sessionUserId", data[0]._id);
@@ -19,14 +19,13 @@ export default class LoginService {
                         callbacks.error("wrong username or password");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
     linkprofile(uid,callbacks){
