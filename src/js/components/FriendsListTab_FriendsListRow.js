@@ -48,7 +48,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
                                             profileID={friendsList[i].id}
                                             status={friendsList[i].status}
                                             friendsListID={data[0]._id}
-                                       />
+                                        />
                                         <hr/>
                                     </div>
                                 );
