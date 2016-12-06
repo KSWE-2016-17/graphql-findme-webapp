@@ -53,6 +53,9 @@ export default class ProfilService {
     }
 
     findByLogin(obj, callbacks) {
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+
         profileDao.findByLogin(obj)
             .then((data) => {
                 if (data) {
@@ -157,6 +160,9 @@ export default class ProfilService {
     }
 
     delete(obj, callbacks) {
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+
         profileDao.delete(obj)
             .then((data) => {
                 if (data) {
