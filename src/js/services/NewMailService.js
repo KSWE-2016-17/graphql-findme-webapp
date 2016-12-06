@@ -11,8 +11,8 @@ export default class InboxService {
     }
 
     resolveUserName(login, callbacks) {
-        let dd = new CouchDbApi.DaoManager(connSettings);
-        let usrDao = dd.getDao(CouchDbApi.UserDAO);
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let usrDao = dm.getDao(CouchDbApi.UserDAO);
 
         return usrDao.findByLogin(login);
     }
