@@ -1,9 +1,9 @@
-import CouchDbApi from "findme-react-couchdb-api";
-import connSettings from "../../conn-settings";
 import q from "q";
+import CouchDbApi from "findme-react-couchdb-api";
+
+import connSettings from "../../conn-settings";
 
 export default class PictureService {
-
     getPictureData(profileid) {
         let defer = q.defer();
 
@@ -29,6 +29,4 @@ export default class PictureService {
 
         return defer.promise;
     }
-
-
 }

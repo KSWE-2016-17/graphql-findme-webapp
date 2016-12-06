@@ -1,5 +1,4 @@
 import q from "q";
-
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";

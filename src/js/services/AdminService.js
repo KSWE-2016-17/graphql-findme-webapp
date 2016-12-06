@@ -1,6 +1,4 @@
 import q from "q";
-import _ from "lodash";
-
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";

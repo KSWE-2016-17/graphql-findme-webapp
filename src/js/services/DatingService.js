@@ -1,4 +1,5 @@
 import CouchDbApi from "findme-react-couchdb-api";
+
 import connSettings from "../../conn-settings";
 
 export default class DatingService {
