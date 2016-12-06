@@ -3,31 +3,26 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class ArchiveService {
-    findMsgToMe(profileId) {
+    constructor() {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return messageDAO.findByTo(profileId);
+        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
+        this.messageDAO = dm.getDao(CouchDbApi.MessageDAO);
+    }
+
+    findMsgToMe(profileId) {
+        return this.messageDAO.findByTo(profileId);
     }
 
     findArchFromMe(profileId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
-
-        return messageDAO.findArchivedFrom(profileId);
+        return this.messageDAO.findArchivedFrom(profileId);
     }
 
     findArchToMe(profileId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
-
-        return messageDAO.findArchivedTo(profileId);
+        return this.messageDAO.findArchivedTo(profileId);
     }
 
     resolveUserName(userId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDAO = dm.getDao(CouchDbApi.UserDAO);
-
-        return userDAO.findById(userId);
+        return this.userDAO.findById(userId);
     }
 }

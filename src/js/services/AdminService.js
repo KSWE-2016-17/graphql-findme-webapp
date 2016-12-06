@@ -4,39 +4,34 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class AdminService {
-    getProfile(profileId) {
+    constructor() {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDAO.findById(profileId);
+        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
+        this.profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
+    }
+
+    getProfile(profileId) {
+        return this.profileDAO.findById(profileId);
     }
 
     getUser(userId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDAO = dm.getDao(CouchDbApi.UserDAO);
-
-        return userDAO.findById(userId);
+        return this.userDAO.findById(userId);
     }
 
     allProfiles() {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        return profileDAO.findAll();
+        return this.profileDAO.findAll();
     }
 
     removeReportedMark(profileId) {
         let deferred = q.defer();
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        profileDAO.findById(profileId)
+        this.profileDAO.findById(profileId)
             .then((data) => {
                 if (data && data[0]) {
                     data[0].reported = false;
 
-                    profileDAO.update(data[0])
+                    this.profileDAO.update(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -51,13 +46,10 @@ export default class AdminService {
     deleteUser(userId) {
         let deferred = q.defer();
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDAO = dm.getDao(CouchDbApi.UserDAO);
-
-        userDAO.findById(userId)
+        this.userDAO.findById(userId)
             .then((data) => {
                 if (data && data[0]) {
-                    userDAO.remove(data[0])
+                    this.userDAO.remove(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {

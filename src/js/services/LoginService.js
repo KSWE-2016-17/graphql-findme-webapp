@@ -4,13 +4,17 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class LoginService {
+    constructor() {
+        let dm = new CouchDbApi.DaoManager(connSettings);
+
+        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
+        this.profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
+    }
+
     login(login, password) {
         let deferred = q.defer();
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDAO = dm.getDao(CouchDbApi.UserDAO);
-
-        userDAO.findByLogin(login)
+        this.userDAO.findByLogin(login)
             .then((data) => {
                 if (data && data[0].password === password) {
                     localStorage.setItem("sessionUserId", data[0]._id);
@@ -28,10 +32,7 @@ export default class LoginService {
     linkprofile(userId) {
         let deferred = q.defer();
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        profileDAO.findByUserId(userId)
+        this.profileDAO.findByUserId(userId)
             .then((data) => {
                 if (data && data[0]) {
                     localStorage.setItem("sessionProfileId", data[0]._id);
@@ -47,9 +48,6 @@ export default class LoginService {
     }
 
     findProfileByUserId(userId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        return profileDAO.findByUserId(userId);
+        return this.profileDAO.findByUserId(userId);
     }
 }

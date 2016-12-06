@@ -3,38 +3,30 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class OutboxService {
-    findMsgFromMe(profileId) {
+    constructor() {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
 
-        return messageDAO.findByFrom(profileId);
+        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
+        this.messageDAO = dm.getDao(CouchDbApi.MessageDAO);
+    }
+
+    findMsgFromMe(profileId) {
+        return this.messageDAO.findByFrom(profileId);
     }
 
     removeMsg(message) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
-
-        return messageDAO.remove(message);
+        return this.messageDAO.remove(message);
     }
 
     updateMsg(message) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
-
-        return messageDAO.createOrUpdate(message);
+        return this.messageDAO.createOrUpdate(message);
     }
 
     findMsgFromMeUndeleted(profileId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let messageDAO = dm.getDao(CouchDbApi.MessageDAO);
-
-        return messageDAO.findUndeleteFrom(profileId);
+        return this.messageDAO.findUndeleteFrom(profileId);
     }
 
     resolveUserName(userId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDAO = dm.getDao(CouchDbApi.UserDAO);
-
-        return userDAO.findById(userId);
+        return this.userDAO.findById(userId);
     }
 }

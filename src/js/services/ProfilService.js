@@ -4,41 +4,33 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class ProfilService {
-    createProfile(profile) {
+    constructor() {
         let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDAO.create(profile);
+        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
+        this.profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
+    }
+
+    createProfile(profile) {
+        return this.profileDAO.create(profile);
     }
 
     getProfile(profileId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        return profileDAO.findById(profileId);
+        return this.profileDAO.findById(profileId);
     }
 
     findByLogin(login) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        return profileDAO.findByLogin(login);
+        return this.profileDAO.findByLogin(login);
     }
 
     findById(profileId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        return profileDAO.findById(profileId);
+        return this.profileDAO.findById(profileId);
     }
 
     linkProfile(userId) {
         let deferred = q.defer();
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        profileDAO.findByUserId(userId)
+        this.profileDAO.findByUserId(userId)
             .then((data) => {
                 if (data && data[0]) {
                     localStorage.setItem("sessionProfileId", data[0]._id);
@@ -54,30 +46,18 @@ export default class ProfilService {
     }
 
     findProfileByUserId(userId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        return profileDAO.findByUserId(userId);
+        return this.profileDAO.findByUserId(userId);
     }
 
     updateProfile(profile) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        return profileDAO.update(profile);
+        return this.profileDAO.update(profile);
     }
 
     remove(profile) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-
-        return profileDAO.remove(profile);
+        return this.profileDAO.remove(profile);
     }
 
     getAdminRight(userId) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDAO = dm.getDao(CouchDbApi.UserDAO);
-
-        return msgDAO.findById(userId);
+        return this.userDAO.findById(userId);
     }
 }
