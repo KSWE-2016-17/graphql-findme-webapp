@@ -178,7 +178,7 @@ export default class FriendsListService {
                             "doctype": "friends",
                             "profile_id": ownerProfileID,
                             "friends": [{id: friendProfileID, status: friendshipStatus}]
-                        }
+                        };
 
                         friendDao.create(newFriendslist)
                             .then((data) => {
