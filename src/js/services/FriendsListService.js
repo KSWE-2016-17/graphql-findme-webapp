@@ -16,11 +16,11 @@ export default class FriendsListService {
         this.isFriend = this.isFriend.bind(this);
     }
 
-    allFriends(profileID) {
+    allFriends(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
-        return friendDao.findByProfileId(profileID);
+        return friendDao.findByProfileId(profileId);
     }
 
     getCurrentProfile() {
@@ -30,27 +30,27 @@ export default class FriendsListService {
         return profileDao.findByUserId(localStorage.getItem("sessionUserId"));
     }
 
-    getProfile(profileID) {
+    getProfile(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDao.findById(profileID);
+        return profileDao.findById(profileId);
     }
 
-    getUser(userID) {
+    getUser(userId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
-        return userDao.findById(userID);
+        return userDao.findById(userId);
     }
 
-    reportUser(profileID) {
+    reportUser(profileId) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(profileID)
+        profileDao.findById(profileId)
             .then((data) => {
                 if (data && data[0]) {
                     data[0].reported = "true";
@@ -67,20 +67,20 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    endFrienship(friendsListID, profileID) {
+    endFrienship(friendListId, profileId) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
-        friendDao.findById(friendsListID)
+        friendDao.findById(friendListId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
                     let newFriendsList = [];
 
                     for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id != profileID) {
+                        if (friendsList[i].id != profileId) {
                             newFriendsList.push(friendsList[i]);
                         }
                     }
@@ -99,7 +99,7 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    handleFriendRequest(friendsListID, profileID, accept) {
+    handleFriendRequest(friendListId, profileId, accept) {
         let self = this;
 
         let deferred = q.defer();
@@ -107,20 +107,20 @@ export default class FriendsListService {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
-        friendDao.findById(friendsListID)
+        friendDao.findById(friendListId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
 
                     for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id == profileID) {
+                        if (friendsList[i].id == profileId) {
                             friendsList[i].status = accept == true ? 1 : 2;
                         }
                     }
 
                     data[0].friends = friendsList;
 
-                    self.newFriendsListEntry(profileID, data[0].profile_id, 1);
+                    self.newFriendsListEntry(profileId, data[0].profile_id, 1);
 
                     friendDao.update(data[0])
                         .then(deferred.resolve)
@@ -134,26 +134,26 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    newFriendsListEntry(ownerProfileID, friendProfileID, friendshipStatus) {
+    newFriendsListEntry(ownerProfileId, friendProfileId, friendshipStatus) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
-        friendDao.findByProfileId(ownerProfileID)
+        friendDao.findByProfileId(ownerProfileId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
                     let isAlreadyAFriend = false;
 
                     for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id == friendProfileID) {
+                        if (friendsList[i].id == friendProfileId) {
                             isAlreadyAFriend = true;
                         }
                     }
 
                     if (isAlreadyAFriend == false) {
-                        friendsList.push({id: friendProfileID, status: friendshipStatus});
+                        friendsList.push({id: friendProfileId, status: friendshipStatus});
                         data[0].friends = friendsList;
 
                         friendDao.update(data[0])
@@ -163,8 +163,8 @@ export default class FriendsListService {
                 } else {
                     let newFriendslist = {
                         "doctype": "friends",
-                        "profile_id": ownerProfileID,
-                        "friends": [{id: friendProfileID, status: friendshipStatus}]
+                        "profile_id": ownerProfileId,
+                        "friends": [{id: friendProfileId, status: friendshipStatus}]
                     };
 
                     friendDao.create(newFriendslist)
@@ -177,7 +177,7 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    isFriend(friendID) {
+    isFriend(friendId) {
         let self = this;
 
         let deferred = q.defer();
@@ -194,10 +194,10 @@ export default class FriendsListService {
                                 let friendsList = data[0].friends;
                                 let isHeAFriend = false;
                                 for (let i = 0; i < friendsList.length; i++) {
-                                    if (friendsList[i].id == friendID) {
+                                    if (friendsList[i].id == friendId) {
                                         if ((friendsList[i].status == 1) || (friendsList[i].status == "1")) {
                                             isHeAFriend = true;
-                                            console.log("profile " + friendID + " is a friend of the current session user!");
+                                            console.log("profile " + friendId + " is a friend of the current session user!");
                                             break;
                                         }
                                     }

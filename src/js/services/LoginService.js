@@ -25,13 +25,13 @@ export default class LoginService {
         return deferred.promise;
     }
 
-    linkprofile(uid) {
+    linkprofile(userId) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let proDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        proDao.findByUserId(uid)
+        proDao.findByUserId(userId)
             .then((data) => {
                 if (data && data[0]) {
                     localStorage.setItem("sessionProfileId", data[0]._id);
@@ -46,10 +46,10 @@ export default class LoginService {
         return deferred.promise;
     }
 
-    findProfileByUserId(uid) {
+    findProfileByUserId(userId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msgDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return msgDao.findByUserId(uid);
+        return msgDao.findByUserId(userId);
     }
 }

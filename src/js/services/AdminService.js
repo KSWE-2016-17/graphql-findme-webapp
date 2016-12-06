@@ -12,18 +12,18 @@ export default class AdminService {
         this.removeProfile = this.removeProfile.bind(this);
     }
 
-    getProfile(profileID) {
+    getProfile(profileId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDao.findById(profileID);
+        return profileDao.findById(profileId);
     }
 
-    getUser(userID) {
+    getUser(userId) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
-        return userDao.findById(userID);
+        return userDao.findById(userId);
     }
 
     allProfiles() {
@@ -33,13 +33,13 @@ export default class AdminService {
         return profileDao.findAll();
     }
 
-    removeReportedMark(profileID) {
+    removeReportedMark(profileId) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(profileID)
+        profileDao.findById(profileId)
             .then((data) => {
                 if (data && data[0]) {
                     data[0].reported = false;
@@ -56,13 +56,13 @@ export default class AdminService {
         return deferred.promise;
     }
 
-    deleteUser(userID) {
+    deleteUser(userId) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
-        userDao.findById(userID)
+        userDao.findById(userId)
             .then((data) => {
                 if (data && data[0]) {
                     userDao.remove(data[0])
@@ -77,13 +77,13 @@ export default class AdminService {
         return deferred.promise;
     }
 
-    removeProfile(profileID) {
+    removeProfile(profileId) {
         let deferred = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(profileID)
+        profileDao.findById(profileId)
             .then((data) => {
                 if (data && data[0]) {
                     profileDao.remove(data[0])

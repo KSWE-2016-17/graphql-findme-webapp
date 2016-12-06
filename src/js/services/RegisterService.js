@@ -3,11 +3,11 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class RegisterService {
-    register(obj) {
+    register(user) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
-        return userDao.create(obj);
+        return userDao.create(user);
     }
 
     findIdByName(login) {
@@ -17,10 +17,10 @@ export default class RegisterService {
         return userDao.findByLogin(login);
     }
 
-    removeProfil(obj) {
+    removeProfil(profile) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        return profileDao.remove(obj);
+        return profileDao.remove(profile);
     }
 }
