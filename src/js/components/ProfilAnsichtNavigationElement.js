@@ -11,7 +11,7 @@ export default class NavigationComponent extends React.Component {
     }
 
     searchUser() {
-        var name = "";
+        let name = "";
         name = $("#searchField").val();
 
         if (name === "") {

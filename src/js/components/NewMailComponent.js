@@ -2,7 +2,7 @@ import React from "react";
 import Image from "./DefaultImage";
 import NewMailService from "../services/NewMailService"
 
-var sendtoid = "NOTFOUND";
+let sendtoid = "NOTFOUND";
 let mailservice = new NewMailService();
 
 export default class NewMailComponent extends React.Component {
@@ -14,7 +14,7 @@ export default class NewMailComponent extends React.Component {
 
     getSendTo() {
 
-        var sendto = $("#sendto").val();
+        let sendto = $("#sendto").val();
 
         mailservice.resolveUserName(sendto, {
             success: function (data) {
@@ -28,12 +28,12 @@ export default class NewMailComponent extends React.Component {
 
     sendMail() {
 
-        var message = $("#message").val();
-        var from = localStorage.getItem("sessionUserId");
+        let message = $("#message").val();
+        let from = localStorage.getItem("sessionUserId");
 
         if (message !== "") {
 
-            var obj = {
+            let obj = {
                 "doctype": "msg",
                 "from": from,
                 "to": sendtoid,

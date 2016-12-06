@@ -174,7 +174,7 @@ export default class FriendsListService {
                                 });
                         }
                     } else {
-                        var newFriendslist = {
+                        let newFriendslist = {
                             "doctype": "friends",
                             "profile_id": ownerProfileID,
                             "friends": [{id: friendProfileID, status: friendshipStatus}]

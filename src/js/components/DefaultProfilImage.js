@@ -14,7 +14,7 @@ export default class DefaultProfilImageComponent extends React.Component {
         //         //
         //         ps.getPictureData(localStorage.getItem("sessionProfileId"))
         //             .then(function(data){
-        //                 var url = "http://elbe203.startdedicated.de:15984/findme/";
+        //                 let url = "http://elbe203.startdedicated.de:15984/findme/";
         //
         //                 console.log("BILD");
         //                 console.log(data[0]._id);
@@ -22,9 +22,9 @@ export default class DefaultProfilImageComponent extends React.Component {
         //
         //                 url = url + data[0]._id + "/";
         //
-        //                 for(var x in data[0]._attachments){
+        //                 for(let x in data[0]._attachments){
         //                     console.log(x);
-        //                     var foo = data[0]._attachments[x];
+        //                     let foo = data[0]._attachments[x];
         //                     console.log(foo);
         //                     url = url + x;
         //                     break;

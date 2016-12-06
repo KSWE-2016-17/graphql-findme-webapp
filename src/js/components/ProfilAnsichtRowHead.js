@@ -11,11 +11,11 @@ export default class RowHeadComponent extends React.Component {
 
     createRowHead() {
         let ps = new PS();
-        var privacy = {
+        let privacy = {
             "friends": 0,
             "pictures": 0
         }
-        var profile = {
+        let profile = {
             "_id": "",
             "_rev": "",
             "doctype": "profile",
@@ -34,7 +34,7 @@ export default class RowHeadComponent extends React.Component {
             "eyecolor": 0,
             "figure": 1
         }
-        var profile2 = {
+        let profile2 = {
             "_id": "",
             "_rev": "",
             "doctype": "profile",
@@ -54,7 +54,7 @@ export default class RowHeadComponent extends React.Component {
             "figure": 1
         }
 
-        var omg = {
+        let omg = {
             "_id": "",
             "_rev": "",
             "doctype": "",
@@ -74,10 +74,10 @@ export default class RowHeadComponent extends React.Component {
             "figure": 1
         }
 
-        var nwo;
-        var ppp;
+        let nwo;
+        let ppp;
 
-        var abutme;
+        let abutme;
 
         // ps.linkProfile(localStorage.getItem("sessionUserId"));
 
@@ -95,7 +95,7 @@ export default class RowHeadComponent extends React.Component {
 
                 profile2 = data[0];
 
-                var parts = data[0].aboutme.split("{");
+                let parts = data[0].aboutme.split("{");
 
                 //$("#aboutme").text(data[0].aboutme);
                 if (parts.length > 1) {
@@ -104,7 +104,7 @@ export default class RowHeadComponent extends React.Component {
                     $("#aboutme").text(data[0].aboutme);
                 }
 
-                var builder = data[0].firstname;
+                let builder = data[0].firstname;
                 $("#proname").text(builder);
 
                 // profile._id = data[0]._id;

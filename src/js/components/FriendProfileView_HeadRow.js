@@ -67,7 +67,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
                         self.setState({aboutMe: profileData[0].aboutme});
 
                         //friend profile fix
-                        var parts = profileData[0].aboutme.split("{");
+                        let parts = profileData[0].aboutme.split("{");
                         if (parts.length > 1) {
                             $("#aboutme").text(parts[0]);
                         } else {

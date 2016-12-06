@@ -6,13 +6,13 @@ import ProfilService from "../services/ProfilService";
 export default class RegistrierenViewFormComponent extends React.Component {
 
     registerNewUser() {
-        var name;
-        var mail;
-        var pw;
-        var pw2;
-        var gender;
-        var yearOfBirth;
-        var accept;
+        let name;
+        let mail;
+        let pw;
+        let pw2;
+        let gender;
+        let yearOfBirth;
+        let accept;
 
         name = $("#username").val();
         mail = $("#mailadress").val();
@@ -22,19 +22,19 @@ export default class RegistrierenViewFormComponent extends React.Component {
         yearOfBirth = $("#yearOfBirth").val();
         accept = document.getElementById("acceptAGB").checked;
 
-        var objUser = {
+        let objUser = {
             "doctype": "user",
             "login": name,
             "password": pw,
             "role": 0
         }
 
-        var objPrivacy = {
+        let objPrivacy = {
             "friends": 1,
             "pictures": 0
         }
 
-        var objProfil = {
+        let objProfil = {
             "doctype": "profile",
             "user_id": "",
             "firstname": name,
@@ -62,7 +62,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
                     //user_id ermitteln
                     registerService.findIdByName(name, {
                         success: function (data) {
-                            var user = "";
+                            let user = "";
                             user = data[0]._id;
                             objProfil.user_id = user;
 

@@ -5,14 +5,14 @@ import DatingService from "../services/DatingService";
 export default class DatingViewContentComponent extends React.Component {
 
     showSearchResult() {
-        var search_gender;
-        var search_alterVon;
-        var search_alterBis;
-        var search_statur;
-        var search_nichtraucher;
-        var search_haarfarbe;
-        var search_groesseVon;
-        var search_groesseBis;
+        let search_gender;
+        let search_alterVon;
+        let search_alterBis;
+        let search_statur;
+        let search_nichtraucher;
+        let search_haarfarbe;
+        let search_groesseVon;
+        let search_groesseBis;
 
         search_gender = $("#gender").val();
         search_alterVon = $("#alterVon").val();
@@ -26,9 +26,9 @@ export default class DatingViewContentComponent extends React.Component {
         let datingService = new DatingService();
         datingService.findAll(callback, {
             success: function (data) {
-                var size = data.size;
-                var i = 1;
-                //var treffer; uebereinstimmende profile
+                let size = data.size;
+                let i = 1;
+                //let treffer; uebereinstimmende profile
                 while (i <= size) {
                     if ((data[i].haircolor).equals(search_haarfarbe)) {
                         document.getElementById("searchresult").innerHTML += data[i].firstname;
