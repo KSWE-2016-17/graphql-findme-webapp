@@ -34,23 +34,31 @@ export default class AdminService {
     }
 
     removeReportedMark(profileID, callback) {
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
         profileDao.findById(profileID)
             .then((data) => {
-                data[0].reported = false;
+                if (data && data[0]) {
+                    data[0].reported = false;
 
-                profileDao.update(data[0])
-                    .then((data) => {
-                        if (callback && typeof callback.success === "function") {
-                            callback.success();
-                        }
-                    });
-            });
+                    profileDao.update(data[0])
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
+                } else {
+                    deferred.reject("profile not found");
+                }
+            })
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
     deleteUser(userID, callback) {
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
 
@@ -58,24 +66,20 @@ export default class AdminService {
             .then((data) => {
                 if (data && data[0]) {
                     userDao.remove(data[0])
-                        .then((data) => {
-                            if (callback && typeof callback.success === "function") {
-                                callback.success();
-                            }
-                        })
-                        .catch((err) => {
-                            console.error(err);
-                        });
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
                 } else {
-                    console.log("no user data for id: " + userID);
+                    deferred.reject("user not found");
                 }
             })
-            .catch((err) => {
-                console.error(err);
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
     removeProfile(profileID, callback) {
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
@@ -83,20 +87,14 @@ export default class AdminService {
             .then((data) => {
                 if (data && data[0]) {
                     profileDao.remove(data[0])
-                        .then((data) => {
-                            if (callback && typeof callback.success === "function") {
-                                callback.success();
-                            }
-                        })
-                        .catch((err) => {
-                            console.error(err);
-                        });
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
                 } else {
-                    console.log("no profile data for id: " + profileID);
+                    deferred.reject("profile not found");
                 }
             })
-            .catch((err) => {
-                console.error(err);
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 }

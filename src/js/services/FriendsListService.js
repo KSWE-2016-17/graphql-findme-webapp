@@ -45,130 +45,143 @@ export default class FriendsListService {
     }
 
     reportUser(profileID) {
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
         profileDao.findById(profileID)
             .then((data) => {
-                if (data) {
-                    if (data[0]) {
-                        data[0].reported = "true";
-                        profileDao.update(data[0], {});
-                    } else {
-                        console.log("no profile data recieved. id: " + profileID);
-                    }
+                if (data && data[0]) {
+                    data[0].reported = "true";
+
+                    profileDao.update(data[0])
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
                 } else {
-                    console.log("no profile data recieved. id: " + profileID);
+                    deferred.reject("profile not found");
                 }
             })
-            .catch((err) => {
-                console.error(err);
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
     endFrienship(friendsListID, profileID, callback) {
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
         friendDao.findById(friendsListID)
             .then((data) => {
-                let friendsList = data[0].friends;
-                let newFriendsList = [];
+                if (data && data[0]) {
+                    let friendsList = data[0].friends;
+                    let newFriendsList = [];
 
-                for (let i = 0; i < friendsList.length; i++) {
-                    if (friendsList[i].id != profileID) {
-                        newFriendsList.push(friendsList[i]);
-                    }
-                }
-
-                data[0].friends = newFriendsList;
-
-                friendDao.update(data[0])
-                    .then((data) => {
-                        if (callback && typeof callback.success === "function") {
-                            callback.success();
+                    for (let i = 0; i < friendsList.length; i++) {
+                        if (friendsList[i].id != profileID) {
+                            newFriendsList.push(friendsList[i]);
                         }
-                    });
-            });
+                    }
+
+                    data[0].friends = newFriendsList;
+
+                    friendDao.update(data[0])
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
+                } else {
+                    deferred.reject("friendshit not found");
+                }
+            })
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
     handleFriendRequest(friendsListID, profileID, accept, callback) {
         let self = this;
+
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
         friendDao.findById(friendsListID)
             .then((data) => {
-                let friendsList = data[0].friends;
+                if (data && data[0]) {
+                    let friendsList = data[0].friends;
 
-                for (let i = 0; i < friendsList.length; i++) {
-                    if (friendsList[i].id == profileID) {
-                        friendsList[i].status = accept == true ? 1 : 2;
-                    }
-                }
-
-                data[0].friends = friendsList;
-
-                self.newFriendsListEntry(profileID, data[0].profile_id, 1, {});
-
-                friendDao.update(data[0])
-                    .then((data) => {
-                        if (callback && typeof callback.success === "function") {
-                            callback.success();
+                    for (let i = 0; i < friendsList.length; i++) {
+                        if (friendsList[i].id == profileID) {
+                            friendsList[i].status = accept == true ? 1 : 2;
                         }
-                    });
-            });
+                    }
+
+                    data[0].friends = friendsList;
+
+                    self.newFriendsListEntry(profileID, data[0].profile_id, 1);
+
+                    friendDao.update(data[0])
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
+                } else {
+                    deferred.reject("friendshit not found");
+                }
+            })
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
     newFriendsListEntry(ownerProfileID, friendProfileID, friendshipStatus, callback) {
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let friendDao = dm.getDao(CouchDbApi.FriendDAO);
 
         friendDao.findByProfileId(ownerProfileID)
             .then((data) => {
-                if (data) {
-                    if (data[0]) {
-                        let friendsList = data[0].friends;
-                        let isAlreadyAFriend = false;
+                if (data && data[0]) {
+                    let friendsList = data[0].friends;
+                    let isAlreadyAFriend = false;
 
-                        for (let i = 0; i < friendsList.length; i++) {
-                            if (friendsList[i].id == friendProfileID) {
-                                isAlreadyAFriend = true;
-                                console.log("profile " + friendProfileID + " already exists in profile-" + ownerProfileID + "'s friends list");
-                            }
+                    for (let i = 0; i < friendsList.length; i++) {
+                        if (friendsList[i].id == friendProfileID) {
+                            isAlreadyAFriend = true;
                         }
-
-                        if (isAlreadyAFriend == false) {
-                            friendsList.push({id: friendProfileID, status: friendshipStatus});
-                            data[0].friends = friendsList;
-
-                            friendDao.update(data[0])
-                                .then((data) => {
-                                    if (callback && typeof callback.success === "function") {
-                                        callback.success();
-                                    }
-                                });
-                        }
-                    } else {
-                        let newFriendslist = {
-                            "doctype": "friends",
-                            "profile_id": ownerProfileID,
-                            "friends": [{id: friendProfileID, status: friendshipStatus}]
-                        };
-
-                        friendDao.create(newFriendslist)
-                            .then((data) => {
-                                if (callback && typeof callback.success === "function") {
-                                    callback.success();
-                                }
-                            });
                     }
+
+                    if (isAlreadyAFriend == false) {
+                        friendsList.push({id: friendProfileID, status: friendshipStatus});
+                        data[0].friends = friendsList;
+
+                        friendDao.update(data[0])
+                            .then(deferred.resolve)
+                            .catch(deferred.reject);
+                    }
+                } else {
+                    let newFriendslist = {
+                        "doctype": "friends",
+                        "profile_id": ownerProfileID,
+                        "friends": [{id: friendProfileID, status: friendshipStatus}]
+                    };
+
+                    friendDao.create(newFriendslist)
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
                 }
-            });
+            })
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
     isFriend(friendID, callback) {
         let self = this;
+
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
 
         self.getCurrentProfile()
@@ -190,23 +203,21 @@ export default class FriendsListService {
                                     }
                                 }
                                 if (isHeAFriend == true) {
-                                    callback.success("yes");
+                                    deferred.resolve("yes");
                                 } else {
-                                    callback.success("no");
+                                    deferred.resolve("no");
                                 }
                             } else {
-                                console.log("no friends data for current user");
+                                deferred.reject("no friendship found");
                             }
                         })
-                        .catch(function (err) {
-                            console.log(err);
-                        });
+                        .catch(deferred.reject);
                 } else {
-                    console.log("no profile data for current user");
+                    deferred.reject("current user's profile not found");
                 }
             })
-            .catch(function (err) {
-                console.log(err);
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 }

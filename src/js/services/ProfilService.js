@@ -33,35 +33,24 @@ export default class ProfilService {
     }
 
     linkProfile(uid, callbacks) {
+        let deferred = q.defer();
+
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
         profileDao.findByUserId(uid)
             .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        localStorage.setItem("sessionProfileId", data[0]._id);
-                        console.log("daoinc");
-                        console.log(data[0]._id);
-                        console.log("daodone");
-                        callbacks.success(data);
-                    } else {
-                        console.log("bengel");
-                    }
+                if (data && data[0]) {
+                    localStorage.setItem("sessionProfileId", data[0]._id);
 
+                    deferred.resolve(data);
                 } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        console.log("linkprofileerrrro");
-                        callbacks.error("create user fail");
-                    }
+                    deferred.reject("create user fail");
                 }
             })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
     findProfileByUserId(uid) {
