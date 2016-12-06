@@ -8,9 +8,9 @@ export default class OutboxViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement />
-                <OutboxHeaderComponent />
-                <OutboxMailComponent />
+                <ProfilAnsichtNavigationElement/>
+                <OutboxHeaderComponent/>
+                <OutboxMailComponent/>
             </div>
         );
     }

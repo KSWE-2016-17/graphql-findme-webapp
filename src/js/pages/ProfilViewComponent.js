@@ -9,12 +9,12 @@ export default class ProfilViewComponent extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement />
-                <ProfilAnsichtRowHead />
-                <hr />
-                <ProfilAnsichtRowBilder />
-                <hr />
-                <ProfilAnsichtRowInteressen />
+                <ProfilAnsichtNavigationElement/>
+                <ProfilAnsichtRowHead/>
+                <hr/>
+                <ProfilAnsichtRowBilder/>
+                <hr/>
+                <ProfilAnsichtRowInteressen/>
             </div>
         );
     }

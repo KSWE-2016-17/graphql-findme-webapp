@@ -8,9 +8,9 @@ export default class ReadMailPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement />
-                <ReadMailHeaderComponent />
-                <ReadMailComponent />
+                <ProfilAnsichtNavigationElement/>
+                <ReadMailHeaderComponent/>
+                <ReadMailComponent/>
             </div>
         );
     }

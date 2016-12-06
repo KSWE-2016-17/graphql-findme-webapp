@@ -191,8 +191,8 @@ export default class RowHeadComponent extends React.Component {
         return <div>
             <div className="row">
                 <div className="col-md-2">
-                    <ProfilPic />
-                    <br /><br />
+                    <ProfilPic/>
+                    <br/><br/>
                     <button type="button" className="btn btn-primary"><span
                         className="glyphicon glyphicon-picture"></span> Profilfoto ausw&auml;hlen
                     </button>

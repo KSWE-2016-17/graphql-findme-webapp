@@ -20,7 +20,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
 
         return (
             <div id="reportsList">
-                <br />
+                <br/>
                 {self.state.reports}
             </div>
         );
@@ -45,8 +45,8 @@ export default class ReportsView_ReportsListRow extends React.Component {
                             <div>
                                 <ReportRow
                                     profileID={data[i]._id}
-                                />
-                                <hr />
+                               />
+                                <hr/>
                             </div>
                         );
                     }

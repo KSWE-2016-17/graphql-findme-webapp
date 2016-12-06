@@ -8,9 +8,9 @@ export default class FriendsListTab extends React.Component {
     render() {
         return (
             <div>
-                <NavigationBar />
-                <Head />
-                <Friendslist />
+                <NavigationBar/>
+                <Head/>
+                <Friendslist/>
             </div>
         );
     }

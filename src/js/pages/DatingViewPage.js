@@ -7,8 +7,8 @@ export default class DatingViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement />
-                <DatingViewLayoutComponent />
+                <ProfilAnsichtNavigationElement/>
+                <DatingViewLayoutComponent/>
             </div>
         );
     }

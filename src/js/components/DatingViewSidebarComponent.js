@@ -7,17 +7,17 @@ export default class DatingViewSidebarComponent extends React.Component {
     createDatingViewSidebarComponent() {
         return <div>
             <p>Vorschläge</p>
-            <DefaultProfilImage />
+            <DefaultProfilImage/>
             <span>Max Musterman</span>
-            <DefaultProfilImage />
+            <DefaultProfilImage/>
             <span>Max Musterman</span>
-            <DefaultProfilImage />
+            <DefaultProfilImage/>
             <span>Max Musterman</span>
-            <DefaultProfilImage />
+            <DefaultProfilImage/>
             <span>Max Musterman</span>
-            <DefaultProfilImage />
+            <DefaultProfilImage/>
             <span>Max Musterman</span>
-            <DefaultProfilImage />
+            <DefaultProfilImage/>
             <span>Max Musterman</span>
         </div>;
     }

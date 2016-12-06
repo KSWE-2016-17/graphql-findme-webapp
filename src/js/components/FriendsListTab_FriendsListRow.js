@@ -20,7 +20,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         return (
             <div id="friendsList">
-                <br />
+                <br/>
                 {self.state.friends}
             </div>
         );
@@ -48,8 +48,8 @@ export default class FriendProfileView_HeadRow extends React.Component {
                                             profileID={friendsList[i].id}
                                             status={friendsList[i].status}
                                             friendsListID={data[0]._id}
-                                        />
-                                        <hr />
+                                       />
+                                        <hr/>
                                     </div>
                                 );
                             }

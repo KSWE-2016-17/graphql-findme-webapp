@@ -28,7 +28,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
                 <div className="row">
                     <div className="col-md-2">
                         <DefaultProfilImage profileID={self.props.profileID}/>
-                        <br /><br />
+                        <br/><br/>
                         <a href="#/mails/new" type="button" className="btn btn-primary"><span
                             className="glyphicon glyphicon-envelope"></span> Nachricht senden</a>
                     </div>

@@ -42,7 +42,7 @@ export default class MailComponent extends React.Component {
                 <br/>
                 <div className="row">
                     <div className="col-md-1">
-                        <Image />
+                        <Image/>
                     </div>
                     <div className="col-md-10">
                         <div>

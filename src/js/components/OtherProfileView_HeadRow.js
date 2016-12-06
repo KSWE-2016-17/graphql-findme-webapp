@@ -26,10 +26,10 @@ export default class FriendProfileView_HeadRow extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <DefaultProfilImage />
-                        <br /><br />
+                        <DefaultProfilImage/>
+                        <br/><br/>
                         <button type="button" className="btn btn-primary" onClick={self.sendFriendRequest}>
-                            <span className="glyphicon glyphicon-plus"></span> Freundschaftsanfrage<br />senden
+                            <span className="glyphicon glyphicon-plus"></span> Freundschaftsanfrage<br/>senden
                         </button>
                     </div>
                     <div className="col-md-8">

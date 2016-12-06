@@ -8,8 +8,8 @@ export default class DatingViewLayoutComponent extends React.Component {
     createDatingViewLayoutComponent() {
         return <div>
             <div className="row">
-                <div className="col-md-10"><DatingViewContentComponent /></div>
-                <div className="col-md-2"><DatingViewSidebarComponent /></div>
+                <div className="col-md-10"><DatingViewContentComponent/></div>
+                <div className="col-md-2"><DatingViewSidebarComponent/></div>
             </div>
         </div>;
     }

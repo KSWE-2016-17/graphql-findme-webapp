@@ -21,7 +21,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <font size="5"> {self.state.profileName} </font><br />
+                    <font size="5"> {self.state.profileName} </font><br/>
                     <button type="button" className="btn btn-link" onClick={self.ignoreCase}
                             style={{marginLeft: "25px", paddingLeft: "10px", paddingRight: "10px"}}>
                         <span className="glyphicon glyphicon-sunglasses"></span> Fall ignorieren

@@ -9,11 +9,11 @@ export default class ProfileinstellungenViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement />
+                <ProfilAnsichtNavigationElement/>
                 <div>
-                    <ProfileinstellungenViewPrivatsphaereComponent />
-                    <ProfileinstellungenViewSonstigesComponent />
-                    <ProfileinstellungenViewProfilLoeschenComponent />
+                    <ProfileinstellungenViewPrivatsphaereComponent/>
+                    <ProfileinstellungenViewSonstigesComponent/>
+                    <ProfileinstellungenViewProfilLoeschenComponent/>
                 </div>
             </div>
         );

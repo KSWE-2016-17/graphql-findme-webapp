@@ -41,7 +41,7 @@ export default class ArchiveMailFromComponent extends React.Component {
                 <br/>
                 <div className="row">
                     <div className="col-md-1">
-                        <Image />
+                        <Image/>
                     </div>
                     <div className="col-md-10">
                         <div>
