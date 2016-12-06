@@ -5,10 +5,10 @@ import connSettings from "../../conn-settings";
 
 export default class ProfilService {
     constructor() {
-        let dm = new CouchDbApi.DaoManager(connSettings);
+        let connection = new CouchDbApi.Connection(connSettings);
 
-        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
-        this.profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
     }
 
     createProfile(profile) {
@@ -46,6 +46,7 @@ export default class ProfilService {
     }
 
     findProfileByUserId(userId) {
+        console.log("dhjasndjk", this.profileDAO);
         return this.profileDAO.findByUserId(userId);
     }
 

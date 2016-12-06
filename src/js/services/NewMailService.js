@@ -4,10 +4,10 @@ import connSettings from "../../conn-settings";
 
 export default class InboxService {
     constructor() {
-        let dm = new CouchDbApi.DaoManager(connSettings);
+        let connection = new CouchDbApi.Connection(connSettings);
 
-        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
-        this.messageDAO = dm.getDao(CouchDbApi.MessageDAO);
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.messageDAO = new CouchDbApi.MessageDAO(connection);
     }
 
     sendMail(message) {

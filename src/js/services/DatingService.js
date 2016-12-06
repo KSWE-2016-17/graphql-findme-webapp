@@ -4,10 +4,10 @@ import connSettings from "../../conn-settings";
 
 export default class DatingService {
     constructor() {
-        let dm = new CouchDbApi.DaoManager(connSettings);
+        let connection = new CouchDbApi.Connection(connSettings);
 
-        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
-        this.profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
     }
 
     findAll() {

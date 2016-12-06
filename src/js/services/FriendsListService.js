@@ -5,11 +5,11 @@ import connSettings from "../../conn-settings";
 
 export default class FriendsListService {
     constructor() {
-        let dm = new CouchDbApi.DaoManager(connSettings);
+        let connection = new CouchDbApi.Connection(connSettings);
 
-        this.userDAO = dm.getDao(CouchDbApi.UserDAO);
-        this.profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
-        this.friendDAO = dm.getDao(CouchDbApi.FriendDAO);
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
+        this.friendDAO = new CouchDbApi.FriendDAO(connection);
     }
 
     allFriends(profileId) {
