@@ -29,11 +29,9 @@ export default class OtherProfileView extends React.Component {
                 if (data) {
                     if (data == "yes") {
                         window.location.href = "#/friends/" + self.props.params.id;
+                    } else {
                     }
-                    else {
-                    }
-                }
-                else {
+                } else {
                     console.log("no data reveived from FriendsListService.isFriend")
                 }
             })
