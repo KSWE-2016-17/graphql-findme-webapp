@@ -1,13 +1,15 @@
-import CouchDbApi from "findme-react-couchdb-api";
-import connSettings from "../../conn-settings";
 import q from "q";
+import CouchDbApi from "findme-react-couchdb-api";
+
+import connSettings from "../../conn-settings";
 
 export default class ProfilService {
     createProfile(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
-        profileDao.create(obj, {
-            success: function(data) {
+
+        profileDao.create(obj)
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         callbacks.success(data);
@@ -17,21 +19,21 @@ export default class ProfilService {
                         callbacks.error("create user fail");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
     getProfile(id, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
-        profileDao.findById(id, {
-            success: function(data) {
+
+        profileDao.findById(id)
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         callbacks.success(data);
@@ -41,19 +43,21 @@ export default class ProfilService {
                         callbacks.error("finding failed");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
     findByLogin(obj, callbacks) {
-        profileDao.findByLogin(obj, {
-            success: function(data) {
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+
+        profileDao.findByLogin(obj)
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         callbacks.success(data);
@@ -63,22 +67,21 @@ export default class ProfilService {
                         callbacks.error("findUserByLogin fail");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
     findById(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.findById(obj, {
-            success: function(data) {
+        profileDao.findById(obj)
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         callbacks.success(data);
@@ -88,22 +91,22 @@ export default class ProfilService {
                         callbacks.error("findUserByLogin fail");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
     linkProfile(uid, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+
         console.log("linkprofile");
-        profileDao.findByUserId(uid, {
-            success: function(data) {
+        profileDao.findByUserId(uid)
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         localStorage.setItem("sessionProfileId", data[0]._id);
@@ -111,7 +114,7 @@ export default class ProfilService {
                         console.log(data[0]._id);
                         console.log("daodone");
                         callbacks.success(data);
-                    }else{
+                    } else {
                         console.log("bengel");
                     }
 
@@ -121,14 +124,13 @@ export default class ProfilService {
                         callbacks.error("create user fail");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
     findProfileByUserId(uid) {
@@ -157,10 +159,12 @@ export default class ProfilService {
         return defer.promise;
     }
 
+    remove(obj, callbacks) {
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-    delete(obj, callbacks) {
-        profileDao.delete(obj, {
-            success: function(data) {
+        profileDao.remove(obj)
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         callbacks.success(data);
@@ -170,14 +174,13 @@ export default class ProfilService {
                         callbacks.error("delete user fail");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
     getAdminRight(uid) {
@@ -192,5 +195,4 @@ export default class ProfilService {
 
         return defer.promise;
     }
-
 }

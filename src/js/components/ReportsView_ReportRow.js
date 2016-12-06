@@ -83,7 +83,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 			}
         });
 		
-		adminService.deleteProfile(self.props.profileID, {
+		adminService.removeProfile(self.props.profileID, {
 			success: function() {
 				window.location.reload();
 			}

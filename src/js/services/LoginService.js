@@ -3,12 +3,12 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class LoginService {
-    login(login, password, callbacks) { 
+    login(login, password, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
-        let proDao = dm.getDao(CouchDbApi.ProfileDAO);
-        userDao.findByLogin(login, {
-            success: function(data) {
+
+        userDao.findByLogin(login)
+            .then((data) => {
                 if (data && data[0].password === password) {
                     if (callbacks && typeof callbacks.success === "function") {
                         localStorage.setItem("sessionUserId", data[0]._id);
@@ -19,21 +19,21 @@ export default class LoginService {
                         callbacks.error("wrong username or password");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
-    linkprofile(uid,callbacks){
+    linkprofile(uid, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let proDao = dm.getDao(CouchDbApi.ProfileDAO);
-        proDao.findByUserId(uid, {
-            success: function(data) {
+
+        proDao.findByUserId(uid)
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         localStorage.setItem("sessionProfileId", data[0]._id);
@@ -44,14 +44,13 @@ export default class LoginService {
                         callbacks.error("profile not found");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
 
     findProfileByUserId(uid) {

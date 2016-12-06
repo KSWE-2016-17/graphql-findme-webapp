@@ -1,5 +1,4 @@
 import q from "q";
-
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";
@@ -18,13 +17,13 @@ export default class InboxService {
         return defer.promise;
     }
 
-    deleteMsg(obj,uid){
+    removeMsg(obj, uid){
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msg2Dao.delete(obj,uid)
+        msg2Dao.remove(obj,uid)
             .then(defer.resolve)
             .catch(defer.reject);
 
