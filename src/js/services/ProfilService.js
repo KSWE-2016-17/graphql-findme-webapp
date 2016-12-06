@@ -159,11 +159,11 @@ export default class ProfilService {
         return defer.promise;
     }
 
-    delete(obj, callbacks) {
+    remove(obj, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        profileDao.delete(obj)
+        profileDao.remove(obj)
             .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {

@@ -48,7 +48,7 @@ export default class ProfileinstellungenViewProfilLoeschenComponent extends Reac
             profilService.findById(id, {
                 success: function (data) {
                     //user entfernen
-                    profilService.delete(data[0], {
+                    profilService.remove(data[0], {
                         success: function (data) {
 
                         },
@@ -61,7 +61,7 @@ export default class ProfileinstellungenViewProfilLoeschenComponent extends Reac
                     registerService.findIdByName(data[0].login, {
                         success: function (data) {
                             //profil entfernen
-                            registerService.delete(data[0], {
+                            registerService.remove(data[0], {
                                 success: function (data) {
                                     location.href = "#/login";
                                 },

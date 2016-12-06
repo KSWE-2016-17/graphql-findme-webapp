@@ -9,7 +9,7 @@ export default class AdminService {
         this.getUser = this.getUser.bind(this);
         this.allProfiles = this.allProfiles.bind(this);
         this.removeReportedMark = this.removeReportedMark.bind(this);
-        this.deleteProfile = this.deleteProfile.bind(this);
+        this.removeProfile = this.removeProfile.bind(this);
     }
 
     getProfile(profileID) {
@@ -77,7 +77,7 @@ export default class AdminService {
         userDao.findById(userID)
             .then((data) => {
                 if (data && data[0]) {
-                    userDao.delete(data[0])
+                    userDao.remove(data[0])
                         .then((data) => {
                             if (callback && typeof callback.success === "function") {
                                 callback.success();
@@ -95,7 +95,7 @@ export default class AdminService {
             });
     }
 
-    deleteProfile(profileID, callback) {
+    removeProfile(profileID, callback) {
         let self = this;
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
@@ -103,7 +103,7 @@ export default class AdminService {
         profileDao.findById(profileID)
             .then((data) => {
                 if (data && data[0]) {
-                    profileDao.delete(data[0])
+                    profileDao.remove(data[0])
                         .then((data) => {
                             if (callback && typeof callback.success === "function") {
                                 callback.success();
