@@ -53,20 +53,20 @@ export default class RowInteressenComponent extends React.Component {
                         interestsElements.push(
                             <div key={Math.random()} className="box_interessen"
                                  style={{
-                                    color: "#ffffff",
-                                    backgroundColor: "#eb9316",
-                                    fontWeight: "bold",
-                                    borderRadius: "4px",
-                                    float: "left",
-                                    paddingTop: "5px",
-                                    paddingBottom: "5px",
-                                    paddingLeft: "15px",
-                                    paddingRight: "15px",
-                                    marginTop: "10px",
-                                    marginBottom: "10px",
-                                    marginRight: "10px",
-                                    marginLeft: "0px"
-                                }}>
+                                     color: "#ffffff",
+                                     backgroundColor: "#eb9316",
+                                     fontWeight: "bold",
+                                     borderRadius: "4px",
+                                     float: "left",
+                                     paddingTop: "5px",
+                                     paddingBottom: "5px",
+                                     paddingLeft: "15px",
+                                     paddingRight: "15px",
+                                     marginTop: "10px",
+                                     marginBottom: "10px",
+                                     marginRight: "10px",
+                                     marginLeft: "0px"
+                                 }}>
                                 {interest}
                             </div>
                         );

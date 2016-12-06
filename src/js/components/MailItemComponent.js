@@ -20,7 +20,7 @@ export default class MailComponent extends React.Component {
     onArchiveMail(event) {
         console.log("pressed archive");
         let self = this;
-        self.props.data.message.archivedTo=true;
+        self.props.data.message.archivedTo = true;
         let is = new IS();
         is.updateMsg(self.props.data.message);
     }
@@ -29,7 +29,7 @@ export default class MailComponent extends React.Component {
         console.log("pressed delete");
         let self = this;
         let is = new IS();
-        self.props.data.message.deletedTo=true;
+        self.props.data.message.deletedTo = true;
         is.updateMsg(self.props.data.message);
     }
 

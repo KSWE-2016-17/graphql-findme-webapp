@@ -38,52 +38,52 @@ export default class FriendProfileInterests extends React.Component {
         console.log("profile view id: " + self.props.profileID);
         friendsListService.getProfile(self.props.profileID)
             .then(function (profileData) {
-           //     friendsListService.getUser(profileData[0].user_id)
-           //         .then(function (userData) {
-                        let aboutme = profileData[0].aboutme;
+                //     friendsListService.getUser(profileData[0].user_id)
+                //         .then(function (userData) {
+                let aboutme = profileData[0].aboutme;
 
-                        let aboutmeParts = aboutme.split("#");
-                        let interests = aboutmeParts[1].split("+");
+                let aboutmeParts = aboutme.split("#");
+                let interests = aboutmeParts[1].split("+");
 
-                        let interestsElements = self.state.interestsElements;
+                let interestsElements = self.state.interestsElements;
 
-                        for (let i = 0; i < interests.length; i++) {
-                            let interest = interests[i];
+                for (let i = 0; i < interests.length; i++) {
+                    let interest = interests[i];
 
-                            if (interest && interest.trim()) {
-                                interest = interest.trim();
+                    if (interest && interest.trim()) {
+                        interest = interest.trim();
 
-                                interestsElements.push(
-                                    <div key={Math.random()} className="box_interessen"
-                                         style={{
-                                    color: "#ffffff",
-                                    backgroundColor: "#eb9316",
-                                    fontWeight: "bold",
-                                    borderRadius: "4px",
-                                    float: "left",
-                                    paddingTop: "5px",
-                                    paddingBottom: "5px",
-                                    paddingLeft: "15px",
-                                    paddingRight: "15px",
-                                    marginTop: "10px",
-                                    marginBottom: "10px",
-                                    marginRight: "10px",
-                                    marginLeft: "0px"
-                                }}>
-                                        {interest}
-                                    </div>
-                                );
-                            }
-                        }
+                        interestsElements.push(
+                            <div key={Math.random()} className="box_interessen"
+                                 style={{
+                                     color: "#ffffff",
+                                     backgroundColor: "#eb9316",
+                                     fontWeight: "bold",
+                                     borderRadius: "4px",
+                                     float: "left",
+                                     paddingTop: "5px",
+                                     paddingBottom: "5px",
+                                     paddingLeft: "15px",
+                                     paddingRight: "15px",
+                                     marginTop: "10px",
+                                     marginBottom: "10px",
+                                     marginRight: "10px",
+                                     marginLeft: "0px"
+                                 }}>
+                                {interest}
+                            </div>
+                        );
+                    }
+                }
 
                 self.setState({
                     interestsElements: interestsElements
                 });
 
-                        console.log("Interests acquired");
-                    })
-                    .catch(function (err) {
-                        console.log(err);
-                    });
+                console.log("Interests acquired");
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
     }
 }

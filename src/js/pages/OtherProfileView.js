@@ -23,27 +23,27 @@ export default class OtherProfileView extends React.Component {
             </div>
         );
     }
-	
-	componentDidMount() {
-		let self = this;
+
+    componentDidMount() {
+        let self = this;
         let friendsListService = new FriendsListService();
-		
-		friendsListService.isFriend(self.props.params.id, {
+
+        friendsListService.isFriend(self.props.params.id, {
             success: function (data) {
                 if (data) {
-					if (data == "yes") {
-						window.location.href = "#/friends/" + self.props.params.id;
-					}
-					else {
-					}
-				}
-				else {
-					console.log("no data reveived from FriendsListService.isFriend")
-				}
+                    if (data == "yes") {
+                        window.location.href = "#/friends/" + self.props.params.id;
+                    }
+                    else {
+                    }
+                }
+                else {
+                    console.log("no data reveived from FriendsListService.isFriend")
+                }
             },
-            error: function(err) {
+            error: function (err) {
                 console.log(err);
             }
-		});
-	}
+        });
+    }
 }

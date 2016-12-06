@@ -4,7 +4,7 @@ import DatingService from "../services/DatingService";
 
 export default class DatingViewContentComponent extends React.Component {
 
-    showSearchResult(){
+    showSearchResult() {
         var search_gender;
         var search_alterVon;
         var search_alterBis;
@@ -25,24 +25,23 @@ export default class DatingViewContentComponent extends React.Component {
 
         let datingService = new DatingService();
         datingService.findAll(callback, {
-            success: function(data) {
+            success: function (data) {
                 var size = data.size;
                 var i = 1;
                 //var treffer; uebereinstimmende profile
-                while(i <= size){
-                    if((data[i].haircolor).equals(search_haarfarbe)){
+                while (i <= size) {
+                    if ((data[i].haircolor).equals(search_haarfarbe)) {
                         document.getElementById("searchresult").innerHTML += data[i].firstname;
                     }
                     i++;
                 }
             },
-            error: function(err) {
+            error: function (err) {
                 console.log(err);
             }
         });
 
     }
-
 
     createDatingViewContentComponent() {
         return <div>
@@ -51,16 +50,19 @@ export default class DatingViewContentComponent extends React.Component {
                     <br/>
                     <br/>
                     <button className="btn btn-primary btn-md" type="button">
-                        <span className="glyphicon glyphicon-search"></span>Automatische Suche</button>
+                        <span className="glyphicon glyphicon-search"></span>Automatische Suche
+                    </button>
                 </div>
             </div>
-            <div style={{width:"80%"}}><br/><hr/></div>
+            <div style={{width: "80%"}}><br/>
+                <hr/>
+            </div>
 
             <h1>benutzerdefinierte Suche:</h1>
             <br/>
 
             <form role="form">
-                <table style={{width:"60%"}}>
+                <table style={{width: "60%"}}>
                     <tr>
                         <td>Ich suche eine/n:</td>
                         <td>
@@ -76,22 +78,22 @@ export default class DatingViewContentComponent extends React.Component {
                         <td>Alter:</td>
                         <td>
                             <select className="form-control" id="alterVon">
-                            <option>beliebig</option>
-                            <option>18</option>
-                            <option>20</option>
-                            <option>25</option>
-                            <option>30</option>
-                            <option>35</option>
-                            <option>40</option>
-                            <option>45</option>
-                            <option>50</option>
-                            <option>55</option>
-                            <option>60</option>
-                            <option>65</option>
-                            <option>70</option>
-                            <option>75</option>
-                            <option>80</option>
-                        </select>
+                                <option>beliebig</option>
+                                <option>18</option>
+                                <option>20</option>
+                                <option>25</option>
+                                <option>30</option>
+                                <option>35</option>
+                                <option>40</option>
+                                <option>45</option>
+                                <option>50</option>
+                                <option>55</option>
+                                <option>60</option>
+                                <option>65</option>
+                                <option>70</option>
+                                <option>75</option>
+                                <option>80</option>
+                            </select>
                             <select className="form-control" id="alterBis">
                                 <option>beliebig</option>
                                 <option>18</option>
@@ -178,7 +180,8 @@ export default class DatingViewContentComponent extends React.Component {
                         <td>
                             <br/>
                             <button className="btn btn-primary btn-md" type="submit">
-                                <span className="glyphicon glyphicon-search" onclick={this.showSearchResult}></span>Suche</button>
+                                <span className="glyphicon glyphicon-search" onclick={this.showSearchResult}></span>Suche
+                            </button>
                         </td>
                         <td></td>
                         <td></td>
@@ -189,12 +192,12 @@ export default class DatingViewContentComponent extends React.Component {
                 </div>
             </form>
 
-            </div>;
-        }
+        </div>;
+    }
 
     render() {
         return (
             <div>{this.createDatingViewContentComponent()}</div>
-            );
+        );
     }
 }

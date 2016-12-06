@@ -5,7 +5,7 @@ import ProfilService from "../services/ProfilService";
 
 export default class RegistrierenViewFormComponent extends React.Component {
 
-    registerNewUser(){
+    registerNewUser() {
         var name;
         var mail;
         var pw;
@@ -23,71 +23,69 @@ export default class RegistrierenViewFormComponent extends React.Component {
         accept = document.getElementById("acceptAGB").checked;
 
         var objUser = {
-            "doctype" : "user",
-            "login" : name,
-            "password" : pw,
-            "role" : 0
+            "doctype": "user",
+            "login": name,
+            "password": pw,
+            "role": 0
         }
 
         var objPrivacy = {
-            "friends" : 1,
-            "pictures" : 0
+            "friends": 1,
+            "pictures": 0
         }
 
         var objProfil = {
-            "doctype" : "profile",
-            "user_id" : "",
-            "firstname" : name,
-            "lastname" : name,
-            "email" : mail,
-            "birthday" : yearOfBirth,
-            "gender" : gender,
-            "familystatus" : 1,
-            "children" : 0,
-            "aboutme" : "txt{#+txt",
-            "privacy" : objPrivacy,
-            "profilepic" : "ououo",
-            "haircolor" : 3,
-            "eyecolor" : 0,
-            "figure" : 1
+            "doctype": "profile",
+            "user_id": "",
+            "firstname": name,
+            "lastname": name,
+            "email": mail,
+            "birthday": yearOfBirth,
+            "gender": gender,
+            "familystatus": 1,
+            "children": 0,
+            "aboutme": "txt{#+txt",
+            "privacy": objPrivacy,
+            "profilepic": "ououo",
+            "haircolor": 3,
+            "eyecolor": 0,
+            "figure": 1
         }
 
-        if(name !== "" && mail !== "" && pw===pw2 && gender !== "" && yearOfBirth !== "" && accept === true){
+        if (name !== "" && mail !== "" && pw === pw2 && gender !== "" && yearOfBirth !== "" && accept === true) {
             //user registrieren
             let registerService = new RegisterService();
             registerService.register(objUser, {
-                success: function(data) {
+                success: function (data) {
                     //location.href = "#/login";
 
-                        //user_id ermitteln
-                        registerService.findIdByName(name, {
-                            success: function (data) {
-                                var user = "";
-                                user = data[0]._id;
-                                objProfil.user_id = user;
+                    //user_id ermitteln
+                    registerService.findIdByName(name, {
+                        success: function (data) {
+                            var user = "";
+                            user = data[0]._id;
+                            objProfil.user_id = user;
 
-                                //profil anlegen
-                                let profilService = new ProfilService();
-                                profilService.createProfile(objProfil, {
-                                    success: function(data) {
-                                        //alert("Test: " + objProfil.user_id);
-                                        location.href = "#/login";
-                                    },
-                                    error: function(err) {
-                                        console.log(err);
-                                    }
-                                });
+                            //profil anlegen
+                            let profilService = new ProfilService();
+                            profilService.createProfile(objProfil, {
+                                success: function (data) {
+                                    //alert("Test: " + objProfil.user_id);
+                                    location.href = "#/login";
+                                },
+                                error: function (err) {
+                                    console.log(err);
+                                }
+                            });
 
-                            },
-                            error: function (err) {
-                                console.log(err);
-                            }
-                        });
-
-
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
 
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log(err);
                 }
             });
@@ -99,7 +97,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
     }
 
     createRegistrierenViewForm() {
-        return(<div>
+        return (<div>
             <div className="row">
                 <div className="col-md-6">
                     <br/>
@@ -156,8 +154,9 @@ export default class RegistrierenViewFormComponent extends React.Component {
             </div>
             <div className="row">
                 <div className="col-md-5 col-md-offset-3">
-                        <button className="btn btn-primary btn-md btn-block" type="button" onClick={this.registerNewUser}>
-                            <span className="glyphicon"></span> Registrieren</button>
+                    <button className="btn btn-primary btn-md btn-block" type="button" onClick={this.registerNewUser}>
+                        <span className="glyphicon"></span> Registrieren
+                    </button>
                 </div>
                 <br/>
             </div>

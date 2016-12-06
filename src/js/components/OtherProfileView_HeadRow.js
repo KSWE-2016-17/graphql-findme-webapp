@@ -7,23 +7,23 @@ import DefaultProfilImage from "./DefaultProfilImage";
 
 export default class FriendProfileView_HeadRow extends React.Component {
 
-	constructor(props) {
+    constructor(props) {
         super(props);
 
         this.state = {
-			friendName: "",
-			aboutMe: "",
-		};
-		
-		this.reportUser = this.reportUser.bind(this);
-		this.sendFriendRequest = this.sendFriendRequest.bind(this);
+            friendName: "",
+            aboutMe: "",
+        };
+
+        this.reportUser = this.reportUser.bind(this);
+        this.sendFriendRequest = this.sendFriendRequest.bind(this);
     }
 
     render() {
-		let self = this;
-		
+        let self = this;
+
         return (
-		    <div className="container">
+            <div className="container">
                 <div className="row">
                     <div className="col-md-2">
                         <DefaultProfilImage />
@@ -43,10 +43,10 @@ export default class FriendProfileView_HeadRow extends React.Component {
                     </div>
                 </div>
             </div>
-		);
+        );
     }
-	
-	componentDidMount() {
+
+    componentDidMount() {
         let self = this;
         let profilService = new ProfilService();
 
@@ -57,33 +57,33 @@ export default class FriendProfileView_HeadRow extends React.Component {
                     aboutMe: profileData[0].aboutme.split("{#")[0]
                 });
             },
-            error: function(err) {
+            error: function (err) {
                 console.log(err);
             }
-		});
+        });
     }
 
-    reportUser(){
-		let self = this;
+    reportUser() {
+        let self = this;
         let friendsListService = new FriendsListService();
-		
+
         friendsListService.reportUser(self.props.profileID);
     }
-	
-	sendFriendRequest() {
-		let self = this;
-		let friendsListService = new FriendsListService();
-		
-		friendsListService.getCurrentProfile()
-			.then(function(data) {
-				friendsListService.newFriendsListEntry(self.props.profileID, data[0]._id, 0, {
-					success: function() {
-						window.location.reload();
-					}
-				});
-			})
-			.catch(function(err) {
-				console.log(err);
-			});
-	}
+
+    sendFriendRequest() {
+        let self = this;
+        let friendsListService = new FriendsListService();
+
+        friendsListService.getCurrentProfile()
+            .then(function (data) {
+                friendsListService.newFriendsListEntry(self.props.profileID, data[0]._id, 0, {
+                    success: function () {
+                        window.location.reload();
+                    }
+                });
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    }
 }

@@ -10,28 +10,27 @@ export default class NavigationComponent extends React.Component {
         this.searchUser = this.searchUser.bind(this);
     }
 
-
-    searchUser(){
+    searchUser() {
         var name = "";
         name = $("#searchField").val();
 
-        if(name === ""){
+        if (name === "") {
             alert("Suchfeld ist leer!");
         } else {
             let datingService = new DatingService();
             datingService.findIdByName(name, {
-                success: function(data) {
+                success: function (data) {
                     let profilService = new ProfilService();
 
                     profilService.findProfileByUserId(data[0]._id)
                         .then(function (data) {
                             location.href = "#/profile/" + data[0]._id;
                         })
-                        .catch(function(err) {
+                        .catch(function (err) {
                             console.log(err);
                         });
                 },
-                error: function(err) {
+                error: function (err) {
                     console.log(err);
                 }
             });
@@ -40,7 +39,7 @@ export default class NavigationComponent extends React.Component {
     }
 
     createNavigation() {
-        return                 <div>
+        return <div>
             <nav className="navbar navbar-default">
                 <div>
                     <div className="navbar-header">
@@ -49,15 +48,18 @@ export default class NavigationComponent extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" >findMe</a>
+                        <a className="navbar-brand">findMe</a>
                     </div>
                     <div className="collapse navbar-collapse" id="myNavbar">
                         <ul className="nav navbar-nav">
                             <li><a href="#/profile"><span className="glyphicon glyphicon-user"></span> Profil</a></li>
                             <li><a href="#/dating"><span className="glyphicon glyphicon-send"></span> Dating</a></li>
-                            <li><a href="#/friendstab"><span className="glyphicon glyphicon-asterisk"></span> Freunde</a></li>
+                            <li><a href="#/friendstab"><span className="glyphicon glyphicon-asterisk"></span>
+                                Freunde</a></li>
                             <li className="dropdown">
-                                <a className="dropdown-toggle" data-toggle="dropdown" href="#"><span className="glyphicon glyphicon-envelope"></span> Nachrichten <span className="caret"></span></a>
+                                <a className="dropdown-toggle" data-toggle="dropdown" href="#"><span
+                                    className="glyphicon glyphicon-envelope"></span> Nachrichten <span
+                                    className="caret"></span></a>
                                 <ul className="dropdown-menu">
                                     <li><a href="#/mails/inbox">Posteingang</a></li>
                                     <li><a href="#/mails/new">Nachricht erstellen</a></li>
@@ -69,18 +71,22 @@ export default class NavigationComponent extends React.Component {
                                 <form role="form" className="navbar-form navbar-input-group">
                                     <div className="input-group">
                             <span className="input-group-btn">
-                                <button className="btn btn-default btn-sm" type="button" onClick={this.searchUser}><span className="glyphicon glyphicon-search"></span></button>
+                                <button className="btn btn-default btn-sm" type="button" onClick={this.searchUser}><span
+                                    className="glyphicon glyphicon-search"></span></button>
                             </span>
                                         <div className="form-group">
-                                            <input id="searchField" type="text" className="form-control input-sm" placeholder="Suche" />
+                                            <input id="searchField" type="text" className="form-control input-sm"
+                                                   placeholder="Suche"/>
                                         </div>
                                     </div>
                                 </form>
                             </li>
                         </ul>
                         <ul className="nav navbar-nav navbar-right">
-                            <li><a href="#/settings"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a></li>
-                            <li><a href="#/logout"><span className="glyphicon glyphicon-log-out"></span> Ausloggen</a></li>
+                            <li><a href="#/settings"><span className="glyphicon glyphicon-wrench"></span> Einstellungen</a>
+                            </li>
+                            <li><a href="#/logout"><span className="glyphicon glyphicon-log-out"></span> Ausloggen</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

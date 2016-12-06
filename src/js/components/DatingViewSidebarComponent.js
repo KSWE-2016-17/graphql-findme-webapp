@@ -6,20 +6,20 @@ export default class DatingViewSidebarComponent extends React.Component {
 
     createDatingViewSidebarComponent() {
         return <div>
-                    <p>Vorschläge</p>
-                    <DefaultProfilImage />
-                    <span>Max Musterman</span>
-                    <DefaultProfilImage />
-                    <span>Max Musterman</span>
-                    <DefaultProfilImage />
-                    <span>Max Musterman</span>
-                    <DefaultProfilImage />
-                    <span>Max Musterman</span>
-                    <DefaultProfilImage />
-                    <span>Max Musterman</span>
-                    <DefaultProfilImage />
-                    <span>Max Musterman</span>
-                </div>;
+            <p>Vorschläge</p>
+            <DefaultProfilImage />
+            <span>Max Musterman</span>
+            <DefaultProfilImage />
+            <span>Max Musterman</span>
+            <DefaultProfilImage />
+            <span>Max Musterman</span>
+            <DefaultProfilImage />
+            <span>Max Musterman</span>
+            <DefaultProfilImage />
+            <span>Max Musterman</span>
+            <DefaultProfilImage />
+            <span>Max Musterman</span>
+        </div>;
     }
 
     render() {

@@ -17,7 +17,7 @@ export default class ArchiveService {
         return defer.promise;
     }
 
-    findArchFromMe(from){
+    findArchFromMe(from) {
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -30,7 +30,7 @@ export default class ArchiveService {
         return defer.promise;
     }
 
-    findArchToMe(to){
+    findArchToMe(to) {
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);

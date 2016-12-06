@@ -21,11 +21,11 @@ export default class InboxMailComponent extends React.Component {
         let inboxService = new InboxService();
 
         inboxService.findMsgToMeUndeleted(localStorage.getItem("sessionUserId"))
-            .then(function(data) {
+            .then(function (data) {
                 console.debug("received messages: " + data.length);
                 let messages = data;
 
-                let mappedData = _.map(messages, function(msg) {
+                let mappedData = _.map(messages, function (msg) {
                     return {
                         user: {},
                         message: msg
@@ -44,11 +44,11 @@ export default class InboxMailComponent extends React.Component {
                 }
 
                 q.all(promises)
-                    .then(function(data) {
+                    .then(function (data) {
                         for (let i = 0; i < data.length; i++) {
                             let promiseResult = data[i];
 
-                            _.forEach(mappedData, function(value, index, arr) {
+                            _.forEach(mappedData, function (value, index, arr) {
                                 if (promiseResult.length > 0) {
                                     if (value.message.from === promiseResult[0]._id) {
                                         value.user = promiseResult[0];
@@ -63,17 +63,17 @@ export default class InboxMailComponent extends React.Component {
                                 mails.push(
                                     <MailComponent
                                         key={Math.random()}
-                                        data={md} />
+                                        data={md}/>
                                 );
                                 self.setState({mails: mails});
                             }
                         }
                     })
-                    .catch(function(err) {
+                    .catch(function (err) {
                         console.log(err);
                     });
             })
-            .catch(function(err) {
+            .catch(function (err) {
                 console.log(err);
             });
     }

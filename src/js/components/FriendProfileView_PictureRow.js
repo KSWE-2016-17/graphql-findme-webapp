@@ -3,7 +3,7 @@ import React from "react";
 import DefaultImage from "./DefaultImage";
 
 export default class RowBilderComponent extends React.Component {
-	
+
     create() {
         return (
             <div>

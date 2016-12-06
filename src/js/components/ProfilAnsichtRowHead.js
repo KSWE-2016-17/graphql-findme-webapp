@@ -4,76 +4,74 @@ import _ from "lodash";
 
 import PS from "../services/ProfilService";
 
-
 import DefaultProfilImage from "./DefaultProfilImage";
 import ProfilPic from "./ProfileImage";
-
 
 export default class RowHeadComponent extends React.Component {
 
     createRowHead() {
         let ps = new PS();
         var privacy = {
-            "friends" : 0,
-            "pictures" : 0
+            "friends": 0,
+            "pictures": 0
         }
         var profile = {
-            "_id" : "",
-            "_rev" : "",
-            "doctype" : "profile",
-            "user_id" : "",
-            "firstname" : "",
-            "lastname" : "",
-            "email" : "",
-            "birthday" : "",
-            "gender" : "",
-            "familystatus" : 1,
-            "children" : 0,
-            "aboutme" : "UeberMich ABC",
-            "privacy" : privacy,
-            "profilepic" : "ououo",
-            "haircolor" : 3,
-            "eyecolor" : 0,
-            "figure" : 1
+            "_id": "",
+            "_rev": "",
+            "doctype": "profile",
+            "user_id": "",
+            "firstname": "",
+            "lastname": "",
+            "email": "",
+            "birthday": "",
+            "gender": "",
+            "familystatus": 1,
+            "children": 0,
+            "aboutme": "UeberMich ABC",
+            "privacy": privacy,
+            "profilepic": "ououo",
+            "haircolor": 3,
+            "eyecolor": 0,
+            "figure": 1
         }
         var profile2 = {
-            "_id" : "",
-            "_rev" : "",
-            "doctype" : "profile",
-            "user_id" : "",
-            "firstname" : "",
-            "lastname" : "",
-            "email" : "",
-            "birthday" : "",
-            "gender" : "",
-            "familystatus" : 1,
-            "children" : 0,
-            "aboutme" : "UeberMich ABC",
-            "privacy" : privacy,
-            "profilepic" : "ououo",
-            "haircolor" : 3,
-            "eyecolor" : 0,
-            "figure" : 1
+            "_id": "",
+            "_rev": "",
+            "doctype": "profile",
+            "user_id": "",
+            "firstname": "",
+            "lastname": "",
+            "email": "",
+            "birthday": "",
+            "gender": "",
+            "familystatus": 1,
+            "children": 0,
+            "aboutme": "UeberMich ABC",
+            "privacy": privacy,
+            "profilepic": "ououo",
+            "haircolor": 3,
+            "eyecolor": 0,
+            "figure": 1
         }
 
         var omg = {
-            "_id" : "",
-            "_rev" : "",
-            "doctype" : "",
-            "user_id" : "",
-            "firstname" : "",
-            "lastname" : "",
-            "email" : "",
-            "birthday" : "",
-            "gender" : "",
-            "familystatus" : 1,
-            "children" : 0,
-            "aboutme" : "",
-            "privacy" : privacy,
-            "profilepic" : "",
-            "haircolor" : 3,
-            "eyecolor" : 0,
-            "figure" : 1
+            "_id": "",
+            "_rev": "",
+            "doctype": "",
+            "user_id": "",
+            "firstname": "",
+            "lastname": "",
+            "email": "",
+            "birthday": "",
+            "gender": "",
+            "familystatus": 1,
+            "children": 0,
+            "aboutme": "",
+            "privacy": privacy,
+            "profilepic": "",
+            "haircolor": 3,
+            "eyecolor": 0,
+            "figure": 1
         }
 
         var nwo;
@@ -81,16 +79,15 @@ export default class RowHeadComponent extends React.Component {
 
         var abutme;
 
-
         // ps.linkProfile(localStorage.getItem("sessionUserId"));
 
         console.log(localStorage.getItem("sessionProfileId"));
 
         ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function(data){
+            .then(function (data) {
                 console.log(data[0]._id);
-                localStorage.setItem("sessionProfileId",data[0]._id);
-                localStorage.setItem("sessionProfile",data[0]);
+                localStorage.setItem("sessionProfileId", data[0]._id);
+                localStorage.setItem("sessionProfile", data[0]);
 
                 omg = data[0];
                 console.log("###");
@@ -98,15 +95,12 @@ export default class RowHeadComponent extends React.Component {
 
                 profile2 = data[0];
 
-
-
                 var parts = data[0].aboutme.split("{");
 
-
                 //$("#aboutme").text(data[0].aboutme);
-                if(parts.length>1) {
+                if (parts.length > 1) {
                     $("#aboutme").text(parts[0]);
-                }else{
+                } else {
                     $("#aboutme").text(data[0].aboutme);
                 }
 
@@ -135,13 +129,9 @@ export default class RowHeadComponent extends React.Component {
 
                 abutme = data[0].aboutme;
 
-
-
-
-                
-        })
-            .catch(function(err){
-               console.log(err);
+            })
+            .catch(function (err) {
+                console.log(err);
             });
         //
         // for(let x=0;x<1000;x++){
@@ -150,21 +140,17 @@ export default class RowHeadComponent extends React.Component {
         // }
 
         ps.getAdminRight(localStorage.getItem("sessionUserId"))
-            .then(function(data){
-
+            .then(function (data) {
 
                 $("#reports").hide();
-                if(data[0].role===2 || data[0].role==="2"){
+                if (data[0].role === 2 || data[0].role === "2") {
                     $("#reports").show();
                 }
 
-
             })
-            .catch(function(err){
+            .catch(function (err) {
                 console.log(err);
             });
-
-
 
         console.log(localStorage.getItem("sessionProfileId"));
 
@@ -180,7 +166,6 @@ export default class RowHeadComponent extends React.Component {
         //profile = localStorage.getItem("sessionProfile");
 
         ppp = JSON.parse(JSON.stringify(localStorage.getItem("sessionProfile")));
-
 
         console.log("omgkommt");
         console.log(omg.aboutme);
@@ -200,30 +185,30 @@ export default class RowHeadComponent extends React.Component {
         ppp = localStorage.getItem("sessionProfile");
         console.log(ppp);
 
-
         console.log("abutme");
         console.log(abutme);
 
         return <div>
             <div className="row">
-            <div className="col-md-2">
-                <ProfilPic />
-                <br /><br />
-                <button type="button" className="btn btn-primary"><span className="glyphicon glyphicon-picture"></span> Profilfoto ausw&auml;hlen</button>
+                <div className="col-md-2">
+                    <ProfilPic />
+                    <br /><br />
+                    <button type="button" className="btn btn-primary"><span
+                        className="glyphicon glyphicon-picture"></span> Profilfoto ausw&auml;hlen
+                    </button>
+                </div>
+                <div className="col-md-10">
+                    <a href="#/reports" id="reports" type="button" className="btn btn-danger  pull-right"><span
+                        className="glyphicon glyphicon-screenshot"></span>Beschwerden</a>
+                    <a href="#/edit" type="button" className="btn btn-primary pull-right"><span
+                        className="glyphicon glyphicon-pencil"></span> "&Uuml;ber Dich" bearbeiten</a>
+                    <h1 id="proname"></h1>
+                    <p id="aboutme">
+
+                    </p>
+
+                </div>
             </div>
-            <div className="col-md-10">
-                <a href="#/reports" id="reports" type="button" className="btn btn-danger  pull-right"><span className="glyphicon glyphicon-screenshot"></span>Beschwerden</a>
-                <a href="#/edit" type="button" className="btn btn-primary pull-right"><span className="glyphicon glyphicon-pencil"></span> "&Uuml;ber Dich" bearbeiten</a>
-                <h1 id="proname"></h1>
-                <p id="aboutme">
-
-                </p>
-
-
-
-
-            </div>
-        </div>
         </div>;
     }
 

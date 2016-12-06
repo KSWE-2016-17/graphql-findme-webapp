@@ -2,7 +2,6 @@ import React from "react";
 
 export default class NewMailHeaderComponent extends React.Component {
 
-
     createContent() {
         return <div>
             <div className="row">
@@ -13,13 +12,11 @@ export default class NewMailHeaderComponent extends React.Component {
             </div>
             <div className="row">
                 <div className="col-md-12">
-                    <div style={{border:"1px solid"}}></div>
+                    <div style={{border: "1px solid"}}></div>
                 </div>
             </div>
         </div>;
     }
-
-
 
     render() {
         return (

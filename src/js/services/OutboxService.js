@@ -17,25 +17,25 @@ export default class OutboxService {
         return defer.promise;
     }
 
-    removeMsg(obj, uid){
+    removeMsg(obj, uid) {
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msg2Dao.remove(obj,uid)
+        msg2Dao.remove(obj, uid)
             .then(defer.resolve)
             .catch(defer.reject);
 
         return defer.promise;
     }
 
-    updateMsg(obj){
+    updateMsg(obj) {
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
-    
+
         msg2Dao.createOrUpdate(obj)
             .then(defer.resolve)
             .catch(defer.reject);
@@ -43,7 +43,7 @@ export default class OutboxService {
         return defer.promise;
     }
 
-    findMsgFromMeUndeleted(from){
+    findMsgFromMeUndeleted(from) {
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);

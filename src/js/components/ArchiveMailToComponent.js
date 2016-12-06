@@ -20,7 +20,7 @@ export default class ArchiveMailToComponent extends React.Component {
     onArchiveMail(event) {
         console.log("pressed archive");
         let self = this;
-        self.props.data.message.archivedTo=false;
+        self.props.data.message.archivedTo = false;
         let is = new IS();
         is.updateMsg(self.props.data.message);
     }
@@ -29,7 +29,7 @@ export default class ArchiveMailToComponent extends React.Component {
         console.log("pressed delete");
         let self = this;
         let is = new IS();
-        self.props.data.message.deletedTo=true;
+        self.props.data.message.deletedTo = true;
         is.updateMsg(self.props.data.message);
     }
 
@@ -45,7 +45,10 @@ export default class ArchiveMailToComponent extends React.Component {
                     </div>
                     <div className="col-md-10">
                         <div>
-                            <div style={{background: "linear-gradient(to left, rgba(255, 204, 102,1), rgba(77, 153, 0,1))", border: "2px solid #000000"}}>
+                            <div style={{
+                                background: "linear-gradient(to left, rgba(255, 204, 102,1), rgba(77, 153, 0,1))",
+                                border: "2px solid #000000"
+                            }}>
                                 <p>{self.props.data.user.login ? self.props.data.user.login : self.props.data.message.from}</p>
                             </div>
                             <div style={{border: "1px solid #000000"}}>

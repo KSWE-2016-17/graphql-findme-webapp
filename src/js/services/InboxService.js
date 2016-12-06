@@ -17,20 +17,20 @@ export default class InboxService {
         return defer.promise;
     }
 
-    removeMsg(obj, uid){
+    removeMsg(obj, uid) {
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
 
-        msg2Dao.remove(obj,uid)
+        msg2Dao.remove(obj, uid)
             .then(defer.resolve)
             .catch(defer.reject);
 
         return defer.promise;
     }
 
-    findMsgToMeUndeleted(to){
+    findMsgToMeUndeleted(to) {
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -43,7 +43,7 @@ export default class InboxService {
         return defer.promise;
     }
 
-    updateMsg(obj){
+    updateMsg(obj) {
         let defer = q.defer();
 
         let dm = new CouchDbApi.DaoManager(connSettings);
@@ -55,7 +55,6 @@ export default class InboxService {
 
         return defer.promise;
     }
-
 
     resolveUserName(id) {
         let defer = q.defer();
