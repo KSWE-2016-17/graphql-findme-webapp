@@ -42,7 +42,7 @@ export default class NewMailComponent extends React.Component {
                 "archivedTo": false,
                 "deletedFrom": false,
                 "deletedTo": false
-            }
+            };
 
             if (sendtoid !== "NOTFOUND") {
                 mailservice.sendMail(obj, {

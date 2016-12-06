@@ -27,12 +27,12 @@ export default class RegistrierenViewFormComponent extends React.Component {
             "login": name,
             "password": pw,
             "role": 0
-        }
+        };
 
         let objPrivacy = {
             "friends": 1,
             "pictures": 0
-        }
+        };
 
         let objProfil = {
             "doctype": "profile",
@@ -50,7 +50,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
             "haircolor": 3,
             "eyecolor": 0,
             "figure": 1
-        }
+        };
 
         if (name !== "" && mail !== "" && pw === pw2 && gender !== "" && yearOfBirth !== "" && accept === true) {
             //user registrieren

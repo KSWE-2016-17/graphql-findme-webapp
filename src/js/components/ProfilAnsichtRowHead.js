@@ -14,7 +14,7 @@ export default class RowHeadComponent extends React.Component {
         let privacy = {
             "friends": 0,
             "pictures": 0
-        }
+        };
         let profile = {
             "_id": "",
             "_rev": "",
@@ -33,7 +33,7 @@ export default class RowHeadComponent extends React.Component {
             "haircolor": 3,
             "eyecolor": 0,
             "figure": 1
-        }
+        };
         let profile2 = {
             "_id": "",
             "_rev": "",
@@ -52,7 +52,7 @@ export default class RowHeadComponent extends React.Component {
             "haircolor": 3,
             "eyecolor": 0,
             "figure": 1
-        }
+        };
 
         let omg = {
             "_id": "",
@@ -72,7 +72,7 @@ export default class RowHeadComponent extends React.Component {
             "haircolor": 3,
             "eyecolor": 0,
             "figure": 1
-        }
+        };
 
         let nwo;
         let ppp;
