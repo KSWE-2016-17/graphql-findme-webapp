@@ -1,12 +1,10 @@
 import React from "react";
-import q from "q";
-import _ from "lodash";
 
 import FriendRow from "./FriendsListTab_FriendRow";
+
 import FriendsListService from "../services/FriendsListService";
 
 export default class FriendProfileView_HeadRow extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -28,6 +26,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
     componentDidMount() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.getCurrentProfile()

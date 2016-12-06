@@ -1,6 +1,5 @@
 import React from "react";
 
-import ProfileService from "../services/ProfilService";
 import FriendsListService from "../services/FriendsListService";
 
 export default class FriendProfileInterests extends React.Component {
@@ -33,13 +32,12 @@ export default class FriendProfileInterests extends React.Component {
 
     componentDidMount() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         console.log("profile view id: " + self.props.profileID);
         friendsListService.getProfile(self.props.profileID)
             .then(function (profileData) {
-                //     friendsListService.getUser(profileData[0].user_id)
-                //         .then(function (userData) {
                 let aboutme = profileData[0].aboutme;
 
                 let aboutmeParts = aboutme.split("#");

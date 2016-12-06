@@ -2,9 +2,9 @@ import React from "react";
 import q from "q";
 import _ from "lodash";
 
-import MailComponent from "./MailItemComponent";
-import ArchiveMailFrom from "./ArchiveMailFromComponent";
-import ArchiveMailTo from "./ArchiveMailToComponent";
+import ArchiveMailFromComponent from "./ArchiveMailFromComponent";
+import ArchiveMailToComponent from "./ArchiveMailToComponent";
+
 import ArchiveService from "../services/ArchiveService"
 
 export default class ArchiveMailComponentMailComponent extends React.Component {
@@ -29,9 +29,9 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
     componentDidMount() {
         let self = this;
 
-        let ArchieService = new ArchiveService();
+        let archieService = new ArchiveService();
 
-        ArchieService.findArchFromMe(localStorage.getItem("sessionUserId"))
+        archieService.findArchFromMe(localStorage.getItem("sessionUserId"))
             .then(function (data) {
                 console.debug("received messages: " + data.length);
                 let messages = data;
@@ -51,7 +51,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                 for (let i = 0; i < uniqueUsers.length; i++) {
                     let uniqueUser = uniqueUsers[i];
 
-                    promises.push(ArchieService.resolveUserName(uniqueUser.to));
+                    promises.push(archieService.resolveUserName(uniqueUser.to));
                 }
 
                 q.all(promises)
@@ -73,12 +73,11 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
 
                                 let mails = self.state.mails;
                                 mails.push(
-                                    <ArchiveMailFrom
+                                    <ArchiveMailFromComponent
                                         key={Math.random()}
                                         data={md}/>
                                 );
                                 self.setState({mails: mails});
-
                             }
                         }
                     })
@@ -90,7 +89,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                 console.log(err);
             });
 
-        ArchieService.findArchToMe(localStorage.getItem("sessionUserId"))
+        archieService.findArchToMe(localStorage.getItem("sessionUserId"))
             .then(function (data) {
                 console.debug("received messages: " + data.length);
                 let messages = data;
@@ -110,13 +109,12 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                 for (let i = 0; i < uniqueUsers.length; i++) {
                     let uniqueUser = uniqueUsers[i];
 
-                    promises.push(ArchieService.resolveUserName(uniqueUser.from));
+                    promises.push(archieService.resolveUserName(uniqueUser.from));
                 }
 
                 q.all(promises)
                     .then(function (data) {
                         for (let i = 0; i < data.length; i++) {
-
                             let promiseResult = data[i];
 
                             _.forEach(mappedData, function (value, index, arr) {
@@ -132,12 +130,11 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
 
                                 let mails = self.state.mails;
                                 mails.push(
-                                    <ArchiveMailTo
+                                    <ArchiveMailToComponent
                                         key={Math.random()}
                                         data={md}/>
                                 );
                                 self.setState({mails: mails});
-
                             }
                         }
                     })

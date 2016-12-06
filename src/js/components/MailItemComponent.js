@@ -1,8 +1,8 @@
 import React from "react";
 
-import Image from "./DefaultImage";
+import DefaultImage from "./DefaultImage";
 
-import IS from "../services/InboxService";
+import InboxService from "../services/InboxService";
 
 export default class MailComponent extends React.Component {
     constructor(props) {
@@ -21,7 +21,7 @@ export default class MailComponent extends React.Component {
                 <br/>
                 <div className="row">
                     <div className="col-md-1">
-                        <Image/>
+                        <DefaultImage/>
                     </div>
                     <div className="col-md-10">
                         <div>
@@ -66,14 +66,14 @@ export default class MailComponent extends React.Component {
         console.log("pressed archive");
         let self = this;
         self.props.data.message.archivedTo = true;
-        let is = new IS();
+        let is = new InboxService();
         is.updateMsg(self.props.data.message);
     }
 
     onDeleteMail(event) {
         console.log("pressed delete");
         let self = this;
-        let is = new IS();
+        let is = new InboxService();
         self.props.data.message.deletedTo = true;
         is.updateMsg(self.props.data.message);
     }

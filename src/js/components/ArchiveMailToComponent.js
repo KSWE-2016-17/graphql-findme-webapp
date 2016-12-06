@@ -1,8 +1,8 @@
 import React from "react";
 
-import Image from "./DefaultImage";
+import DefaultImage from "./DefaultImage";
 
-import IS from "../services/OutboxService";
+import OutboxService from "../services/OutboxService";
 
 export default class ArchiveMailToComponent extends React.Component {
     constructor(props) {
@@ -21,7 +21,7 @@ export default class ArchiveMailToComponent extends React.Component {
                 <br/>
                 <div className="row">
                     <div className="col-md-1">
-                        <Image/>
+                        <DefaultImage/>
                     </div>
                     <div className="col-md-10">
                         <div>
@@ -69,14 +69,14 @@ export default class ArchiveMailToComponent extends React.Component {
         console.log("pressed archive");
         let self = this;
         self.props.data.message.archivedTo = false;
-        let is = new IS();
+        let is = new OutboxService();
         is.updateMsg(self.props.data.message);
     }
 
     onDeleteMail(event) {
         console.log("pressed delete");
         let self = this;
-        let is = new IS();
+        let is = new OutboxService();
         self.props.data.message.deletedTo = true;
         is.updateMsg(self.props.data.message);
     }

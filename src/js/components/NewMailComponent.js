@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "./DefaultImage";
+
 import NewMailService from "../services/NewMailService"
 
 let sendtoid = "NOTFOUND";
@@ -18,7 +18,6 @@ export default class NewMailComponent extends React.Component {
     }
 
     getSendTo() {
-
         let sendto = $("#sendto").val();
 
         mailservice.resolveUserName(sendto, {
@@ -32,12 +31,10 @@ export default class NewMailComponent extends React.Component {
     }
 
     sendMail() {
-
         let message = $("#message").val();
         let from = localStorage.getItem("sessionUserId");
 
         if (message !== "") {
-
             let obj = {
                 "doctype": "msg",
                 "from": from,
@@ -59,65 +56,64 @@ export default class NewMailComponent extends React.Component {
                         console.log(err);
                     }
                 });
-            }
-            else {
+            } else {
                 alert("USER NOT FOUND");
             }
-        }
-
-        else {
+        } else {
             alert("EMPTY FIELDS");
         }
-
     }
 
     createContent() {
-        return <div>
-            <div name="NEWMAIL">
-                <br/>
-                <div className="row">
-                    <div className="col-md-10 col-md-offset-1">
-                        <form role="form">
-                            <table className="table" style={{width: "100%", border: "1px solid lightgrey"}}>
-                                <tr>
-                                    <td colspan="2">
-                                        <input type="email" className="form-control" id="sendto" placeholder="Empfänger"
-                                               style={{width: "100%", border: "2px solid lightblue"}}
-                                               onChange={this.getSendTo}>
-                                        </input>
-                                    </td>
-                                </tr>
-                                <tr>
+        return (
+            <div>
+                <div name="NEWMAIL">
+                    <br/>
+                    <div className="row">
+                        <div className="col-md-10 col-md-offset-1">
+                            <form role="form">
+                                <table className="table" style={{width: "100%", border: "1px solid lightgrey"}}>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input type="email" className="form-control" id="sendto"
+                                                   placeholder="Empfänger"
+                                                   style={{width: "100%", border: "2px solid lightblue"}}
+                                                   onChange={this.getSendTo}>
+                                            </input>
+                                        </td>
+                                    </tr>
+                                    <tr>
 
-                                </tr>
-                                <tr colspan="2">
-                                    <td>
-                                        <br/>
-                                        <textarea name="Text1" id="message" rows="15"
-                                                  style={{width: "100%", border: "2px solid lightblue"}}></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <div className="row">
-                                        <div className="col-md-10">
-                                            <button className="btn btn-primary btn-md" type="button"
-                                                    onClick={this.sendMail}><span
-                                                className="glyphicon glyphicon-envelope"></span> Senden
-                                            </button>
+                                    </tr>
+                                    <tr colspan="2">
+                                        <td>
+                                            <br/>
+                                            <textarea name="Text1" id="message" rows="15"
+                                                      style={{width: "100%", border: "2px solid lightblue"}}></textarea>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <div className="row">
+                                            <div className="col-md-10">
+                                                <button className="btn btn-primary btn-md" type="button"
+                                                        onClick={this.sendMail}><span
+                                                    className="glyphicon glyphicon-envelope"></span> Senden
+                                                </button>
+                                            </div>
+                                            <div className="col-md-1">
+                                                <button className="btn btn-danger btn-md" type="button"
+                                                        onClick={this.removeMail}><span
+                                                    className="glyphicon glyphicon-remove"></span> Verwerfen
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div className="col-md-1">
-                                            <button className="btn btn-danger btn-md" type="button"
-                                                    onClick={this.removeMail}><span
-                                                className="glyphicon glyphicon-remove"></span> Verwerfen
-                                            </button>
-                                        </div>
-                                    </div>
-                                </tr>
-                            </table>
-                        </form>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>;
+        );
     }
 }

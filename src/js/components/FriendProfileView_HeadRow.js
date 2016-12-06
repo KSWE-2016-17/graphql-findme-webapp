@@ -1,14 +1,10 @@
 import React from "react";
-import q from "q";
-import _ from "lodash";
+
+import FriendProfilImage from "./FriendProfileImage";
+
 import FriendsListService from "../services/FriendsListService";
 
-//import DefaultProfilImage from "./DefaultProfilImage";
-
-import DefaultProfilImage from "./FriendProfileImage";
-
 export default class FriendProfileView_HeadRow extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -27,7 +23,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-md-2">
-                        <DefaultProfilImage profileID={self.props.profileID}/>
+                        <FriendProfilImage profileID={self.props.profileID}/>
                         <br/><br/>
                         <a href="#/mails/new" type="button" className="btn btn-primary"><span
                             className="glyphicon glyphicon-envelope"></span> Nachricht senden</a>
@@ -45,7 +41,6 @@ export default class FriendProfileView_HeadRow extends React.Component {
                     </div>
                     <div className="col-md-2">
                         <button type="button" id="REPORT" className="btn btn-primary" onClick={self.reportUser}>
-
                             <span className="glyphicon glyphicon-screenshot"></span> Benutzer melden
                         </button>
                     </div>
@@ -56,6 +51,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
     componentDidMount() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         console.log("profile view id: " + self.props.profileID);
@@ -66,7 +62,6 @@ export default class FriendProfileView_HeadRow extends React.Component {
                         self.setState({friendName: userData[0].login});
                         self.setState({aboutMe: profileData[0].aboutme});
 
-                        //friend profile fix
                         let parts = profileData[0].aboutme.split("{");
                         if (parts.length > 1) {
                             $("#aboutme").text(parts[0]);
@@ -88,6 +83,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
     reportUser() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.reportUser(self.props.profileID);

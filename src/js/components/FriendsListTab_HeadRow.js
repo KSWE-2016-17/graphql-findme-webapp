@@ -1,9 +1,6 @@
 import React from "react";
 
-import DefaultProfilImage from "./DefaultProfilImage";
-
 export default class FriendProfileView_HeadRow extends React.Component {
-
     render() {
         return (
             <div>

@@ -1,23 +1,18 @@
 import React from "react";
-import q from "q";
-import _ from "lodash";
 
-import PS from "../services/ProfilService";
+import ProfileImage from "./ProfileImage";
 
-import DefaultProfilImage from "./DefaultProfilImage";
-import ProfilPic from "./ProfileImage";
+import ProfilService from "../services/ProfilService";
 
 export default class RowHeadComponent extends React.Component {
     render() {
-
         return (
-            <div>{this.createRowHead()}
-            </div>
+            <div>{this.createRowHead()}</div>
         );
     }
 
     createRowHead() {
-        let ps = new PS();
+        let ps = new ProfilService();
         let privacy = {
             "friends": 0,
             "pictures": 0
@@ -85,8 +80,6 @@ export default class RowHeadComponent extends React.Component {
         let ppp;
 
         let abutme;
-
-        // ps.linkProfile(localStorage.getItem("sessionUserId"));
 
         console.log(localStorage.getItem("sessionProfileId"));
 
@@ -195,27 +188,26 @@ export default class RowHeadComponent extends React.Component {
         console.log("abutme");
         console.log(abutme);
 
-        return <div>
-            <div className="row">
-                <div className="col-md-2">
-                    <ProfilPic/>
-                    <br/><br/>
-                    <button type="button" className="btn btn-primary"><span
-                        className="glyphicon glyphicon-picture"></span> Profilfoto ausw&auml;hlen
-                    </button>
-                </div>
-                <div className="col-md-10">
-                    <a href="#/reports" id="reports" type="button" className="btn btn-danger  pull-right"><span
-                        className="glyphicon glyphicon-screenshot"></span>Beschwerden</a>
-                    <a href="#/edit" type="button" className="btn btn-primary pull-right"><span
-                        className="glyphicon glyphicon-pencil"></span> "&Uuml;ber Dich" bearbeiten</a>
-                    <h1 id="proname"></h1>
-                    <p id="aboutme">
-
-                    </p>
-
+        return (
+            <div>
+                <div className="row">
+                    <div className="col-md-2">
+                        <ProfileImage/>
+                        <br/><br/>
+                        <button type="button" className="btn btn-primary"><span
+                            className="glyphicon glyphicon-picture"></span> Profilfoto ausw&auml;hlen
+                        </button>
+                    </div>
+                    <div className="col-md-10">
+                        <a href="#/reports" id="reports" type="button" className="btn btn-danger  pull-right"><span
+                            className="glyphicon glyphicon-screenshot"></span>Beschwerden</a>
+                        <a href="#/edit" type="button" className="btn btn-primary pull-right"><span
+                            className="glyphicon glyphicon-pencil"></span> "&Uuml;ber Dich" bearbeiten</a>
+                        <h1 id="proname"></h1>
+                        <p id="aboutme"></p>
+                    </div>
                 </div>
             </div>
-        </div>;
+        );
     }
 }

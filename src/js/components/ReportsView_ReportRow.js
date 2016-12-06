@@ -1,11 +1,8 @@
 import React from "react";
-import q from "q";
-import _ from "lodash";
 
 import AdminService from "../services/AdminService";
 
 export default class FriendsListTab_FriendRow extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -37,6 +34,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
     componentDidMount() {
         let self = this;
+
         let adminService = new AdminService();
 
         adminService.getProfile(self.props.profileID)
@@ -55,8 +53,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
                         .catch(function (err) {
                             console.log(err);
                         });
-                }
-                else {
+                } else {
                     console.log("Warning: Profile with profile id '" + self.props.profileID + "'" + " not found!");
                 }
             })
@@ -67,6 +64,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
     ignoreCase() {
         let self = this;
+
         let adminService = new AdminService();
 
         adminService.removeReportedMark(self.props.profileID, {
@@ -78,6 +76,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
     deleteProfile() {
         let self = this;
+
         let adminService = new AdminService();
 
         adminService.deleteUser(self.state.userID, {

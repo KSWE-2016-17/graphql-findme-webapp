@@ -2,7 +2,7 @@ import React from "react";
 import q from "q";
 import _ from "lodash";
 
-import MailComponent from "./OutboxMailItemComponent";
+import OutboxMailItemComponent from "./OutboxMailItemComponent";
 
 import OutboxService from "../services/OutboxService"
 
@@ -71,7 +71,7 @@ export default class OutboxMailComponent extends React.Component {
 
                                 let mails = self.state.mails;
                                 mails.push(
-                                    <MailComponent
+                                    <OutboxMailItemComponent
                                         key={Math.random()}
                                         data={md}/>
                                 );

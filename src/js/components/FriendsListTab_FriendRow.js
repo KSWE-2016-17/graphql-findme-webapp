@@ -1,12 +1,10 @@
 import React from "react";
-import q from "q";
-import _ from "lodash";
 
-import Image from "./DefaultProfilImage";
+import DefaultProfilImage from "./DefaultProfilImage";
+
 import FriendsListService from "../services/FriendsListService";
 
 export default class FriendsListTab_FriendRow extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -27,7 +25,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
             return (
                 <div className="row">
                     <div className="col-md-1">
-                        <Image/>
+                        <DefaultProfilImage/>
                     </div>
                     <div className="col-md-11">
                         <font size="5"> {self.state.friendName} </font><br/>
@@ -42,12 +40,11 @@ export default class FriendsListTab_FriendRow extends React.Component {
                     </div>
                 </div>
             );
-        }
-        else if ((self.props.status === 1) || (self.props.status === "1")) { // is friend
+        } else if ((self.props.status === 1) || (self.props.status === "1")) { // is friend
             return (
                 <div className="row">
                     <div className="col-md-1">
-                        <Image/>
+                        <DefaultProfilImage/>
                     </div>
                     <div className="col-md-11">
                         <font size="5"> {self.state.friendName} </font><br/>
@@ -70,8 +67,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
                     </div>
                 </div>
             );
-        }
-        else {
+        } else {
             return (
                 <div className="row">
                     empty
@@ -82,6 +78,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
     componentDidMount() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.getProfile(self.props.profileID)
@@ -106,6 +103,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
     addFriend() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, true, {
@@ -117,6 +115,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
     dontAddFriend() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, false, {
@@ -128,6 +127,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
     endFriendship() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.endFrienship(self.props.friendsListID, self.props.profileID, {
@@ -139,6 +139,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
     reportUser() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.reportUser(self.props.profileID);

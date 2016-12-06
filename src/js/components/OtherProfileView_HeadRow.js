@@ -1,12 +1,11 @@
 import React from "react";
 
+import DefaultProfilImage from "./DefaultProfilImage";
+
 import FriendsListService from "../services/FriendsListService";
 import ProfilService from "../services/ProfilService";
 
-import DefaultProfilImage from "./DefaultProfilImage";
-
 export default class FriendProfileView_HeadRow extends React.Component {
-
     constructor(props) {
         super(props);
 
