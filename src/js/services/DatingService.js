@@ -5,8 +5,8 @@ export default class DatingService {
     findAll(callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
-        profileDao.findAll(callbacks,  {
-            success: function(data) {
+        profileDao.findAll()
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         callbacks.success(data);
@@ -16,22 +16,21 @@ export default class DatingService {
                         callbacks.error("findAll profiles fail");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .catch((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
-        
+            });
+
     }
 
-    findIdByName(login,callbacks){
+    findIdByName(login, callbacks) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let userDao = dm.getDao(CouchDbApi.UserDAO);
-        userDao.findByLogin(login,  {
-            success: function(data) {
+        userDao.findByLogin(login)
+            .then((data) => {
                 if (data) {
                     if (callbacks && typeof callbacks.success === "function") {
                         callbacks.success(data);
@@ -41,14 +40,12 @@ export default class DatingService {
                         callbacks.error("user resolving fail");
                     }
                 }
-            },
-            error: function(err) {
+            })
+            .then((err) => {
                 console.error(err);
                 if (callbacks && typeof callbacks.error === "function") {
                     callbacks.error(err);
                 }
-            }
-        });
+            });
     }
-    
 }
