@@ -28,7 +28,7 @@ export default class InboxService {
     updateMsg(obj) {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
-        console.debug("ARCHIVDDAO");
+
         return msg2Dao.createOrUpdate(obj);
     }
 

@@ -36,7 +36,6 @@ export default class ProfilService {
         let dm = new CouchDbApi.DaoManager(connSettings);
         let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
 
-        console.log("linkprofile");
         profileDao.findByUserId(uid)
             .then((data) => {
                 if (data) {
