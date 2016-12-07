@@ -77,11 +77,10 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         friendsListService.getCurrentProfile()
             .then(function (data) {
-                friendsListService.newFriendsListEntry(self.props.profileID, data[0]._id, 0, {
-                    success: function () {
+                friendsListService.newFriendsListEntry(self.props.profileID, data[0]._id, 0)
+                    .then((data) => {
                         window.location.reload();
-                    }
-                });
+                    });
             })
             .catch(function (err) {
                 console.log(err);
