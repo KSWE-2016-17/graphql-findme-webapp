@@ -36,7 +36,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                 console.debug("received messages: " + data.length);
                 let messages = data;
 
-                let mappedData = _.map(messages, function (msg) {
+                let mappedData = _.map(messages, (msg) => {
                     return {
                         user: {},
                         message: msg
@@ -60,7 +60,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
 
                             let promiseResult = data[i];
 
-                            _.forEach(mappedData, function (value, index, arr) {
+                            _.forEach(mappedData, (value, index, arr) => {
                                 if (promiseResult.length > 0) {
                                     if (value.message.to === promiseResult[0]._id) {
                                         value.user = promiseResult[0];
@@ -94,7 +94,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                 console.debug("received messages: " + data.length);
                 let messages = data;
 
-                let mappedData = _.map(messages, function (msg) {
+                let mappedData = _.map(messages, (msg) => {
                     return {
                         user: {},
                         message: msg
@@ -117,7 +117,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                         for (let i = 0; i < data.length; i++) {
                             let promiseResult = data[i];
 
-                            _.forEach(mappedData, function (value, index, arr) {
+                            _.forEach(mappedData, (value, index, arr) => {
                                 if (promiseResult.length > 0) {
                                     if (value.message.from === promiseResult[0]._id) {
                                         value.user = promiseResult[0];
