@@ -45,8 +45,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
                         .then(function (data) {
                             if (data[0]) {
                                 self.setState({profileName: data[0].login});
-                            }
-                            else {
+                            } else {
                                 console.log("Warning: Profile '" + self.props.profileID + "'" + " has an unknown user-id");
                             }
                         })

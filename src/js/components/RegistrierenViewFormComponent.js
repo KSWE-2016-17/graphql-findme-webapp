@@ -82,23 +82,19 @@ export default class RegistrierenViewFormComponent extends React.Component {
                                     console.log(err);
                                 }
                             });
-
                         },
                         error: function (err) {
                             console.log(err);
                         }
                     });
-
                 },
                 error: function (err) {
                     console.log(err);
                 }
             });
-
         } else {
             alert("Bitte alle Felder ausfuellen!");
         }
-
     }
 
     createRegistrierenViewForm() {

@@ -76,6 +76,5 @@ export default class MailComponent extends React.Component {
         let os = new OutboxService();
         self.props.data.message.deletedFrom = true;
         os.updateMsg(self.props.data.message);
-
     }
 }

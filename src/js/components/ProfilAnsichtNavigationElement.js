@@ -40,7 +40,6 @@ export default class NavigationComponent extends React.Component {
                     console.log(err);
                 });
         }
-
     }
 
     createNavigation() {

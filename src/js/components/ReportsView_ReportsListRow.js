@@ -42,8 +42,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
                         newReportList.push(
                             <div>
                                 <ReportRow
-                                    profileID={data[i]._id}
-                                />
+                                    profileID={data[i]._id}/>
                                 <hr/>
                             </div>
                         );
