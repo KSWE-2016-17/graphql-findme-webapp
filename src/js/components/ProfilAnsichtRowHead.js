@@ -107,24 +107,6 @@ export default class RowHeadComponent extends React.Component {
                 let builder = data[0].firstname;
                 $("#proname").text(builder);
 
-                // profile._id = data[0]._id;
-                // profile._rev = data[0]._rev;
-                // profile.doctype = data[0].doctype;
-                // profile.user_id = data[0].user_id;
-                // profile.firstname = data[0].firstname;
-                // profile.lastname = data[0].lastname;
-                // profile.email = data[0].email;
-                // profile.familystatus = data[0].familystatus;
-                // profile.children = data[0].children;
-                // profile.aboutme = data[0].aboutme;
-                // privacy.friends = data[0].privacy.friends;
-                // privacy.pictures = data[0].privacy.pictures;
-                // profile.privacy= privacy;
-                // profile.profilepic = data[0].profilepic;
-                // profile.haircolor = data[0].haircolor;
-                // profile.eyecolor = data[0].eyecolor;
-                // profile.figure = data[0].figure;
-
                 nwo = JSON.parse(JSON.stringify(data[0]));
 
                 abutme = data[0].aboutme;
@@ -133,11 +115,6 @@ export default class RowHeadComponent extends React.Component {
             .catch((err) => {
                 console.log(err);
             });
-        //
-        // for(let x=0;x<1000;x++){
-        //     if(x>990)
-        //     console.log(x);
-        // }
 
         ps.getAdminRight(localStorage.getItem("sessionUserId"))
             .then((data) => {
@@ -152,17 +129,6 @@ export default class RowHeadComponent extends React.Component {
             });
 
         console.log(localStorage.getItem("sessionProfileId"));
-
-        // ps.getProfile(localStorage.getItem("sessionProfileId"),{
-        //     success: function(data) {
-        //         profile = data[0];
-        //     },
-        //     error: function(err) {
-        //         console.log(err);
-        //     }
-        // });
-
-        //profile = localStorage.getItem("sessionProfile");
 
         ppp = JSON.parse(JSON.stringify(localStorage.getItem("sessionProfile")));
 
