@@ -143,7 +143,7 @@ export default class RowHeadComponent extends React.Component {
             .then((data) => {
                 $("#reports").hide();
 
-                if (data[0].role === 2 || data[0].role === "2") {
+                if (data && data[0] && (data[0].role === 2 || data[0].role === "2")) {
                     $("#reports").show();
                 }
             })
