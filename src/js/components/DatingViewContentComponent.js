@@ -173,7 +173,7 @@ export default class DatingViewContentComponent extends React.Component {
                             <td>
                                 <br/>
                                 <button className="btn btn-primary btn-md" type="submit">
-                                    <span className="glyphicon glyphicon-search" onclick={this.showSearchResult}></span>Suche
+                                    <span className="glyphicon glyphicon-search" onClick={this.showSearchResult}></span>Suche
                                 </button>
                             </td>
                             <td></td>
