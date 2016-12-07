@@ -60,38 +60,35 @@ export default class RegistrierenViewFormComponent extends React.Component {
         if (name !== "" && mail !== "" && pw === pw2 && gender !== "" && yearOfBirth !== "" && accept === true) {
             //user registrieren
             let registerService = new RegisterService();
-            registerService.register(objUser, {
-                success: function (data) {
+            registerService.register(objUser)
+                .then((data) => {
                     //location.href = "#/login";
 
                     //user_id ermitteln
-                    registerService.findIdByName(name, {
-                        success: function (data) {
+                    registerService.findIdByName(name)
+                        .then((data) => {
                             let user = "";
                             user = data[0]._id;
                             objProfil.user_id = user;
 
                             //profil anlegen
                             let profilService = new ProfilService();
-                            profilService.createProfile(objProfil, {
-                                success: function (data) {
+                            profilService.createProfile(objProfil)
+                                .then((data) => {
                                     //alert("Test: " + objProfil.user_id);
                                     location.href = "#/login";
-                                },
-                                error: function (err) {
+                                })
+                                .catch((err) => {
                                     console.log(err);
-                                }
-                            });
-                        },
-                        error: function (err) {
+                                });
+                        })
+                        .catch((err) => {
                             console.log(err);
-                        }
-                    });
-                },
-                error: function (err) {
+                        });
+                })
+                .catch((err) => {
                     console.log(err);
-                }
-            });
+                });
         } else {
             alert("Bitte alle Felder ausfuellen!");
         }

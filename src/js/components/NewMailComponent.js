@@ -20,14 +20,13 @@ export default class NewMailComponent extends React.Component {
     getSendTo() {
         let sendto = $("#sendto").val();
 
-        mailservice.resolveUserName(sendto, {
-            success: function (data) {
+        mailservice.resolveUserName(sendto)
+            .then((data) => {
                 sendtoid = data[0]._id;
-            },
-            error: function (err) {
+            })
+            .catch((err) => {
                 console.log(err);
-            }
-        });
+            });
     }
 
     sendMail() {

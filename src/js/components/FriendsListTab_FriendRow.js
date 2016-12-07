@@ -106,11 +106,10 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         let friendsListService = new FriendsListService();
 
-        friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, true, {
-            success: function () {
+        friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, true)
+            .then((data) => {
                 window.location.reload();
-            }
-        });
+            });
     }
 
     dontAddFriend() {
@@ -118,11 +117,10 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         let friendsListService = new FriendsListService();
 
-        friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, false, {
-            success: function () {
+        friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, false)
+            .then((data) => {
                 window.location.reload();
-            }
-        });
+            });
     }
 
     endFriendship() {
@@ -130,11 +128,10 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         let friendsListService = new FriendsListService();
 
-        friendsListService.endFrienship(self.props.friendsListID, self.props.profileID, {
-            success: function () {
+        friendsListService.endFrienship(self.props.friendsListID, self.props.profileID)
+            .then((data) => {
                 window.location.reload();
-            }
-        });
+            });
     }
 
     reportUser() {
