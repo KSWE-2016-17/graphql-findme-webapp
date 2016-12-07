@@ -20,8 +20,8 @@ export default class DatingViewContentComponent extends React.Component {
 
         let datingService = new DatingService();
 
-        datingService.findAll(callback, {
-            success: function (data) {
+        datingService.findAll()
+            .then((data) => {
                 let size = data.size;
 
                 for (let i = 1; i <= size; i++) {
@@ -29,11 +29,10 @@ export default class DatingViewContentComponent extends React.Component {
                         document.getElementById("searchresult").innerHTML += data[i].firstname;
                     }
                 }
-            },
-            error: function (err) {
+            })
+            .catch((err) => {
                 console.log(err);
-            }
-        });
+            });
     }
 
     createDatingViewContentComponent() {

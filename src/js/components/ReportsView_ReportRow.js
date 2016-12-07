@@ -67,11 +67,10 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         let adminService = new AdminService();
 
-        adminService.removeReportedMark(self.props.profileID, {
-            success: function () {
+        adminService.removeReportedMark(self.props.profileID)
+            .then((data) => {
                 window.location.reload();
-            }
-        });
+            });
     }
 
     deleteProfile() {
@@ -79,15 +78,11 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         let adminService = new AdminService();
 
-        adminService.deleteUser(self.state.userID, {
-            success: function () {
-            }
-        });
+        adminService.deleteUser(self.state.userID);
 
-        adminService.removeProfile(self.props.profileID, {
-            success: function () {
+        adminService.removeProfile(self.props.profileID)
+            .then((data) => {
                 window.location.reload();
-            }
-        });
+            });
     }
 }

@@ -47,15 +47,14 @@ export default class NewMailComponent extends React.Component {
             };
 
             if (sendtoid !== "NOTFOUND") {
-                mailservice.sendMail(obj, {
-                    success: function (data) {
+                mailservice.sendMail(obj)
+                    .then((data) => {
                         sendtoid = "NOTFOUND";
                         location.href = "#/mails/outbox";
-                    },
-                    error: function (err) {
+                    })
+                    .catch((err) => {
                         console.log(err);
-                    }
-                });
+                    });
             } else {
                 alert("USER NOT FOUND");
             }

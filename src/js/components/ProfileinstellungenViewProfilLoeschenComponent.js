@@ -45,42 +45,36 @@ export default class ProfileinstellungenViewProfilLoeschenComponent extends Reac
             let registerService = new RegisterService();
 
             //aktuellen user finden
-            profilService.findById(id, {
-                success: function (data) {
+            profilService.findById(id)
+                .then((data) => {
                     //user entfernen
-                    profilService.remove(data[0], {
-                        success: function (data) {
+                    profilService.remove(data[0])
+                        .then((data) => {
 
-                        },
-                        error: function (err) {
+                        })
+                        .catch((err) => {
                             console.log(err);
-                        }
-                    });
+                        });
 
                     //aktuelles profil finden
-                    registerService.findIdByName(data[0].login, {
-                        success: function (data) {
+                    registerService.findIdByName(data[0].login)
+                        .then((data) => {
                             //profil entfernen
-                            registerService.remove(data[0], {
-                                success: function (data) {
+                            registerService.remove(data[0])
+                                .then((data) => {
                                     location.href = "#/login";
-                                },
-                                error: function (err) {
+                                })
+                                .catch((err) => {
                                     console.log(err);
-                                }
-                            });
-
-                        },
-                        error: function (err) {
+                                });
+                        })
+                        .catch((err) => {
                             console.log(err);
-                        }
-                    });
-
-                },
-                error: function (err) {
+                        });
+                })
+                .catch((err) => {
                     console.log(err);
-                }
-            });
+                });
         }
     }
 }

@@ -24,8 +24,8 @@ export default class NavigationComponent extends React.Component {
             alert("Suchfeld ist leer!");
         } else {
             let datingService = new DatingService();
-            datingService.findIdByName(name, {
-                success: function (data) {
+            datingService.findIdByName(name)
+                .then((data) => {
                     let profilService = new ProfilService();
 
                     profilService.findProfileByUserId(data[0]._id)
@@ -35,11 +35,10 @@ export default class NavigationComponent extends React.Component {
                         .catch(function (err) {
                             console.log(err);
                         });
-                },
-                error: function (err) {
+                })
+                .catch((err) => {
                     console.log(err);
-                }
-            });
+                });
         }
 
     }
