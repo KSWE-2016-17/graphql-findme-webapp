@@ -141,12 +141,11 @@ export default class RowHeadComponent extends React.Component {
 
         ps.getAdminRight(localStorage.getItem("sessionUserId"))
             .then((data) => {
-
                 $("#reports").hide();
+
                 if (data[0].role === 2 || data[0].role === "2") {
                     $("#reports").show();
                 }
-
             })
             .catch((err) => {
                 console.log(err);
