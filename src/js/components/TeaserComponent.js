@@ -10,7 +10,9 @@ export default class TeaserComponent extends React.Component {
                 <p>{self.props.description}</p>
                 {(() => {
                     if (self.props.destination) {
-                        return (<a className="btn btn-link" href={self.props.destination}>mehr ...</a>);
+                        return (
+                            <a className="btn btn-link" href={self.props.destination}>mehr ...</a>
+                        );
                     }
                 })()}
             </div>

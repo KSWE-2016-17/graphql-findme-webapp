@@ -5,119 +5,80 @@ import connSettings from "../../conn-settings";
 
 export default class AdminService {
     constructor() {
-        this.getProfile = this.getProfile.bind(this);
-        this.getUser = this.getUser.bind(this);
-        this.allProfiles = this.allProfiles.bind(this);
-        this.removeReportedMark = this.removeReportedMark.bind(this);
-        this.removeProfile = this.removeProfile.bind(this);
+        let connection = new CouchDbApi.Connection(connSettings);
+
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
     }
 
-    getProfile(profileID) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
-
-        profileDao.findById(profileID)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    getProfile(profileId) {
+        return this.profileDAO.findById(profileId);
     }
 
-    getUser(userID) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
-
-        userDao.findById(userID)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    getUser(userId) {
+        return this.userDAO.findById(userId);
     }
 
     allProfiles() {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
-
-        profileDao.findAll()
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        return this.profileDAO.findAll();
     }
 
-    removeReportedMark(profileID, callback) {
-        let self = this;
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+    removeReportedMark(profileId) {
+        let deferred = q.defer();
 
-        profileDao.findById(profileID)
-            .then((data) => {
-                data[0].reported = false;
-
-                profileDao.update(data[0])
-                    .then((data) => {
-                        if (callback && typeof callback.success === "function") {
-                            callback.success();
-                        }
-                    });
-            });
-    }
-
-    deleteUser(userID, callback) {
-        let self = this;
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
-
-        userDao.findById(userID)
+        this.profileDAO.findById(profileId)
             .then((data) => {
                 if (data && data[0]) {
-                    userDao.remove(data[0])
-                        .then((data) => {
-                            if (callback && typeof callback.success === "function") {
-                                callback.success();
-                            }
-                        })
-                        .catch((err) => {
-                            console.error(err);
-                        });
+                    data[0].reported = false;
+
+                    this.profileDAO.update(data[0])
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
                 } else {
-                    console.log("no user data for id: " + userID);
+                    deferred.reject("profile not found");
                 }
             })
-            .catch((err) => {
-                console.error(err);
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
-    removeProfile(profileID, callback) {
-        let self = this;
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+    deleteUser(userId) {
+        let deferred = q.defer();
 
-        profileDao.findById(profileID)
+        this.userDAO.findById(userId)
             .then((data) => {
                 if (data && data[0]) {
-                    profileDao.remove(data[0])
-                        .then((data) => {
-                            if (callback && typeof callback.success === "function") {
-                                callback.success();
-                            }
-                        })
-                        .catch((err) => {
-                            console.error(err);
-                        });
+                    this.userDAO.remove(data[0])
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
                 } else {
-                    console.log("no profile data for id: " + profileID);
+                    deferred.reject("user not found");
                 }
             })
-            .catch((err) => {
-                console.error(err);
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
+    }
+
+    removeProfile(profileId) {
+        let deferred = q.defer();
+
+        let dm = new CouchDbApi.DaoManager(connSettings);
+        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
+
+        profileDAO.findById(profileId)
+            .then((data) => {
+                if (data && data[0]) {
+                    profileDAO.remove(data[0])
+                        .then(deferred.resolve)
+                        .catch(deferred.reject);
+                } else {
+                    deferred.reject("profile not found");
+                }
+            })
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 }

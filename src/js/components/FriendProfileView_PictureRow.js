@@ -3,6 +3,11 @@ import React from "react";
 import DefaultImage from "./DefaultImage";
 
 export default class RowBilderComponent extends React.Component {
+    render() {
+        return (
+            <div>{this.create()}</div>
+        );
+    }
 
     create() {
         return (
@@ -10,41 +15,35 @@ export default class RowBilderComponent extends React.Component {
                 <div className="row">
                     <div className="col-md-12">
                         <h1>Bilder</h1>
-                        <br />
+                        <br/>
                     </div>
                 </div>
                 <div className="col-md-2">
-                    <DefaultImage />
-                    <br />
+                    <DefaultImage/>
+                    <br/>
                     <span>Urlaub</span>
                 </div>
                 <div className="col-md-2">
-                    <DefaultImage />
-                    <br />
+                    <DefaultImage/>
+                    <br/>
                     <span>Kinder</span>
                 </div>
                 <div className="col-md-2">
-                    <DefaultImage />
-                    <br />
+                    <DefaultImage/>
+                    <br/>
                     <span>Autos</span>
                 </div>
                 <div className="col-md-2">
-                    <DefaultImage />
-                    <br />
+                    <DefaultImage/>
+                    <br/>
                     <span>Lustige Momente</span>
                 </div>
                 <div className="col-md-2">
-                    <DefaultImage />
-                    <br />
+                    <DefaultImage/>
+                    <br/>
                     <span>Sonstiges</span>
                 </div>
             </div>
-        );
-    }
-
-    render() {
-        return (
-            <div>{this.create()}</div>
         );
     }
 }

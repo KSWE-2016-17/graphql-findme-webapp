@@ -1,12 +1,10 @@
 import React from "react";
-import q from "q";
-import _ from "lodash";
 
 import ReportRow from "./ReportsView_ReportRow";
+
 import AdminService from "../services/AdminService";
 
 export default class ReportsView_ReportsListRow extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -20,7 +18,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
 
         return (
             <div id="reportsList">
-                <br />
+                <br/>
                 {self.state.reports}
             </div>
         );
@@ -28,11 +26,11 @@ export default class ReportsView_ReportsListRow extends React.Component {
 
     componentDidMount() {
         let self = this;
+
         let adminService = new AdminService();
-        let newReportsList = self.state.reports;
 
         adminService.allProfiles()
-            .then(function (data) {
+            .then((data) => {
                 console.debug("received profiles: " + data.length);
 
                 let newReportList = self.state.reports;
@@ -44,9 +42,8 @@ export default class ReportsView_ReportsListRow extends React.Component {
                         newReportList.push(
                             <div>
                                 <ReportRow
-                                    profileID={data[i]._id}
-                                />
-                                <hr />
+                                    profileID={data[i]._id}/>
+                                <hr/>
                             </div>
                         );
                     }
@@ -54,7 +51,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
 
                 self.setState({reports: newReportList});
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

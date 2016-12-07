@@ -1,71 +1,32 @@
-import q from "q";
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";
 
 export default class InboxService {
-    findMsgToMe(to) {
-        let defer = q.defer();
+    constructor() {
+        let connection = new CouchDbApi.Connection(connSettings);
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
-
-        msgDao.findByTo(to)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
     }
 
-    removeMsg(obj, uid) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
-
-        msg2Dao.remove(obj, uid)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    findMsgToMe(profileId) {
+        return this.messageDAO.findByTo(profileId);
     }
 
-    findMsgToMeUndeleted(to) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
-
-        msg2Dao.findUndeleteTo(to)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    removeMsg(message) {
+        return this.messageDAO.remove(message);
     }
 
-    updateMsg(obj) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msg2Dao = dm.getDao(CouchDbApi.MessageDAO);
-        console.debug("ARCHIVDDAO");
-        msg2Dao.createOrUpdate(obj)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    findMsgToMeUndeleted(profileId) {
+        return this.messageDAO.findUndeleteTo(profileId);
     }
 
-    resolveUserName(id) {
-        let defer = q.defer();
+    updateMsg(message) {
+        return this.messageDAO.createOrUpdate(message);
+    }
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let usrDao = dm.getDao(CouchDbApi.UserDAO);
-
-        usrDao.findById(id)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    resolveUserName(userId) {
+        return this.userDAO.findById(userId);
     }
 }

@@ -3,75 +3,22 @@ import CouchDbApi from "findme-react-couchdb-api";
 import connSettings from "../../conn-settings";
 
 export default class RegisterService {
-    register(obj, callbacks) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
+    constructor() {
+        let connection = new CouchDbApi.Connection(connSettings);
 
-        userDao.create(obj)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("create user fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
     }
 
-    findIdByName(login, callbacks) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
-
-        userDao.findByLogin(login)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("user resolving fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+    register(user) {
+        return this.userDAO.create(user);
     }
 
-    removeProfil(obj, callbacks) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDao = dm.getDao(CouchDbApi.ProfileDAO);
+    findIdByName(login) {
+        return this.userDAO.findByLogin(login);
+    }
 
-        profileDao.remove(obj)
-            .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        callbacks.success(data);
-                    }
-                } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("delete profil fail");
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+    removeProfil(profile) {
+        return this.profileDAO.remove(profile);
     }
 }

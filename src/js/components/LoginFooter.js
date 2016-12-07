@@ -5,7 +5,7 @@ export default class LoginFooter extends React.Component {
         return (
             <div className="container">
                 <div className="row">
-                    <hr />
+                    <hr/>
                     <div className="text-center">@ 2016 find.me Alle Rechte vorbehalten.</div>
                 </div>
             </div>

@@ -70,10 +70,10 @@ export default class EditProfileInterestsComponent extends React.Component {
         let profileService = new ProfileService();
 
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 let aboutme = data[0].aboutme;
                 let aboutmeParts = aboutme.split("#");
-                let interests = aboutmeParts[1].split("+");
+                let interests = aboutmeParts.length >= 2 ? aboutmeParts[1].split("+") : [];
 
                 for (let i = 0; i < 10; i++) {
                     let selector = "#interest" + i;
@@ -83,7 +83,7 @@ export default class EditProfileInterestsComponent extends React.Component {
                     }
                 }
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }
@@ -102,21 +102,18 @@ export default class EditProfileInterestsComponent extends React.Component {
         }
 
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 let aboutme = data[0].aboutme;
                 let aboutmeParts = aboutme.split("{");
 
                 data[0].aboutme = aboutmeParts[0] + "{" + interestsBuffer;
 
                 profileService.updateProfile(data[0])
-                    .then(function (data) {
-                        console.log("SUCCESS");
-                    })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

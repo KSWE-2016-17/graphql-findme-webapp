@@ -2,7 +2,7 @@ import React from "react";
 import q from "q";
 import _ from "lodash";
 
-import MailComponent from "./OutboxMailItemComponent";
+import OutboxMailItemComponent from "./OutboxMailItemComponent";
 
 import OutboxService from "../services/OutboxService"
 
@@ -15,17 +15,27 @@ export default class OutboxMailComponent extends React.Component {
         };
     }
 
+    render() {
+        let self = this;
+
+        return (
+            <div id="outboxMessages">
+                {self.state.mails}
+            </div>
+        );
+    }
+
     componentDidMount() {
         let self = this;
 
         let outboxService = new OutboxService();
 
         outboxService.findMsgFromMeUndeleted(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 console.debug("sent messages: " + data.length);
                 let messages = data;
 
-                let mappedData = _.map(messages, function (msg) {
+                let mappedData = _.map(messages, (msg) => {
                     return {
                         user: {},
                         message: msg
@@ -44,11 +54,11 @@ export default class OutboxMailComponent extends React.Component {
                 }
 
                 q.all(promises)
-                    .then(function (data) {
+                    .then((data) => {
                         for (let i = 0; i < data.length; i++) {
                             let promiseResult = data[i];
 
-                            _.forEach(mappedData, function (value, index, arr) {
+                            _.forEach(mappedData, (value, index, arr) => {
                                 if (promiseResult.length > 0) {
                                     if (value.message.to === promiseResult[0]._id) {
                                         value.user = promiseResult[0];
@@ -61,7 +71,7 @@ export default class OutboxMailComponent extends React.Component {
 
                                 let mails = self.state.mails;
                                 mails.push(
-                                    <MailComponent
+                                    <OutboxMailItemComponent
                                         key={Math.random()}
                                         data={md}/>
                                 );
@@ -69,23 +79,13 @@ export default class OutboxMailComponent extends React.Component {
                             }
                         }
                     })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
-    }
-
-    render() {
-        let self = this;
-
-        return (
-            <div id="outboxMessages">
-                {self.state.mails}
-            </div>
-        );
     }
 }
 

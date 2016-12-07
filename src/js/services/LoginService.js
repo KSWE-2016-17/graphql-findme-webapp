@@ -1,68 +1,53 @@
+import q from "q";
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";
 
 export default class LoginService {
-    login(login, password, callbacks) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let userDao = dm.getDao(CouchDbApi.UserDAO);
+    constructor() {
+        let connection = new CouchDbApi.Connection(connSettings);
 
-        userDao.findByLogin(login)
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
+    }
+
+    login(login, password) {
+        let deferred = q.defer();
+
+        this.userDAO.findByLogin(login)
             .then((data) => {
                 if (data && data[0].password === password) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        localStorage.setItem("sessionUserId", data[0]._id);
-                        callbacks.success(data);
-                    }
+                    localStorage.setItem("sessionUserId", data[0]._id);
+
+                    deferred.resolve(data);
                 } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("wrong username or password");
-                    }
+                    deferred.reject("wrong username or password");
                 }
             })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
-    linkprofile(uid, callbacks) {
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let proDao = dm.getDao(CouchDbApi.ProfileDAO);
+    linkprofile(userId) {
+        let deferred = q.defer();
 
-        proDao.findByUserId(uid)
+        this.profileDAO.findByUserId(userId)
             .then((data) => {
-                if (data) {
-                    if (callbacks && typeof callbacks.success === "function") {
-                        localStorage.setItem("sessionProfileId", data[0]._id);
-                        callbacks.success(data);
-                    }
+                if (data && data[0]) {
+                    localStorage.setItem("sessionProfileId", data[0]._id);
+
+                    deferred.resolve(data);
                 } else {
-                    if (callbacks && typeof callbacks.error === "function") {
-                        callbacks.error("profile not found");
-                    }
+                    deferred.reject("profile not found");
                 }
             })
-            .catch((err) => {
-                console.error(err);
-                if (callbacks && typeof callbacks.error === "function") {
-                    callbacks.error(err);
-                }
-            });
+            .catch(deferred.reject);
+
+        return deferred.promise;
     }
 
-    findProfileByUserId(uid) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.ProfileDAO);
-
-        msgDao.findByUserId(uid)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    findProfileByUserId(userId) {
+        return this.profileDAO.findByUserId(userId);
     }
 }

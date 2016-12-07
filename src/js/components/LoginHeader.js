@@ -39,13 +39,12 @@ export default class LoginHeader extends React.Component {
     login() {
         let loginService = new LoginService();
 
-        loginService.login($("#username").val(), $("#password").val(), {
-            success: function (data) {
+        loginService.login($("#username").val(), $("#password").val())
+            .then((data) => {
                 location.href = "#/profile";
-            },
-            error: function (err) {
+            })
+            .catch((err) => {
                 console.log(err);
-            }
-        });
+            });
     }
 }

@@ -1,12 +1,11 @@
 import React from "react";
 
+import DefaultProfilImage from "./DefaultProfilImage";
+
 import FriendsListService from "../services/FriendsListService";
 import ProfilService from "../services/ProfilService";
 
-import DefaultProfilImage from "./DefaultProfilImage";
-
 export default class FriendProfileView_HeadRow extends React.Component {
-
     constructor(props) {
         super(props);
 
@@ -26,10 +25,10 @@ export default class FriendProfileView_HeadRow extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col-md-2">
-                        <DefaultProfilImage />
-                        <br /><br />
+                        <DefaultProfilImage/>
+                        <br/><br/>
                         <button type="button" className="btn btn-primary" onClick={self.sendFriendRequest}>
-                            <span className="glyphicon glyphicon-plus"></span> Freundschaftsanfrage<br />senden
+                            <span className="glyphicon glyphicon-plus"></span> Freundschaftsanfrage<br/>senden
                         </button>
                     </div>
                     <div className="col-md-8">
@@ -48,23 +47,24 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
     componentDidMount() {
         let self = this;
+
         let profilService = new ProfilService();
 
-        profilService.findById(self.props.profileID, {
-            success: function (profileData) {
+        profilService.findById(self.props.profileID)
+            .then((profileData) => {
                 self.setState({
                     friendName: profileData[0].firstname,
                     aboutMe: profileData[0].aboutme.split("{#")[0]
                 });
-            },
-            error: function (err) {
+            })
+            .catch((err) => {
                 console.log(err);
-            }
-        });
+            });
     }
 
     reportUser() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.reportUser(self.props.profileID);
@@ -72,17 +72,17 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
     sendFriendRequest() {
         let self = this;
+
         let friendsListService = new FriendsListService();
 
         friendsListService.getCurrentProfile()
-            .then(function (data) {
-                friendsListService.newFriendsListEntry(self.props.profileID, data[0]._id, 0, {
-                    success: function () {
+            .then((data) => {
+                friendsListService.newFriendsListEntry(self.props.profileID, data[0]._id, 0)
+                    .then((data) => {
                         window.location.reload();
-                    }
-                });
+                    });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

@@ -1,58 +1,28 @@
-import q from "q";
 import CouchDbApi from "findme-react-couchdb-api";
 
 import connSettings from "../../conn-settings";
 
 export default class ArchiveService {
-    findMsgToMe(to) {
-        let defer = q.defer();
+    constructor() {
+        let connection = new CouchDbApi.Connection(connSettings);
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
-
-        msgDao.findByTo(to)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+        this.userDAO = new CouchDbApi.UserDAO(connection);
+        this.messageDAO = new CouchDbApi.messageDAO(connection);
     }
 
-    findArchFromMe(from) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
-
-        msgDao.findArchivedFrom(from)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    findMsgToMe(profileId) {
+        return this.messageDAO.findByTo(profileId);
     }
 
-    findArchToMe(to) {
-        let defer = q.defer();
-
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let msgDao = dm.getDao(CouchDbApi.MessageDAO);
-
-        msgDao.findArchivedTo(to)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    findArchFromMe(profileId) {
+        return this.messageDAO.findArchivedFrom(profileId);
     }
 
-    resolveUserName(id) {
-        let defer = q.defer();
+    findArchToMe(profileId) {
+        return this.messageDAO.findArchivedTo(profileId);
+    }
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let usrDao = dm.getDao(CouchDbApi.UserDAO);
-
-        usrDao.findById(id)
-            .then(defer.resolve)
-            .catch(defer.reject);
-
-        return defer.promise;
+    resolveUserName(userId) {
+        return this.userDAO.findById(userId);
     }
 }

@@ -43,10 +43,10 @@ export default class EditProfileComponent extends React.Component {
         let profileService = new ProfileService();
 
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 $("#aboutme").val(data[0].aboutme.split("{")[0]);
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }
@@ -57,21 +57,18 @@ export default class EditProfileComponent extends React.Component {
         let aboutmeDescription = $("#aboutme").val();
 
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 let aboutme = data[0].aboutme;
                 let aboutmeParts = aboutme.split("{");
 
                 data[0].aboutme = aboutmeDescription + "{" + aboutmeParts[1];
 
                 profileService.updateProfile(data[0])
-                    .then(function (data) {
-                        console.log("SUCCESS");
-                    })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

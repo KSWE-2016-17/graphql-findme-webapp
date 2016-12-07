@@ -12,11 +12,11 @@ export default class EditProfilePage extends React.Component {
             <div>
                 <ProfilAnsichtNavigationElement/>
                 <EditProfileHeaderComponent/>
-                <hr />
+                <hr/>
                 <EditProfileDescriptionComponent/>
-                <hr />
+                <hr/>
                 <EditProfileGeneralComponent/>
-                <hr />
+                <hr/>
                 <EditProfileInterestsComponent/>
             </div>
         );
