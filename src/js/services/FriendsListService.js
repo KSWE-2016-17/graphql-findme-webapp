@@ -163,7 +163,6 @@ export default class FriendsListService {
                                     if (friendsList[i].id == friendId) {
                                         if ((friendsList[i].status == 1) || (friendsList[i].status == "1")) {
                                             isHeAFriend = true;
-                                            console.log("profile " + friendId + " is a friend of the current session user!");
                                             break;
                                         }
                                     }

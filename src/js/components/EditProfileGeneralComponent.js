@@ -120,9 +120,6 @@ export default class EditProfileGeneralComponent extends React.Component {
                 data[0].figure = $("#figure").val();
 
                 profileService.updateProfile(data[0])
-                    .then((data) => {
-                        console.log("SUCCESS");
-                    })
                     .catch((err) => {
                         console.log(err);
                     });

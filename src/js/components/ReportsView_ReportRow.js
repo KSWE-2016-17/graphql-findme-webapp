@@ -46,14 +46,14 @@ export default class FriendsListTab_FriendRow extends React.Component {
                             if (data[0]) {
                                 self.setState({profileName: data[0].login});
                             } else {
-                                console.log("Warning: Profile '" + self.props.profileID + "'" + " has an unknown user-id");
+                                console.log("user not found");
                             }
                         })
                         .catch((err) => {
                             console.log(err);
                         });
                 } else {
-                    console.log("Warning: Profile with profile id '" + self.props.profileID + "'" + " not found!");
+                    console.log("profile not found");
                 }
             })
             .catch((err) => {

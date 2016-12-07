@@ -81,17 +81,12 @@ export default class RowHeadComponent extends React.Component {
 
         let abutme;
 
-        console.log(localStorage.getItem("sessionProfileId"));
-
         ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
-                console.log(data[0]._id);
                 localStorage.setItem("sessionProfileId", data[0]._id);
                 localStorage.setItem("sessionProfile", data[0]);
 
                 omg = data[0];
-                console.log("###");
-                console.log(data[0]);
 
                 profile2 = data[0];
 
@@ -127,30 +122,8 @@ export default class RowHeadComponent extends React.Component {
                 console.log(err);
             });
 
-        console.log(localStorage.getItem("sessionProfileId"));
-
         ppp = JSON.parse(JSON.stringify(localStorage.getItem("sessionProfile")));
-
-        console.log("omgkommt");
-        console.log(omg.aboutme);
-
-        console.log("profilekommt");
-        console.log(profile.aboutme);
-
-        console.log(profile2.aboutme);
-
-        console.log("NWONWONWO");
-        console.log(nwo);
-
-        console.log("PPPP");
-        console.log(ppp);
-
-        console.log("PPPPP2");
         ppp = localStorage.getItem("sessionProfile");
-        console.log(ppp);
-
-        console.log("abutme");
-        console.log(abutme);
 
         return (
             <div>

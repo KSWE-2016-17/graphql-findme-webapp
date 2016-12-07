@@ -91,7 +91,6 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
 
         archieService.findArchToMe(localStorage.getItem("sessionUserId"))
             .then((data) => {
-                console.debug("received messages: " + data.length);
                 let messages = data;
 
                 let mappedData = _.map(messages, (msg) => {
@@ -102,7 +101,6 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                 });
 
                 let uniqueUsers = _.uniqBy(messages, "from");
-                console.debug("unique senders to identify: " + uniqueUsers.length);
 
                 let promises = [];
 

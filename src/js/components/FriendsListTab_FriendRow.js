@@ -91,9 +91,8 @@ export default class FriendsListTab_FriendRow extends React.Component {
                         .catch((err) => {
                             console.log(err);
                         });
-                }
-                else {
-                    console.log("Warning: User with profile id '" + self.props.profileID + "'" + " not found!");
+                } else {
+                    console.log("profile not found");
                 }
             })
             .catch((err) => {

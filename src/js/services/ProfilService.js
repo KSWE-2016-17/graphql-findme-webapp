@@ -46,7 +46,6 @@ export default class ProfilService {
     }
 
     findProfileByUserId(userId) {
-        console.log("dhjasndjk", this.profileDAO);
         return this.profileDAO.findByUserId(userId);
     }
 

@@ -59,11 +59,9 @@ export default class MailComponent extends React.Component {
     }
 
     onOpenMail(event) {
-        console.log("pressed open");
     }
 
     onArchiveMail(event) {
-        console.log("pressed archive");
         let self = this;
         self.props.data.message.archivedTo = true;
         let is = new InboxService();
@@ -71,7 +69,6 @@ export default class MailComponent extends React.Component {
     }
 
     onDeleteMail(event) {
-        console.log("pressed delete");
         let self = this;
         let is = new InboxService();
         self.props.data.message.deletedTo = true;

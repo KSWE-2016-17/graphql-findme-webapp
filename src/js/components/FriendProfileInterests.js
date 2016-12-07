@@ -35,7 +35,6 @@ export default class FriendProfileInterests extends React.Component {
 
         let friendsListService = new FriendsListService();
 
-        console.log("profile view id: " + self.props.profileID);
         friendsListService.getProfile(self.props.profileID)
             .then((profileData) => {
                 let aboutme = profileData[0].aboutme;
@@ -77,8 +76,6 @@ export default class FriendProfileInterests extends React.Component {
                 self.setState({
                     interestsElements: interestsElements
                 });
-
-                console.log("Interests acquired");
             })
             .catch((err) => {
                 console.log(err);

@@ -64,9 +64,6 @@ export default class EditProfileComponent extends React.Component {
                 data[0].aboutme = aboutmeDescription + "{" + aboutmeParts[1];
 
                 profileService.updateProfile(data[0])
-                    .then((data) => {
-                        console.log("SUCCESS");
-                    })
                     .catch((err) => {
                         console.log(err);
                     });

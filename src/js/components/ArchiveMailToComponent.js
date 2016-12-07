@@ -62,11 +62,9 @@ export default class ArchiveMailToComponent extends React.Component {
     }
 
     onOpenMail(event) {
-        console.log("pressed open");
     }
 
     onArchiveMail(event) {
-        console.log("pressed archive");
         let self = this;
         self.props.data.message.archivedTo = false;
         let is = new OutboxService();
@@ -74,7 +72,6 @@ export default class ArchiveMailToComponent extends React.Component {
     }
 
     onDeleteMail(event) {
-        console.log("pressed delete");
         let self = this;
         let is = new OutboxService();
         self.props.data.message.deletedTo = true;
