@@ -73,7 +73,7 @@ export default class EditProfileInterestsComponent extends React.Component {
             .then((data) => {
                 let aboutme = data[0].aboutme;
                 let aboutmeParts = aboutme.split("#");
-                let interests = aboutmeParts[1].split("+");
+                let interests = aboutmeParts .length >= 2 ? aboutmeParts[1].split("+") : [];
 
                 for (let i = 0; i < 10; i++) {
                     let selector = "#interest" + i;
