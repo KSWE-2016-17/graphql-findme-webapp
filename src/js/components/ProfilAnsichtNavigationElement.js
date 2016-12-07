@@ -12,38 +12,6 @@ export default class NavigationComponent extends React.Component {
 
     render() {
         return (
-            <div>{this.createNavigation()}</div>
-        );
-    }
-
-    searchUser() {
-        let name = "";
-        name = $("#searchField").val();
-
-        if (name === "") {
-            alert("Suchfeld ist leer!");
-        } else {
-            let datingService = new DatingService();
-            datingService.findIdByName(name)
-                .then((data) => {
-                    let profilService = new ProfilService();
-
-                    profilService.findProfileByUserId(data[0]._id)
-                        .then((data) => {
-                            location.href = "#/profile/" + data[0]._id;
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        });
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-    }
-
-    createNavigation() {
-        return (
             <div>
                 <nav className="navbar navbar-default">
                     <div>
@@ -103,5 +71,31 @@ export default class NavigationComponent extends React.Component {
                 </nav>
             </div>
         );
+    }
+
+    searchUser() {
+        let name = "";
+        name = $("#searchField").val();
+
+        if (name === "") {
+            alert("Suchfeld ist leer!");
+        } else {
+            let datingService = new DatingService();
+            datingService.findIdByName(name)
+                .then((data) => {
+                    let profilService = new ProfilService();
+
+                    profilService.findProfileByUserId(data[0]._id)
+                        .then((data) => {
+                            location.href = "#/profile/" + data[0]._id;
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                        });
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
     }
 }

@@ -5,38 +5,6 @@ import DatingService from "../services/DatingService";
 export default class DatingViewContentComponent extends React.Component {
     render() {
         return (
-            <div>{this.createDatingViewContentComponent()}</div>
-        );
-    }
-
-    showSearchResult() {
-        let searchGender = $("#gender").val();
-        let searchAlterVon = $("#alterVon").val();
-        let searchAlterBis = $("#alterBis").val();
-        let searchStatur = $("#statur").val();
-        let searchHaarfarbe = $("#haarfarbe").val();
-        let searchGroesseVon = $("#groesseVon").val();
-        let searchGroesseBis = $("#groesseBis").val();
-
-        let datingService = new DatingService();
-
-        datingService.findAll()
-            .then((data) => {
-                let size = data.size;
-
-                for (let i = 1; i <= size; i++) {
-                    if ((data[i].haircolor).equals(searchHaarfarbe)) {
-                        document.getElementById("searchresult").innerHTML += data[i].firstname;
-                    }
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }
-
-    createDatingViewContentComponent() {
-        return (
             <div>
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4">
@@ -185,5 +153,31 @@ export default class DatingViewContentComponent extends React.Component {
                 </form>
             </div>
         );
+    }
+
+    showSearchResult() {
+        let searchGender = $("#gender").val();
+        let searchAlterVon = $("#alterVon").val();
+        let searchAlterBis = $("#alterBis").val();
+        let searchStatur = $("#statur").val();
+        let searchHaarfarbe = $("#haarfarbe").val();
+        let searchGroesseVon = $("#groesseVon").val();
+        let searchGroesseBis = $("#groesseBis").val();
+
+        let datingService = new DatingService();
+
+        datingService.findAll()
+            .then((data) => {
+                let size = data.size;
+
+                for (let i = 1; i <= size; i++) {
+                    if ((data[i].haircolor).equals(searchHaarfarbe)) {
+                        document.getElementById("searchresult").innerHTML += data[i].firstname;
+                    }
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 }

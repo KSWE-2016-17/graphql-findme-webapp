@@ -3,12 +3,6 @@ import React from "react";
 export default class RegistrierenViewInfoboxComponent extends React.Component {
     render() {
         return (
-            <div>{this.createRegistrierenInfobox()}</div>
-        );
-    }
-
-    createRegistrierenInfobox() {
-        return (
             <div>
                 <div className="row" style={{
                     backgroundColor: "LightGray", padding: "15px",

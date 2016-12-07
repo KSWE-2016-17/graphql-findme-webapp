@@ -6,12 +6,6 @@ import DatingViewSidebarComponent from "../components/DatingViewSidebarComponent
 export default class DatingViewLayoutComponent extends React.Component {
     render() {
         return (
-            <div>{this.createDatingViewLayoutComponent()}</div>
-        );
-    }
-
-    createDatingViewLayoutComponent() {
-        return (
             <div>
                 <div className="row">
                     <div className="col-md-10"><DatingViewContentComponent/></div>

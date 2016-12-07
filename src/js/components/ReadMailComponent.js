@@ -3,12 +3,6 @@ import React from "react";
 export default class ReadMailComponent extends React.Component {
     render() {
         return (
-            <div>{this.createContent()}</div>
-        );
-    }
-
-    createContent() {
-        return (
             <div>
                 <div name="NEWMAIL">
                     <br/>

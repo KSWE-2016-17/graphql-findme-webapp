@@ -3,12 +3,6 @@ import React from "react";
 export default class LoginInfoBox extends React.Component {
     render() {
         return (
-            <div>{this.createContent()}</div>
-        );
-    }
-
-    createContent() {
-        return (
             <div>
                 <div className="row" style={{backgroundColor: "#F7F7F7"}}>
                     <div className="col-md-12">

@@ -3,12 +3,6 @@ import React from "react";
 export default class LogoutComponent extends React.Component {
     render() {
         return (
-            <div>{this.createContent()}</div>
-        );
-    }
-
-    createContent() {
-        return (
             <div>
                 <div>
                     <div className="row">

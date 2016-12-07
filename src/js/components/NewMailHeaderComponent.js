@@ -3,12 +3,6 @@ import React from "react";
 export default class NewMailHeaderComponent extends React.Component {
     render() {
         return (
-            <div>{this.createContent()}</div>
-        );
-    }
-
-    createContent() {
-        return (
             <div>
                 <div className="row">
                     <div className="col-md-11">
