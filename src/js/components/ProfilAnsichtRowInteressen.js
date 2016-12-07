@@ -36,7 +36,7 @@ export default class RowInteressenComponent extends React.Component {
         let profileService = new ProfileService();
 
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 let aboutme = data[0].aboutme;
 
                 let aboutmeParts = aboutme.split("#");
@@ -78,7 +78,7 @@ export default class RowInteressenComponent extends React.Component {
                 });
 
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

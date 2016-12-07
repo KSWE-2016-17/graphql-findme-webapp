@@ -30,7 +30,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
         let adminService = new AdminService();
 
         adminService.allProfiles()
-            .then(function (data) {
+            .then((data) => {
                 console.debug("received profiles: " + data.length);
 
                 let newReportList = self.state.reports;
@@ -51,7 +51,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
 
                 self.setState({reports: newReportList});
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

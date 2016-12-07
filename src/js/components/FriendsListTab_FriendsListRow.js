@@ -30,9 +30,9 @@ export default class FriendProfileView_HeadRow extends React.Component {
         let friendsListService = new FriendsListService();
 
         friendsListService.getCurrentProfile()
-            .then(function (data) {
+            .then((data) => {
                 friendsListService.allFriends(data[0]._id)
-                    .then(function (data) {
+                    .then((data) => {
                         console.debug("received friends: " + data[0].friends.length);
 
                         let friendsList = data[0].friends;
@@ -56,11 +56,11 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
                         self.setState({friends: newFriendState});
                     })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

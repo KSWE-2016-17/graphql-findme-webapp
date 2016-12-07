@@ -32,7 +32,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
         let archieService = new ArchiveService();
 
         archieService.findArchFromMe(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 console.debug("received messages: " + data.length);
                 let messages = data;
 
@@ -55,7 +55,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                 }
 
                 q.all(promises)
-                    .then(function (data) {
+                    .then((data) => {
                         for (let i = 0; i < data.length; i++) {
 
                             let promiseResult = data[i];
@@ -81,16 +81,16 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                             }
                         }
                     })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
 
         archieService.findArchToMe(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 console.debug("received messages: " + data.length);
                 let messages = data;
 
@@ -113,7 +113,7 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                 }
 
                 q.all(promises)
-                    .then(function (data) {
+                    .then((data) => {
                         for (let i = 0; i < data.length; i++) {
                             let promiseResult = data[i];
 
@@ -138,11 +138,11 @@ export default class ArchiveMailComponentMailComponent extends React.Component {
                             }
                         }
                     })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

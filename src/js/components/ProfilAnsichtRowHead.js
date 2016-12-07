@@ -84,7 +84,7 @@ export default class RowHeadComponent extends React.Component {
         console.log(localStorage.getItem("sessionProfileId"));
 
         ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 console.log(data[0]._id);
                 localStorage.setItem("sessionProfileId", data[0]._id);
                 localStorage.setItem("sessionProfile", data[0]);
@@ -130,7 +130,7 @@ export default class RowHeadComponent extends React.Component {
                 abutme = data[0].aboutme;
 
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
         //
@@ -140,7 +140,7 @@ export default class RowHeadComponent extends React.Component {
         // }
 
         ps.getAdminRight(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
 
                 $("#reports").hide();
                 if (data[0].role === 2 || data[0].role === "2") {
@@ -148,7 +148,7 @@ export default class RowHeadComponent extends React.Component {
                 }
 
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
 

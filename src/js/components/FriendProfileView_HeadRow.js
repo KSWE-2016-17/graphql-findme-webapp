@@ -56,9 +56,9 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         console.log("profile view id: " + self.props.profileID);
         friendsListService.getProfile(self.props.profileID)
-            .then(function (profileData) {
+            .then((profileData) => {
                 friendsListService.getUser(profileData[0].user_id)
-                    .then(function (userData) {
+                    .then((userData) => {
                         self.setState({friendName: userData[0].login});
                         self.setState({aboutMe: profileData[0].aboutme});
 
@@ -72,11 +72,11 @@ export default class FriendProfileView_HeadRow extends React.Component {
                         console.log("friend profile data acquired");
 
                     })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

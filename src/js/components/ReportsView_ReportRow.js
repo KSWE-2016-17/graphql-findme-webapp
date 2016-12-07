@@ -38,25 +38,25 @@ export default class FriendsListTab_FriendRow extends React.Component {
         let adminService = new AdminService();
 
         adminService.getProfile(self.props.profileID)
-            .then(function (data) {
+            .then((data) => {
                 if (data[0]) {
                     self.setState({userID: data[0].user_id});
                     adminService.getUser(data[0].user_id)
-                        .then(function (data) {
+                        .then((data) => {
                             if (data[0]) {
                                 self.setState({profileName: data[0].login});
                             } else {
                                 console.log("Warning: Profile '" + self.props.profileID + "'" + " has an unknown user-id");
                             }
                         })
-                        .catch(function (err) {
+                        .catch((err) => {
                             console.log(err);
                         });
                 } else {
                     console.log("Warning: Profile with profile id '" + self.props.profileID + "'" + " not found!");
                 }
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

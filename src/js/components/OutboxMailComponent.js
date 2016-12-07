@@ -31,7 +31,7 @@ export default class OutboxMailComponent extends React.Component {
         let outboxService = new OutboxService();
 
         outboxService.findMsgFromMeUndeleted(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 console.debug("sent messages: " + data.length);
                 let messages = data;
 
@@ -54,7 +54,7 @@ export default class OutboxMailComponent extends React.Component {
                 }
 
                 q.all(promises)
-                    .then(function (data) {
+                    .then((data) => {
                         for (let i = 0; i < data.length; i++) {
                             let promiseResult = data[i];
 
@@ -79,11 +79,11 @@ export default class OutboxMailComponent extends React.Component {
                             }
                         }
                     })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

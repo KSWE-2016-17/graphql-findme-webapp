@@ -89,7 +89,7 @@ export default class EditProfileGeneralComponent extends React.Component {
         let profileService = new ProfileService();
 
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 $("#status").val(data[0].familystatus);
                 $("#privacy").val(data[0].privacy.friends);
                 $("#children").val(data[0].children);
@@ -97,7 +97,7 @@ export default class EditProfileGeneralComponent extends React.Component {
                 $("#eye").val(data[0].eyecolor);
                 $("#figure").val(data[0].figure);
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }
@@ -106,7 +106,7 @@ export default class EditProfileGeneralComponent extends React.Component {
         let profileService = new ProfileService();
 
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then(function (data) {
+            .then((data) => {
                 data[0].familystatus = $("#status").val();
                 data[0].privacy.friends = $("#privacy").val();
                 data[0].privacy.pictures = $("#privacy").val();
@@ -120,15 +120,15 @@ export default class EditProfileGeneralComponent extends React.Component {
                 data[0].figure = $("#figure").val();
 
                 profileService.updateProfile(data[0])
-                    .then(function (data) {
+                    .then((data) => {
                         console.log("SUCCESS");
                     })
-                    .catch(function (err) {
+                    .catch((err) => {
                         console.log(err);
                     });
 
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

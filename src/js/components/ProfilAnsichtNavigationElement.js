@@ -29,10 +29,10 @@ export default class NavigationComponent extends React.Component {
                     let profilService = new ProfilService();
 
                     profilService.findProfileByUserId(data[0]._id)
-                        .then(function (data) {
+                        .then((data) => {
                             location.href = "#/profile/" + data[0]._id;
                         })
-                        .catch(function (err) {
+                        .catch((err) => {
                             console.log(err);
                         });
                 })

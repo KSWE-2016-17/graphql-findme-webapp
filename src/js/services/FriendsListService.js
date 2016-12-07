@@ -151,11 +151,11 @@ export default class FriendsListService {
         let deferred = q.defer();
 
         this.getCurrentProfile()
-            .then(function (data) {
+            .then((data) => {
                 if (data && data[0]) {
                     let currentProfileID = data[0]._id;
                     this.allFriends(currentProfileID)
-                        .then(function (data) {
+                        .then((data) => {
                             if (data && data[0]) {
                                 let friendsList = data[0].friends;
                                 let isHeAFriend = false;

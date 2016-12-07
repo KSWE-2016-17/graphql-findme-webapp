@@ -82,13 +82,13 @@ export default class FriendsListTab_FriendRow extends React.Component {
         let friendsListService = new FriendsListService();
 
         friendsListService.getProfile(self.props.profileID)
-            .then(function (data) {
+            .then((data) => {
                 if (data[0]) {
                     friendsListService.getUser(data[0].user_id)
-                        .then(function (data) {
+                        .then((data) => {
                             self.setState({friendName: data[0].login});
                         })
-                        .catch(function (err) {
+                        .catch((err) => {
                             console.log(err);
                         });
                 }
@@ -96,7 +96,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
                     console.log("Warning: User with profile id '" + self.props.profileID + "'" + " not found!");
                 }
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }

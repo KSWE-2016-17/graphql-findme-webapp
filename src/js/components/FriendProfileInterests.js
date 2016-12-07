@@ -37,7 +37,7 @@ export default class FriendProfileInterests extends React.Component {
 
         console.log("profile view id: " + self.props.profileID);
         friendsListService.getProfile(self.props.profileID)
-            .then(function (profileData) {
+            .then((profileData) => {
                 let aboutme = profileData[0].aboutme;
 
                 let aboutmeParts = aboutme.split("#");
@@ -80,7 +80,7 @@ export default class FriendProfileInterests extends React.Component {
 
                 console.log("Interests acquired");
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
             });
     }
