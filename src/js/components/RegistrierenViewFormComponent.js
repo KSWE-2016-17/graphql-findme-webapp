@@ -12,6 +12,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
                         <br/>
                         <br/>
                         <table>
+                            <tbody>
                             <tr>
                                 <td>Benutzername:</td>
                                 <td><input type="text" name="username" id="username" size="50"/></td>
@@ -28,12 +29,14 @@ export default class RegistrierenViewFormComponent extends React.Component {
                                 <td>Passwort (wdh.):</td>
                                 <td><input type="password" id="password2" size="50"/></td>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
                     <div className="col-md-6">
                         <br/>
                         <br/>
                         <table>
+                            <tbody>
                             <tr>
                                 <td>Geschlecht:</td>
                                 <td><label><input type="radio" name="gender" value="male"/> m&auml;nnlich</label></td>
@@ -50,6 +53,7 @@ export default class RegistrierenViewFormComponent extends React.Component {
                                 <td>Geburtsjahr:</td>
                                 <td><label><input type="text" name="yearOfBirth"/></label></td>
                             </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>

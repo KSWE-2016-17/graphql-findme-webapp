@@ -24,6 +24,7 @@ export default class DatingViewContentComponent extends React.Component {
 
                 <form role="form">
                     <table style={{width: "60%"}}>
+                        <tbody>
                         <tr>
                             <td>Ich suche eine/n:</td>
                             <td>
@@ -148,6 +149,7 @@ export default class DatingViewContentComponent extends React.Component {
                             <td></td>
                             <td></td>
                         </tr>
+                        </tbody>
                     </table>
                     <div id="searchresult"></div>
                 </form>

@@ -9,6 +9,7 @@ export default class ReadMailComponent extends React.Component {
                     <div className="row">
                         <div className="col-md-10 col-md-offset-1">
                             <table className="table" style={{width: "100%", border: "1px solid lightgrey"}}>
+                                <tbody>
                                 <tr>
                                     <td colspan="2" style={{backgroundColor: "lightgrey", border: "1px solid"}}>
                                         <font>Sarah Wittenstein</font>
@@ -16,23 +17,23 @@ export default class ReadMailComponent extends React.Component {
                                 </tr>
                                 <tr colspan="2">
                                     <td>
-                                        <textarea name="Text1" rows="15" style={{
-                                            width: "100%", border: "2px solid lightblue"
-                                        }}>
+                                            <textarea name="Text1" rows="15" style={{
+                                                width: "100%", border: "2px solid lightblue"
+                                            }}>
 
-                                            Bbbccccccccccdddddddddddddddddddddeeeeeeeeeeeeeeeeeefffffffffffffffffffff
-                                            gggggggggggggggghhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiiiiii
-                                            jjjjjjjjjjjjjjjjjjjjjjjjkkkklmnopqqqqqqqqqrsssssssssssstttttttuuuuuvvvvvv
-                                            wwwwwwwwwwwwwwxyz
-                                             Bbbccccccccccdddddddddddddddddddddeeeeeeeeeeeeeeeeeefffffffffffffffffffff
-                                            gggggggggggggggghhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiiiiii
-                                            jjjjjjjjjjjjjjjjjjjjjjjjkkkklmnopqqqqqqqqqrsssssssssssstttttttuuuuuvvvvvv
-                                            wwwwwwwwwwwwwwxyz
-                                             Bbbccccccccccdddddddddddddddddddddeeeeeeeeeeeeeeeeeefffffffffffffffffffff
-                                            gggggggggggggggghhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiiiiii
-                                            jjjjjjjjjjjjjjjjjjjjjjjjkkkklmnopqqqqqqqqqrsssssssssssstttttttuuuuuvvvvvv
-                                            wwwwwwwwwwwwwwxyz
-                                        </textarea>
+                                                Bbbccccccccccdddddddddddddddddddddeeeeeeeeeeeeeeeeeefffffffffffffffffffff
+                                                gggggggggggggggghhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiiiiii
+                                                jjjjjjjjjjjjjjjjjjjjjjjjkkkklmnopqqqqqqqqqrsssssssssssstttttttuuuuuvvvvvv
+                                                wwwwwwwwwwwwwwxyz
+                                                 Bbbccccccccccdddddddddddddddddddddeeeeeeeeeeeeeeeeeefffffffffffffffffffff
+                                                gggggggggggggggghhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiiiiii
+                                                jjjjjjjjjjjjjjjjjjjjjjjjkkkklmnopqqqqqqqqqrsssssssssssstttttttuuuuuvvvvvv
+                                                wwwwwwwwwwwwwwxyz
+                                                 Bbbccccccccccdddddddddddddddddddddeeeeeeeeeeeeeeeeeefffffffffffffffffffff
+                                                gggggggggggggggghhhhhhhhhhhhhhhhhhhhhhhhhhhhiiiiiiiiiiiiiii
+                                                jjjjjjjjjjjjjjjjjjjjjjjjkkkklmnopqqqqqqqqqrsssssssssssstttttttuuuuuvvvvvv
+                                                wwwwwwwwwwwwwwxyz
+                                            </textarea>
                                     </td>
                                 </tr>
                                 <tr>
@@ -49,6 +50,7 @@ export default class ReadMailComponent extends React.Component {
                                         </div>
                                     </div>
                                 </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>

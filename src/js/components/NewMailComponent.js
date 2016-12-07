@@ -15,6 +15,7 @@ export default class NewMailComponent extends React.Component {
                         <div className="col-md-10 col-md-offset-1">
                             <form role="form">
                                 <table className="table" style={{width: "100%", border: "1px solid lightgrey"}}>
+                                    <tbody>
                                     <tr>
                                         <td colspan="2">
                                             <input type="email" className="form-control" id="sendto"
@@ -50,6 +51,7 @@ export default class NewMailComponent extends React.Component {
                                             </div>
                                         </div>
                                     </tr>
+                                    </tbody>
                                 </table>
                             </form>
                         </div>
