@@ -110,7 +110,6 @@ export default class RowHeadComponent extends React.Component {
                 nwo = JSON.parse(JSON.stringify(data[0]));
 
                 abutme = data[0].aboutme;
-
             })
             .catch((err) => {
                 console.log(err);
