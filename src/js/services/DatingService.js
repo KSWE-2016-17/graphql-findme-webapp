@@ -1,4 +1,4 @@
-import CouchDbApi from "findme-react-couchdb-api";
+import CouchDbApi from "graphql-findme-db-api";
 
 import connSettings from "../../conn-settings";
 
