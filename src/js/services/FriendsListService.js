@@ -12,8 +12,49 @@ export default class FriendsListService {
         this.friendRequestDAO = new DbApi.FriendRequestDAO(connection);
     }
 
-    allFriends(profileId) {
-        return this.friendRequestDAO.findByProfileId(profileId);
+    getFriendsOfProfile(profileId) {
+        return this.profileDAO.findById(profileId)
+            .then((data) => {
+                let friends = [];
+
+                data.friends_ids.forEach((friendId) => {
+                    this.profileDAO.findById(friendId)
+                        .then((data) => {
+                            if (data) {
+                                friends.push(data);
+                            }
+                        })
+                        .done();
+                });
+
+                return friends;
+            });
+    }
+
+    getFriendRequestsOfProfile(profileId) {
+        let deferred = q.defer();
+
+        let friendRequests = [];
+
+        this.friendRequestDAO.findByFrom(profileId)
+            .then((data) => {
+                data.forEach((friendRequest) => {
+                    friendRequests.push(friendRequest);
+                });
+
+                return this.friendRequestDAO.findByTo(profileId);
+            })
+            .then((data) => {
+                data.forEach((friendRequest) => {
+                    friendRequests.push(friendRequest);
+                });
+
+                deferred.resolve(friendRequests);
+            })
+            .catch(deferred.reject)
+            .done();
+
+        return deferred.promise;
     }
 
     getCurrentProfile() {

@@ -14,45 +14,60 @@ export default class FriendProfileView_HeadRow extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div id="friendsList">
-                <br/>
-                {self.state.friends}
+                {this.state.friends}
             </div>
         );
     }
 
     componentDidMount() {
-        let self = this;
+        let friends = [];
+        let currentProfile;
 
         let friendsListService = new FriendsListService();
 
         friendsListService.getCurrentProfile()
             .then((data) => {
-                return friendsListService.allFriends(data[0]._id);
+                currentProfile = data[0];
+
+                return friendsListService.getFriendsOfProfile(currentProfile._id);
             })
             .then((data) => {
-                let friendsList = data[0].friends;
-                let newFriendState = self.state.friends;
+                data.forEach((friend) => {
+                    friends.push(
+                        <div key={Math.random()}>
+                            <FriendRow
+                                profileId={friend.id}
+                                isFriend={true}
+                                isOwnRequest={false}
+                            />
+                        </div>
+                    );
+                });
 
-                for (let i = 0; i < friendsList.length; i++) {
-                    if (friendsList[i].status != 2) {
-                        newFriendState.push(
-                            <div>
-                                <FriendRow
-                                    profileID={friendsList[i].id}
-                                    status={friendsList[i].status}
-                                    friendsListID={data[0]._id}
-                                />
-                                <hr/>
-                            </div>
-                        );
-                    }
-                }
+                return friendsListService.getFriendRequestsOfProfile(currentProfile._id);
+            })
+            .then((data) => {
+                data.forEach((friendRequest) => {
+                    let isOwnRequest = currentProfile._id === friendRequest.from_id;
+                    let targetId = isOwnRequest ? friendRequest.to_id : friendRequest.from_id;
 
-                self.setState({friends: newFriendState});
+                    friends.push(
+                        <div key={Math.random()}>
+                            <FriendRow
+                                profileId={targetId}
+                                isFriend={false}
+                                isOwnRequest={isOwnRequest}
+                            />
+                        </div>
+                    );
+                });
+            })
+            .then((data) => {
+                this.setState({
+                    friends: friends
+                });
             })
             .catch((err) => {
                 console.log(err);

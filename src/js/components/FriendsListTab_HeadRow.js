@@ -6,9 +6,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-md-11">
-                        <span style={{}} className="glyphicon glyphicon-asterisk"></span>
-                        <font size="5"> Deine Freunde </font>
-                        <span style={{}} className="glyphicon glyphicon-asterisk"></span>
+                        <h1>Deine Freunde</h1>
                     </div>
                 </div>
                 <div className="row">
