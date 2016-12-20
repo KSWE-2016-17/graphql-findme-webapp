@@ -74,10 +74,10 @@ export default class FriendsListService {
 
         this.profileDAO.findById(profileId)
             .then((data) => {
-                if (data && data[0]) {
-                    data[0].reported = "true";
+                if (data) {
+                    data.reported = true;
 
-                    this.profileDAO.update(data[0])
+                    this.profileDAO.update(data)
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
