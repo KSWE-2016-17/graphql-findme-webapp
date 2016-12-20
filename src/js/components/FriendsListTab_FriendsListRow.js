@@ -31,34 +31,28 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         friendsListService.getCurrentProfile()
             .then((data) => {
-                friendsListService.allFriends(data[0]._id)
-                    .then((data) => {
-                        console.debug("received friends: " + data[0].friends.length);
+                return friendsListService.allFriends(data[0]._id);
+            })
+            .then((data) => {
+                let friendsList = data[0].friends;
+                let newFriendState = self.state.friends;
 
-                        let friendsList = data[0].friends;
-                        let newFriendState = self.state.friends;
+                for (let i = 0; i < friendsList.length; i++) {
+                    if (friendsList[i].status != 2) {
+                        newFriendState.push(
+                            <div>
+                                <FriendRow
+                                    profileID={friendsList[i].id}
+                                    status={friendsList[i].status}
+                                    friendsListID={data[0]._id}
+                                />
+                                <hr/>
+                            </div>
+                        );
+                    }
+                }
 
-                        for (let i = 0; i < friendsList.length; i++) {
-                            console.debug("friend " + i + "'s profile ID: " + friendsList[i].id);
-                            if (friendsList[i].status != 2) {
-                                newFriendState.push(
-                                    <div>
-                                        <FriendRow
-                                            profileID={friendsList[i].id}
-                                            status={friendsList[i].status}
-                                            friendsListID={data[0]._id}
-                                        />
-                                        <hr/>
-                                    </div>
-                                );
-                            }
-                        }
-
-                        self.setState({friends: newFriendState});
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
+                self.setState({friends: newFriendState});
             })
             .catch((err) => {
                 console.log(err);
