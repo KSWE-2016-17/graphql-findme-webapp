@@ -38,7 +38,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
                     friends.push(
                         <div key={Math.random()}>
                             <FriendRow
-                                profileId={friend.id}
+                                profileId={friend._id}
                                 isFriend={true}
                                 isOwnRequest={false}
                             />
