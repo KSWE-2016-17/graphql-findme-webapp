@@ -5,12 +5,6 @@ import DefaultImage from "./DefaultImage";
 export default class RowBilderComponent extends React.Component {
     render() {
         return (
-            <div>{this.create()}</div>
-        );
-    }
-
-    create() {
-        return (
             <div>
                 <div className="row">
                     <div className="col-md-12">
