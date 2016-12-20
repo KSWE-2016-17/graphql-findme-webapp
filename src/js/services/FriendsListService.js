@@ -15,16 +15,19 @@ export default class FriendsListService {
     getFriendsOfProfile(profileId) {
         return this.profileDAO.findById(profileId)
             .then((data) => {
-                let friends = [];
+                let promises = [];
 
                 data.friends_ids.forEach((friendId) => {
-                    this.profileDAO.findById(friendId)
-                        .then((data) => {
-                            if (data) {
-                                friends.push(data);
-                            }
-                        })
-                        .done();
+                    promises.push(this.profileDAO.findById(friendId));
+                });
+
+                return q.all(promises);
+            })
+            .then((promiseResults) => {
+                let friends = [];
+
+                promiseResults.forEach((promiseResult) => {
+                    friends.push(promiseResult);
                 });
 
                 return friends;
@@ -58,7 +61,7 @@ export default class FriendsListService {
     }
 
     getCurrentProfile() {
-        return this.profileDAO.findByUserId(localStorage.getItem("sessionUserId"));
+        return this.profileDAO.findById(localStorage.getItem("sessionProfileId"));
     }
 
     getProfile(profileId) {
@@ -116,6 +119,33 @@ export default class FriendsListService {
             .catch(deferred.reject);
 
         return deferred.promise;
+    }
+
+    acceptFriendRequest(profileId) {
+        return this.getCurrentProfile()
+            .then((data) => {
+                if (data) {
+                    data.friends_ids.push(profileId);
+
+                    return q.all([
+                        this.friendRequestDAO.findByTo(data._id),
+                        this.profileDAO.update(data)
+                    ]);
+                }
+            })
+            .then((data) => {
+                let foundFriendRequest;
+
+                data[0].forEach((friendRequest) => {
+                    if (friendRequest.from_id === profileId) {
+                        foundFriendRequest = friendRequest;
+                    }
+                });
+
+                if (foundFriendRequest) {
+                    return this.friendRequestDAO.remove(foundFriendRequest);
+                }
+            });
     }
 
     handleFriendRequest(friendListId, profileId, accept) {

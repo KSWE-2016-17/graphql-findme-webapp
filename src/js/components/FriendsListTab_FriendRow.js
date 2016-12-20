@@ -98,7 +98,16 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     acceptFriendRequest() {
-        // TODO Implement!
+        let friendsListService = new FriendsListService();
+
+        friendsListService.acceptFriendRequest(this.props.profileId)
+            .then((data) => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
     }
 
     rejectFriendRequest() {

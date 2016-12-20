@@ -29,7 +29,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         friendsListService.getCurrentProfile()
             .then((data) => {
-                currentProfile = data[0];
+                currentProfile = data;
 
                 return friendsListService.getFriendsOfProfile(currentProfile._id);
             })
