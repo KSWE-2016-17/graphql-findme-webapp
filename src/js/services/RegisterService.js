@@ -1,13 +1,13 @@
-import CouchDbApi from "graphql-findme-db-api";
+import DbApi from "graphql-findme-db-api";
 
 import connSettings from "../../conn-settings";
 
 export default class RegisterService {
     constructor() {
-        let connection = new CouchDbApi.Connection(connSettings);
+        let connection = new DbApi.Connection(connSettings);
 
-        this.userDAO = new CouchDbApi.UserDAO(connection);
-        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
+        this.userDAO = new DbApi.UserDAO(connection);
+        this.profileDAO = new DbApi.ProfileDAO(connection);
     }
 
     register(user) {

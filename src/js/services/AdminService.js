@@ -1,14 +1,14 @@
 import q from "q";
-import CouchDbApi from "graphql-findme-db-api";
+import DbApi from "graphql-findme-db-api";
 
 import connSettings from "../../conn-settings";
 
 export default class AdminService {
     constructor() {
-        let connection = new CouchDbApi.Connection(connSettings);
+        let connection = new DbApi.Connection(connSettings);
 
-        this.userDAO = new CouchDbApi.UserDAO(connection);
-        this.profileDAO = new CouchDbApi.ProfileDAO(connection);
+        this.userDAO = new DbApi.UserDAO(connection);
+        this.profileDAO = new DbApi.ProfileDAO(connection);
     }
 
     getProfile(profileId) {
@@ -64,8 +64,8 @@ export default class AdminService {
     removeProfile(profileId) {
         let deferred = q.defer();
 
-        let dm = new CouchDbApi.DaoManager(connSettings);
-        let profileDAO = dm.getDao(CouchDbApi.ProfileDAO);
+        let dm = new DbApi.DaoManager(connSettings);
+        let profileDAO = dm.getDao(DbApi.ProfileDAO);
 
         profileDAO.findById(profileId)
             .then((data) => {

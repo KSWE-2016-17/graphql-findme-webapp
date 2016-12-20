@@ -1,13 +1,13 @@
-import CouchDbApi from "graphql-findme-db-api";
+import DbApi from "graphql-findme-db-api";
 
 import connSettings from "../../conn-settings";
 
 export default class ArchiveService {
     constructor() {
-        let connection = new CouchDbApi.Connection(connSettings);
+        let connection = new DbApi.Connection(connSettings);
 
-        this.userDAO = new CouchDbApi.UserDAO(connection);
-        this.messageDAO = new CouchDbApi.messageDAO(connection);
+        this.userDAO = new DbApi.UserDAO(connection);
+        this.messageDAO = new DbApi.messageDAO(connection);
     }
 
     findMsgToMe(profileId) {
