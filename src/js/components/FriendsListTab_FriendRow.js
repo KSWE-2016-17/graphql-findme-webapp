@@ -114,7 +114,13 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     reportUser() {
-        // TODO Implement!
+        let friendsListService = new FriendsListService();
+
+        friendsListService.reportUser(this.props.profileId)
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
     }
 
     sendMessage() {
