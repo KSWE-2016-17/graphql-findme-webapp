@@ -9,11 +9,11 @@ export default class FriendsListService {
 
         this.userDAO = new DbApi.UserDAO(connection);
         this.profileDAO = new DbApi.ProfileDAO(connection);
-        this.friendDAO = new DbApi.FriendDAO(connection);
+        this.friendRequestDAO = new DbApi.FriendRequestDAO(connection);
     }
 
     allFriends(profileId) {
-        return this.friendDAO.findByProfileId(profileId);
+        return this.friendRequestDAO.findByProfileId(profileId);
     }
 
     getCurrentProfile() {
@@ -51,7 +51,7 @@ export default class FriendsListService {
     endFrienship(friendListId, profileId) {
         let deferred = q.defer();
 
-        this.friendDAO.findById(friendListId)
+        this.friendRequestDAO.findById(friendListId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
@@ -65,7 +65,7 @@ export default class FriendsListService {
 
                     data[0].friends = newFriendsList;
 
-                    this.friendDAO.update(data[0])
+                    this.friendRequestDAO.update(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -80,7 +80,7 @@ export default class FriendsListService {
     handleFriendRequest(friendListId, profileId, accept) {
         let deferred = q.defer();
 
-        this.friendDAO.findById(friendListId)
+        this.friendRequestDAO.findById(friendListId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
@@ -95,7 +95,7 @@ export default class FriendsListService {
 
                     this.newFriendsListEntry(profileId, data[0].profile_id, 1);
 
-                    this.friendDAO.update(data[0])
+                    this.friendRequestDAO.update(data[0])
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -110,7 +110,7 @@ export default class FriendsListService {
     newFriendsListEntry(ownerProfileId, friendProfileId, friendshipStatus) {
         let deferred = q.defer();
 
-        this.friendDAO.findByProfileId(ownerProfileId)
+        this.friendRequestDAO.findByProfileId(ownerProfileId)
             .then((data) => {
                 if (data && data[0]) {
                     let friendsList = data[0].friends;
@@ -126,7 +126,7 @@ export default class FriendsListService {
                         friendsList.push({id: friendProfileId, status: friendshipStatus});
                         data[0].friends = friendsList;
 
-                        this.friendDAO.update(data[0])
+                        this.friendRequestDAO.update(data[0])
                             .then(deferred.resolve)
                             .catch(deferred.reject);
                     }
@@ -137,7 +137,7 @@ export default class FriendsListService {
                         "friends": [{id: friendProfileId, status: friendshipStatus}]
                     };
 
-                    this.friendDAO.create(newFriendslist)
+                    this.friendRequestDAO.create(newFriendslist)
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 }
