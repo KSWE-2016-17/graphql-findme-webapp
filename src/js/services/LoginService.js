@@ -28,26 +28,4 @@ export default class LoginService {
 
         return deferred.promise;
     }
-
-    linkprofile(userId) {
-        let deferred = q.defer();
-
-        this.profileDAO.findByUserId(userId)
-            .then((data) => {
-                if (data && data[0]) {
-                    localStorage.setItem("sessionProfileId", data[0]._id);
-
-                    deferred.resolve(data);
-                } else {
-                    deferred.reject("profile not found");
-                }
-            })
-            .catch(deferred.reject);
-
-        return deferred.promise;
-    }
-
-    findProfileByUserId(userId) {
-        return this.profileDAO.findByUserId(userId);
-    }
 }
