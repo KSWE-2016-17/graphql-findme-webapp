@@ -168,9 +168,12 @@ export default class FriendsListService {
             .then((data) => {
                 if (data) {
                     let index = data.friends_ids.indexOf(profileId);
-                    data.friends_ids.splice(index, 1);
 
-                    return this.profileDAO.update(data);
+                    if (index !== -1) {
+                        data.friends_ids.splice(index, 1);
+
+                        return this.profileDAO.update(data);
+                    }
                 }
             });
     }
