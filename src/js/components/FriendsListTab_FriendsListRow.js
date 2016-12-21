@@ -34,35 +34,38 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
                 return friendsListService.getFriendsOfProfile(currentProfile._id);
             })
             .then((data) => {
-            console.log("ndjansdk", data);
                 data.forEach((friend) => {
-                    friends.push(
-                        <div key={Math.random()}>
-                            <FriendRow
-                                profileId={friend._id}
-                                isFriend={true}
-                                isOwnRequest={false}
-                            />
-                        </div>
-                    );
+                    if (friend) {
+                        friends.push(
+                            <div key={Math.random()}>
+                                <FriendRow
+                                    profileId={friend._id}
+                                    isFriend={true}
+                                    isOwnRequest={false}
+                                />
+                            </div>
+                        );
+                    }
                 });
 
                 return friendsListService.getFriendRequestsOfProfile(currentProfile._id);
             })
             .then((data) => {
                 data.forEach((friendRequest) => {
-                    let isOwnRequest = currentProfile._id === friendRequest.from_id;
-                    let targetId = isOwnRequest ? friendRequest.to_id : friendRequest.from_id;
+                    if (friendRequest) {
+                        let isOwnRequest = currentProfile._id === friendRequest.from_id;
+                        let targetId = isOwnRequest ? friendRequest.to_id : friendRequest.from_id;
 
-                    friends.push(
-                        <div key={Math.random()}>
-                            <FriendRow
-                                profileId={targetId}
-                                isFriend={false}
-                                isOwnRequest={isOwnRequest}
-                            />
-                        </div>
-                    );
+                        friends.push(
+                            <div key={Math.random()}>
+                                <FriendRow
+                                    profileId={targetId}
+                                    isFriend={false}
+                                    isOwnRequest={isOwnRequest}
+                                />
+                            </div>
+                        );
+                    }
                 });
             })
             .then((data) => {
