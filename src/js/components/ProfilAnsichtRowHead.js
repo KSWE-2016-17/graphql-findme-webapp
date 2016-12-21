@@ -26,8 +26,7 @@ export default class ProfilAnsichtRowHead extends React.Component {
                         {(() => {
                             if (this.state.isAdmin) {
                                 return (
-                                    <a id="reports" className="btn btn-danger pull-right" href="#/reports"
-                                       role="button">
+                                    <a className="btn btn-danger pull-right" href="#/reports" role="button">
                                         <span className="glyphicon glyphicon-screenshot"></span> Beschwerden
                                     </a>
                                 );
@@ -37,8 +36,8 @@ export default class ProfilAnsichtRowHead extends React.Component {
                             <span className="glyphicon glyphicon-pencil"></span> "Über mich" bearbeiten
                         </a>
 
-                        <h1 id="proname">{this.state.profileName}</h1>
-                        <p id="aboutme">{this.state.aboutme}</p>
+                        <h1>{this.state.profileName}</h1>
+                        <p>{this.state.aboutme}</p>
                     </div>
                 </div>
             </div>
