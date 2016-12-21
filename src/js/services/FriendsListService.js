@@ -12,12 +12,56 @@ export default class FriendsListService {
         this.friendRequestDAO = new DbApi.FriendRequestDAO(connection);
     }
 
-    allFriends(profileId) {
-        return this.friendRequestDAO.findByProfileId(profileId);
+    getFriendsOfProfile(profileId) {
+        return this.profileDAO.findById(profileId)
+            .then((data) => {
+                let promises = [];
+
+                data.friends_ids.forEach((friendId) => {
+                    promises.push(this.profileDAO.findById(friendId));
+                });
+
+                return q.all(promises);
+            })
+            .then((promiseResults) => {
+                let friends = [];
+
+                promiseResults.forEach((promiseResult) => {
+                    friends.push(promiseResult);
+                });
+
+                return friends;
+            });
+    }
+
+    getFriendRequestsOfProfile(profileId) {
+        let deferred = q.defer();
+
+        let friendRequests = [];
+
+        this.friendRequestDAO.findByFrom(profileId)
+            .then((data) => {
+                data.forEach((friendRequest) => {
+                    friendRequests.push(friendRequest);
+                });
+
+                return this.friendRequestDAO.findByTo(profileId);
+            })
+            .then((data) => {
+                data.forEach((friendRequest) => {
+                    friendRequests.push(friendRequest);
+                });
+
+                deferred.resolve(friendRequests);
+            })
+            .catch(deferred.reject)
+            .done();
+
+        return deferred.promise;
     }
 
     getCurrentProfile() {
-        return this.profileDAO.findByUserId(localStorage.getItem("sessionUserId"));
+        return this.profileDAO.findById(localStorage.getItem("sessionProfileId"));
     }
 
     getProfile(profileId) {
@@ -33,10 +77,10 @@ export default class FriendsListService {
 
         this.profileDAO.findById(profileId)
             .then((data) => {
-                if (data && data[0]) {
-                    data[0].reported = "true";
+                if (data) {
+                    data.reported = true;
 
-                    this.profileDAO.update(data[0])
+                    this.profileDAO.update(data)
                         .then(deferred.resolve)
                         .catch(deferred.reject);
                 } else {
@@ -48,140 +92,117 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    endFrienship(friendListId, profileId) {
-        let deferred = q.defer();
-
-        this.friendRequestDAO.findById(friendListId)
+    acceptFriendRequest(profileId) {
+        return this.getCurrentProfile()
             .then((data) => {
-                if (data && data[0]) {
-                    let friendsList = data[0].friends;
-                    let newFriendsList = [];
+                if (data) {
+                    data.friends_ids.push(profileId);
 
-                    for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id != profileId) {
-                            newFriendsList.push(friendsList[i]);
-                        }
-                    }
-
-                    data[0].friends = newFriendsList;
-
-                    this.friendRequestDAO.update(data[0])
-                        .then(deferred.resolve)
-                        .catch(deferred.reject);
-                } else {
-                    deferred.reject("friendshit not found");
+                    return q.all([
+                        this.friendRequestDAO.findByTo(data._id),
+                        this.profileDAO.update(data)
+                    ]);
                 }
             })
-            .catch(deferred.reject);
+            .then((data) => {
+                let foundFriendRequest;
 
-        return deferred.promise;
+                data[0].forEach((friendRequest) => {
+                    if (friendRequest.from_id === profileId) {
+                        foundFriendRequest = friendRequest;
+                    }
+                });
+
+                if (foundFriendRequest) {
+                    return this.friendRequestDAO.remove(foundFriendRequest);
+                }
+            });
     }
 
-    handleFriendRequest(friendListId, profileId, accept) {
-        let deferred = q.defer();
-
-        this.friendRequestDAO.findById(friendListId)
+    rejectFriendRequest(profileId) {
+        return this.getCurrentProfile()
             .then((data) => {
-                if (data && data[0]) {
-                    let friendsList = data[0].friends;
-
-                    for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id == profileId) {
-                            friendsList[i].status = accept == true ? 1 : 2;
-                        }
-                    }
-
-                    data[0].friends = friendsList;
-
-                    this.newFriendsListEntry(profileId, data[0].profile_id, 1);
-
-                    this.friendRequestDAO.update(data[0])
-                        .then(deferred.resolve)
-                        .catch(deferred.reject);
-                } else {
-                    deferred.reject("friendshit not found");
+                if (data) {
+                    return this.friendRequestDAO.findByTo(data._id);
                 }
             })
-            .catch(deferred.reject);
+            .then((data) => {
+                let foundFriendRequest;
 
-        return deferred.promise;
+                data.forEach((friendRequest) => {
+                    if (friendRequest.from_id === profileId) {
+                        foundFriendRequest = friendRequest;
+                    }
+                });
+
+                if (foundFriendRequest) {
+                    return this.friendRequestDAO.remove(foundFriendRequest);
+                }
+            });
     }
 
-    newFriendsListEntry(ownerProfileId, friendProfileId, friendshipStatus) {
-        let deferred = q.defer();
-
-        this.friendRequestDAO.findByProfileId(ownerProfileId)
+    cancelFriendRequest(profileId) {
+        return this.getCurrentProfile()
             .then((data) => {
-                if (data && data[0]) {
-                    let friendsList = data[0].friends;
-                    let isAlreadyAFriend = false;
-
-                    for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id == friendProfileId) {
-                            isAlreadyAFriend = true;
-                        }
-                    }
-
-                    if (isAlreadyAFriend == false) {
-                        friendsList.push({id: friendProfileId, status: friendshipStatus});
-                        data[0].friends = friendsList;
-
-                        this.friendRequestDAO.update(data[0])
-                            .then(deferred.resolve)
-                            .catch(deferred.reject);
-                    }
-                } else {
-                    let newFriendslist = {
-                        "doctype": "friends",
-                        "profile_id": ownerProfileId,
-                        "friends": [{id: friendProfileId, status: friendshipStatus}]
-                    };
-
-                    this.friendRequestDAO.create(newFriendslist)
-                        .then(deferred.resolve)
-                        .catch(deferred.reject);
+                if (data) {
+                    return this.friendRequestDAO.findByFrom(data._id);
                 }
             })
-            .catch(deferred.reject);
+            .then((data) => {
+                let foundFriendRequest;
 
-        return deferred.promise;
+                data.forEach((friendRequest) => {
+                    if (friendRequest.to_id === profileId) {
+                        foundFriendRequest = friendRequest;
+                    }
+                });
+
+                if (foundFriendRequest) {
+                    return this.friendRequestDAO.remove(foundFriendRequest);
+                }
+            });
     }
 
-    isFriend(friendId) {
+    dismissFriendship(profileId) {
+        return this.getCurrentProfile()
+            .then((data) => {
+                if (data) {
+                    let index = data.friends_ids.indexOf(profileId);
+
+                    if (index !== -1) {
+                        data.friends_ids.splice(index, 1);
+
+                        return this.profileDAO.update(data);
+                    }
+                }
+            });
+    }
+
+    createFriendRequest(profileId) {
+        return this.getCurrentProfile()
+            .then((data) => {
+                if (data) {
+                    return this.friendRequestDAO.create({
+                        from_id: data._id,
+                        to_id: profileId
+                    });
+                }
+            });
+    }
+
+    isFriend(profileId) {
         let deferred = q.defer();
 
         this.getCurrentProfile()
             .then((data) => {
-                if (data && data[0]) {
-                    let currentProfileID = data[0]._id;
-                    this.allFriends(currentProfileID)
-                        .then((data) => {
-                            if (data && data[0]) {
-                                let friendsList = data[0].friends;
-                                let isHeAFriend = false;
-                                for (let i = 0; i < friendsList.length; i++) {
-                                    if (friendsList[i].id == friendId) {
-                                        if ((friendsList[i].status == 1) || (friendsList[i].status == "1")) {
-                                            isHeAFriend = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                                if (isHeAFriend == true) {
-                                    deferred.resolve("yes");
-                                } else {
-                                    deferred.resolve("no");
-                                }
-                            } else {
-                                deferred.reject("no friendship found");
-                            }
-                        })
-                        .catch(deferred.reject);
+                if (data) {
+                    deferred.resolve(data.friends_ids.indexOf(profileId) !== -1);
                 } else {
                     deferred.reject("current user's profile not found");
                 }
             })
-            .catch(deferred.reject);
+            .catch(deferred.reject)
+            .done();
 
         return deferred.promise;
     }

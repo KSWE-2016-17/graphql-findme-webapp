@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class ReadHeaderComponent extends React.Component {
+export default class ReadMailHeaderComponent extends React.Component {
     render() {
         return (
             <div>

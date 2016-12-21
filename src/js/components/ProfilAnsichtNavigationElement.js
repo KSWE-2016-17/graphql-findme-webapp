@@ -3,7 +3,7 @@ import React from "react";
 import DatingService from "../services/DatingService";
 import ProfilService from "../services/ProfilService";
 
-export default class NavigationComponent extends React.Component {
+export default class ProfilAnsichtNavigationElement extends React.Component {
     constructor(props) {
         super(props);
 

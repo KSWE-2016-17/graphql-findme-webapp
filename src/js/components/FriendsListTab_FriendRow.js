@@ -10,146 +10,160 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         this.state = {};
 
-        this.addFriend = this.addFriend.bind(this);
-        this.dontAddFriend = this.dontAddFriend.bind(this);
-        this.endFriendship = this.endFriendship.bind(this);
+        this.acceptFriendRequest = this.acceptFriendRequest.bind(this);
+        this.rejectFriendRequest = this.rejectFriendRequest.bind(this);
+        this.cancelFriendRequest = this.cancelFriendRequest.bind(this);
+        this.dismissFriendship = this.dismissFriendship.bind(this);
         this.reportUser = this.reportUser.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
-        this.showProfile = this.showProfile.bind(this);
+        this.openProfile = this.openProfile.bind(this);
     }
 
     render() {
-        let self = this;
+        return (
+            <div className="row">
+                <div className="col-md-1">
+                    <DefaultProfilImage/>
+                </div>
 
-        if ((self.props.status === 0) || (self.props.status === "0")) { // friend request
-            return (
-                <div className="row">
-                    <div className="col-md-1">
-                        <DefaultProfilImage/>
-                    </div>
-                    <div className="col-md-11">
-                        <font size="5"> {self.state.friendName} </font><br/>
-                        <button type="button" className="btn btn-link" onClick={self.addFriend}
-                                style={{marginLeft: "25px", paddingLeft: "10px", paddingRight: "10px"}}>
-                            <span className="glyphicon glyphicon-plus"></span> Freundschaftsanfrage annehmen
-                        </button>
-                        <button type="button" className="btn btn-link" onClick={self.dontAddFriend}
-                                style={{marginLeft: "25px", paddingLeft: "10px", paddingRight: "10px"}}>
-                            <span className="glyphicon glyphicon-remove"></span> Freundschaftsanfrage ablehnen
-                        </button>
-                    </div>
+                <div className="col-md-11">
+                    <h3>{this.state.friendName}</h3>
+
+                    <button type="button" className="btn btn-link" onClick={this.openProfile}>
+                        <span className="glyphicon glyphicon-eye-open"></span> Profil ansehen
+                    </button>
+                    <button type="button" className="btn btn-link" onClick={this.sendMessage}>
+                        <span className="glyphicon glyphicon-envelope"></span> Nachricht senden
+                    </button>
+                    <button type="button" className="btn btn-link" onClick={this.reportUser}>
+                        <span className="glyphicon glyphicon-screenshot"></span> Benutzer melden
+                    </button>
+                    {(() => {
+                        if (this.props.isFriend) {
+                            return (
+                                <button type="button" className="btn btn-link" onClick={this.dismissFriendship}>
+                                    <span className="glyphicon glyphicon-trash"></span> Freundschaft beenden
+                                </button>
+                            );
+                        }
+                    })()}
+                    {(() => {
+                        if (!this.props.isFriend && !this.props.isOwnRequest) {
+                            return (
+                                <button type="button" className="btn btn-link" onClick={this.acceptFriendRequest}>
+                                    <span className="glyphicon glyphicon-plus"></span> Anfrage akzeptieren
+                                </button>
+                            );
+                        }
+                    })()}
+                    {(() => {
+                        if (!this.props.isFriend && !this.props.isOwnRequest) {
+                            return (
+                                <button type="button" className="btn btn-link" onClick={this.rejectFriendRequest}>
+                                    <span className="glyphicon glyphicon-remove"></span> Anfrage ablehnen
+                                </button>
+                            );
+                        }
+                    })()}
+                    {(() => {
+                        if (!this.props.isFriend && this.props.isOwnRequest) {
+                            return (
+                                <button type="button" className="btn btn-link" onClick={this.cancelFriendRequest}>
+                                    <span className="glyphicon glyphicon-remove"></span> Anfrage zurückziehen
+                                </button>
+                            );
+                        }
+                    })()}
                 </div>
-            );
-        } else if ((self.props.status === 1) || (self.props.status === "1")) { // is friend
-            return (
-                <div className="row">
-                    <div className="col-md-1">
-                        <DefaultProfilImage/>
-                    </div>
-                    <div className="col-md-11">
-                        <font size="5"> {self.state.friendName} </font><br/>
-                        <button type="button" className="btn btn-link" onClick={self.showProfile}
-                                style={{marginLeft: "25px", paddingLeft: "0px", paddingRight: "0px"}}>
-                            <span className="glyphicon glyphicon-eye-open"></span> Profil ansehen
-                        </button>
-                        <button type="button" className="btn btn-link" onClick={self.sendMessage}
-                                style={{marginLeft: "25px", paddingLeft: "0px", paddingRight: "0px"}}>
-                            <span className="glyphicon glyphicon-envelope"></span> Nachricht senden
-                        </button>
-                        <button type="button" className="btn btn-link" onClick={self.reportUser}
-                                style={{marginLeft: "25px", paddingLeft: "0px", paddingRight: "0px"}}>
-                            <span className="glyphicon glyphicon-screenshot"></span> Benutzer melden
-                        </button>
-                        <button type="button" className="btn btn-link" onClick={self.endFriendship}
-                                style={{marginLeft: "25px", paddingLeft: "0px", paddingRight: "0px"}}>
-                            <span className="glyphicon glyphicon-trash"></span> Freundschaft beenden
-                        </button>
-                    </div>
-                </div>
-            );
-        } else {
-            return (
-                <div className="row">
-                    empty
-                </div>
-            )
-        }
+            </div>
+        );
     }
 
     componentDidMount() {
-        let self = this;
-
         let friendsListService = new FriendsListService();
 
-        friendsListService.getProfile(self.props.profileID)
+        friendsListService.getProfile(this.props.profileId)
             .then((data) => {
-                if (data[0]) {
-                    friendsListService.getUser(data[0].user_id)
-                        .then((data) => {
-                            self.setState({friendName: data[0].login});
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        });
-                } else {
-                    console.log("profile not found");
-                }
+                return friendsListService.getUser(data.user_id);
+            })
+            .then((data) => {
+                this.setState({
+                    friendName: data.login
+                });
             })
             .catch((err) => {
                 console.log(err);
-            });
+            })
+            .done();
     }
 
-    addFriend() {
-        let self = this;
-
+    acceptFriendRequest() {
         let friendsListService = new FriendsListService();
 
-        friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, true)
+        friendsListService.acceptFriendRequest(this.props.profileId)
             .then((data) => {
                 window.location.reload();
-            });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
     }
 
-    dontAddFriend() {
-        let self = this;
-
+    rejectFriendRequest() {
         let friendsListService = new FriendsListService();
 
-        friendsListService.handleFriendRequest(self.props.friendsListID, self.props.profileID, false)
+        friendsListService.rejectFriendRequest(this.props.profileId)
             .then((data) => {
                 window.location.reload();
-            });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
     }
 
-    endFriendship() {
-        let self = this;
-
+    cancelFriendRequest() {
         let friendsListService = new FriendsListService();
 
-        friendsListService.endFrienship(self.props.friendsListID, self.props.profileID)
+        friendsListService.cancelFriendRequest(this.props.profileId)
             .then((data) => {
                 window.location.reload();
-            });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
+    }
+
+    dismissFriendship() {
+        let friendsListService = new FriendsListService();
+
+        friendsListService.dismissFriendship(this.props.profileId)
+            .then((data) => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
     }
 
     reportUser() {
-        let self = this;
-
         let friendsListService = new FriendsListService();
 
-        friendsListService.reportUser(self.props.profileID);
+        friendsListService.reportUser(this.props.profileId)
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
     }
 
     sendMessage() {
-        let self = this;
-
         window.location.href = "#/mails/new";
     }
 
-    showProfile() {
-        let self = this;
-
-        window.location.href = "#/friends/" + self.props.profileID;
+    openProfile() {
+        window.location.href = "#/friends/" + this.props.profileId;
     }
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 import ProfileService from "../services/ProfilService";
 
-export default class RowInteressenComponent extends React.Component {
+export default class ProfilAnsichtRowInteressen extends React.Component {
     constructor(props) {
         super(props);
 

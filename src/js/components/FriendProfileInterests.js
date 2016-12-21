@@ -35,7 +35,7 @@ export default class FriendProfileInterests extends React.Component {
 
         let friendsListService = new FriendsListService();
 
-        friendsListService.getProfile(self.props.profileID)
+        friendsListService.getProfile(self.props.profileId)
             .then((profileData) => {
                 let aboutme = profileData[0].aboutme;
 

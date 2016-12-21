@@ -4,7 +4,7 @@ import FriendRow from "./FriendsListTab_FriendRow";
 
 import FriendsListService from "../services/FriendsListService";
 
-export default class FriendProfileView_HeadRow extends React.Component {
+export default class FriendsListTab_FriendsListRow extends React.Component {
     constructor(props) {
         super(props);
 
@@ -14,45 +14,64 @@ export default class FriendProfileView_HeadRow extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div id="friendsList">
-                <br/>
-                {self.state.friends}
+                {this.state.friends}
             </div>
         );
     }
 
     componentDidMount() {
-        let self = this;
+        let friends = [];
+        let currentProfile;
 
         let friendsListService = new FriendsListService();
 
         friendsListService.getCurrentProfile()
             .then((data) => {
-                return friendsListService.allFriends(data[0]._id);
+                currentProfile = data;
+
+                return friendsListService.getFriendsOfProfile(currentProfile._id);
             })
             .then((data) => {
-                let friendsList = data[0].friends;
-                let newFriendState = self.state.friends;
-
-                for (let i = 0; i < friendsList.length; i++) {
-                    if (friendsList[i].status != 2) {
-                        newFriendState.push(
-                            <div>
+                data.forEach((friend) => {
+                    if (friend) {
+                        friends.push(
+                            <div key={Math.random()}>
                                 <FriendRow
-                                    profileID={friendsList[i].id}
-                                    status={friendsList[i].status}
-                                    friendsListID={data[0]._id}
+                                    profileId={friend._id}
+                                    isFriend={true}
+                                    isOwnRequest={false}
                                 />
-                                <hr/>
                             </div>
                         );
                     }
-                }
+                });
 
-                self.setState({friends: newFriendState});
+                return friendsListService.getFriendRequestsOfProfile(currentProfile._id);
+            })
+            .then((data) => {
+                data.forEach((friendRequest) => {
+                    if (friendRequest) {
+                        let isOwnRequest = currentProfile._id === friendRequest.from_id;
+                        let targetId = isOwnRequest ? friendRequest.to_id : friendRequest.from_id;
+
+                        friends.push(
+                            <div key={Math.random()}>
+                                <FriendRow
+                                    profileId={targetId}
+                                    isFriend={false}
+                                    isOwnRequest={isOwnRequest}
+                                />
+                            </div>
+                        );
+                    }
+                });
+            })
+            .then((data) => {
+                this.setState({
+                    friends: friends
+                });
             })
             .catch((err) => {
                 console.log(err);

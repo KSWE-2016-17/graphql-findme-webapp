@@ -2,7 +2,7 @@ import React from "react";
 
 import AdminService from "../services/AdminService";
 
-export default class FriendsListTab_FriendRow extends React.Component {
+export default class ReportsView_ReportRow extends React.Component {
     constructor(props) {
         super(props);
 
@@ -37,7 +37,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         let adminService = new AdminService();
 
-        adminService.getProfile(self.props.profileID)
+        adminService.getProfile(self.props.profileId)
             .then((data) => {
                 if (data[0]) {
                     self.setState({userID: data[0].user_id});
@@ -66,7 +66,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         let adminService = new AdminService();
 
-        adminService.removeReportedMark(self.props.profileID)
+        adminService.removeReportedMark(self.props.profileId)
             .then((data) => {
                 window.location.reload();
             });
@@ -79,7 +79,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
 
         adminService.deleteUser(self.state.userID);
 
-        adminService.removeProfile(self.props.profileID)
+        adminService.removeProfile(self.props.profileId)
             .then((data) => {
                 window.location.reload();
             });

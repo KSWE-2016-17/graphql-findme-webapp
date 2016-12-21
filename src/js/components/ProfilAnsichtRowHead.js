@@ -4,7 +4,7 @@ import ProfileImage from "./ProfileImage";
 
 import ProfilService from "../services/ProfilService";
 
-export default class RowHeadComponent extends React.Component {
+export default class ProfilAnsichtRowHead extends React.Component {
     render() {
         return (
             <div>{this.createRowHead()}</div>
