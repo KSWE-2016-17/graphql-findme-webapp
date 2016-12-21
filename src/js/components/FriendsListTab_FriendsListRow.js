@@ -54,7 +54,7 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
                     let targetId = isOwnRequest ? friendRequest.to_id : friendRequest.from_id;
 
                     friends.push(
-                        <div id={Math.random()}>
+                        <div key={Math.random()}>
                             <FriendRow
                                 profileId={targetId}
                                 isFriend={false}
