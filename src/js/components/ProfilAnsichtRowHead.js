@@ -12,87 +12,15 @@ export default class ProfilAnsichtRowHead extends React.Component {
     }
 
     createRowHead() {
-        let ps = new ProfilService();
-        let privacy = {
-            "friends": 0,
-            "pictures": 0
-        };
-        let profile = {
-            "_id": "",
-            "_rev": "",
-            "doctype": "profile",
-            "user_id": "",
-            "firstname": "",
-            "lastname": "",
-            "email": "",
-            "birthday": "",
-            "gender": "",
-            "familystatus": 1,
-            "children": 0,
-            "aboutme": "UeberMich ABC",
-            "privacy": privacy,
-            "profilepic": "ououo",
-            "haircolor": 3,
-            "eyecolor": 0,
-            "figure": 1
-        };
-        let profile2 = {
-            "_id": "",
-            "_rev": "",
-            "doctype": "profile",
-            "user_id": "",
-            "firstname": "",
-            "lastname": "",
-            "email": "",
-            "birthday": "",
-            "gender": "",
-            "familystatus": 1,
-            "children": 0,
-            "aboutme": "UeberMich ABC",
-            "privacy": privacy,
-            "profilepic": "ououo",
-            "haircolor": 3,
-            "eyecolor": 0,
-            "figure": 1
-        };
+        let profileService = new ProfilService();
 
-        let omg = {
-            "_id": "",
-            "_rev": "",
-            "doctype": "",
-            "user_id": "",
-            "firstname": "",
-            "lastname": "",
-            "email": "",
-            "birthday": "",
-            "gender": "",
-            "familystatus": 1,
-            "children": 0,
-            "aboutme": "",
-            "privacy": privacy,
-            "profilepic": "",
-            "haircolor": 3,
-            "eyecolor": 0,
-            "figure": 1
-        };
-
-        let nwo;
-        let ppp;
-
-        let abutme;
-
-        ps.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 localStorage.setItem("sessionProfileId", data[0]._id);
                 localStorage.setItem("sessionProfile", data[0]);
 
-                omg = data[0];
-
-                profile2 = data[0];
-
                 let parts = data[0].aboutme.split("{");
 
-                //$("#aboutme").text(data[0].aboutme);
                 if (parts.length > 1) {
                     $("#aboutme").text(parts[0]);
                 } else {
@@ -101,16 +29,12 @@ export default class ProfilAnsichtRowHead extends React.Component {
 
                 let builder = data[0].firstname;
                 $("#proname").text(builder);
-
-                nwo = JSON.parse(JSON.stringify(data[0]));
-
-                abutme = data[0].aboutme;
             })
             .catch((err) => {
                 console.log(err);
             });
 
-        ps.getAdminRight(localStorage.getItem("sessionUserId"))
+        profileService.getAdminRight(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 $("#reports").hide();
 
@@ -122,24 +46,24 @@ export default class ProfilAnsichtRowHead extends React.Component {
                 console.log(err);
             });
 
-        ppp = JSON.parse(JSON.stringify(localStorage.getItem("sessionProfile")));
-        ppp = localStorage.getItem("sessionProfile");
-
         return (
             <div>
                 <div className="row">
                     <div className="col-md-2">
                         <ProfileImage/>
-                        <br/><br/>
-                        <button type="button" className="btn btn-primary"><span
-                            className="glyphicon glyphicon-picture"></span> Profilfoto ausw&auml;hlen
-                        </button>
+
+                        <a className="btn btn-primary" style={{"marginTop": "2rem"}} role="button">
+                            <span className="glyphicon glyphicon-picture"></span> Profilfoto auswählen
+                        </a>
                     </div>
                     <div className="col-md-10">
-                        <a href="#/reports" id="reports" type="button" className="btn btn-danger  pull-right"><span
-                            className="glyphicon glyphicon-screenshot"></span>Beschwerden</a>
-                        <a href="#/edit" type="button" className="btn btn-primary pull-right"><span
-                            className="glyphicon glyphicon-pencil"></span> "&Uuml;ber Dich" bearbeiten</a>
+                        <a id="reports" className="btn btn-danger pull-right" href="#/reports" role="button">
+                            <span className="glyphicon glyphicon-screenshot"></span> Beschwerden
+                        </a>
+                        <a className="btn btn-primary pull-right" href="#/edit" role="button">
+                            <span className="glyphicon glyphicon-pencil"></span> "Über mich" bearbeiten
+                        </a>
+
                         <h1 id="proname"></h1>
                         <p id="aboutme"></p>
                     </div>
