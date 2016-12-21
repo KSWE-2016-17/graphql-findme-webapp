@@ -2,7 +2,7 @@ import React from "react";
 
 import DefaultImage from "./DefaultImage";
 
-export default class RowBilderComponent extends React.Component {
+export default class ProfilAnsichtRowBilder extends React.Component {
     render() {
         return (
             <div>

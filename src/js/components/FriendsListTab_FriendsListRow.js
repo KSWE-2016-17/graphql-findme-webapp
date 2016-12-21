@@ -4,7 +4,7 @@ import FriendRow from "./FriendsListTab_FriendRow";
 
 import FriendsListService from "../services/FriendsListService";
 
-export default class FriendProfileView_HeadRow extends React.Component {
+export default class FriendsListTab_FriendsListRow extends React.Component {
     constructor(props) {
         super(props);
 

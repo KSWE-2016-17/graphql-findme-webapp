@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class OubotxHeaderComponent extends React.Component {
+export default class ArchiveHeaderComponent extends React.Component {
     render() {
         return (
             <div>

@@ -5,7 +5,7 @@ import DefaultProfilImage from "./DefaultProfilImage";
 import FriendsListService from "../services/FriendsListService";
 import ProfilService from "../services/ProfilService";
 
-export default class FriendProfileView_HeadRow extends React.Component {
+export default class OtherProfileView_HeadRow extends React.Component {
     constructor(props) {
         super(props);
 

@@ -7,7 +7,7 @@ import ArchiveMailToComponent from "./ArchiveMailToComponent";
 
 import ArchiveService from "../services/ArchiveService"
 
-export default class ArchiveMailComponentMailComponent extends React.Component {
+export default class ArchiveMailComponent extends React.Component {
     constructor(props) {
         super(props);
 

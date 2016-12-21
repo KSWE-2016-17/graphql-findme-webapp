@@ -2,7 +2,7 @@ import React from "react";
 
 import AdminService from "../services/AdminService";
 
-export default class FriendsListTab_FriendRow extends React.Component {
+export default class ReportsView_ReportRow extends React.Component {
     constructor(props) {
         super(props);
 

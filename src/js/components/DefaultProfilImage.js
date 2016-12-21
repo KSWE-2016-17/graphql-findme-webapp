@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class DefaultProfilImageComponent extends React.Component {
+export default class DefaultProfilImage extends React.Component {
     render() {
         return (
             <img className="img-responsive img-thumbnail"

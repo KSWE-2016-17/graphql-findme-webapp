@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class FriendProfileView_HeadRow extends React.Component {
+export default class FriendsListTab_HeadRow extends React.Component {
     render() {
         return (
             <div>

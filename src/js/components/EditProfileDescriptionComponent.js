@@ -2,7 +2,7 @@ import React from "react";
 
 import ProfileService from "../services/ProfilService";
 
-export default class EditProfileComponent extends React.Component {
+export default class EditProfileDescriptionComponent extends React.Component {
     constructor(props) {
         super(props);
 
