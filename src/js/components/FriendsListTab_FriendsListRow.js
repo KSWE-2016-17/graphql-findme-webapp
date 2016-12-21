@@ -34,6 +34,7 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
                 return friendsListService.getFriendsOfProfile(currentProfile._id);
             })
             .then((data) => {
+            console.log("ndjansdk", data);
                 data.forEach((friend) => {
                     friends.push(
                         <div key={Math.random()}>

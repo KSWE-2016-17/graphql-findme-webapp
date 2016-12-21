@@ -137,7 +137,16 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     dismissFriendship() {
-        // TODO Implement!
+        let friendsListService = new FriendsListService();
+
+        friendsListService.dismissFriendship(this.props.profileId)
+            .then((data) => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
     }
 
     reportUser() {

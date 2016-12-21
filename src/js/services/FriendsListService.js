@@ -192,6 +192,17 @@ export default class FriendsListService {
             });
     }
 
+    dismissFriendship(profileId) {
+        return this.getCurrentProfile()
+            .then((data) => {
+                if (data) {
+                    let index = data.friends_ids.indexOf(profileId);
+                    delete data.friends_ids[index];
+
+                    return this.profileDAO.update(data);
+                }
+            });
+    }
 
     handleFriendRequest(friendListId, profileId, accept) {
         let deferred = q.defer();
