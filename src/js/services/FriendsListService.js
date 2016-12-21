@@ -178,44 +178,16 @@ export default class FriendsListService {
             });
     }
 
-    newFriendsListEntry(ownerProfileId, friendProfileId, friendshipStatus) {
-        let deferred = q.defer();
-
-        this.friendRequestDAO.findByProfileId(ownerProfileId)
+    createFriendRequest(profileId) {
+        return this.getCurrentProfile()
             .then((data) => {
-                if (data && data[0]) {
-                    let friendsList = data[0].friends;
-                    let isAlreadyAFriend = false;
-
-                    for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id == friendProfileId) {
-                            isAlreadyAFriend = true;
-                        }
-                    }
-
-                    if (isAlreadyAFriend == false) {
-                        friendsList.push({id: friendProfileId, status: friendshipStatus});
-                        data[0].friends = friendsList;
-
-                        this.friendRequestDAO.update(data[0])
-                            .then(deferred.resolve)
-                            .catch(deferred.reject);
-                    }
-                } else {
-                    let newFriendslist = {
-                        "doctype": "friends",
-                        "profile_id": ownerProfileId,
-                        "friends": [{id: friendProfileId, status: friendshipStatus}]
-                    };
-
-                    this.friendRequestDAO.create(newFriendslist)
-                        .then(deferred.resolve)
-                        .catch(deferred.reject);
+                if (data) {
+                    return this.friendRequestDAO.create({
+                        from_id: data._id,
+                        to_id: profileId
+                    });
                 }
-            })
-            .catch(deferred.reject);
-
-        return deferred.promise;
+            });
     }
 
     isFriend(profileId) {

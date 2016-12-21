@@ -71,19 +71,20 @@ export default class OtherProfileView_HeadRow extends React.Component {
     }
 
     sendFriendRequest() {
-        let self = this;
-
         let friendsListService = new FriendsListService();
 
         friendsListService.getCurrentProfile()
             .then((data) => {
-                friendsListService.newFriendsListEntry(self.props.profileId, data[0]._id, 0)
-                    .then((data) => {
-                        window.location.reload();
-                    });
+                if (data) {
+                    return friendsListService.createFriendRequest(this.props.profileId);
+                }
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then((data) => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .done();
     }
 }
