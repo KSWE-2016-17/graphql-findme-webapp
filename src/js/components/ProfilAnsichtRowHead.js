@@ -47,35 +47,28 @@ export default class ProfilAnsichtRowHead extends React.Component {
     componentDidMount() {
         let profileService = new ProfilService();
 
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        let state = {};
+
+        profileService.findById(this.props.profileId)
             .then((data) => {
-                localStorage.setItem("sessionProfileId", data[0]._id);
-
-                let state = {};
-
-                let parts = data[0].aboutme.split("{");
+                let parts = data.aboutme.split("{");
 
                 if (parts.length > 1) {
                     state.aboutme = parts[0];
                 } else {
-                    state.aboutme = data[0].aboutme;
+                    state.aboutme = data.aboutme;
                 }
 
-                state.profileName = data[0].firstname;
+                state.profileName = data.firstname;
 
-                this.setState(state);
+                return profileService.getAdminRight(data.user_id);
             })
-            .catch((err) => {
-                console.log(err);
-            });
-
-        profileService.getAdminRight(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 if (data && data[0] && (data[0].role == 2)) {
-                    this.setState({
-                        isAdmin: true
-                    });
+                    state.isAdmin = true;
                 }
+
+                this.setState(state);
             })
             .catch((err) => {
                 console.log(err);
