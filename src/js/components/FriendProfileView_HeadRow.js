@@ -23,7 +23,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-md-2">
-                        <FriendProfilImage profileID={self.props.profileID}/>
+                        <FriendProfilImage profileId={self.props.profileId}/>
                         <br/><br/>
                         <a href="#/mails/new" type="button" className="btn btn-primary"><span
                             className="glyphicon glyphicon-envelope"></span> Nachricht senden</a>
@@ -54,7 +54,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         let friendsListService = new FriendsListService();
 
-        friendsListService.getProfile(self.props.profileID)
+        friendsListService.getProfile(self.props.profileId)
             .then((profileData) => {
                 friendsListService.getUser(profileData[0].user_id)
                     .then((userData) => {
@@ -82,6 +82,6 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         let friendsListService = new FriendsListService();
 
-        friendsListService.reportUser(self.props.profileID);
+        friendsListService.reportUser(self.props.profileId);
     }
 }

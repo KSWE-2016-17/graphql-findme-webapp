@@ -50,7 +50,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         let profilService = new ProfilService();
 
-        profilService.findById(self.props.profileID)
+        profilService.findById(self.props.profileId)
             .then((profileData) => {
                 self.setState({
                     friendName: profileData[0].firstname,
@@ -67,7 +67,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         let friendsListService = new FriendsListService();
 
-        friendsListService.reportUser(self.props.profileID);
+        friendsListService.reportUser(self.props.profileId);
     }
 
     sendFriendRequest() {
@@ -77,7 +77,7 @@ export default class FriendProfileView_HeadRow extends React.Component {
 
         friendsListService.getCurrentProfile()
             .then((data) => {
-                friendsListService.newFriendsListEntry(self.props.profileID, data[0]._id, 0)
+                friendsListService.newFriendsListEntry(self.props.profileId, data[0]._id, 0)
                     .then((data) => {
                         window.location.reload();
                     });

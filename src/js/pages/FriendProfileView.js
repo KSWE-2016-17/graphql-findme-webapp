@@ -13,11 +13,11 @@ export default class FriendProfileView extends React.Component {
         return (
             <div>
                 <NavigationBar/>
-                <Head profileID={self.props.params.id}/>
+                <Head profileId={self.props.params.id}/>
                 <hr/>
                 <Pictures/>
                 <hr/>
-                <Interests profileID={self.props.params.id}/>
+                <Interests profileId={self.props.params.id}/>
             </div>
         );
     }
