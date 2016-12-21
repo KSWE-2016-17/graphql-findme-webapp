@@ -63,11 +63,11 @@ export default class ProfilAnsichtNavigationElement extends React.Component {
                                     </ul>
                                 </li>
                                 <li>
-                                    <form className="navbar-form navbar-input-group" role="form">
+                                    <form className="navbar-form navbar-input-group" role="form"
+                                          onSubmit={this.searchUser}>
                                         <div className="input-group">
                                             <div className="input-group-btn">
-                                                <button className="btn btn-default btn-sm" type="button"
-                                                        onClick={this.searchUser}>
+                                                <button className="btn btn-default btn-sm" type="submit">
                                                     <span className="glyphicon glyphicon-search"></span>
                                                 </button>
                                             </div>
