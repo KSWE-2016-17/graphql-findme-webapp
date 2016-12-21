@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/kswe-2016-17/graphql-findme-webapp#readme",
   "dependencies": {
-    "graphql-findme-db-api": "github:kswe-2016-17/graphql-findme-db-api#v0.7.2",
+    "graphql-findme-db-api": "github:kswe-2016-17/graphql-findme-db-api#v0.8.0",
     "lodash": "4.13.1",
     "q": "1.4.1",
     "react": "15.2.1",
