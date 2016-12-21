@@ -5,47 +5,13 @@ import ProfileImage from "./ProfileImage";
 import ProfilService from "../services/ProfilService";
 
 export default class ProfilAnsichtRowHead extends React.Component {
-    render() {
-        return (
-            <div>{this.createRowHead()}</div>
-        );
+    constructor(props) {
+        super(props);
+
+        this.state = {};
     }
 
-    createRowHead() {
-        let profileService = new ProfilService();
-
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
-            .then((data) => {
-                localStorage.setItem("sessionProfileId", data[0]._id);
-                localStorage.setItem("sessionProfile", data[0]);
-
-                let parts = data[0].aboutme.split("{");
-
-                if (parts.length > 1) {
-                    $("#aboutme").text(parts[0]);
-                } else {
-                    $("#aboutme").text(data[0].aboutme);
-                }
-
-                let builder = data[0].firstname;
-                $("#proname").text(builder);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
-        profileService.getAdminRight(localStorage.getItem("sessionUserId"))
-            .then((data) => {
-                $("#reports").hide();
-
-                if (data && data[0] && (data[0].role === 2 || data[0].role === "2")) {
-                    $("#reports").show();
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-
+    render() {
         return (
             <div>
                 <div className="row">
@@ -57,18 +23,64 @@ export default class ProfilAnsichtRowHead extends React.Component {
                         </a>
                     </div>
                     <div className="col-md-10">
-                        <a id="reports" className="btn btn-danger pull-right" href="#/reports" role="button">
-                            <span className="glyphicon glyphicon-screenshot"></span> Beschwerden
-                        </a>
+                        {(() => {
+                            if (this.state.isAdmin) {
+                                return (
+                                    <a id="reports" className="btn btn-danger pull-right" href="#/reports"
+                                       role="button">
+                                        <span className="glyphicon glyphicon-screenshot"></span> Beschwerden
+                                    </a>
+                                );
+                            }
+                        })()}
                         <a className="btn btn-primary pull-right" href="#/edit" role="button">
                             <span className="glyphicon glyphicon-pencil"></span> "Über mich" bearbeiten
                         </a>
 
-                        <h1 id="proname"></h1>
-                        <p id="aboutme"></p>
+                        <h1 id="proname">{this.state.profileName}</h1>
+                        <p id="aboutme">{this.state.aboutme}</p>
                     </div>
                 </div>
             </div>
         );
+    }
+
+    componentDidMount() {
+        let profileService = new ProfilService();
+
+        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+            .then((data) => {
+                localStorage.setItem("sessionProfileId", data[0]._id);
+                localStorage.setItem("sessionProfile", data[0]);
+
+                let state = {};
+
+                let parts = data[0].aboutme.split("{");
+
+                if (parts.length > 1) {
+                    state.aboutme = parts[0];
+                } else {
+                    state.aboutme = data[0].aboutme;
+                }
+
+                state.profileName = data[0].firstname;
+
+                this.setState(state);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
+        profileService.getAdminRight(localStorage.getItem("sessionUserId"))
+            .then((data) => {
+                if (data && data[0] && (data[0].role == 2)) {
+                    this.setState({
+                        isAdmin: true
+                    });
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 }
