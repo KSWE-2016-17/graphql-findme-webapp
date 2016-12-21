@@ -92,35 +92,6 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    endFrienship(friendListId, profileId) {
-        let deferred = q.defer();
-
-        this.friendRequestDAO.findById(friendListId)
-            .then((data) => {
-                if (data && data[0]) {
-                    let friendsList = data[0].friends;
-                    let newFriendsList = [];
-
-                    for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id != profileId) {
-                            newFriendsList.push(friendsList[i]);
-                        }
-                    }
-
-                    data[0].friends = newFriendsList;
-
-                    this.friendRequestDAO.update(data[0])
-                        .then(deferred.resolve)
-                        .catch(deferred.reject);
-                } else {
-                    deferred.reject("friendshit not found");
-                }
-            })
-            .catch(deferred.reject);
-
-        return deferred.promise;
-    }
-
     acceptFriendRequest(profileId) {
         return this.getCurrentProfile()
             .then((data) => {
@@ -202,36 +173,6 @@ export default class FriendsListService {
                     return this.profileDAO.update(data);
                 }
             });
-    }
-
-    handleFriendRequest(friendListId, profileId, accept) {
-        let deferred = q.defer();
-
-        this.friendRequestDAO.findById(friendListId)
-            .then((data) => {
-                if (data && data[0]) {
-                    let friendsList = data[0].friends;
-
-                    for (let i = 0; i < friendsList.length; i++) {
-                        if (friendsList[i].id == profileId) {
-                            friendsList[i].status = accept == true ? 1 : 2;
-                        }
-                    }
-
-                    data[0].friends = friendsList;
-
-                    this.newFriendsListEntry(profileId, data[0].profile_id, 1);
-
-                    this.friendRequestDAO.update(data[0])
-                        .then(deferred.resolve)
-                        .catch(deferred.reject);
-                } else {
-                    deferred.reject("friendshit not found");
-                }
-            })
-            .catch(deferred.reject);
-
-        return deferred.promise;
     }
 
     newFriendsListEntry(ownerProfileId, friendProfileId, friendshipStatus) {
