@@ -24,7 +24,8 @@ export default class LoginService {
                     deferred.reject("wrong username or password");
                 }
             })
-            .catch(deferred.reject);
+            .catch(deferred.reject)
+            .done();
 
         return deferred.promise;
     }
