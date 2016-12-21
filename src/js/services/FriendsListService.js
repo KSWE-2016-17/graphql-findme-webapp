@@ -197,7 +197,7 @@ export default class FriendsListService {
             .then((data) => {
                 if (data) {
                     let index = data.friends_ids.indexOf(profileId);
-                    delete data.friends_ids[index];
+                    data.friends_ids = data.friends_ids.slice(0, index).concat(data.friends_ids.slice(index + 1));
 
                     return this.profileDAO.update(data);
                 }
