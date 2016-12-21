@@ -170,6 +170,29 @@ export default class FriendsListService {
             });
     }
 
+    cancelFriendRequest(profileId) {
+        return this.getCurrentProfile()
+            .then((data) => {
+                if (data) {
+                    return this.friendRequestDAO.findByFrom(data._id);
+                }
+            })
+            .then((data) => {
+                let foundFriendRequest;
+
+                data.forEach((friendRequest) => {
+                    if (friendRequest.to_id === profileId) {
+                        foundFriendRequest = friendRequest;
+                    }
+                });
+
+                if (foundFriendRequest) {
+                    return this.friendRequestDAO.remove(foundFriendRequest);
+                }
+            });
+    }
+
+
     handleFriendRequest(friendListId, profileId, accept) {
         let deferred = q.defer();
 
