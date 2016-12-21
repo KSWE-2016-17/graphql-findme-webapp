@@ -51,7 +51,6 @@ export default class ProfilAnsichtRowHead extends React.Component {
         profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 localStorage.setItem("sessionProfileId", data[0]._id);
-                localStorage.setItem("sessionProfile", data[0]);
 
                 let state = {};
 
