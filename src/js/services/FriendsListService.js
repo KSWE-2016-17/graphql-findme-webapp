@@ -215,41 +215,19 @@ export default class FriendsListService {
         return deferred.promise;
     }
 
-    isFriend(friendId) {
+    isFriend(profileId) {
         let deferred = q.defer();
 
         this.getCurrentProfile()
             .then((data) => {
-                if (data && data[0]) {
-                    let currentProfileID = data[0]._id;
-                    this.allFriends(currentProfileID)
-                        .then((data) => {
-                            if (data && data[0]) {
-                                let friendsList = data[0].friends;
-                                let isHeAFriend = false;
-                                for (let i = 0; i < friendsList.length; i++) {
-                                    if (friendsList[i].id == friendId) {
-                                        if ((friendsList[i].status == 1) || (friendsList[i].status == "1")) {
-                                            isHeAFriend = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                                if (isHeAFriend == true) {
-                                    deferred.resolve("yes");
-                                } else {
-                                    deferred.resolve("no");
-                                }
-                            } else {
-                                deferred.reject("no friendship found");
-                            }
-                        })
-                        .catch(deferred.reject);
+                if (data) {
+                    deferred.resolve(data.friends_ids.indexOf(profileId) !== -1);
                 } else {
                     deferred.reject("current user's profile not found");
                 }
             })
-            .catch(deferred.reject);
+            .catch(deferred.reject)
+            .done();
 
         return deferred.promise;
     }
