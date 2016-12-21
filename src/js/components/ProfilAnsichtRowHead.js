@@ -33,7 +33,7 @@ export default class ProfilAnsichtRowHead extends React.Component {
                             }
                         })()}
                         <a className="btn btn-primary pull-right" href="#/edit" role="button">
-                            <span className="glyphicon glyphicon-pencil"></span> "Über mich" bearbeiten
+                            <span className="glyphicon glyphicon-edit"></span> "Über mich" bearbeiten
                         </a>
 
                         <h1>{this.state.profileName}</h1>
