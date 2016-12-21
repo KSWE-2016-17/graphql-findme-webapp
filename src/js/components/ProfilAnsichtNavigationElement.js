@@ -99,24 +99,21 @@ export default class ProfilAnsichtNavigationElement extends React.Component {
     }
 
     searchUser() {
-        let name = "";
-        name = $("#searchField").val();
+        let name = $("#searchField").val();
 
-        if (name === "") {
+        if (name.trim().length === 0) {
             alert("Suchfeld ist leer!");
         } else {
             let datingService = new DatingService();
+
             datingService.findIdByName(name)
                 .then((data) => {
                     let profilService = new ProfilService();
 
-                    profilService.findProfileByUserId(data[0]._id)
-                        .then((data) => {
-                            location.href = "#/profile/" + data[0]._id;
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        });
+                    return profilService.findProfileByUserId(data[0]._id);
+                })
+                .then((data) => {
+                    location.href = "#/profile/" + data[0]._id;
                 })
                 .catch((err) => {
                     console.log(err);
