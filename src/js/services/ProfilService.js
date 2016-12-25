@@ -27,24 +27,6 @@ export default class ProfilService {
         return this.profileDAO.findById(profileId);
     }
 
-    linkProfile(userId) {
-        let deferred = q.defer();
-
-        this.profileDAO.findByUserId(userId)
-            .then((data) => {
-                if (data && data[0]) {
-                    localStorage.setItem("sessionProfileId", data[0]._id);
-
-                    deferred.resolve(data);
-                } else {
-                    deferred.reject("create user fail");
-                }
-            })
-            .catch(deferred.reject);
-
-        return deferred.promise;
-    }
-
     findProfileByUserId(userId) {
         return this.profileDAO.findByUserId(userId);
     }
