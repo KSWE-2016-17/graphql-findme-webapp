@@ -10,6 +10,8 @@ export default class ReportsView_ReportRow extends React.Component {
 
         this.ignoreCase = this.ignoreCase.bind(this);
         this.deleteProfile = this.deleteProfile.bind(this);
+
+        this.adminService = new AdminService();
     }
 
     render() {
@@ -35,13 +37,11 @@ export default class ReportsView_ReportRow extends React.Component {
     componentDidMount() {
         let self = this;
 
-        let adminService = new AdminService();
-
-        adminService.getProfile(self.props.profileId)
+        this.adminService.getProfile(self.props.profileId)
             .then((data) => {
                 if (data[0]) {
                     self.setState({userID: data[0].user_id});
-                    adminService.getUser(data[0].user_id)
+                    this.adminService.getUser(data[0].user_id)
                         .then((data) => {
                             if (data[0]) {
                                 self.setState({profileName: data[0].login});
@@ -64,9 +64,7 @@ export default class ReportsView_ReportRow extends React.Component {
     ignoreCase() {
         let self = this;
 
-        let adminService = new AdminService();
-
-        adminService.removeReportedMark(self.props.profileId)
+        this.adminService.removeReportedMark(self.props.profileId)
             .then((data) => {
                 window.location.reload();
             });
@@ -75,11 +73,8 @@ export default class ReportsView_ReportRow extends React.Component {
     deleteProfile() {
         let self = this;
 
-        let adminService = new AdminService();
-
-        adminService.deleteUser(self.state.userID);
-
-        adminService.removeProfile(self.props.profileId)
+        this.adminService.deleteUser(self.state.userID);
+        this.adminService.removeProfile(self.props.profileId)
             .then((data) => {
                 window.location.reload();
             });

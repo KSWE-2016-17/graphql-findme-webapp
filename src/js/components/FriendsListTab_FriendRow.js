@@ -17,6 +17,8 @@ export default class FriendsListTab_FriendRow extends React.Component {
         this.reportUser = this.reportUser.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.openProfile = this.openProfile.bind(this);
+
+        this.friendsListService = new FriendsListService();
     }
 
     render() {
@@ -80,11 +82,9 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     componentDidMount() {
-        let friendsListService = new FriendsListService();
-
-        friendsListService.getProfile(this.props.profileId)
+        this.friendsListService.getProfile(this.props.profileId)
             .then((data) => {
-                return friendsListService.getUser(data.user_id);
+                return this.friendsListService.getUser(data.user_id);
             })
             .then((data) => {
                 this.setState({
@@ -98,9 +98,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     acceptFriendRequest() {
-        let friendsListService = new FriendsListService();
-
-        friendsListService.acceptFriendRequest(this.props.profileId)
+        this.friendsListService.acceptFriendRequest(this.props.profileId)
             .then((data) => {
                 window.location.reload();
             })
@@ -111,9 +109,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     rejectFriendRequest() {
-        let friendsListService = new FriendsListService();
-
-        friendsListService.rejectFriendRequest(this.props.profileId)
+        this.friendsListService.rejectFriendRequest(this.props.profileId)
             .then((data) => {
                 window.location.reload();
             })
@@ -124,9 +120,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     cancelFriendRequest() {
-        let friendsListService = new FriendsListService();
-
-        friendsListService.cancelFriendRequest(this.props.profileId)
+        this.friendsListService.cancelFriendRequest(this.props.profileId)
             .then((data) => {
                 window.location.reload();
             })
@@ -137,9 +131,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     dismissFriendship() {
-        let friendsListService = new FriendsListService();
-
-        friendsListService.dismissFriendship(this.props.profileId)
+        this.friendsListService.dismissFriendship(this.props.profileId)
             .then((data) => {
                 window.location.reload();
             })
@@ -150,9 +142,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     reportUser() {
-        let friendsListService = new FriendsListService();
-
-        friendsListService.reportUser(this.props.profileId)
+        this.friendsListService.reportUser(this.props.profileId)
             .catch((error) => {
                 console.log(error);
             })

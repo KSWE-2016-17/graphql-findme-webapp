@@ -2,10 +2,17 @@ import React from "react";
 
 import NewMailService from "../services/NewMailService"
 
-let sendtoid = "NOTFOUND";
-let mailservice = new NewMailService();
-
 export default class NewMailComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+
+        this.mailService = new NewMailService();
+
+        this.sendtoid = "NOTFOUND";
+    }
+
     render() {
         return (
             <div>
@@ -69,9 +76,9 @@ export default class NewMailComponent extends React.Component {
     getSendTo() {
         let sendto = $("#sendto").val();
 
-        mailservice.resolveUserName(sendto)
+        this.mailservice.resolveUserName(sendto)
             .then((data) => {
-                sendtoid = data[0]._id;
+                this.sendtoid = data[0]._id;
             })
             .catch((err) => {
                 console.log(err);
@@ -86,7 +93,7 @@ export default class NewMailComponent extends React.Component {
             let obj = {
                 "doctype": "msg",
                 "from": from,
-                "to": sendtoid,
+                "to": this.sendtoid,
                 "title": message,
                 "archivedFrom": false,
                 "archivedTo": false,
@@ -94,10 +101,10 @@ export default class NewMailComponent extends React.Component {
                 "deletedTo": false
             };
 
-            if (sendtoid !== "NOTFOUND") {
-                mailservice.sendMail(obj)
+            if (this.sendtoid !== "NOTFOUND") {
+                this.mailservice.sendMail(obj)
                     .then((data) => {
-                        sendtoid = "NOTFOUND";
+                        this.sendtoid = "NOTFOUND";
                         location.href = "#/mails/outbox";
                     })
                     .catch((err) => {

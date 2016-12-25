@@ -10,9 +10,13 @@ export default class OutboxMailComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.state = {
             mails: []
         };
+
+        this.outboxService = new OutboxService();
     }
 
     render() {
@@ -28,9 +32,7 @@ export default class OutboxMailComponent extends React.Component {
     componentDidMount() {
         let self = this;
 
-        let outboxService = new OutboxService();
-
-        outboxService.findMsgFromMeUndeleted(localStorage.getItem("sessionUserId"))
+        this.outboxService.findMsgFromMeUndeleted(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 console.debug("sent messages: " + data.length);
                 let messages = data;
@@ -50,7 +52,7 @@ export default class OutboxMailComponent extends React.Component {
                 for (let i = 0; i < uniqueUsers.length; i++) {
                     let uniqueUser = uniqueUsers[i];
 
-                    promises.push(outboxService.resolveUserName(uniqueUser.to));
+                    promises.push(this.outboxService.resolveUserName(uniqueUser.to));
                 }
 
                 q.all(promises)

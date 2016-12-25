@@ -11,6 +11,8 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
         this.state = {
             friends: []
         };
+
+        this.friendsListService = new FriendsListService();
     }
 
     render() {
@@ -25,13 +27,11 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
         let friends = [];
         let currentProfile;
 
-        let friendsListService = new FriendsListService();
-
-        friendsListService.getCurrentProfile()
+        this.friendsListService.getCurrentProfile()
             .then((data) => {
                 currentProfile = data;
 
-                return friendsListService.getFriendsOfProfile(currentProfile._id);
+                return this.friendsListService.getFriendsOfProfile(currentProfile._id);
             })
             .then((data) => {
                 data.forEach((friend) => {
@@ -48,7 +48,7 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
                     }
                 });
 
-                return friendsListService.getFriendRequestsOfProfile(currentProfile._id);
+                return this.friendsListService.getFriendRequestsOfProfile(currentProfile._id);
             })
             .then((data) => {
                 data.forEach((friendRequest) => {

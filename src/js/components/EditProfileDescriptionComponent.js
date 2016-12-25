@@ -6,7 +6,11 @@ export default class EditProfileDescriptionComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.updateAboutmeDescription = this.updateAboutmeDescription.bind(this);
+
+        this.profileService = new ProfileService();
     }
 
     render() {
@@ -40,9 +44,7 @@ export default class EditProfileDescriptionComponent extends React.Component {
     }
 
     componentDidMount() {
-        let profileService = new ProfileService();
-
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        this.profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 $("#aboutme").val(data[0].aboutme.split("{")[0]);
             })
@@ -52,11 +54,9 @@ export default class EditProfileDescriptionComponent extends React.Component {
     }
 
     updateAboutmeDescription() {
-        let profileService = new ProfileService();
-
         let aboutmeDescription = $("#aboutme").val();
 
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        this.profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 let aboutme = data[0].aboutme;
                 let aboutmeParts = aboutme.split("{");

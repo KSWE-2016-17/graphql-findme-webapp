@@ -3,6 +3,14 @@ import React from "react";
 import DatingService from "../services/DatingService";
 
 export default class DatingViewContentComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+
+        this.datingService = new DatingService();
+    }
+
     render() {
         return (
             <div>
@@ -166,9 +174,7 @@ export default class DatingViewContentComponent extends React.Component {
         let searchGroesseVon = $("#groesseVon").val();
         let searchGroesseBis = $("#groesseBis").val();
 
-        let datingService = new DatingService();
-
-        datingService.findAll()
+        this.datingService.findAll()
             .then((data) => {
                 let size = data.size;
 

@@ -13,6 +13,8 @@ export default class InboxMailComponent extends React.Component {
         this.state = {
             mails: []
         };
+
+        this.inboxService = new InboxService();
     }
 
     render() {
@@ -28,9 +30,7 @@ export default class InboxMailComponent extends React.Component {
     componentDidMount() {
         let self = this;
 
-        let inboxService = new InboxService();
-
-        inboxService.findMsgToMeUndeleted(localStorage.getItem("sessionUserId"))
+        this.inboxService.findMsgToMeUndeleted(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 console.debug("received messages: " + data.length);
                 let messages = data;
@@ -50,7 +50,7 @@ export default class InboxMailComponent extends React.Component {
                 for (let i = 0; i < uniqueUsers.length; i++) {
                     let uniqueUser = uniqueUsers[i];
 
-                    promises.push(inboxService.resolveUserName(uniqueUser.from));
+                    promises.push(this.inboxService.resolveUserName(uniqueUser.from));
                 }
 
                 q.all(promises)

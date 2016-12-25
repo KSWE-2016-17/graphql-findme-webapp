@@ -7,7 +7,12 @@ export default class LoginHeader extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.login = this.login.bind(this);
+
+        this.loginService = new LoginService();
+        this.profileService = new ProfileService();
     }
 
     render() {
@@ -38,12 +43,9 @@ export default class LoginHeader extends React.Component {
     }
 
     login() {
-        let loginService = new LoginService();
-        let profileService = new ProfileService();
-
-        loginService.login($("#username").val(), $("#password").val())
+        this.loginService.login($("#username").val(), $("#password").val())
             .then((data) => {
-                return profileService.findProfileByUserId(data._id);
+                return this.profileService.findProfileByUserId(data._id);
             })
             .then((data) => {
                 if (data && data[0]) {

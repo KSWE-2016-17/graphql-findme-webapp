@@ -7,7 +7,12 @@ export default class ProfilAnsichtNavigationElement extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.searchUser = this.searchUser.bind(this);
+
+        this.datingService = new DatingService();
+        this.profileService = new ProfilService();
     }
 
     render() {
@@ -104,13 +109,9 @@ export default class ProfilAnsichtNavigationElement extends React.Component {
         if (name.trim().length === 0) {
             alert("Suchfeld ist leer!");
         } else {
-            let datingService = new DatingService();
-
-            datingService.findIdByName(name)
+            this.datingService.findIdByName(name)
                 .then((data) => {
-                    let profilService = new ProfilService();
-
-                    return profilService.findProfileByUserId(data[0]._id);
+                    return this.profilService.findProfileByUserId(data[0]._id);
                 })
                 .then((data) => {
                     location.href = "#/profile/" + data[0]._id;

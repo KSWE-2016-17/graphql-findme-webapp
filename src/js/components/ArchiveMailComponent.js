@@ -14,6 +14,8 @@ export default class ArchiveMailComponent extends React.Component {
         this.state = {
             mails: []
         };
+
+        this.archiveService = new ArchiveService();
     }
 
     render() {
@@ -29,9 +31,7 @@ export default class ArchiveMailComponent extends React.Component {
     componentDidMount() {
         let self = this;
 
-        let archieService = new ArchiveService();
-
-        archieService.findArchFromMe(localStorage.getItem("sessionUserId"))
+        this.archiveService.findArchFromMe(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 console.debug("received messages: " + data.length);
                 let messages = data;
@@ -51,7 +51,7 @@ export default class ArchiveMailComponent extends React.Component {
                 for (let i = 0; i < uniqueUsers.length; i++) {
                     let uniqueUser = uniqueUsers[i];
 
-                    promises.push(archieService.resolveUserName(uniqueUser.to));
+                    promises.push(this.archiveService.resolveUserName(uniqueUser.to));
                 }
 
                 q.all(promises)
@@ -89,7 +89,7 @@ export default class ArchiveMailComponent extends React.Component {
                 console.log(err);
             });
 
-        archieService.findArchToMe(localStorage.getItem("sessionUserId"))
+        this.archiveService.findArchToMe(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 let messages = data;
 
@@ -107,7 +107,7 @@ export default class ArchiveMailComponent extends React.Component {
                 for (let i = 0; i < uniqueUsers.length; i++) {
                     let uniqueUser = uniqueUsers[i];
 
-                    promises.push(archieService.resolveUserName(uniqueUser.from));
+                    promises.push(this.archiveService.resolveUserName(uniqueUser.from));
                 }
 
                 q.all(promises)

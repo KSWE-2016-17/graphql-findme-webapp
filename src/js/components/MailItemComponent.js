@@ -8,9 +8,13 @@ export default class MailItemComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.onOpenMail = this.onOpenMail.bind(this);
         this.onArchiveMail = this.onArchiveMail.bind(this);
         this.onDeleteMail = this.onDeleteMail.bind(this);
+
+        this.inboxService = new InboxService();
     }
 
     render() {
@@ -64,14 +68,12 @@ export default class MailItemComponent extends React.Component {
     onArchiveMail(event) {
         let self = this;
         self.props.data.message.archivedTo = true;
-        let is = new InboxService();
-        is.updateMsg(self.props.data.message);
+        this.inboxService.updateMsg(self.props.data.message);
     }
 
     onDeleteMail(event) {
         let self = this;
-        let is = new InboxService();
         self.props.data.message.deletedTo = true;
-        is.updateMsg(self.props.data.message);
+        this.inboxService.updateMsg(self.props.data.message);
     }
 }

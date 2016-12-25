@@ -7,7 +7,12 @@ export default class ProfileinstellungenViewProfilLoeschenComponent extends Reac
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.deleteProfil = this.deleteProfil.bind(this);
+
+        this.registerService = new RegisterService();
+        this.profileService = new ProfilService();
     }
 
     render() {
@@ -41,14 +46,11 @@ export default class ProfileinstellungenViewProfilLoeschenComponent extends Reac
         let accept = document.getElementById("delete").checked;
 
         if (accept) {
-            let profilService = new ProfilService();
-            let registerService = new RegisterService();
-
             //aktuellen user finden
-            profilService.findById(id)
+            this.profilService.findById(id)
                 .then((data) => {
                     //user entfernen
-                    profilService.remove(data[0])
+                    this.profilService.remove(data[0])
                         .then((data) => {
 
                         })
@@ -57,10 +59,10 @@ export default class ProfileinstellungenViewProfilLoeschenComponent extends Reac
                         });
 
                     //aktuelles profil finden
-                    registerService.findIdByName(data[0].login)
+                    this.registerService.findIdByName(data[0].login)
                         .then((data) => {
                             //profil entfernen
-                            registerService.remove(data[0])
+                            this.registerService.remove(data[0])
                                 .then((data) => {
                                     location.href = "#/login";
                                 })

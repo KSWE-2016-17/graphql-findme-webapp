@@ -20,6 +20,9 @@ export default class ProfilAnsichtRowHead extends React.Component {
 
         this.reportUser = this.reportUser.bind(this);
         this.sendFriendRequest = this.sendFriendRequest.bind(this);
+
+        this.profileService = new ProfilService();
+        this.friendsListService = new FriendsListService();
     }
 
     render() {
@@ -101,13 +104,10 @@ export default class ProfilAnsichtRowHead extends React.Component {
     }
 
     componentDidMount() {
-        let profileService = new ProfilService();
-        let friendsListService = new FriendsListService();
-
         let state = {};
 
         q.all([
-            profileService.findById(this.props.profileId)
+            this.profileService.findById(this.props.profileId)
                 .then((data) => {
                     let parts = data.aboutme.split("{");
 
@@ -119,12 +119,12 @@ export default class ProfilAnsichtRowHead extends React.Component {
 
                     state.profileName = data.firstname;
 
-                    return profileService.getAdminRight(data.user_id);
+                    return this.profileService.getAdminRight(data.user_id);
                 })
                 .then((data) => {
                     state.isAdmin = data && data[0] && data[0].role == 2;
                 }),
-            friendsListService.isFriend(this.props.profileId)
+            this.friendsListService.isFriend(this.props.profileId)
                 .then((data) => {
                     state.isFriend = data === true;
                 })
@@ -138,17 +138,11 @@ export default class ProfilAnsichtRowHead extends React.Component {
     }
 
     reportUser() {
-        let self = this;
-
-        let friendsListService = new FriendsListService();
-
-        friendsListService.reportUser(self.props.profileId);
+        this.friendsListService.reportUser(this.props.profileId);
     }
 
     sendFriendRequest() {
-        let friendsListService = new FriendsListService();
-
-        friendsListService.getCurrentProfile()
+        this.friendsListService.getCurrentProfile()
             .then((data) => {
                 if (data) {
                     return friendsListService.createFriendRequest(this.props.profileId);

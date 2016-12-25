@@ -11,6 +11,8 @@ export default class ReportsView_ReportsListRow extends React.Component {
         this.state = {
             reports: []
         };
+
+        this.adminService = new AdminService();
     }
 
     render() {
@@ -27,9 +29,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
     componentDidMount() {
         let self = this;
 
-        let adminService = new AdminService();
-
-        adminService.allProfiles()
+        this.adminService.allProfiles()
             .then((data) => {
                 console.debug("received profiles: " + data.length);
 

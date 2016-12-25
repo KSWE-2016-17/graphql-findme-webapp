@@ -7,7 +7,11 @@ export default class EditProfileInterestsComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.updateInterests = this.updateInterests.bind(this);
+
+        this.profileService = new ProfileService();
     }
 
     render() {
@@ -57,7 +61,8 @@ export default class EditProfileInterestsComponent extends React.Component {
 
                 <div className="row">
                     <div className="col-md-12">
-                        <a href={`#/profiles/${localStorage.getItem("sessionProfileId")}`} type="button" className="btn btn-primary btn-lg btn-block">
+                        <a href={`#/profiles/${localStorage.getItem("sessionProfileId")}`} type="button"
+                           className="btn btn-primary btn-lg btn-block">
                             <span className="glyphicon glyphicon-chevron-left"></span> Zurück zum Profil
                         </a>
                     </div>
@@ -67,9 +72,7 @@ export default class EditProfileInterestsComponent extends React.Component {
     }
 
     componentDidMount() {
-        let profileService = new ProfileService();
-
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        this.profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 let aboutme = data[0].aboutme;
                 let aboutmeParts = aboutme.split("#");
@@ -89,8 +92,6 @@ export default class EditProfileInterestsComponent extends React.Component {
     }
 
     updateInterests() {
-        let profileService = new ProfileService();
-
         let interestsBuffer = "#";
 
         for (let i = 0; i < 10; i++) {
@@ -101,14 +102,14 @@ export default class EditProfileInterestsComponent extends React.Component {
             }
         }
 
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        this.profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 let aboutme = data[0].aboutme;
                 let aboutmeParts = aboutme.split("{");
 
                 data[0].aboutme = aboutmeParts[0] + "{" + interestsBuffer;
 
-                profileService.updateProfile(data[0])
+                this.profileService.updateProfile(data[0])
                     .catch((err) => {
                         console.log(err);
                     });

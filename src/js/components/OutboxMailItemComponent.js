@@ -8,9 +8,13 @@ export default class OutboxMailItemComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.onOpenMail = this.onOpenMail.bind(this);
         this.onArchiveMail = this.onArchiveMail.bind(this);
         this.onDeleteMail = this.onDeleteMail.bind(this);
+
+        this.outboxService = new OutboxService();
     }
 
     render() {
@@ -64,14 +68,12 @@ export default class OutboxMailItemComponent extends React.Component {
     onArchiveMail(event) {
         let self = this;
         self.props.data.message.archivedFrom = true;
-        let os = new OutboxService();
-        os.updateMsg(self.props.data.message);
+        this.outboxService.updateMsg(self.props.data.message);
     }
 
     onDeleteMail(event) {
         let self = this;
-        let os = new OutboxService();
         self.props.data.message.deletedFrom = true;
-        os.updateMsg(self.props.data.message);
+        this.outboxService.updateMsg(self.props.data.message);
     }
 }

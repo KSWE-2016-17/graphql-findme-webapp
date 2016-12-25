@@ -6,9 +6,13 @@ export default class ProfilAnsichtRowInteressen extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.state = {
             interestsElements: []
         };
+
+        this.profileService = new ProfileService();
     }
 
     render() {
@@ -33,9 +37,7 @@ export default class ProfilAnsichtRowInteressen extends React.Component {
     componentDidMount() {
         let self = this;
 
-        let profileService = new ProfileService();
-
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        this.profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 let aboutme = data[0].aboutme;
 

@@ -6,7 +6,11 @@ export default class EditProfileGeneralComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {};
+
         this.updateGeneralInfo = this.updateGeneralInfo.bind(this);
+
+        this.profileService = new ProfileService();
     }
 
     render() {
@@ -86,9 +90,7 @@ export default class EditProfileGeneralComponent extends React.Component {
     }
 
     componentDidMount() {
-        let profileService = new ProfileService();
-
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        this.profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 $("#status").val(data[0].familystatus);
                 $("#privacy").val(data[0].privacy.friends);
@@ -103,9 +105,7 @@ export default class EditProfileGeneralComponent extends React.Component {
     }
 
     updateGeneralInfo() {
-        let profileService = new ProfileService();
-
-        profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
+        this.profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 data[0].familystatus = $("#status").val();
                 data[0].privacy.friends = $("#privacy").val();
@@ -119,7 +119,7 @@ export default class EditProfileGeneralComponent extends React.Component {
                 data[0].eyecolor = $("#eye").val();
                 data[0].figure = $("#figure").val();
 
-                profileService.updateProfile(data[0])
+                this.profileService.updateProfile(data[0])
                     .catch((err) => {
                         console.log(err);
                     });

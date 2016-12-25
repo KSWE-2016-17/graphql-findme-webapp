@@ -4,6 +4,15 @@ import RegisterService from "../services/RegisterService";
 import ProfilService from "../services/ProfilService";
 
 export default class RegistrierenViewFormComponent extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+
+        this.registerService = new RegisterService();
+        this.profileService = new ProfilService();
+    }
+
     render() {
         return (
             <div>
@@ -133,21 +142,19 @@ export default class RegistrierenViewFormComponent extends React.Component {
 
         if (name !== "" && mail !== "" && pw === pw2 && gender !== "" && yearOfBirth !== "" && accept === true) {
             //user registrieren
-            let registerService = new RegisterService();
-            registerService.register(objUser)
+            this.registerService.register(objUser)
                 .then((data) => {
                     //location.href = "#/login";
 
                     //user_id ermitteln
-                    registerService.findIdByName(name)
+                    this.registerService.findIdByName(name)
                         .then((data) => {
                             let user = "";
                             user = data[0]._id;
                             objProfil.user_id = user;
 
                             //profil anlegen
-                            let profilService = new ProfilService();
-                            profilService.createProfile(objProfil)
+                            this.profilService.createProfile(objProfil)
                                 .then((data) => {
                                     //alert("Test: " + objProfil.user_id);
                                     location.href = "#/login";
