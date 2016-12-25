@@ -4,21 +4,19 @@ import TeaserComponent from "../components/TeaserComponent";
 
 export default class LoginDreiPunkte extends React.Component {
     render() {
-        let self = this;
-
         return (
             <div>
                 <div className="row">
                     <div className="col-md-4">
-                        <TeaserComponent header="Interessen" description={self.createRandomDescription()}
+                        <TeaserComponent header="Interessen" description={this.createRandomDescription()}
                                          destination="#"/>
                     </div>
                     <div className="col-md-4">
-                        <TeaserComponent header="Vorlieben" description={self.createRandomDescription()}
+                        <TeaserComponent header="Vorlieben" description={this.createRandomDescription()}
                                          destination="#"/>
                     </div>
                     <div className="col-md-4">
-                        <TeaserComponent header="Vorstellungen" description={self.createRandomDescription()}
+                        <TeaserComponent header="Vorstellungen" description={this.createRandomDescription()}
                                          destination="#"/>
                     </div>
                 </div>

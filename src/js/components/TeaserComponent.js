@@ -2,16 +2,14 @@ import React from "react";
 
 export default class TeaserComponent extends React.Component {
     render() {
-        let self = this;
-
         return (
             <div>
-                <h3>{self.props.header}</h3>
-                <p>{self.props.description}</p>
+                <h3>{this.props.header}</h3>
+                <p>{this.props.description}</p>
                 {(() => {
-                    if (self.props.destination) {
+                    if (this.props.destination) {
                         return (
-                            <a className="btn btn-link" href={self.props.destination}>mehr ...</a>
+                            <a className="btn btn-link" href={this.props.destination}>mehr ...</a>
                         );
                     }
                 })()}

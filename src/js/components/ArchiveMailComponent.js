@@ -19,18 +19,14 @@ export default class ArchiveMailComponent extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div id="archiveMessages">
-                {self.state.mails}
+                {this.state.mails}
             </div>
         );
     }
 
     componentDidMount() {
-        let self = this;
-
         this.archiveService.findArchFromMe(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 console.debug("received messages: " + data.length);
@@ -71,13 +67,13 @@ export default class ArchiveMailComponent extends React.Component {
                             for (let j = 0; j < mappedData.length; j++) {
                                 let md = mappedData[j];
 
-                                let mails = self.state.mails;
+                                let mails = this.state.mails;
                                 mails.push(
                                     <ArchiveMailFromComponent
                                         key={Math.random()}
                                         data={md}/>
                                 );
-                                self.setState({mails: mails});
+                                this.setState({mails: mails});
                             }
                         }
                     })
@@ -126,13 +122,13 @@ export default class ArchiveMailComponent extends React.Component {
                             for (let j = 0; j < mappedData.length; j++) {
                                 let md = mappedData[j];
 
-                                let mails = self.state.mails;
+                                let mails = this.state.mails;
                                 mails.push(
                                     <ArchiveMailToComponent
                                         key={Math.random()}
                                         data={md}/>
                                 );
-                                self.setState({mails: mails});
+                                this.setState({mails: mails});
                             }
                         }
                     })

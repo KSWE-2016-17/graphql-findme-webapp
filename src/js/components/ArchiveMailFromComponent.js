@@ -18,8 +18,6 @@ export default class ArchiveMailFromComponent extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div>
                 <br/>
@@ -33,27 +31,27 @@ export default class ArchiveMailFromComponent extends React.Component {
                                 background: "linear-gradient(to left, rgba(255, 204, 102,1), rgba(0, 153, 153,1))",
                                 border: "2px solid #000000"
                             }}>
-                                <p>{self.props.data.user.login ? self.props.data.user.login : self.props.data.message.from}</p>
+                                <p>{this.props.data.user.login ? this.props.data.user.login : this.props.data.message.from}</p>
                             </div>
                             <div style={{border: "1px solid #000000"}}>
-                                <p>{self.props.data.message.title}</p>
+                                <p>{this.props.data.message.title}</p>
                             </div>
                         </div>
                     </div>
                     <div className="col-md-1">
                         <div>
                             <div>
-                                <button className="btn btn-default btn-sm" type="button" onClick={self.onOpenMail}>
+                                <button className="btn btn-default btn-sm" type="button" onClick={this.onOpenMail}>
                                     <span className="glyphicon glyphicon-eye-open"></span>
                                 </button>
                             </div>
                             <div>
-                                <button className="btn btn-warning btn-sm" type="button" onClick={self.onArchiveMail}>
+                                <button className="btn btn-warning btn-sm" type="button" onClick={this.onArchiveMail}>
                                     <span className="glyphicon glyphicon-floppy-disk"></span>
                                 </button>
                             </div>
                             <div>
-                                <button className="btn btn-danger btn-sm" type="button" onClick={self.onDeleteMail}>
+                                <button className="btn btn-danger btn-sm" type="button" onClick={this.onDeleteMail}>
                                     <span className="glyphicon glyphicon-trash"></span>
                                 </button>
                             </div>
@@ -69,14 +67,14 @@ export default class ArchiveMailFromComponent extends React.Component {
     }
 
     onArchiveMail(event) {
-        let self = this;
-        self.props.data.message.archivedFrom = false;
-        this.outboxService.updateMsg(self.props.data.message);
+        this.props.data.message.archivedFrom = false;
+
+        this.outboxService.updateMsg(this.props.data.message);
     }
 
     onDeleteMail(event) {
-        let self = this;
-        self.props.data.message.deletedFrom = true;
-        this.outboxService.updateMsg(self.props.data.message);
+        this.props.data.message.deletedFrom = true;
+
+        this.outboxService.updateMsg(this.props.data.message);
     }
 }

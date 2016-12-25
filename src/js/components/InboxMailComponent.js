@@ -18,18 +18,14 @@ export default class InboxMailComponent extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div id="inboxMessages">
-                {self.state.mails}
+                {this.state.mails}
             </div>
         );
     }
 
     componentDidMount() {
-        let self = this;
-
         this.inboxService.findMsgToMeUndeleted(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 console.debug("received messages: " + data.length);
@@ -69,13 +65,13 @@ export default class InboxMailComponent extends React.Component {
                             for (let j = 0; j < mappedData.length; j++) {
                                 let md = mappedData[j];
 
-                                let mails = self.state.mails;
+                                let mails = this.state.mails;
                                 mails.push(
                                     <MailItemComponent
                                         key={Math.random()}
                                         data={md}/>
                                 );
-                                self.setState({mails: mails});
+                                this.setState({mails: mails});
                             }
                         }
                     })

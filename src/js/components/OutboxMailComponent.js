@@ -20,18 +20,14 @@ export default class OutboxMailComponent extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div id="outboxMessages">
-                {self.state.mails}
+                {this.state.mails}
             </div>
         );
     }
 
     componentDidMount() {
-        let self = this;
-
         this.outboxService.findMsgFromMeUndeleted(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 console.debug("sent messages: " + data.length);
@@ -71,13 +67,13 @@ export default class OutboxMailComponent extends React.Component {
                             for (let j = 0; j < mappedData.length; j++) {
                                 let md = mappedData[j];
 
-                                let mails = self.state.mails;
+                                let mails = this.state.mails;
                                 mails.push(
                                     <OutboxMailItemComponent
                                         key={Math.random()}
                                         data={md}/>
                                 );
-                                self.setState({mails: mails});
+                                this.setState({mails: mails});
                             }
                         }
                     })

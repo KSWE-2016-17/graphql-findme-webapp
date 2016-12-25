@@ -16,24 +16,20 @@ export default class ReportsView_ReportsListRow extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div id="reportsList">
                 <br/>
-                {self.state.reports}
+                {this.state.reports}
             </div>
         );
     }
 
     componentDidMount() {
-        let self = this;
-
         this.adminService.allProfiles()
             .then((data) => {
                 console.debug("received profiles: " + data.length);
 
-                let newReportList = self.state.reports;
+                let newReportList = this.state.reports;
 
                 for (let i = 0; i < data.length; i++) {
                     console.debug(i + ". profile: " + data[i]._id + " - reported: " + data[i].reported);
@@ -49,7 +45,7 @@ export default class ReportsView_ReportsListRow extends React.Component {
                     }
                 }
 
-                self.setState({reports: newReportList});
+                this.setState({reports: newReportList});
             })
             .catch((err) => {
                 console.log(err);

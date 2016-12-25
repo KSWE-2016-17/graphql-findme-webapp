@@ -16,8 +16,6 @@ export default class ProfilAnsichtRowInteressen extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div>
                 <div className="row">
@@ -27,7 +25,7 @@ export default class ProfilAnsichtRowInteressen extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        {self.state.interestsElements}
+                        {this.state.interestsElements}
                     </div>
                 </div>
             </div>
@@ -35,8 +33,6 @@ export default class ProfilAnsichtRowInteressen extends React.Component {
     }
 
     componentDidMount() {
-        let self = this;
-
         this.profileService.findProfileByUserId(localStorage.getItem("sessionUserId"))
             .then((data) => {
                 let aboutme = data[0].aboutme;
@@ -44,7 +40,7 @@ export default class ProfilAnsichtRowInteressen extends React.Component {
                 let aboutmeParts = aboutme.split("#");
                 let interests = aboutmeParts.length >= 2 ? aboutmeParts[1].split("+") : [];
 
-                let interestsElements = self.state.interestsElements;
+                let interestsElements = this.state.interestsElements;
 
                 for (let i = 0; i < interests.length; i++) {
                     let interest = interests[i];
@@ -75,7 +71,7 @@ export default class ProfilAnsichtRowInteressen extends React.Component {
                     }
                 }
 
-                self.setState({
+                this.setState({
                     interestsElements: interestsElements
                 });
 

@@ -15,17 +15,15 @@ export default class ReportsView_ReportRow extends React.Component {
     }
 
     render() {
-        let self = this;
-
         return (
             <div className="row">
                 <div className="col-md-12">
-                    <font size="5"> {self.state.profileName} </font><br/>
-                    <button type="button" className="btn btn-link" onClick={self.ignoreCase}
+                    <font size="5"> {this.state.profileName} </font><br/>
+                    <button type="button" className="btn btn-link" onClick={this.ignoreCase}
                             style={{marginLeft: "25px", paddingLeft: "10px", paddingRight: "10px"}}>
                         <span className="glyphicon glyphicon-sunglasses"></span> Fall ignorieren
                     </button>
-                    <button type="button" className="btn btn-link" onClick={self.deleteProfile}
+                    <button type="button" className="btn btn-link" onClick={this.deleteProfile}
                             style={{marginLeft: "25px", paddingLeft: "10px", paddingRight: "10px"}}>
                         <span className="glyphicon glyphicon-remove"></span> Profil löschen
                     </button>
@@ -35,16 +33,14 @@ export default class ReportsView_ReportRow extends React.Component {
     }
 
     componentDidMount() {
-        let self = this;
-
-        this.adminService.getProfile(self.props.profileId)
+        this.adminService.getProfile(this.props.profileId)
             .then((data) => {
                 if (data[0]) {
-                    self.setState({userID: data[0].user_id});
+                    this.setState({userID: data[0].user_id});
                     this.adminService.getUser(data[0].user_id)
                         .then((data) => {
                             if (data[0]) {
-                                self.setState({profileName: data[0].login});
+                                this.setState({profileName: data[0].login});
                             } else {
                                 console.log("user not found");
                             }
@@ -62,19 +58,15 @@ export default class ReportsView_ReportRow extends React.Component {
     }
 
     ignoreCase() {
-        let self = this;
-
-        this.adminService.removeReportedMark(self.props.profileId)
+        this.adminService.removeReportedMark(this.props.profileId)
             .then((data) => {
                 window.location.reload();
             });
     }
 
     deleteProfile() {
-        let self = this;
-
-        this.adminService.deleteUser(self.state.userID);
-        this.adminService.removeProfile(self.props.profileId)
+        this.adminService.deleteUser(this.state.userID);
+        this.adminService.removeProfile(this.props.profileId)
             .then((data) => {
                 window.location.reload();
             });
