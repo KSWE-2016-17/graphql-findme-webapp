@@ -1,6 +1,7 @@
 import React from "react";
 
 import LoginService from "../services/LoginService";
+import ProfileService from "../services/ProfilService";
 
 export default class LoginHeader extends React.Component {
     constructor(props) {
@@ -38,10 +39,20 @@ export default class LoginHeader extends React.Component {
 
     login() {
         let loginService = new LoginService();
+        let profileService = new ProfileService();
 
         loginService.login($("#username").val(), $("#password").val())
             .then((data) => {
-                location.href = "#/profile";
+                return profileService.findProfileByUserId(data._id);
+            })
+            .then((data) => {
+                if (data && data[0]) {
+                    localStorage.setItem("sessionProfileId", data[0]._id);
+
+                    location.href = `#/profiles/${localStorage.getItem("sessionProfileId")}`;
+                } else {
+                    console.log("no profile found for login");
+                }
             })
             .catch((err) => {
                 console.log(err);

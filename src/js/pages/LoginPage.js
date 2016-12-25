@@ -9,8 +9,8 @@ export default class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
-        if (localStorage.getItem("sessionUserId")) {
-            location.href = "#/profile";
+        if (localStorage.getItem("sessionProfileId")) {
+            location.href = `#/profiles/${localStorage.getItem("sessionProfileId")}`;
         }
     }
 

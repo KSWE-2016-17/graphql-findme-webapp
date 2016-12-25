@@ -164,6 +164,6 @@ export default class FriendsListTab_FriendRow extends React.Component {
     }
 
     openProfile() {
-        window.location.href = "#/friends/" + this.props.profileId;
+        window.location.href = "#/profiles/" + this.props.profileId;
     }
 }
