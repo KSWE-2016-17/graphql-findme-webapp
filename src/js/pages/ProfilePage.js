@@ -8,7 +8,7 @@ import ProfilAnsichtRowRestricted from "../components/ProfilAnsichtRowRestricted
 
 import FriendsListService from "../services/FriendsListService";
 
-export default class ProfilViewComponent extends React.Component {
+export default class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
 

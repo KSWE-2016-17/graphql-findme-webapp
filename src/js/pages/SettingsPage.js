@@ -5,7 +5,7 @@ import ProfileinstellungenViewPrivatsphaereComponent from "../components/Profile
 import ProfileinstellungenViewSonstigesComponent from "../components/ProfileinstellungenViewSonstigesComponent";
 import ProfileinstellungenViewProfilLoeschenComponent from "../components/ProfileinstellungenViewProfilLoeschenComponent";
 
-export default class ProfileinstellungenViewPage extends React.Component {
+export default class SettingsPage extends React.Component {
     render() {
         return (
             <div>

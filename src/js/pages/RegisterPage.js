@@ -4,7 +4,7 @@ import RegistrierenViewHeadComponent from "../components/RegistrierenViewHeadCom
 import RegistrierenViewInfoboxComponent from "../components/RegistrierenViewInfoboxComponent";
 import RegistrierenViewFormComponent from "../components/RegistrierenViewFormComponent";
 
-export default class RegistrierenViewPage extends React.Component {
+export default class RegisterPage extends React.Component {
     render() {
         return (
             <div>

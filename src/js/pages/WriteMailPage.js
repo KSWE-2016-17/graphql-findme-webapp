@@ -4,7 +4,7 @@ import NewMailHeaderComponent from "../components/NewMailHeaderComponent";
 import NewMailComponent from "../components/NewMailComponent";
 import Navigation from "../components/Navigation";
 
-export default class NewMailPage extends React.Component {
+export default class WriteMailPage extends React.Component {
     render() {
         return (
             <div>

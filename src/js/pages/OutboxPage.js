@@ -4,7 +4,7 @@ import OutboxHeaderComponent from "../components/OutboxHeaderComponent";
 import OutboxMailComponent from "../components/OutboxMailComponent";
 import Navigation from "../components/Navigation";
 
-export default class OutboxViewPage extends React.Component {
+export default class OutboxPage extends React.Component {
     render() {
         return (
             <div>

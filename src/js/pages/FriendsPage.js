@@ -5,7 +5,7 @@ import FriendListItemComponent from "../components/FriendListItemComponent";
 
 import FriendsListService from "../services/FriendsListService";
 
-export default class FriendsListTab extends React.Component {
+export default class FriendsPage extends React.Component {
     constructor(props) {
         super(props);
 
