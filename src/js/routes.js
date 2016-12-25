@@ -21,11 +21,10 @@ export default {
     component: IndexPage,
     indexRoute: {component: LoginPage},
     childRoutes: [
-        {path: "profile", component: ProfilViewComponent},
+        {path: "profiles/:id", component: ProfilViewComponent},
         {path: "login", component: LoginPage},
         {path: "logout", component: LogoutPage},
         {path: "register", component: RegistrierenViewPage},
-        {path: "profile/:id", component: OtherProfileView},
         {path: "edit", component: EditProfilePage},
         {path: "settings", component: ProfileinstellungenViewPage},
         {path: "mails/archive", component: ArchiveViewPage},
@@ -33,7 +32,6 @@ export default {
         {path: "mails/outbox", component: OutboxViewPage},
         {path: "mails/new", component: NewMailPage},
         {path: "mails/:id", component: ReadMailPage},
-        {path: "friends/:id", component: FriendProfileView},
         {path: "dating", component: DatingViewPage},
         {path: "friendstab", component: FriendListTab},
         {path: "reports", component: ReportsView}
