@@ -1,7 +1,6 @@
 import React from "react";
 
 import LogoutComponent from "../components/LogoutComponent"
-import LoginFooter from "../components/LoginFooter";
 
 export default class LogoutPage extends React.Component {
     constructor(props) {
@@ -23,10 +22,6 @@ export default class LogoutPage extends React.Component {
                 <br/>
                 <br/>
                 <LogoutComponent/>
-                <br/>
-                <br/>
-                <br/>
-                <LoginFooter/>
             </div>
         );
     }

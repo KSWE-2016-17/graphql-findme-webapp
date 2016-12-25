@@ -3,7 +3,6 @@ import React from "react";
 import LoginHeader from "../components/LoginHeader";
 import LoginInfoBox from "../components/LoginInfoBox";
 import LoginDreiPunkte from "../components/LoginDreiPunkte";
-import LoginFooter from "../components/LoginFooter";
 
 export default class LoginPage extends React.Component {
     constructor(props) {
@@ -20,7 +19,6 @@ export default class LoginPage extends React.Component {
                 <LoginHeader/>
                 <LoginInfoBox/>
                 <LoginDreiPunkte/>
-                <LoginFooter/>
             </div>
         );
     }
