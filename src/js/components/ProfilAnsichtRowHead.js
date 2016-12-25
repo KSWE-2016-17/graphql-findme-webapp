@@ -94,7 +94,14 @@ export default class ProfilAnsichtRowHead extends React.Component {
 
                         <p>
                             <span className="h1">{this.state.profileName}</span>&nbsp;
-                            <span className="text-success"><strong>befreundet</strong></span>
+
+                            {(() => {
+                                if (this.state.isFriend === true) {
+                                    return (
+                                        <span className="text-success"><strong>befreundet</strong></span>
+                                    );
+                                }
+                            })()}
                         </p>
                         <p>{this.state.aboutme}</p>
                     </div>
