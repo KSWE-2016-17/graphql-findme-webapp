@@ -12,6 +12,10 @@ export default class ProfilViewComponent extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            profileContentElements: []
+        };
+
         this.profileId = this.props.params.id;
 
         this.friendsListService = new FriendsListService();
@@ -23,22 +27,39 @@ export default class ProfilViewComponent extends React.Component {
                 <ProfilAnsichtNavigationElement/>
                 <ProfilAnsichtRowHead profileId={this.profileId}/>
                 <hr/>
-                {(() => {
-                    if (this.friendsListService.isFriend(this.profileId)) {
-                        return (
-                            <div>
-                                <ProfilAnsichtRowBilder profileId={this.profileId}/>
-                                <hr/>
-                                <ProfilAnsichtRowInteressen profileId={this.profileId}/>
-                            </div>
-                        );
-                    } else {
-                        return (
-                            <ProfilAnsichtRowRestricted/>
-                        );
-                    }
-                })()}
+                {this.state.profileContentElements}
             </div>
         );
+    }
+
+    componentDidMount() {
+        let profileContentElements = this.state.profileContentElements;
+
+        if (this.profileId === localStorage.getItem("sessionProfileId")) {
+            profileContentElements.push(<ProfilAnsichtRowBilder key={Math.random()} profileId={this.profileId}/>);
+            profileContentElements.push(<hr key={Math.random()}/>);
+            profileContentElements.push(<ProfilAnsichtRowInteressen key={Math.random()} profileId={this.profileId}/>);
+        } else {
+            this.friendsListService.isFriend(this.profileId)
+                .then((data) => {
+                    if (data === true) {
+                        profileContentElements.push(<ProfilAnsichtRowBilder key={Math.random()}
+                                                                            profileId={this.profileId}/>);
+                        profileContentElements.push(<hr key={Math.random()}/>);
+                        profileContentElements.push(<ProfilAnsichtRowInteressen key={Math.random()}
+                                                                                profileId={this.profileId}/>);
+                    } else {
+                        profileContentElements.push(<ProfilAnsichtRowRestricted key={Math.random()}/>);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+                .done();
+        }
+
+        this.setState({
+            profileContentElements
+        });
     }
 }
