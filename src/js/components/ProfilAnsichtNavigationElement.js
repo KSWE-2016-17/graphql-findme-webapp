@@ -28,7 +28,7 @@ export default class ProfilAnsichtNavigationElement extends React.Component {
                         <div id="myNavbar" className="collapse navbar-collapse">
                             <ul className="nav navbar-nav">
                                 <li>
-                                    <a href="#/profile">
+                                    <a href={`#/profiles/${localStorage.getItem("sessionProfileId")}`}>
                                         <span className="glyphicon glyphicon-user"></span> Profil
                                     </a>
                                 </li>

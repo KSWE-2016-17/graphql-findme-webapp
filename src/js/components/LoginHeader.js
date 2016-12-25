@@ -41,7 +41,7 @@ export default class LoginHeader extends React.Component {
 
         loginService.login($("#username").val(), $("#password").val())
             .then((data) => {
-                location.href = "#/profile";
+                location.href = `#/profiles/${localStorage.getItem("sessionProfileId")}`;
             })
             .catch((err) => {
                 console.log(err);
