@@ -4,7 +4,7 @@ import DefaultProfilImage from "./DefaultProfilImage";
 
 import FriendsListService from "../services/FriendsListService";
 
-export default class FriendsListTab_FriendRow extends React.Component {
+export default class FriendListItemComponent extends React.Component {
     constructor(props) {
         super(props);
 
