@@ -57,7 +57,7 @@ export default class EditProfileInterestsComponent extends React.Component {
 
                 <div className="row">
                     <div className="col-md-12">
-                        <a href="#/profile" type="button" className="btn btn-primary btn-lg btn-block">
+                        <a href={`#/profiles/${localStorage.getItem("sessionProfileId")}`} type="button" className="btn btn-primary btn-lg btn-block">
                             <span className="glyphicon glyphicon-chevron-left"></span> Zurück zum Profil
                         </a>
                     </div>
