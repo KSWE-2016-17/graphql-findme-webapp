@@ -19,7 +19,7 @@ export default class LoginService {
                 if (data && data[0].password === password) {
                     localStorage.setItem("sessionUserId", data[0]._id);
 
-                    deferred.resolve(data);
+                    deferred.resolve(data[0]);
                 } else {
                     deferred.reject("wrong username or password");
                 }
