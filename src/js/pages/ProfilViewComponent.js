@@ -1,6 +1,6 @@
 import React from "react";
 
-import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigationElement";
+import Navigation from "../components/Navigation";
 import ProfilAnsichtRowHead from "../components/ProfilAnsichtRowHead";
 import ProfilAnsichtRowBilder from "../components/ProfilAnsichtRowBilder";
 import ProfilAnsichtRowInteressen from "../components/ProfilAnsichtRowInteressen";
@@ -24,7 +24,7 @@ export default class ProfilViewComponent extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
+                <Navigation/>
                 <ProfilAnsichtRowHead profileId={this.profileId}/>
                 <hr/>
                 {this.state.profileContentElements}

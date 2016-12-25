@@ -2,13 +2,13 @@ import React from "react";
 
 import InboxHeaderComponent from "../components/InboxHeaderComponent";
 import InboxMailComponent from "../components/InboxMailComponent";
-import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigationElement";
+import Navigation from "../components/Navigation";
 
 export default class InboxViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
+                <Navigation/>
                 <InboxHeaderComponent/>
                 <InboxMailComponent/>
             </div>

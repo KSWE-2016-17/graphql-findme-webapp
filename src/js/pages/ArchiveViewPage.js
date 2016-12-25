@@ -2,13 +2,13 @@ import React from "react";
 
 import ArchiveHeaderComponent from "../components/ArchiveHeaderComponent";
 import ArchiveMailComponent from "../components/ArchiveMailComponent";
-import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigationElement";
+import Navigation from "../components/Navigation";
 
 export default class ArchiveViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
+                <Navigation/>
                 <ArchiveHeaderComponent/>
                 <ArchiveMailComponent/>
             </div>

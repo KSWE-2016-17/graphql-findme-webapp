@@ -2,13 +2,13 @@ import React from "react";
 
 import NewMailHeaderComponent from "../components/NewMailHeaderComponent";
 import NewMailComponent from "../components/NewMailComponent";
-import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigationElement";
+import Navigation from "../components/Navigation";
 
 export default class NewMailPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
+                <Navigation/>
                 <NewMailHeaderComponent/>
                 <NewMailComponent/>
             </div>

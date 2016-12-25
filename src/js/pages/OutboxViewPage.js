@@ -2,13 +2,13 @@ import React from "react";
 
 import OutboxHeaderComponent from "../components/OutboxHeaderComponent";
 import OutboxMailComponent from "../components/OutboxMailComponent";
-import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigationElement";
+import Navigation from "../components/Navigation";
 
 export default class OutboxViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
+                <Navigation/>
                 <OutboxHeaderComponent/>
                 <OutboxMailComponent/>
             </div>

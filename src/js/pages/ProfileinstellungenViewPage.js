@@ -1,6 +1,6 @@
 import React from "react";
 
-import ProfilAnsichtNavigationElement from "../components/ProfilAnsichtNavigationElement";
+import Navigation from "../components/Navigation";
 import ProfileinstellungenViewPrivatsphaereComponent from "../components/ProfileinstellungenViewPrivatsphaereComponent";
 import ProfileinstellungenViewSonstigesComponent from "../components/ProfileinstellungenViewSonstigesComponent";
 import ProfileinstellungenViewProfilLoeschenComponent from "../components/ProfileinstellungenViewProfilLoeschenComponent";
@@ -9,7 +9,7 @@ export default class ProfileinstellungenViewPage extends React.Component {
     render() {
         return (
             <div>
-                <ProfilAnsichtNavigationElement/>
+                <Navigation/>
                 <div>
                     <ProfileinstellungenViewPrivatsphaereComponent/>
                     <ProfileinstellungenViewSonstigesComponent/>

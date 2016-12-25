@@ -1,6 +1,6 @@
 import React from "react";
 
-import NavigationBar from "../components/ProfilAnsichtNavigationElement";
+import Navigation from "../components/Navigation";
 import Head from "../components/ReportsView_HeadRow";
 import ReportsList from "../components/ReportsView_ReportsListRow";
 
@@ -8,7 +8,7 @@ export default class ReportsView extends React.Component {
     render() {
         return (
             <div>
-                <NavigationBar/>
+                <Navigation/>
                 <Head/>
                 <ReportsList/>
             </div>
