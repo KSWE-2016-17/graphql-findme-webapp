@@ -6,7 +6,6 @@ export default class InboxService {
     constructor() {
         let connection = new DbApi.Connection(connSettings);
 
-        this.userDAO = new DbApi.UserDAO(connection);
         this.profileDAO = new DbApi.ProfileDAO(connection);
         this.messageDAO = new DbApi.MessageDAO(connection);
     }
@@ -27,7 +26,7 @@ export default class InboxService {
         return this.messageDAO.createOrUpdate(message);
     }
 
-    resolveUserName(userId) {
-        return this.userDAO.findById(userId);
+    resolveUserName(profileId) {
+        return this.profileDAO.findById(profileId);
     }
 }

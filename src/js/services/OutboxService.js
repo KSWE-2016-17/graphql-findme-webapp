@@ -6,7 +6,7 @@ export default class OutboxService {
     constructor() {
         let connection = new DbApi.Connection(connSettings);
 
-        this.userDAO = new DbApi.UserDAO(connection);
+        this.profileDAO = new DbApi.ProfileDAO(connection);
         this.messageDAO = new DbApi.MessageDAO(connection);
     }
 
@@ -26,7 +26,7 @@ export default class OutboxService {
         return this.messageDAO.findUndeleteFrom(profileId);
     }
 
-    resolveUserName(userId) {
-        return this.userDAO.findById(userId);
+    resolveUserName(profileId) {
+        return this.profileDAO.findById(profileId);
     }
 }

@@ -31,7 +31,7 @@ export default class ArchiveMailFromComponent extends React.Component {
                                 background: "linear-gradient(to left, rgba(255, 204, 102,1), rgba(0, 153, 153,1))",
                                 border: "2px solid #000000"
                             }}>
-                                <p>{this.props.data.user.login ? this.props.data.user.login : this.props.data.message.from}</p>
+                                <p>{this.props.data.profile.firstname ? `${this.props.data.profile.firstname} ${this.props.data.profile.lastname}` : this.props.data.message.to_id}</p>
                             </div>
                             <div style={{border: "1px solid #000000"}}>
                                 <p>{this.props.data.message.title}</p>
