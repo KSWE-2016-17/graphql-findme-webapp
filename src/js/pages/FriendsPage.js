@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navigation from "../components/Navigation";
+import NavigationComponent from "../components/NavigationComponent";
 import FriendListItemComponent from "../components/FriendListItemComponent";
 
 import FriendsListService from "../services/FriendsListService";
@@ -19,7 +19,7 @@ export default class FriendsPage extends React.Component {
     render() {
         return (
             <div>
-                <Navigation/>
+                <NavigationComponent/>
 
                 <h1>Deine Freunde</h1>
 

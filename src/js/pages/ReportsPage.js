@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navigation from "../components/Navigation";
+import NavigationComponent from "../components/NavigationComponent";
 import ReportListItemComponent from "../components/ReportListItemComponent";
 
 import AdminService from "../services/AdminService";
@@ -19,7 +19,7 @@ export default class ReportsPage extends React.Component {
     render() {
         return (
             <div>
-                <Navigation/>
+                <NavigationComponent/>
 
                 <h1>Meldungen</h1>
 

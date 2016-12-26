@@ -1,13 +1,13 @@
 import React from "react";
 
-import Navigation from "../components/Navigation";
+import NavigationComponent from "../components/NavigationComponent";
 import DatingViewLayoutComponent from "../components/DatingViewLayoutComponent";
 
 export default class DatingPage extends React.Component {
     render() {
         return (
             <div>
-                <Navigation/>
+                <NavigationComponent/>
                 <DatingViewLayoutComponent/>
             </div>
         );
