@@ -28,11 +28,13 @@ export default class WriteMailPage extends React.Component {
 
                 <form role="form">
                     <div className="form-group">
-                        <input id="sendto" className="form-control" type="email" placeholder="Empfänger"
+                        <label>Empfänger</label>
+                        <input id="sendto" className="form-control" type="email"
                                onChange={this.getSendTo}/>
                     </div>
 
                     <div className="form-group">
+                        <label>Nachricht</label>
                         <textarea id="message" className="form-control" rows="15"></textarea>
                     </div>
 

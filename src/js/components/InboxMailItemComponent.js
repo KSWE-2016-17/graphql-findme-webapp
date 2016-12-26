@@ -59,6 +59,7 @@ export default class InboxMailItemComponent extends React.Component {
     }
 
     onOpenMail(event) {
+        location.href = `#/mails/${this.props.data.message._id}`;
     }
 
     onArchiveMail(event) {
