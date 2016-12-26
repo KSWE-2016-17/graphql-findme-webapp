@@ -20,7 +20,6 @@ export default class InboxMailItemComponent extends React.Component {
     render() {
         return (
             <div>
-                <br/>
                 <div className="row">
                     <div className="col-md-1">
                         <ImageComponent/>
@@ -55,7 +54,6 @@ export default class InboxMailItemComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-                <hr/>
             </div>
         );
     }
