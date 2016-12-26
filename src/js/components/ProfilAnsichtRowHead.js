@@ -1,7 +1,7 @@
 import q from "q";
 import React from "react";
 
-import ProfileImage from "./ProfileImage";
+import ProfileImageComponent from "./ProfileImageComponent";
 
 import ProfilService from "../services/ProfilService";
 import FriendsListService from "../services/FriendsListService";
@@ -30,7 +30,7 @@ export default class ProfilAnsichtRowHead extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-md-2">
-                        <ProfileImage/>
+                        <ProfileImageComponent/>
 
                         <div style={{"marginTop": "2rem"}}>
                             {(() => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import DefaultImage from "./DefaultImage";
+import ImageComponent from "./ImageComponent";
 
 import OutboxService from "../services/OutboxService";
 
@@ -23,7 +23,7 @@ export default class OutboxMailItemComponent extends React.Component {
                 <br/>
                 <div className="row">
                     <div className="col-md-1">
-                        <DefaultImage/>
+                        <ImageComponent/>
                     </div>
                     <div className="col-md-10">
                         <div>

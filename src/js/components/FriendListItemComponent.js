@@ -1,6 +1,6 @@
 import React from "react";
 
-import DefaultProfilImage from "./DefaultProfilImage";
+import ProfileImageComponent from "./ProfileImageComponent";
 
 import FriendsListService from "../services/FriendsListService";
 
@@ -25,7 +25,7 @@ export default class FriendListItemComponent extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-1">
-                    <DefaultProfilImage/>
+                    <ProfileImageComponent/>
                 </div>
 
                 <div className="col-md-11">
