@@ -11,11 +11,7 @@ export default class ImageComponent extends React.Component {
 
     render() {
         return (
-            <img className="img-thumbnail" src={this.state.src} style={{
-                width: "140px",
-                height: "140px"
-            }}
-            />
+            <img className="img-thumbnail img-responsive" src={this.state.src}/>
         );
     }
 
