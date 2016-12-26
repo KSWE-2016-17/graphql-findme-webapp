@@ -19,7 +19,7 @@ export default class LoginHeader extends React.Component {
         return (
             <div className="row" style={{backgroundColor: "LightGray"}}>
                 <div className="clearfix">
-                    <form className="form-inline pull-right">
+                    <form className="form-inline pull-right" onSubmit={this.login}>
                         <div className="form-group">
                             <input id="username" className="form-control" type="text" placeholder="username"
                                    style={{marginLeft: "1rem"}}/>
@@ -31,8 +31,7 @@ export default class LoginHeader extends React.Component {
                         </div>
 
                         <div className="form-group">
-                            <button className="btn btn-primary" type="button" style={{marginLeft: "1rem"}}
-                                    onClick={this.login}>
+                            <button className="btn btn-primary" type="submit" style={{marginLeft: "1rem"}}>
                                 <span className="glyphicon glyphicon-log-in"></span> Anmelden
                             </button>
                         </div>
