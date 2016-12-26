@@ -79,7 +79,7 @@ export default class ProfilAnsichtRowHead extends React.Component {
                                 if (this.state.isOwnProfile === true) {
                                     return (
                                         <a className="btn btn-primary" href="#/edit" role="button">
-                                            <span className="glyphicon glyphicon-edit"></span> "Über mich" bearbeiten
+                                            <span className="glyphicon glyphicon-edit"></span> Profil bearbeiten
                                         </a>
                                     );
                                 } else {
