@@ -8,6 +8,7 @@ export default class InboxService {
 
         this.userDAO = new DbApi.UserDAO(connection);
         this.profileDAO = new DbApi.ProfileDAO(connection);
+        this.messageDAO = new DbApi.MessageDAO(connection);
     }
 
     findMsgToMe(profileId) {
