@@ -4,7 +4,7 @@ import ImageComponent from "./ImageComponent";
 
 import InboxService from "../services/InboxService";
 
-export default class MailItemComponent extends React.Component {
+export default class InboxMailItemComponent extends React.Component {
     constructor(props) {
         super(props);
 

@@ -3,7 +3,7 @@ import _ from "lodash";
 import React from "react";
 
 import NavigationComponent from "../components/NavigationComponent";
-import MailItemComponent from "../components/MailItemComponent";
+import InboxMailItemComponent from "../components/InboxMailItemComponent";
 
 import InboxService from "../services/InboxService"
 
@@ -63,11 +63,11 @@ export default class InboxPage extends React.Component {
                     let promiseResult = elem;
 
                     mappedData.forEach((elem) => {
-                            if (elem.message.from_id === promiseResult._id) {
-                                elem.profile = promiseResult;
-                            }
+                        if (elem.message.from_id === promiseResult._id) {
+                            elem.profile = promiseResult;
+                        }
 
-                        mailItemComponents.push(<MailItemComponent key={Math.random()} data={elem}/>);
+                        mailItemComponents.push(<InboxMailItemComponent key={Math.random()} data={elem}/>);
                     });
                 });
 
