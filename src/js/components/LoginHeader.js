@@ -17,24 +17,24 @@ export default class LoginHeader extends React.Component {
 
     render() {
         return (
-            <div>
-                <div className="row" style={{backgroundColor: "LightGray"}}>
-                    <div className="col-md-1">
-                        <h3 className="title">find.me</h3>
-                    </div>
-                    <form className="form-inline">
-                        <div className="col-md-2 col-md-offset-5">
-                            <div className="form-group">
-                                <input type="text" className="form-control" id="username" placeholder="Username"/>
-                            </div>
+            <div className="row" style={{backgroundColor: "LightGray"}}>
+                <div className="clearfix">
+                    <form className="form-inline pull-right">
+                        <div className="form-group">
+                            <input id="username" className="form-control" type="text" placeholder="username"
+                                   style={{marginLeft: "1rem"}}/>
                         </div>
-                        <div className="col-md-2">
-                            <div className="form-group">
-                                <input type="password" className="form-control" id="password" placeholder="Password"/>
-                            </div>
+
+                        <div className="form-group">
+                            <input id="password" className="form-control" type="password" placeholder="password"
+                                   style={{marginLeft: "1rem"}}/>
                         </div>
-                        <div className="col-md-1">
-                            <button type="button" className="btn btn-primary" onClick={this.login}>Anmelden</button>
+
+                        <div className="form-group">
+                            <button className="btn btn-primary" type="button" style={{marginLeft: "1rem"}}
+                                    onClick={this.login}>
+                                <span className="glyphicon glyphicon-log-in"></span> Anmelden
+                            </button>
                         </div>
                     </form>
                 </div>
