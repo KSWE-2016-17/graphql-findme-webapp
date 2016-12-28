@@ -6,8 +6,11 @@
   "scripts": {
     "preserve": "npm install",
     "serve": "webpack-dev-server --watch --inline --hot --port 8081",
+    "prebuild": "mkdir -p dist",
+    "build": "webpack --optimize-dedupe --optimize-occurence-order --optimize-minimize",
     "test": "karma start",
-    "lint": "eslint src || true"
+    "lint": "eslint src || true",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
