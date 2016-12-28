@@ -1,56 +1,47 @@
-# find.me ReactJS
+# FindMe Webapp
 
-## Einrichtung der Entwicklungsumgebung
+This project contains the frontend of FindMe.
+It uses a DAO based database
+[API](https://github.com/kswe2016-17/graphql-findme-db-api)
+to communicate with the
+[backend](https://github.com/kswe2016-17/graphql-findme-graphql-service)
+of FindMe.
 
-### System
+## Prerequisites
 
-Zur Entwicklung wird das Tool `npm` benötigt.
-Dazu einfach für das jeweilige System [Node.js](https://nodejs.org)
-herunterladen und installieren.
+- [nodejs v6.0+](https://nodejs.org)
+- [npm v3.0+](https://nodejs.org)
 
-Bei Linux-System kann es sein,
-dass in den Repositories veraltete Versionen verfügbar sind.
-Hier dann manuell die aktuellste Version von Node.js und npm installieren,
-da die veralteten Versionen nicht funktionieren.
+## Available npm scripts
 
-Derzeitige aktuelle Versionen sind:
+| Script  | Description                                                                                                    |
+|:--------|:---------------------------------------------------------------------------------------------------------------|
+| `build` | Builds a distribution.                                                                                         |
+| `serve` | Starts a development variant of the project with file watching and online hot-replacement on HTTP port `8081`. |
+| `lint`  | Runs `eslint` and checkes the source code quality.                                                             |
+| `test`  | Runs unit tests with `karma`.                                                                                  |
+| `clean` | Cleans up the project directory.                                                                               |
 
-* node: 6.2.2
-* npm: 3.10.2
+## Start project in development mode
 
-Außerdem wird Git benötigt.
-
-Node, npm und git müssen im PATH aufgenommen werden,
-falls dies nicht bereits automatisch durch das System gemacht wurde
-(betrifft meist nur Windows-Systeme).
-
-### Projekt
-
-Zuerst muss das Repository geklont und betreten werden.
+Start the development server as follows:
 
 ```bash
-# cd to wherever you want to
-git clone https://github.com/findme-react/js-webapp.git
-cd js-webapp
+npm run serve
 ```
 
-Zur Einrichtung der Projekt-Umgebung kann npm genutzt werden:
+This runs the development server in watch mode with online hot replacing on
+HTTP port `8081`.
+This way the development server builds and updates the running instance on
+each file change automatically,
+so there is no need to restart the development server after making some changes.
+
+## Build and run project
+
+Build the project as follows:
 
 ```bash
-npm install
+npm run build
 ```
 
-Wenn alle Abhängigkeiten heruntergeladen wurden,
-dann kann am Projekt gearbeitet werden.
-
-Es stehen folgende npm-Skripte zur Verfügung:
-
-| Skript / Aufruf | Beschreibung |
-|---|---|
-| `npm run startDev` | Startet `webpack-dev-server` im `watch`-Modus mit hot-swapping. Außerdem wird immer `npm install` aufgerufen, um sicherzustellen, dass die Umgebung auch wirklich aktuell ist. |
-| `npm run lint` | Führt `eslint` zur statischen Code-Analyse aus. |
-| `npm test` | Führt mittels `karma` alle Unit-Tests aus. |
-
-Die Webseite ist unter
-[http://localhost:8080/webpack-dev-server/](http://localhost:8080/webpack-dev-server/)
-zu finden.
+Then open `dist/index.html` file in a web browser and do whatever you want.
