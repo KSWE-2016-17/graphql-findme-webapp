@@ -22,6 +22,25 @@ of FindMe.
 | `test`  | Runs unit tests with `karma`.                                                                                  |
 | `clean` | Cleans up the project directory.                                                                               |
 
+## Configuration
+
+As the database API needs to know where to find the GraphQL service,
+it is needed to configure the connection.
+
+Copy the `src/conn-settings.js.default` connection config file to
+`src/conn-settings.js` and apply your connection data.
+
+**Example:**
+
+```js
+var connSettings = {
+    url: "http://localhost:8080/graphql",
+};
+
+exports.default = connSettings;
+module.exports = exports.default;
+```
+
 ## Start project in development mode
 
 Start the development server as follows:
