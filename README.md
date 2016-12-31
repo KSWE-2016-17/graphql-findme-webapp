@@ -1,11 +1,11 @@
-# FindMe Webapp
+# find.me Webapp
 
-This project contains the frontend of FindMe.
+This project contains the frontend of find.me.
 It uses a DAO based database
 [API](https://github.com/kswe2016-17/graphql-findme-db-api)
 to communicate with the
 [backend](https://github.com/kswe2016-17/graphql-findme-graphql-service)
-of FindMe.
+of find.me.
 
 As the communication is being done by a GraphQL service,
 it is needed to have a running instance of the corresponding
