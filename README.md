@@ -7,6 +7,11 @@ to communicate with the
 [backend](https://github.com/kswe2016-17/graphql-findme-graphql-service)
 of FindMe.
 
+As the communication is being done by a GraphQL service,
+it is needed to have a running instance of the corresponding
+[service](https://github.com/kswe-2016-17/graphql-findme-graphql-service)
+and also to configure the connection which is described later on.
+
 ## Prerequisites
 
 - [nodejs v6.0+](https://nodejs.org)
