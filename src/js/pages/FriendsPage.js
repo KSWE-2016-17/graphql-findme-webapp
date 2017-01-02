@@ -78,8 +78,8 @@ export default class FriendsPage extends React.Component {
                     friendsItems
                 });
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 }

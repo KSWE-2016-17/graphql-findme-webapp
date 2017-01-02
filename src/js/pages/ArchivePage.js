@@ -103,8 +103,8 @@ export default class ArchivePage extends React.Component {
 
                 this.setState({mailItemComponents: mailItemComponents});
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 }

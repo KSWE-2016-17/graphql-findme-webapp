@@ -139,8 +139,8 @@ export default class ProfilAnsichtRowHead extends React.Component {
             .then((data) => {
                 this.setState(state);
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 

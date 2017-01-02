@@ -76,8 +76,8 @@ export default class ProfilAnsichtRowInteressen extends React.Component {
                 });
 
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 }

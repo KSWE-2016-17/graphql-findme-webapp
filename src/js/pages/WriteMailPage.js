@@ -67,8 +67,8 @@ export default class WriteMailPage extends React.Component {
             .then((data) => {
                 this.sendtoid = data[0]._id;
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 
@@ -93,8 +93,8 @@ export default class WriteMailPage extends React.Component {
                         this.sendtoid = "NOTFOUND";
                         location.href = "#/mails/outbox";
                     })
-                    .catch((err) => {
-                        console.log(err);
+                    .catch((error) => {
+                        console.log(error);
                     });
             } else {
                 alert("USER NOT FOUND");

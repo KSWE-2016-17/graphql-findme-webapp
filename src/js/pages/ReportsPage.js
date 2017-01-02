@@ -45,8 +45,8 @@ export default class ReportsPage extends React.Component {
 
                 this.setState({reports: newReportList});
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 }

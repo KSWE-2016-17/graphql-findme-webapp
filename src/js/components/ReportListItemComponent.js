@@ -53,8 +53,8 @@ export default class ReportListItemComponent extends React.Component {
                     console.log("user not found");
                 }
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 

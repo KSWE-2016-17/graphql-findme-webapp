@@ -91,8 +91,8 @@ export default class FriendListItemComponent extends React.Component {
                     friendName: data.login
                 });
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .done();
     }

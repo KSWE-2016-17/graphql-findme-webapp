@@ -55,8 +55,8 @@ export default class LoginHeader extends React.Component {
                     console.log("no profile found for login");
                 }
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 }

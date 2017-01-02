@@ -116,8 +116,8 @@ export default class NavigationComponent extends React.Component {
                 .then((data) => {
                     location.href = "#/profile/" + data[0]._id;
                 })
-                .catch((err) => {
-                    console.log(err);
+                .catch((error) => {
+                    console.log(error);
                 });
         }
     }

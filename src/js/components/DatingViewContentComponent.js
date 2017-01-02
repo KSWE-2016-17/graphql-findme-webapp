@@ -184,8 +184,8 @@ export default class DatingViewContentComponent extends React.Component {
                     }
                 }
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 }

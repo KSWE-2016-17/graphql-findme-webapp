@@ -146,8 +146,8 @@ export default class EditProfilePage extends React.Component {
             .then((data) => {
                 $("#aboutme").val(data.aboutme.split("{")[0]);
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .done();
 
@@ -160,8 +160,8 @@ export default class EditProfilePage extends React.Component {
                 $("#eye").val(data.eyecolor);
                 $("#figure").val(data.figure);
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .done();
 
@@ -179,8 +179,8 @@ export default class EditProfilePage extends React.Component {
                     }
                 }
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .done();
     }
@@ -197,8 +197,8 @@ export default class EditProfilePage extends React.Component {
 
                 return this.profileService.updateProfile(data);
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .done();
     }
@@ -220,8 +220,8 @@ export default class EditProfilePage extends React.Component {
 
                 return this.profileService.updateProfile(data);
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .done();
     }
@@ -246,8 +246,8 @@ export default class EditProfilePage extends React.Component {
 
                 return this.profileService.updateProfile(data);
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .done();
     }
