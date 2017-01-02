@@ -2,7 +2,7 @@ import React from "react";
 
 import LoginHeader from "../components/LoginHeader";
 
-import RegisterService from "../services/RegisterService";
+import UserService from "../services/UserService";
 import ProfilService from "../services/ProfilService";
 
 export default class RegisterPage extends React.Component {
@@ -11,7 +11,7 @@ export default class RegisterPage extends React.Component {
 
         this.state = {};
 
-        this.registerService = new RegisterService();
+        this.userService = new UserService();
         this.profileService = new ProfilService();
     }
 
@@ -138,9 +138,9 @@ export default class RegisterPage extends React.Component {
             gender !== "" &&
             yearOfBirth !== "" &&
             agbAccepted === true) {
-            this.registerService.register(userObject)
+            this.userService.createUser(userObject)
                 .then((data) => {
-                    return this.registerService.findIdByName(username);
+                    return this.userService.findByLogin(username);
                 })
                 .then((data) => {
                     profileObject.user_id = data[0]._id;
