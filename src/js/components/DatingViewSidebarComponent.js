@@ -6,19 +6,64 @@ export default class DatingViewSidebarComponent extends React.Component {
     render() {
         return (
             <div>
-                <p>Vorschläge</p>
-                <ProfileImageComponent/>
-                <span>Max Musterman</span>
-                <ProfileImageComponent/>
-                <span>Max Musterman</span>
-                <ProfileImageComponent/>
-                <span>Max Musterman</span>
-                <ProfileImageComponent/>
-                <span>Max Musterman</span>
-                <ProfileImageComponent/>
-                <span>Max Musterman</span>
-                <ProfileImageComponent/>
-                <span>Max Musterman</span>
+                <div className="panel panel-default">
+                    <div className="panel-heading text-center">
+                        <strong>Vorschläge</strong>
+                    </div>
+
+                    <div className="panel-body">
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <p>
+                                    <ProfileImageComponent/>
+                                </p>
+                                <p className="text-center">
+                                    Max Mustermann
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <p>
+                                    <ProfileImageComponent/>
+                                </p>
+                                <p className="text-center">
+                                    Max Mustermann
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <p>
+                                    <ProfileImageComponent/>
+                                </p>
+                                <p className="text-center">
+                                    Max Mustermann
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <p>
+                                    <ProfileImageComponent/>
+                                </p>
+                                <p className="text-center">
+                                    Max Mustermann
+                                </p>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-sm-12">
+                                <p>
+                                    <ProfileImageComponent/>
+                                </p>
+                                <p className="text-center">
+                                    Max Mustermann
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
