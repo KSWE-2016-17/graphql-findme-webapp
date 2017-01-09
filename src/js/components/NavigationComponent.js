@@ -57,10 +57,10 @@ export default class NavigationComponent extends React.Component {
                                             <a href="#/mails/inbox">Posteingang</a>
                                         </li>
                                         <li>
-                                            <a href="#/mails/new">Nachricht erstellen</a>
+                                            <a href="#/mails/outbox">Postausgang</a>
                                         </li>
                                         <li>
-                                            <a href="#/mails/outbox">gesendete Nachrichten</a>
+                                            <a href="#/mails/new">Neue Nachricht</a>
                                         </li>
                                         <li>
                                             <a href="#/mails/archive">Archiv</a>
