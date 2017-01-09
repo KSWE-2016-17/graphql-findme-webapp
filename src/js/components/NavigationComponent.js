@@ -71,14 +71,14 @@ export default class NavigationComponent extends React.Component {
                                     <form className="navbar-form navbar-input-group" role="form"
                                           onSubmit={this.searchUser}>
                                         <div className="input-group">
+                                            <div className="form-group">
+                                                <input id="searchField" className="form-control input-sm" type="text"
+                                                       placeholder="Suche"/>
+                                            </div>
                                             <div className="input-group-btn">
                                                 <button className="btn btn-default btn-sm" type="submit">
                                                     <span className="glyphicon glyphicon-search"></span>
                                                 </button>
-                                            </div>
-                                            <div className="form-group">
-                                                <input id="searchField" className="form-control input-sm" type="text"
-                                                       placeholder="Suche"/>
                                             </div>
                                         </div>
                                     </form>
