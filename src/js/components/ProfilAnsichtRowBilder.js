@@ -1,6 +1,6 @@
 import React from "react";
 
-import DefaultImage from "./DefaultImage";
+import ImageComponent from "./ImageComponent";
 
 export default class ProfilAnsichtRowBilder extends React.Component {
     render() {
@@ -14,27 +14,27 @@ export default class ProfilAnsichtRowBilder extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-md-2">
-                        <DefaultImage/>
+                        <ImageComponent/>
                         <br/>
                         <span>Urlaub</span>
                     </div>
                     <div className="col-md-2">
-                        <DefaultImage/>
+                        <ImageComponent/>
                         <br/>
                         <span>Kinder</span>
                     </div>
                     <div className="col-md-2">
-                        <DefaultImage/>
+                        <ImageComponent/>
                         <br/>
                         <span>Autos</span>
                     </div>
                     <div className="col-md-2">
-                        <DefaultImage/>
+                        <ImageComponent/>
                         <br/>
                         <span>lustige Momente</span>
                     </div>
                     <div className="col-md-2 ">
-                        <DefaultImage/>
+                        <ImageComponent/>
                         <br/>
                         <span>sonstiges</span>
                     </div>

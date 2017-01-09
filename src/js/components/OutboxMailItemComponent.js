@@ -1,6 +1,6 @@
 import React from "react";
 
-import DefaultImage from "./DefaultImage";
+import ImageComponent from "./ImageComponent";
 
 import OutboxService from "../services/OutboxService";
 
@@ -20,15 +20,14 @@ export default class OutboxMailItemComponent extends React.Component {
     render() {
         return (
             <div>
-                <br/>
                 <div className="row">
                     <div className="col-md-1">
-                        <DefaultImage/>
+                        <ImageComponent/>
                     </div>
                     <div className="col-md-10">
                         <div>
                             <div style={{backgroundColor: "#ccccff", border: "2px solid #000000"}}>
-                                <p>{this.props.data.user.login ? this.props.data.user.login : this.props.data.message.from}</p>
+                                <p>{this.props.data.profile.firstname ? `${this.props.data.profile.firstname} ${this.props.data.profile.lastname}` : this.props.data.message.to_id}</p>
                             </div>
                             <div style={{border: "1px solid #000000"}}>
                                 <p>{this.props.data.message.title}</p>
@@ -55,7 +54,6 @@ export default class OutboxMailItemComponent extends React.Component {
                         </div>
                     </div>
                 </div>
-                <hr/>
             </div>
         );
     }

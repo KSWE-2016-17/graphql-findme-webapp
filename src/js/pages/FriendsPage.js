@@ -1,15 +1,16 @@
 import React from "react";
 
-import FriendRow from "./FriendsListTab_FriendRow";
+import NavigationComponent from "../components/NavigationComponent";
+import FriendListItemComponent from "../components/FriendListItemComponent";
 
 import FriendsListService from "../services/FriendsListService";
 
-export default class FriendsListTab_FriendsListRow extends React.Component {
+export default class FriendsPage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            friends: []
+            friendsItems: []
         };
 
         this.friendsListService = new FriendsListService();
@@ -17,14 +18,20 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
 
     render() {
         return (
-            <div id="friendsList">
-                {this.state.friends}
+            <div>
+                <NavigationComponent/>
+
+                <h1>Deine Freunde</h1>
+
+                <div>
+                    {this.state.friendsItems}
+                </div>
             </div>
         );
     }
 
     componentDidMount() {
-        let friends = [];
+        let friendsItems = [];
         let currentProfile;
 
         this.friendsListService.getCurrentProfile()
@@ -36,14 +43,13 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
             .then((data) => {
                 data.forEach((friend) => {
                     if (friend) {
-                        friends.push(
-                            <div key={Math.random()}>
-                                <FriendRow
-                                    profileId={friend._id}
-                                    isFriend={true}
-                                    isOwnRequest={false}
-                                />
-                            </div>
+                        friendsItems.push(
+                            <FriendListItemComponent
+                                profileId={friend._id}
+                                isFriend={true}
+                                isOwnRequest={false}
+                                key={Math.random()}
+                            />
                         );
                     }
                 });
@@ -56,25 +62,24 @@ export default class FriendsListTab_FriendsListRow extends React.Component {
                         let isOwnRequest = currentProfile._id === friendRequest.from_id;
                         let targetId = isOwnRequest ? friendRequest.to_id : friendRequest.from_id;
 
-                        friends.push(
-                            <div key={Math.random()}>
-                                <FriendRow
-                                    profileId={targetId}
-                                    isFriend={false}
-                                    isOwnRequest={isOwnRequest}
-                                />
-                            </div>
+                        friendsItems.push(
+                            <FriendListItemComponent
+                                profileId={targetId}
+                                isFriend={false}
+                                isOwnRequest={isOwnRequest}
+                                key={Math.random()}
+                            />
                         );
                     }
                 });
             })
             .then((data) => {
                 this.setState({
-                    friends: friends
+                    friendsItems
                 });
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 }

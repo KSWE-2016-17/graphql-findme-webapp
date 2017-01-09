@@ -5,6 +5,9 @@ export default class IndexPage extends React.Component {
         return (
             <div className="container">
                 {this.props.children}
+
+                <hr/>
+                <div className="text-center">@ 2016 find.me Alle Rechte vorbehalten.</div>
             </div>
         );
     }

@@ -1,4 +1,3 @@
-import q from "q";
 import DbApi from "graphql-findme-db-api";
 
 import connSettings from "../../conn-settings";
@@ -35,7 +34,7 @@ export default class ProfilService {
         return this.profileDAO.update(profile);
     }
 
-    remove(profile) {
+    removeProfile(profile) {
         return this.profileDAO.remove(profile);
     }
 

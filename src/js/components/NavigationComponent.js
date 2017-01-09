@@ -3,7 +3,7 @@ import React from "react";
 import DatingService from "../services/DatingService";
 import ProfilService from "../services/ProfilService";
 
-export default class Navigation extends React.Component {
+export default class NavigationComponent extends React.Component {
     constructor(props) {
         super(props);
 
@@ -116,8 +116,8 @@ export default class Navigation extends React.Component {
                 .then((data) => {
                     location.href = "#/profile/" + data[0]._id;
                 })
-                .catch((err) => {
-                    console.log(err);
+                .catch((error) => {
+                    console.log(error);
                 });
         }
     }

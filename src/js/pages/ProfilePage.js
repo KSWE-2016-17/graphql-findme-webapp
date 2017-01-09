@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navigation from "../components/Navigation";
+import NavigationComponent from "../components/NavigationComponent";
 import ProfilAnsichtRowHead from "../components/ProfilAnsichtRowHead";
 import ProfilAnsichtRowBilder from "../components/ProfilAnsichtRowBilder";
 import ProfilAnsichtRowInteressen from "../components/ProfilAnsichtRowInteressen";
@@ -8,7 +8,7 @@ import ProfilAnsichtRowRestricted from "../components/ProfilAnsichtRowRestricted
 
 import FriendsListService from "../services/FriendsListService";
 
-export default class ProfilViewComponent extends React.Component {
+export default class ProfilePage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -24,7 +24,7 @@ export default class ProfilViewComponent extends React.Component {
     render() {
         return (
             <div>
-                <Navigation/>
+                <NavigationComponent/>
                 <ProfilAnsichtRowHead profileId={this.profileId}/>
                 <hr/>
                 {this.state.profileContentElements}

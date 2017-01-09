@@ -2,7 +2,7 @@ import DbApi from "graphql-findme-db-api";
 
 import connSettings from "../../conn-settings";
 
-export default class RegisterService {
+export default class UserService {
     constructor() {
         let connection = new DbApi.Connection(connSettings);
 
@@ -10,15 +10,19 @@ export default class RegisterService {
         this.profileDAO = new DbApi.ProfileDAO(connection);
     }
 
-    register(user) {
-        return this.userDAO.create(user);
+    findById(userId) {
+        return this.userDAO.findById(userId);
     }
 
-    findIdByName(login) {
+    findByLogin(login) {
         return this.userDAO.findByLogin(login);
     }
 
-    removeProfil(profile) {
-        return this.profileDAO.remove(profile);
+    createUser(user) {
+        return this.userDAO.create(user);
+    }
+
+    removeUser(user) {
+        return this.userDAO.remove(user);
     }
 }

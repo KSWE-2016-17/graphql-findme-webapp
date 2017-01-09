@@ -1,7 +1,7 @@
 import q from "q";
 import React from "react";
 
-import ProfileImage from "./ProfileImage";
+import ProfileImageComponent from "./ProfileImageComponent";
 
 import ProfilService from "../services/ProfilService";
 import FriendsListService from "../services/FriendsListService";
@@ -30,7 +30,7 @@ export default class ProfilAnsichtRowHead extends React.Component {
             <div>
                 <div className="row">
                     <div className="col-md-2">
-                        <ProfileImage/>
+                        <ProfileImageComponent/>
 
                         <div style={{"marginTop": "2rem"}}>
                             {(() => {
@@ -79,7 +79,7 @@ export default class ProfilAnsichtRowHead extends React.Component {
                                 if (this.state.isOwnProfile === true) {
                                     return (
                                         <a className="btn btn-primary" href="#/edit" role="button">
-                                            <span className="glyphicon glyphicon-edit"></span> "Über mich" bearbeiten
+                                            <span className="glyphicon glyphicon-edit"></span> Profil bearbeiten
                                         </a>
                                     );
                                 } else {
@@ -139,8 +139,8 @@ export default class ProfilAnsichtRowHead extends React.Component {
             .then((data) => {
                 this.setState(state);
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             });
     }
 

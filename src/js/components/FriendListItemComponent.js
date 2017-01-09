@@ -1,10 +1,10 @@
 import React from "react";
 
-import DefaultProfilImage from "./DefaultProfilImage";
+import ProfileImageComponent from "./ProfileImageComponent";
 
 import FriendsListService from "../services/FriendsListService";
 
-export default class FriendsListTab_FriendRow extends React.Component {
+export default class FriendListItemComponent extends React.Component {
     constructor(props) {
         super(props);
 
@@ -25,7 +25,7 @@ export default class FriendsListTab_FriendRow extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-1">
-                    <DefaultProfilImage/>
+                    <ProfileImageComponent/>
                 </div>
 
                 <div className="col-md-11">
@@ -91,8 +91,8 @@ export default class FriendsListTab_FriendRow extends React.Component {
                     friendName: data.login
                 });
             })
-            .catch((err) => {
-                console.log(err);
+            .catch((error) => {
+                console.log(error);
             })
             .done();
     }
