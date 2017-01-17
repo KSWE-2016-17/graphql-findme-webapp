@@ -82,7 +82,7 @@ export default class RegisterPage extends React.Component {
                     <div className="form-group">
                         <div className="checkbox">
                             <label>
-                                <input id="acceptAGB" type="checkbox" onClick={this.acceptAGB}/> AGBs gelesen und
+                                <input id="acceptAGB" type="checkbox"/> AGBs gelesen und
                                 akzeptiert
                             </label>
                         </div>
@@ -90,7 +90,7 @@ export default class RegisterPage extends React.Component {
 
                     <div className="form-group">
                         <button id="registerButton" className="btn btn-primary" type="button"
-                                onClick={this.registerNewUser} disabled="disabled">
+                                onClick={this.registerNewUser}>
                             <span className="glyphicon glyphicon-check"></span> Registrieren
                         </button>
                     </div>
@@ -158,9 +158,5 @@ export default class RegisterPage extends React.Component {
         } else {
             alert("Bitte alle Felder ausfuellen!");
         }
-    }
-
-    acceptAGB() {
-        $("#registerButton").prop("disabled", !$("#acceptAGB").prop("checked"));
     }
 }
