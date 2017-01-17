@@ -11,7 +11,11 @@ export default class RegisterPage extends React.Component {
 
         this.state = {};
 
+        this.gender = 1;
+
         this.registerNewUser = this.registerNewUser.bind(this);
+        this.useMaleGender = this.useMaleGender.bind(this);
+        this.useFemaleGender = this.useFemaleGender.bind(this);
 
         this.userService = new UserService();
         this.profileService = new ProfilService();
@@ -35,19 +39,19 @@ export default class RegisterPage extends React.Component {
                         <div className="col-sm-6">
                             <div className="form-group">
                                 <label>Benutzername</label>
-                                <input id="username" className="form-control" type="text"/>
+                                <input id="reg-username" className="form-control" type="text"/>
                             </div>
                             <div className="form-group">
                                 <label>Email</label>
-                                <input id="mailadress" className="form-control" type="text"/>
+                                <input id="reg-mailadress" className="form-control" type="text"/>
                             </div>
                             <div className="form-group">
                                 <label>Passwort</label>
-                                <input id="password" className="form-control" type="password"/>
+                                <input id="reg-password" className="form-control" type="password"/>
                             </div>
                             <div className="form-group">
                                 <label>Passwort wiederholen</label>
-                                <input id="password2" className="form-control" type="password"/>
+                                <input id="reg-password2" className="form-control" type="password"/>
                             </div>
                         </div>
 
@@ -57,24 +61,21 @@ export default class RegisterPage extends React.Component {
 
                                 <div className="radio">
                                     <label>
-                                        <input type="radio" name="gender" value="male"/> männlich
+                                        <input type="radio" name="gender" value="1" defaultChecked="defaultChecked" onClick={this.useMaleGender}/>
+                                        männlich
                                     </label>
                                 </div>
                                 <div className="radio">
                                     <label>
-                                        <input type="radio" name="gender" value="female"/> weiblich
-                                    </label>
-                                </div>
-                                <div className="radio">
-                                    <label>
-                                        <input type="radio" name="gender" value="other"/> sonstiges
+                                        <input type="radio" name="gender" value="0"
+                                               onClick={this.useFemaleGender}/> weiblich
                                     </label>
                                 </div>
                             </div>
 
                             <div className="form-group">
                                 <label>Geburtsjahr</label>
-                                <input id="yearOfBirth" className="form-control" type="number"/>
+                                <input id="reg-yearOfBirth" className="form-control" type="number"/>
                             </div>
                         </div>
                     </div>
@@ -82,7 +83,7 @@ export default class RegisterPage extends React.Component {
                     <div className="form-group">
                         <div className="checkbox">
                             <label>
-                                <input id="acceptAGB" type="checkbox"/> AGBs gelesen und
+                                <input id="reg-acceptAGB" type="checkbox"/> AGBs gelesen und
                                 akzeptiert
                             </label>
                         </div>
@@ -100,43 +101,44 @@ export default class RegisterPage extends React.Component {
     }
 
     registerNewUser() {
-        let username = $("#username").val();
-        let mail = $("#mailadress").val();
-        let password = $("#password").val();
-        let pw2 = $("#password2").val();
-        let gender = $("#gender").val();
-        let yearOfBirth = $("#yearOfBirth").val();
-        let agbAccepted = $("#acceptAGB").prop("checked");
+        let username = $("#reg-username").val();
+        let email = $("#reg-mailadress").val();
+        let password = $("#reg-password").val();
+        let password2 = $("#reg-password2").val();
+        let gender = this.gender;
+        let yearOfBirth = $("#reg-yearOfBirth").val();
+        let agbAccepted = $("#reg-acceptAGB").prop("checked");
 
         let userObject = {
-            "login": username,
-            "password": password,
-            "role": 0
+            login: username,
+            password: password,
+            role: 0
         };
 
         let profileObject = {
-            "user_id": "",
-            "firstname": username,
-            "lastname": username,
-            "email": mail,
-            "birthday": yearOfBirth,
-            "gender": gender,
-            "familystatus": 1,
-            "children": 0,
-            "aboutme": "txt{#+txt",
-            "privacy": {
-                "friends": 1,
-                "pictures": 0
+            user_id: "",
+            friends_ids: [],
+            firstname: username,
+            lastname: username,
+            email: email,
+            birthday: new Date(yearOfBirth, 1, 1).toISOString(),
+            gender: gender,
+            familystatus: 1,
+            children: 0,
+            aboutme: "txt{#+txt",
+            privacy: {
+                friends: 1,
+                pictures: 0
             },
-            "profilepic": "",
-            "haircolor": 3,
-            "eyecolor": 0,
-            "figure": 1
+            profilepic: "",
+            haircolor: 3,
+            eyecolor: 0,
+            figure: 1
         };
 
         if (username !== "" &&
-            mail !== "" &&
-            password === pw2 &&
+            email !== "" &&
+            password === password2 &&
             gender !== "" &&
             yearOfBirth !== "" &&
             agbAccepted === true) {
@@ -158,5 +160,13 @@ export default class RegisterPage extends React.Component {
         } else {
             alert("Bitte alle Felder ausfuellen!");
         }
+    }
+
+    useMaleGender() {
+        this.gender = 1;
+    }
+
+    useFemaleGender() {
+        this.gender = 0;
     }
 }
