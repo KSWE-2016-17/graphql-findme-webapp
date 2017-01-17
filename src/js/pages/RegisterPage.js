@@ -11,6 +11,8 @@ export default class RegisterPage extends React.Component {
 
         this.state = {};
 
+        this.registerNewUser = this.registerNewUser.bind(this);
+
         this.userService = new UserService();
         this.profileService = new ProfilService();
     }
